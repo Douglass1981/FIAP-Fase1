@@ -12,7 +12,7 @@ interface userInterface {
     password: string
 }
 
-const newUser: userInterface [] = [{name: "Maria", email:"teste@teste", password:"1234"}]
+const newUser: userInterface [] = [{name: "Douglas", email:"teste@teste", password:"1234"}]
 
 export async function main() {
     for (const u of newUser) {
