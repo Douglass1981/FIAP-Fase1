@@ -1,0 +1,56 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "terminal.integrated.env.windows": {
+      "DATABASE_URL": "sqlite://${workspaceFolder:FIAP-Fase1}/src/prisma/dev.db",
+      "NODE-ENV": "development",
+      "NODE-OPTIONS": "--inspect",
+      "NODE_PATH": "${workspaceFolder:FIAP-Fase1}/src"
+    },
+    "sqltools.connections": [
+      {
+        "previewLimit": 50,
+        "driver": "SQLite",
+        "database": "${workspaceFolder:FIAP-Fase1}/src/prisma/dev.db",
+        "name": "db"
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Next.js: backend",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run dev"
+      },
+      {
+        "name": "Next.js: front-end chrome",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000"
+      },
+      {
+        "name": "Next.js: full-stack",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+        "runtimeArgs": ["--inspect"],
+        "skipFiles": ["<node_internals>/**"],
+        "serverReadyAction": {
+          "action": "debugWithEdge",
+          "killOnServerStop": true,
+          "pattern": "- Local:.+(https?://.+)",
+          "uriFormat": "%s",
+          "webRoot": "${workspaceFolder}"
+        }
+      }
+    ],
+    "compounds": []
+  }
+}
