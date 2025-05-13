@@ -5,10 +5,18 @@
     }
   ],
   "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.js": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    },
     "terminal.integrated.env.windows": {
-      "DATABASE_URL": "sqlite://${workspaceFolder:FIAP-Fase1}/src/prisma/dev.db",
+      "DATABASE_URL": "file:${workspaceFolder:FIAP-Fase1}\\src\\prisma\\dev.db",
       "NODE-ENV": "development",
-      "NODE-OPTIONS": "--inspect",
+      "NODE_OPTIONS": "--inspect",
       "NODE_PATH": "${workspaceFolder:FIAP-Fase1}/src"
     },
     "sqltools.connections": [
@@ -27,7 +35,11 @@
         "name": "Next.js: backend",
         "type": "node-terminal",
         "request": "launch",
-        "command": "npm run dev"
+        "command": "npm run dev",
+
+        "env": {
+          "NODE_OPTIONS": "--inspect"
+        }
       },
       {
         "name": "Next.js: front-end chrome",
@@ -52,5 +64,11 @@
       }
     ],
     "compounds": []
+  },
+  "extensions": {
+    "recommendations": [
+      "prisma.prisma",
+      "humao.rest-client"
+    ]
   }
 }
