@@ -14,7 +14,7 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        Teste Cabeçalho
+        
         {children}
        
       </body>
