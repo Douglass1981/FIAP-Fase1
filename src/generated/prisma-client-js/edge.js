@@ -124,7 +124,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
+      "value": "/home/ananazario/workspace/fiap/tech_challenge/FIAP-Fase1/src/generated/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -133,17 +133,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/ananazario/workspace/fiap/tech_challenge/FIAP-Fase1/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.7.0",
@@ -152,11 +151,12 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "file:C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\prisma\\dev.db"
+        "value": null
       }
     }
   },

@@ -1,0 +1,57 @@
+$blue-500: #002952;
+$white: #fff;
+$gray-300: #E0E0E0;
+
+.home {
+    font-family: var(--font-poppins);
+    height: 100dvh;
+    width: 80%;
+    margin: auto;
+}
+
+.card {
+    background-color: $blue-500;
+    color: $white;
+    padding: 1.25rem;
+    border-radius: .5rem;
+}
+
+.presentation-card-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actions-bank-details-container {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    gap: .625rem;
+}
+
+.actions-bank-details-container {
+    display: flex;
+    margin: autp;
+    gap: .625rem;
+}
+
+.actions-bank-details {
+    .actions-icon-bank-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        border-radius: 3.125rem;
+    }
+    svg {
+        margin: .5rem;
+        background-color: $gray-300;
+        border-radius: 3.125rem;
+        padding: 0.5rem; 
+        width: 2rem;
+        height: 2rem;
+        display: inline-block;
+    }
+
+    
+}

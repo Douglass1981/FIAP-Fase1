@@ -2,7 +2,7 @@ import { CheckBox } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import Image from "next/image";
 
-export default function HOME() {
+export default function Home() {
   return (
     <div className="container">
       <div className="lado-esquerdo">
