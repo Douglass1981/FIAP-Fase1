@@ -20,7 +20,6 @@ $gray-neutral-800: #424242;
 $white: #ffffff;
 $black: #000000;
 
-
 .login {
   display: flex;
   flex-direction: row;
@@ -50,6 +49,47 @@ $black: #000000;
       }
     }
 
-    
+    &__form-area {
+      display: flex;
+      flex-direction: column;
+
+      &__text {
+        padding: 20px 30px;
+        &__title {
+          @include typography(1.75rem, 700);
+          color: $white;
+        }
+
+        &__subtitle {
+          @include typography(1.25rem);
+          color: $white;
+        }
+      }
+
+      &__form {
+        background-color: $white;
+        width: 100%;
+        border-radius: 16px 16px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        padding: 50px 30px;
+        gap: 15px;
+
+        &__checkbox {
+          display: flex;
+          align-items: center;
+          &__text {
+            font-size: 1rem;
+          }
+        }
+
+        &__redirect {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+      }
+    }
   }
 }

@@ -27,12 +27,12 @@ export default function HOME() {
             </h1>
           </Box>
 
-          <Box className={styles['login__container__form_area']}>
-            <Box className={styles['login__container__form_area__text']}>
-              <h2 className={styles['login__container__form_area__text__title']}>
+          <Box className={styles['login__container__form-area']}>
+            <Box className={styles['login__container__form-area__text']}>
+              <h2 className={styles['login__container__form-area__text__title']}>
                 Acesse
               </h2>
-              <h3 className={styles['login__container__form_area__text__subtitle']}>
+              <h3 className={styles['login__container__form-area__text__subtitle']}>
                 Com seu login e senha
               </h3>
             </Box>
@@ -68,24 +68,24 @@ export default function HOME() {
                   ),
                 }}
               />
-              <Box className={styles['login__container__form_area__form__checkbox']}>
+              <Box className={styles['login__container__form-area__form__checkbox']}>
                 <Checkbox />
-                <p className={styles['login__container__form_area__form__checkbox__text']}>
+                <p className={styles['login__container__form-area__form__checkbox__text']}>
                   Lembrar minha senha
                 </p>
               </Box>
               <Button
                 variant="contained"
                 fullWidth
-                className={styles['login__container__form_area__form__button']}
+                className={styles['login__container__form-area__form__button']}
               >
                 Entrar
               </Button>
-              <Box className={styles['login__container__form_area__form__redirect']}>
-                <p className={styles['login__container__form_area__form__redirect__text']}>
+              <Box className={styles['login__container__form-area__form__redirect']}>
+                <p className={styles['login__container__form-area__form__redirect__text']}>
                   Ainda não tem uma conta?{" "}
                   <Link
-                    className={styles['login__container__form_area__form__redirect__text__link']}
+                    className={styles['login__container__form-area__form__redirect__text__link']}
                     href="http://localhost:3000/cadastro"
                   >
                     Cadastre-se
