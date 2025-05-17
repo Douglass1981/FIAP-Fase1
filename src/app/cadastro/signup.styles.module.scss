@@ -19,3 +19,11 @@ $gray-neutral-800: #424242;
 
 $white: #ffffff;
 $black: #000000;
+
+.signup {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-height: 100vh;
+
+}
