@@ -136,6 +136,49 @@ $black: #000000;
         }
       }
 
+      &__form-area {
+        display: flex;
+        flex-direction: column;
+
+        &__text {
+          padding: 20 30px;
+          &__title {
+            @include typography(1.75rem, 700);
+            color: $black;
+          }
+
+          &__subtitle {
+            @include typography(1.25rem);
+            color: $black;
+          }
+        }
+
+        &__form {
+          width: 100%;
+          border-radius: 16px 16px 0px 0px;
+          display: flex;
+          flex-direction: column;
+          padding: 50px 30px;
+          gap: 15px;
+
+          &__checkbox {
+            display: flex;
+            align-items: center;
+            &__text {
+              font-size: 1rem;
+            }
+          }
+
+
+          &__redirect {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            
+          }
+        }
+      }
 
 
     }
