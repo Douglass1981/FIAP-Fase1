@@ -13,9 +13,39 @@
 $bp-tablet: 768px;
 $bp-desktop: 1025px;
 
+$blue-primary-500: #002952;
+
+$gray-neutral-800: #424242;
+
+$white: #ffffff;
+$black: #000000;
+
+
 .login {
   display: flex;
   flex-direction: row;
   width: 100vw;
   min-height: 100vh;
+
+  &__container {
+    
+
+    &__image {
+      width: 50%;
+      height: 50%;
+    }
+
+    &__logo_area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &__brand {
+        @include typography(3rem, 700);
+        color: $white;
+      }
+    }
+
+    
+  }
 }
