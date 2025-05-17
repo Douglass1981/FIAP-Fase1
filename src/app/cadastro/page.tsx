@@ -63,7 +63,7 @@ export default function Cadastro() {
         <Box className={styles['signup__container']}>
           <Box className={styles['signup__container__logo_area']}>
             <Image src="/logo.png" width="72" height="100" alt="Logo" className="signup__container__logo_area__image" />
-            <h1 className={styles['signup__container__logo_area_brand']}>Poup.ai</h1>
+            <h1 className={styles['signup__container__logo_area__brand']}>Poup.ai</h1>
           </Box>
 
           <Box className={styles['signup__container__form-area']}>

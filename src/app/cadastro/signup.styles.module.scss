@@ -32,6 +32,23 @@ $black: #000000;
     flex-direction: column;
     justify-content: flex-end;
     background-color: $blue-primary-500;
+
+    &__logo_area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &__image {
+        width: 50%;
+        height: 50%;
+      }
+
+      &__brand {
+        @include typography(3rem, 700);
+        color: $white;
+      }
+    }
   }
 
   &__container-side {
