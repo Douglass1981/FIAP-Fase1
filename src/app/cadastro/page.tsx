@@ -69,10 +69,10 @@ export default function Cadastro() {
           <Box className={styles['signup__container__form-area']}>
 <Box className={styles['signup__container__form-area__text']}>
               <h2 className={styles['signup__container__form-area__text__title']}>
-                Acesse
+                Cadastre-se
               </h2>
               <h3 className={styles['signup__container__form-area__text__subtitle']}>
-                Com seu signup e senha
+                Com seus dados pessoais
               </h3>
             </Box>
             <Box className={styles['signup__container__form-area__form']}>
@@ -115,12 +115,12 @@ export default function Cadastro() {
               />
 
               {cadastroSucesso && (
-            <p style={{ color: "green", textAlign: "center" }}>
+            <p className={styles['signup__container__form-area__form__success']}>
               Cadastro realizado com sucesso!
             </p>
           )}
           {erroCadastro && (
-            <p style={{ color: "red", textAlign: "center" }}>{erroCadastro}</p>
+            <p className={styles['signup__container__form-area__form__error']}>{erroCadastro}</p>
           )}
               
               <Button
@@ -138,7 +138,7 @@ export default function Cadastro() {
                     className={styles['signup__container__form-area__form__redirect__text__link']}
                     href="http://localhost:3000/"
                   >
-                    signup
+                    Login
                   </Link>
                 </p>
               </Box>
