@@ -7,12 +7,7 @@ import { Poppins } from "next/font/google";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+import styles from "./home.styles.module.scss";
 
 export default function HOME() {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +18,7 @@ export default function HOME() {
 
   return (
     <>
-      <main className={`${styles.login} ${poppins.className}`}>
+      <main className={styles.login}>
         <Box className={styles.login__container}>
           <Box className={styles.login__container__logo_area}>
             <Image src="/logo.png" width="72" height="72" alt="Logo" />
@@ -86,7 +81,7 @@ export default function HOME() {
               <Button
                 variant="contained"
                 fullWidth
-                className={`${styles.login__container__form_area__form__button} ${poppins.className}`}
+                className={styles.login__container__form_area__form__button}
               >
                 Entrar
               </Button>
