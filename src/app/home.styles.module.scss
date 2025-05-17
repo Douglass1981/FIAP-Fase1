@@ -12,3 +12,10 @@
 
 $bp-tablet: 768px;
 $bp-desktop: 1025px;
+
+.login {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-height: 100vh;
+}
