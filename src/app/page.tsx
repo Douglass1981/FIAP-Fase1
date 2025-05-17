@@ -21,7 +21,7 @@ export default function HOME() {
       <main className={styles['login']}>
         <Box className={styles['login__container']}>
           <Box className={styles['login__container__logo_area']}>
-            <Image src="/logo.png" width="100" height="100" alt="Logo" className="login__container__logo_area__image" />
+            <Image src="/logo.png" width="72" height="100" alt="Logo" className="login__container__logo_area__image" />
             <h1 className={styles['login__container__logo_area__brand']}>
               Poup.ai
             </h1>
@@ -104,7 +104,7 @@ export default function HOME() {
             alt="Bem Vindo"
             className="login__container-side__image"
           />
-          <h2 className={styles['login__scontainer-side__title']}>Seja bem-vindo!</h2>
+          <h2 className={styles['login__container-side__title']}>Seja bem-vindo!</h2>
           <h3 className={styles['login__container-side__description']}>
             Descubra soluções financeiras inovadoras e confiáveis para garantir
             um futuro próspero
