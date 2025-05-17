@@ -18,27 +18,25 @@ export default function HOME() {
 
   return (
     <>
-      <main className={styles.login}>
-        <Box className={styles.login__container}>
-          <Box className={styles.login__container__logo_area}>
+      <main className={styles['login']}>
+        <Box className={styles['login__container']}>
+          <Box className={styles['login__container__logo_area']}>
             <Image src="/logo.png" width="72" height="72" alt="Logo" />
-            <h1 className={styles.login__container__logo_area__brand}>
+            <h1 className={styles['login__container__logo_area__brand']}>
               Poup.ai
             </h1>
           </Box>
 
-          <Box className={styles.login__container__form_area}>
-            <Box className={styles.login__container__form_area__text}>
-              <h2 className={styles.login__container__form_area__text__title}>
+          <Box className={styles['login__container__form_area']}>
+            <Box className={styles['login__container__form_area__text']}>
+              <h2 className={styles['login__container__form_area__text__title']}>
                 Acesse
               </h2>
-              <h3
-                className={styles.login__container__form_area__text__subtitle}
-              >
+              <h3 className={styles['login__container__form_area__text__subtitle']}>
                 Com seu login e senha
               </h3>
             </Box>
-            <Box className={styles.login__container__form_area__form}>
+            <Box className={styles['login__container__form-area__form']}>
               <TextField
                 id="name"
                 label="Nome"
@@ -70,30 +68,24 @@ export default function HOME() {
                   ),
                 }}
               />
-              <Box className={styles.login__container__form_area__form__checkbox}>
+              <Box className={styles['login__container__form_area__form__checkbox']}>
                 <Checkbox />
-                <p
-                  className={styles.login__container__form_area__form__checkbox__text}
-                >
+                <p className={styles['login__container__form_area__form__checkbox__text']}>
                   Lembrar minha senha
                 </p>
               </Box>
               <Button
                 variant="contained"
                 fullWidth
-                className={styles.login__container__form_area__form__button}
+                className={styles['login__container__form_area__form__button']}
               >
                 Entrar
               </Button>
-              <Box className={styles.login__container__form_area__form__redirect}>
-                <p
-                  className={styles.login__container__form_area__form__redirect__text}
-                >
+              <Box className={styles['login__container__form_area__form__redirect']}>
+                <p className={styles['login__container__form_area__form__redirect__text']}>
                   Ainda não tem uma conta?{" "}
                   <Link
-                    className={
-                      styles.login__container__form_area__form__redirect__text__link
-                    }
+                    className={styles['login__container__form_area__form__redirect__text__link']}
                     href="http://localhost:3000/cadastro"
                   >
                     Cadastre-se
@@ -104,15 +96,15 @@ export default function HOME() {
           </Box>
         </Box>
 
-        <Box className={styles.login__side}>
+        <Box className={styles['login__side']}>
           <Image
             src="/undraw_transfer-money.svg"
             width={467}
             height={448}
             alt="Bem Vindo"
           />
-          <h2 className={styles.login__side__title}>Seja bem-vindo!</h2>
-          <h3 className={styles.login__side__description}>
+          <h2 className={styles['login__side__title']}>Seja bem-vindo!</h2>
+          <h3 className={styles['login__side__description']}>
             Descubra soluções financeiras inovadoras e confiáveis para garantir
             um futuro próspero
           </h3>
