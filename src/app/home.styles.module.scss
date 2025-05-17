@@ -117,6 +117,27 @@ $black: #000000;
       width: 70%;
       height: auto;
       padding: 50px;
+
+      &__logo_area {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        &__image {
+          width: 10%;
+          height: 10%;
+        }
+
+        &__brand {
+          @include typography(2.5rem, 700);
+          color: $blue-primary-500;
+        }
+      }
+
+
+
     }
   }
 }
