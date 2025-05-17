@@ -5,7 +5,7 @@ import {Box, Button, Checkbox, IconButton, InputAdornment, TextField, useMediaQu
 import { useState } from "react";
 import styles from "./signup.styles.module.scss";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Cadastro() {

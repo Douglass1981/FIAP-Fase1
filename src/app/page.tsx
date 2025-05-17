@@ -3,7 +3,6 @@
 import { Box, Button, Checkbox, Container } from "@mui/material";
 import Image from "next/image";
 import Link from "@mui/material/Link";
-import { Poppins } from "next/font/google";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
