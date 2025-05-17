@@ -117,14 +117,55 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.UsuarioScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  nome: 'nome',
   email: 'email',
   password: 'password',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  secretkey: 'secretkey'
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BancoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  logoBase64: 'logoBase64',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UsuarioBancoScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  bancoId: 'bancoId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TipoTransacoesScalarFieldEnum = {
+  id: 'id',
+  descricao: 'descricao',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CategoriasScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TransacoesScalarFieldEnum = {
+  id: 'id',
+  data: 'data',
+  descricao: 'descricao',
+  valor: 'valor',
+  tipoId: 'tipoId',
+  categoriaId: 'categoriaId',
+  bancoid: 'bancoid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -132,14 +173,14 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  Usuario: 'Usuario',
+  Banco: 'Banco',
+  UsuarioBanco: 'UsuarioBanco',
+  TipoTransacoes: 'TipoTransacoes',
+  Categorias: 'Categorias',
+  Transacoes: 'Transacoes'
 };
 
 /**
