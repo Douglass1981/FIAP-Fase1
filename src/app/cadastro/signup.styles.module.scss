@@ -216,6 +216,67 @@ $black: #000000;
       width: 50%;
       background-color: $white;
       gap: 20px;
+
+      &__logo_area {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &__image {
+          width: 20%;
+          height: 20%;
+        }
+
+        &__brand {
+          @include typography(3rem, 700);
+          color: $blue-primary-500;
+        }
+      }
+
+      &__form-area {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        gap: 20px;
+
+        &__text {
+          padding: 0;
+          &__title {
+            @include typography(1.75rem, 700);
+            color: $black;
+          }
+
+          &__subtitle {
+            @include typography(1.25rem);
+            color: $black;
+          }
+        }
+
+        &__form {
+          width: 100%;
+          border-radius: 0px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          padding: 0;
+
+          &__checkbox {
+            display: flex;
+            align-items: center;
+            &__text {
+              font-size: 1rem;
+            }
+          }
+
+          &__redirect {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+          }
+        }
+      }
     }
 
     &__container-side {
