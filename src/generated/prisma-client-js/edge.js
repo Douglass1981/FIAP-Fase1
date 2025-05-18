@@ -165,7 +165,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
+      "value": "C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -179,12 +179,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.7.0",
@@ -197,7 +196,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "file:C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\prisma\\dev.db"
+        "value": "file:C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\src\\prisma\\dev.db"
       }
     }
   },
