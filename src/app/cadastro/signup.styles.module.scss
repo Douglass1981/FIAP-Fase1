@@ -287,6 +287,23 @@ $black: #000000;
       min-height: 100vh;
       align-items: center;
       justify-content: center;
+
+      &__image {
+        width: 50%;
+        height: 50%;
+      }
+
+      &__title {
+        @include typography(3rem, 700);
+        color: $white;
+      }
+
+      &__description {
+        color: $white;
+        width: 50%;
+        text-align: center;
+        @include typography(1.125rem);
+      }
     }
   }
 }
