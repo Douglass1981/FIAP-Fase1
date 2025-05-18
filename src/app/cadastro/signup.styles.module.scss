@@ -125,5 +125,35 @@ $black: #000000;
     background-color: $blue-primary-500;
     align-items: center;
     justify-content: center;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 16px 16px 16px 16px;
+      background-color: $white;
+      width: 70%;
+      height: auto;
+      padding: 50px;
+
+      &__logo_area {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        &__image {
+          width: 10%;
+          height: 10%;
+        }
+
+        &__brand {
+          @include typography(2.5rem, 700);
+          color: $blue-primary-500;
+        }
+      }
+
+    }
   }
 }
