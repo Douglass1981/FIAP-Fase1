@@ -29,7 +29,24 @@ $black: #000000;
 
     &__nav {
 
+        &__logo_area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10%;
 
+            &__image {
+                width: 50%;
+                height: 50%;
+            }
+
+            &__brand {
+                @include typography(4rem, 700);
+                color: $white;
+            }
+
+        }
 
         &__redirect_pages {
             display: none;
