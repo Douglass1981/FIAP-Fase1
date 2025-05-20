@@ -7,9 +7,9 @@ import { Poppins } from "next/font/google";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import styles from "./home.styles.module.scss";
+import styles from "./login.styles.module.scss";
 
-export default function HOME() {
+export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
