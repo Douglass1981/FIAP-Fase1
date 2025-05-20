@@ -51,11 +51,35 @@ $black: #000000;
         &__redirect_pages {
             display: none;
         }
-    }
 
+
+    }
 
     &__desktop {
         display: none;
+    }
+
+    &__mobile {
+        background-color: $white;
+        width: 100%;
+        border-radius: 16px 16px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        padding: 50px 30px;
+        gap: 15px;
+
+        &__title {
+            @include typography(2.5rem, 700);
+            color: $black;
+            text-align: center;
+        }
+
+        &__text {
+            @include typography(1.25rem, 400);
+            color: $black;
+            text-align: center;
+        }
+
     }
 
     &__footer {
@@ -66,3 +90,5 @@ $black: #000000;
 #button {
     display: none;
 }
+
+
