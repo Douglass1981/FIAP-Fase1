@@ -7,27 +7,34 @@ export default function Initial() {
         <>
             <Box className={styles['content']}>
                 <nav className={styles['content__nav']}>
-                    <Box className={styles['content__nav__logo_area']}>
-                        <Image src="/logo.png" width="232" height="232" alt="Logo" className="content__nav__logo_area__image" />
-                        <h1 className={styles['content__nav__logo_area__brand']}>
+                    {/* OTIMIZAR */}
+                    <Box className={styles['content__nav__logo_area_desktop']}>
+                        <Image src="/logo.png" width="72" height="100" alt="Logo" style={{ width: '15%', height: 'auto' }} />
+                        <h1 className={styles['content__nav__logo_area_desktop__brand']}>
+                            Poup.ai
+                        </h1>
+                    </Box>
+                    <Box className={styles['content__nav__logo_area_mobile']}>
+                        <Image src="/logo.png" width="232" height="232" alt="Logo" style={{ width: '50%', height: '50%' }} />
+                        <h1 className={styles['content__nav__logo_area_mobile__brand']}>    
                             Poup.ai
                         </h1>
                     </Box>
                     <Box className={styles['content__nav__redirect_pages']}>
                         <Link
-                            className={styles['content__nav__redirect_pages__link']}
+                            id={styles['link']}
                             href="http://localhost:3000/about"
                         >
                             Sobre nós
                         </Link>
                         <Link
-                            className={styles['content__nav__redirect_pages__link']}
+                            id={styles['link']}
                             href="http://localhost:3000/services"
                         >
                             Serviços
                         </Link>
                         <Link
-                            className={styles['content__nav__redirect_pages__link']}
+                            id={styles['link']}
                             href="http://localhost:3000/contact"
                         >
                             Entre em contato
@@ -36,6 +43,7 @@ export default function Initial() {
                     <Button
                         variant="contained"
                         id={styles['button']}
+                        href="http://localhost:3000/login"
                     >
                         Login
                     </Button>
@@ -49,7 +57,7 @@ export default function Initial() {
                                 <p className={styles['content__desktop__container__left__text']}>Transforme sua relação com o dinheiro e alcance seus objetivos com confiança.</p>
                             </Box>
                             <Box className={styles['content__desktop__container__rigth']}>
-                                <Image src="/initial-image.png" width="477" height="576" alt="Initial image">
+                                <Image src="/initial-image.png" width="477" height="576" alt="Initial image" style={{ width: '100%', height: 'auto' }}>
 
                                 </Image>
                             </Box>
