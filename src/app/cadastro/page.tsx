@@ -9,6 +9,7 @@ import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {colors} from "../mui.styles"
 
+
 export default function Cadastro() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -55,13 +56,31 @@ export default function Cadastro() {
     setShowPassword((prev) => !prev);
   };
 
+   const isMobile = useMediaQuery("(max-width:767px)");
+
 
   return (
     <>
       <main className={styles['signup']}>
         <Box className={styles['signup__container']}>
           <Box className={styles['signup__container__logo_area']}>
-            <Image src="/logo.png" width="72" height="100" alt="Logo" className="signup__container__logo_area__image" />
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "30%", height: "auto" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}
             <h1 className={styles['signup__container__logo_area__brand']}>Poup.ai</h1>
           </Box>
 
