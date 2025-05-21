@@ -7,6 +7,7 @@ import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./home.styles.module.scss";
+import {colors} from "./mui.styles"
 
 export default function HOME() {
   const [showPassword, setShowPassword] = useState(false);
