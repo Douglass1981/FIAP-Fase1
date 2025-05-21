@@ -33,11 +33,6 @@ $black: #000000;
     justify-content: flex-end;
     background-color: $blue-primary-500;
 
-    &__image {
-      width: 50%;
-      height: 50%;
-    }
-
     &__logo_area {
       display: flex;
       flex-direction: column;
@@ -84,10 +79,7 @@ $black: #000000;
         }
 
         &__redirect {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
+          text-align: center;
         }
       }
     }
@@ -100,35 +92,24 @@ $black: #000000;
 
 @media (min-width: $bp-tablet) {
   .login {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 100vh;
     background-color: $blue-primary-500;
     align-items: center;
     justify-content: center;
 
     &__container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-radius: 16px 16px 16px 16px;
+      border-radius: 16px;
       background-color: $white;
       width: 70%;
       height: auto;
       padding: 50px;
 
       &__logo_area {
-        display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 10px;
 
-        &__image {
-          width: 10%;
-          height: 10%;
-        }
+       
 
         &__brand {
           @include typography(2.5rem, 700);
@@ -169,12 +150,7 @@ $black: #000000;
             }
           }
 
-          &__redirect {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-          }
+        
         }
       }
     }
@@ -183,63 +159,23 @@ $black: #000000;
 
 @media (min-width: $bp-desktop) {
   .login {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 100vh;
     background-color: $white;
 
     &__container {
-      display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 50%;
-      background-color: $white;
       gap: 20px;
 
-      &__logo_area {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-
-        &__image {
-          width: 20%;
-          height: 20%;
-        }
-
-        &__brand {
-          @include typography(3rem, 700);
-          color: $blue-primary-500;
-        }
-      }
-
       &__form-area {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
+        width: 60%;
         gap: 20px;
 
         &__text {
           padding: 0;
-          &__title {
-            @include typography(1.75rem, 700);
-            color: $black;
-          }
-
-          &__subtitle {
-            @include typography(1.25rem);
-            color: $black;
-          }
         }
 
         &__form {
-          width: 100%;
-          border-radius: 0px;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
           padding: 0;
 
           &__checkbox {
@@ -250,12 +186,7 @@ $black: #000000;
             }
           }
 
-          &__redirect {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-          }
+          
         }
       }
     }

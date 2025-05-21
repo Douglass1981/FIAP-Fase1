@@ -1,14 +1,14 @@
 "use client";
 
-import { Box, Button, Checkbox, Container } from "@mui/material";
+import { Box, Button, Checkbox} from "@mui/material";
 import Image from "next/image";
 import Link from "@mui/material/Link";
-import { Poppins } from "next/font/google";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./login.styles.module.scss";
 import {colors} from "../mui.styles";
+import { useMediaQuery } from "@mui/material";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,12 +17,30 @@ export default function Login() {
     setShowPassword((prev) => !prev);
   };
 
+  const isMobile = useMediaQuery("(max-width:767px)");
+
   return (
     <>
       <main className={styles['login']}>
         <Box className={styles['login__container']}>
           <Box className={styles['login__container__logo_area']}>
-            <Image src="/logo.png" width="72" height="100" alt="Logo" className="login__container__logo_area__image" />
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "30%", height: "auto" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}
             <h1 className={styles['login__container__logo_area__brand']}>
               Poup.ai
             </h1>
