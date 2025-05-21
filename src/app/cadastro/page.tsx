@@ -15,7 +15,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Cadastro() {
-  const [name, setName] = useState("");
+  const [nome, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cadastroSucesso, setCadastroSucesso] = useState(false);
@@ -31,7 +31,7 @@ export default function Cadastro() {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ nome, email, password }),
       });
 
       const data = await response.json();
@@ -122,7 +122,7 @@ export default function Cadastro() {
               label="Digite seu Nome"
               variant="outlined"
               fullWidth
-              value={name}
+              value={nome}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
