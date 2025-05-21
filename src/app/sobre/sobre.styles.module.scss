@@ -94,7 +94,7 @@ $black: #000000;
   }
 }
 
-@media (min-width: $bp-tablet){
+@media (max-width: $bp-tablet){
     .content {
 
   &__nav {
