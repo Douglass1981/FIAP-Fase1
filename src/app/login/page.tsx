@@ -8,6 +8,7 @@ import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./login.styles.module.scss";
+import {colors} from "../mui.styles";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -78,6 +79,9 @@ export default function Login() {
                 variant="contained"
                 fullWidth
                 className={styles['login__container__form-area__form__button']}
+                sx={{
+                  backgroundColor: colors.bluePrimary500, textTransform: "none"
+                }}
               >
                 Entrar
               </Button>
@@ -103,6 +107,7 @@ export default function Login() {
             height={448}
             alt="Bem Vindo"
             className="login__container-side__image"
+            style={{ width: "40%", height: "auto" }}
           />
           <h2 className={styles['login__container-side__title']}>Seja bem-vindo!</h2>
           <h3 className={styles['login__container-side__description']}>
