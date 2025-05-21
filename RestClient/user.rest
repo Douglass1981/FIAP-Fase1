@@ -1,0 +1,13 @@
+@host_api = http://localhost:3000
+
+GET http://localhost:3000/api/healthcheck
+
+###
+POST {{host_api}}/api/users
+content-type: application/json
+
+{
+    "name": "teste {{$randomInt 5 2000}} {{$randomInt 5 2000}}",
+    "email": "teste@teste{{$randomInt 5 2000}}{{$randomInt 5 2000}}.com" ,
+    "password": "teste1234"
+}
