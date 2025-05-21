@@ -88,4 +88,42 @@ $black: #000000;
   display: none;
 }
 
+@media (min-width: $bp-tablet) {
+ @media (min-width: $bp-tablet) {
+  .content {
+    justify-content: start;
+    background-color: $white;
+    min-height: 100vh;
+    &__nav {
+      
+      &__logo_area_mobile {
+        display: none;
+      }
+      &__redirect_pages {
+        display: flex;
+       
+      }
+    }
 
+    
+    &__desktop {
+      display: block;
+
+      
+    }
+
+    &__mobile {
+      display: none;
+    }
+
+    &__footer {
+      display: block;
+    }
+  }
+
+  #button {
+    display: block;
+    
+  }
+}
+}
