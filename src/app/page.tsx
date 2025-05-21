@@ -39,18 +39,21 @@ export default function Initial() {
             <Link
               sx={{ textDecoration: "none", color: colors.black }}
               href="http://localhost:3000/about"
+              className={styles["content__nav__redirect_pages__link"]}
             >
               Sobre nós
             </Link>
             <Link
               sx={{ textDecoration: "none", color: colors.black }}
               href="http://localhost:3000/services"
+              className={styles["content__nav__redirect_pages__link"]}
             >
               Serviços
             </Link>
             <Link
               sx={{ textDecoration: "none", color: colors.black }}
               href="http://localhost:3000/contact"
+              className={styles["content__nav__redirect_pages__link"]}
             >
               Entre em contato
             </Link>

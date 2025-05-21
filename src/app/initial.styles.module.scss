@@ -79,7 +79,6 @@ $black: #000000;
   }
 }
 
-
 @media (min-width: $bp-tablet) {
   .content {
     justify-content: start;
@@ -145,6 +144,26 @@ $black: #000000;
 
       color: $black;
       justify-content: center;
+    }
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .content {
+    &__nav {
+      padding: 30px 170px;
+
+      
+    }
+
+    > main {
+      flex-grow: 1;
+    }
+    &__desktop {
+      &__container {
+        padding: 30px 150px;
+        display: flex;
+      }
     }
   }
 }
