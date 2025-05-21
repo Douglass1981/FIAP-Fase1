@@ -1,6 +1,7 @@
 import { Box, Button, Link } from "@mui/material";
 import styles from "./sobre.styles.module.scss";
 import Image from "next/image";
+import { colors } from "../mui.styles";
 
 export default function Initial() {
   return (
@@ -22,18 +23,21 @@ export default function Initial() {
 
           <Box className={styles["content__nav__redirect_pages"]}>
             <Link
+              sx={{ textDecoration: "none", color: colors.black }}
               href="http://localhost:3000/about"
               className={styles["content__nav__redirect_pages__link"]}
             >
               Sobre nós
             </Link>
             <Link
+              sx={{ textDecoration: "none", color: colors.black }}
               href="http://localhost:3000/services"
               className={styles["content__nav__redirect_pages__link"]}
             >
               Serviços
             </Link>
             <Link
+              sx={{ textDecoration: "none", color: colors.black }}
               href="http://localhost:3000/contact"
               className={styles["content__nav__redirect_pages__link"]}
             >
@@ -41,7 +45,10 @@ export default function Initial() {
             </Link>
           </Box>
           <Button
-            
+            sx={{
+              textTransform: "none",
+              backgroundColor: colors.bluePrimary500,
+            }}
             variant="contained"
             href="http://localhost:3000/login"
             className={styles["content__nav__button"]}
