@@ -48,6 +48,10 @@ export default function Initial() {
             Login
           </Button>
         </nav>
+
+        <footer className={styles["content__footer"]}>
+          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
+        </footer>
       </Box>
     </>
   );
