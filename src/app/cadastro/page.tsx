@@ -7,6 +7,7 @@ import styles from "./signup.styles.module.scss";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {colors} from "../mui.styles"
 
 export default function Cadastro() {
   const [name, setName] = useState("");
@@ -14,8 +15,6 @@ export default function Cadastro() {
   const [password, setPassword] = useState("");
   const [cadastroSucesso, setCadastroSucesso] = useState(false);
   const [erroCadastro, setErroCadastro] = useState("");
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleCadastroUser = async () => {
     try {
@@ -128,6 +127,7 @@ export default function Cadastro() {
                 fullWidth
                 className={styles['signup__container__form-area__form__button']}
                 onClick={handleCadastroUser}
+                sx={{ backgroundColor: colors.bluePrimary500, textTransform: 'none' }}
               >
                 Entrar
               </Button>
@@ -153,6 +153,10 @@ export default function Cadastro() {
             height={448}
             alt="Bem Vindo"
             className="signup__container-side__image"
+            style={{
+              width: "60%",
+              height: "auto",
+            }}
           />
           <h3 className={styles['signup__container-side__description']}>
             Controle total das suas finanças, a qualquer hora, em qualquer lugar.
