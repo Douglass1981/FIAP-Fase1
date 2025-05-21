@@ -71,6 +71,7 @@ export default function Initial() {
             }}
             variant="contained"
             href="http://localhost:3000/login"
+            className={styles["content__nav__button"]}
           >
             Login
           </Button>)}

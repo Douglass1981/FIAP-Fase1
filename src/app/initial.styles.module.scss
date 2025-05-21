@@ -15,6 +15,8 @@ $bp-desktop: 1025px;
 
 $blue-primary-500: #002952;
 
+$secondary-purple-700: #512DA8;
+
 $gray-neutral-800: #424242;
 
 $white: #ffffff;
@@ -153,7 +155,16 @@ $black: #000000;
     &__nav {
       padding: 30px 170px;
 
-      
+      &__redirect_pages {
+        &__link:hover {
+          text-decoration: underline;
+          color: $gray-neutral-800;
+        }
+      }
+
+      &__button:hover{
+        background-color: $secondary-purple-700;
+      }
     }
 
     > main {
