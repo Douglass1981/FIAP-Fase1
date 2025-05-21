@@ -8,7 +8,10 @@ export default function Initial() {
     <>
       <Box className={styles["content"]}>
         <nav className={styles["content__nav"]}>
-          <Box className={styles["content__nav__logo_area"]}>
+            <Link className={styles["content__nav__logo_area"]}
+            href="http://localhost:3000/about"
+            sx={{ textDecoration: "none"}}
+            >
             <Image
               src="/logo.png"
               width="72"
@@ -19,7 +22,8 @@ export default function Initial() {
             <h1 className={styles["content__nav__logo_area__brand"]}>
               Poup.ai
             </h1>
-          </Box>
+            </Link>
+          
 
           <Box className={styles["content__nav__redirect_pages"]}>
             <Link
