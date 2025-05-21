@@ -89,12 +89,11 @@ $black: #000000;
 }
 
 @media (min-width: $bp-tablet) {
- @media (min-width: $bp-tablet) {
   .content {
     justify-content: start;
     background-color: $white;
     min-height: 100vh;
-   &__nav {
+    &__nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -121,19 +120,38 @@ $black: #000000;
       }
     }
 
-
-    
+    > main {
+      flex-grow: 1;
+    }
     &__desktop {
       display: block;
 
-      
+      &__container {
+        padding: 30px 50px;
+        display: flex;
+        &__left {
+          width: 70%;
+          &__title {
+            @include typography(3rem, 700, 100%);
+            color: $black;
+          }
+          &__text {
+            @include typography(1.5rem, 400);
+            color: $black;
+          }
+        }
+        &__rigth {
+          width: 30%;
+          display: flex;
+        }
+      }
     }
 
     &__mobile {
       display: none;
     }
 
-     &__footer {
+    &__footer {
       display: flex;
       padding: 30px;
 
@@ -144,7 +162,7 @@ $black: #000000;
 
   #button {
     display: block;
-    
+    text-transform: none;
+    background-color: $blue-primary-500;
   }
-}
 }
