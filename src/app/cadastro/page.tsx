@@ -11,7 +11,7 @@ import {colors} from "../mui.styles"
 
 
 export default function Cadastro() {
-  const [name, setName] = useState("");
+  const [nome, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cadastroSucesso, setCadastroSucesso] = useState(false);
@@ -25,7 +25,7 @@ export default function Cadastro() {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ nome, email, password }),
       });
 
       const data = await response.json();
@@ -50,7 +50,95 @@ export default function Cadastro() {
     }
   };
 
+<<<<<<< HEAD
   const [showPassword, setShowPassword] = useState(false);
+=======
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid
+        container
+        spacing={8}
+        columns={16}
+        direction="row"
+        style= { isMobile ? {height: "83vh"} : {height: "100vh"}}
+        sx={{
+          justifyContent: "center",
+          alignItems: "stretch",
+          ...(isMobile && {
+            backgroundColor: "#002952",
+           
+            color: "#ffffff",
+            paddingTop: "10px",
+          }),
+        }}
+      >
+        <Grid size={{ xs: 12, sm: 6 }}>
+          <div style={{ justifyItems: "center",
+             paddingTop: isMobile?  "200px" : "250px",
+             display:"flex" }}>
+            <Image
+              src="/logo.png"
+              width={isMobile ? 232 : 72}
+              height={isMobile ? 232 : 72}
+              alt="Logo"
+            />
+            <div
+              style={{
+                marginTop: "8px",
+                fontSize: isMobile ? "0" : "64px",
+                fontWeight:"bold",
+                display:"flex"
+              }}
+            >
+              Poup.ai
+            </div>{" "}
+           
+          </div>
+          <div
+            style={{
+              fontSize: isMobile ? "24px" : "36px",
+              fontWeight: "bold",
+              marginTop: "30px",
+              
+            }}
+          >
+            Acesse
+          </div>{" "}
+        
+          <div style={{ fontSize: isMobile ? "18px" : "24px" }}>
+            Com seus dados pessoais
+          </div>{" "}
+        
+          <div style={{ fontSize: "18px",
+                         marginTop: "20px",
+                         color: isMobile? "black" : "black", }}>Nome</div>
+          
+          <div>
+            <TextField
+              id="nome"
+              label="Digite seu Nome"
+              variant="outlined"
+              fullWidth
+              value={nome}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div style={{ fontSize: "18px",
+                  color: isMobile? "black" : "black",
+           }}>Email</div>
+          <div>
+            <TextField
+              id="email"
+              label="Digite seu E-mail"
+              variant="outlined"
+              fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div style={{ fontSize: "18px",
+          color: isMobile? "black" : "black",
+>>>>>>> dev
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);

@@ -1,27 +1,51 @@
 "use client";
 
-import { Box, Button, Checkbox, Container } from "@mui/material";
+import { Box, Button, Checkbox} from "@mui/material";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+<<<<<<< HEAD:src/app/page.tsx
 import styles from "./home.styles.module.scss";
 import {colors} from "./mui.styles"
+=======
+import styles from "./login.styles.module.scss";
+import {colors} from "../mui.styles";
+import { useMediaQuery } from "@mui/material";
+>>>>>>> dev:src/app/login/page.tsx
 
-export default function HOME() {
+export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
   };
 
+  const isMobile = useMediaQuery("(max-width:767px)");
+
   return (
     <>
       <main className={styles['login']}>
         <Box className={styles['login__container']}>
           <Box className={styles['login__container__logo_area']}>
-            <Image src="/logo.png" width="72" height="100" alt="Logo" className="login__container__logo_area__image" />
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "30%", height: "auto" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}
             <h1 className={styles['login__container__logo_area__brand']}>
               Poup.ai
             </h1>
@@ -78,6 +102,9 @@ export default function HOME() {
                 variant="contained"
                 fullWidth
                 className={styles['login__container__form-area__form__button']}
+                sx={{
+                  backgroundColor: colors.bluePrimary500, textTransform: "none"
+                }}
               >
                 Entrar
               </Button>
@@ -103,6 +130,7 @@ export default function HOME() {
             height={448}
             alt="Bem Vindo"
             className="login__container-side__image"
+            style={{ width: "40%", height: "auto" }}
           />
           <h2 className={styles['login__container-side__title']}>Seja bem-vindo!</h2>
           <h3 className={styles['login__container-side__description']}>
