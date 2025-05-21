@@ -94,16 +94,33 @@ $black: #000000;
     justify-content: start;
     background-color: $white;
     min-height: 100vh;
-    &__nav {
-      
+   &__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 50px;
+
+      // OTIMIZAR
+      &__logo_area_desktop {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &__brand {
+          @include typography(2.5rem, 700, 100%);
+          color: $blue-primary-500;
+        }
+      }
+
       &__logo_area_mobile {
         display: none;
       }
       &__redirect_pages {
         display: flex;
-       
+        gap: 20px;
       }
     }
+
 
     
     &__desktop {
