@@ -30,7 +30,6 @@ $black: #000000;
   justify-content: flex-end;
 
   &__nav {
-
     &__logo_area {
       display: flex;
       flex-direction: column;
@@ -80,9 +79,6 @@ $black: #000000;
   }
 }
 
-#button {
-  display: none;
-}
 
 @media (min-width: $bp-tablet) {
   .content {
@@ -150,11 +146,5 @@ $black: #000000;
       color: $black;
       justify-content: center;
     }
-  }
-
-  #button {
-    display: block;
-    text-transform: none;
-    background-color: $blue-primary-500;
   }
 }

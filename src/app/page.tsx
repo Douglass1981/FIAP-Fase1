@@ -1,20 +1,17 @@
 "use client";
 
-import { Box, Button, ButtonBase, Link } from "@mui/material";
+import { Box, Button, Link } from "@mui/material";
 import styles from "./initial.styles.module.scss";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
-
-
+import { colors } from "./mui.styles";
 
 export default function Initial() {
-
-const isMobile = useMediaQuery("(max-width:767px)");
+  const isMobile = useMediaQuery("(max-width:767px)");
   return (
     <>
       <Box className={styles["content"]}>
         <nav className={styles["content__nav"]}>
-          {/* OTIMIZAR */}
           <Box className={styles["content__nav__logo_area"]}>
             {isMobile ? (
               <Image
@@ -39,23 +36,41 @@ const isMobile = useMediaQuery("(max-width:767px)");
           </Box>
 
           <Box className={styles["content__nav__redirect_pages"]}>
-            <Link id={styles["link"]} href="http://localhost:3000/about">
+            <Link
+              sx={{ textDecoration: "none", color: colors.black }}
+              href="http://localhost:3000/about"
+            >
               Sobre nós
             </Link>
-            <Link id={styles["link"]} href="http://localhost:3000/services">
+            <Link
+              sx={{ textDecoration: "none", color: colors.black }}
+              href="http://localhost:3000/services"
+            >
               Serviços
             </Link>
-            <Link id={styles["link"]} href="http://localhost:3000/contact">
+            <Link
+              sx={{ textDecoration: "none", color: colors.black }}
+              href="http://localhost:3000/contact"
+            >
               Entre em contato
             </Link>
           </Box>
-          <Button
-            variant="contained"
-            id={styles["button"]}
-            href="http://localhost:3000/login"
+          {isMobile ? (
+            <Button
+            sx={{display: 'none'}}
           >
             Login
           </Button>
+          ):(<Button
+            sx={{
+              textTransform: "none",
+              backgroundColor: colors.bluePrimary500,
+            }}
+            variant="contained"
+            href="http://localhost:3000/login"
+          >
+            Login
+          </Button>)}
         </nav>
         <main>
           <Box className={styles["content__desktop"]}>
