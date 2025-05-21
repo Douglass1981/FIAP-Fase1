@@ -133,8 +133,12 @@ $black: #000000;
       display: none;
     }
 
-    &__footer {
-      display: block;
+     &__footer {
+      display: flex;
+      padding: 30px;
+
+      color: $black;
+      justify-content: center;
     }
   }
 
