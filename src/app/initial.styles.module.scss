@@ -30,12 +30,8 @@ $black: #000000;
   justify-content: flex-end;
 
   &__nav {
-    // OTIMIZAR
-    &__logo_area_desktop {
-      display: none;
-    }
 
-    &__logo_area_mobile {
+    &__logo_area {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -99,11 +95,10 @@ $black: #000000;
       align-items: center;
       padding: 30px 50px;
 
-      // OTIMIZAR
-      &__logo_area_desktop {
-        display: flex;
-        align-items: center;
+      &__logo_area {
+        flex-direction: row;
         gap: 10px;
+        padding-bottom: 0%;
 
         &__brand {
           @include typography(2.5rem, 700, 100%);
@@ -111,9 +106,6 @@ $black: #000000;
         }
       }
 
-      &__logo_area_mobile {
-        display: none;
-      }
       &__redirect_pages {
         display: flex;
         gap: 20px;
