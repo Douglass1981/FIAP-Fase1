@@ -17,10 +17,13 @@ $blue-primary-500: #002952;
 
 $gray-neutral-800: #424242;
 
+$color-success: #164d00;
+$color-error: #e20303;
+
 $white: #ffffff;
 $black: #000000;
 
-.login {
+.signup {
   display: flex;
   flex-direction: row;
   width: 100vw;
@@ -38,6 +41,12 @@ $black: #000000;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      &__image {
+        width: 50%;
+        height: 50%;
+      }
+
       &__brand {
         @include typography(3rem, 700);
         color: $white;
@@ -50,6 +59,7 @@ $black: #000000;
 
       &__text {
         padding: 20px 30px;
+
         &__title {
           @include typography(1.75rem, 700);
           color: $white;
@@ -70,12 +80,14 @@ $black: #000000;
         padding: 50px 30px;
         gap: 15px;
 
-        &__checkbox {
-          display: flex;
-          align-items: center;
-          &__text {
-            font-size: 1rem;
-          }
+        &__success {
+          text-align: center;
+          color: $color-success;
+        }
+
+        &__error {
+          text-align: center;
+          color: $color-error;
         }
 
         &__redirect {
@@ -91,18 +103,12 @@ $black: #000000;
 }
 
 @media (min-width: $bp-tablet) {
-  .login {
+  .signup {
     background-color: $blue-primary-500;
     align-items: center;
     justify-content: center;
 
     &__container {
-<<<<<<< HEAD:src/app/home.styles.module.scss
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-=======
->>>>>>> dev:src/app/login/login.styles.module.scss
       border-radius: 16px;
       background-color: $white;
       width: 70%;
@@ -115,7 +121,10 @@ $black: #000000;
         align-items: center;
         gap: 10px;
 
-       
+        &__image {
+          width: 10%;
+          height: 10%;
+        }
 
         &__brand {
           @include typography(2.5rem, 700);
@@ -140,22 +149,7 @@ $black: #000000;
         }
 
         &__form {
-          width: 100%;
-          border-radius: 16px 16px 0px 0px;
-          display: flex;
-          flex-direction: column;
           padding: 0 30px;
-          gap: 15px;
-
-          &__checkbox {
-            display: flex;
-            align-items: center;
-            &__text {
-              font-size: 1rem;
-            }
-          }
-
-        
         }
       }
     }
@@ -163,14 +157,13 @@ $black: #000000;
 }
 
 @media (min-width: $bp-desktop) {
-  .login {
+  .signup {
     background-color: $white;
 
     &__container {
       align-items: center;
       justify-content: center;
       width: 50%;
-      gap: 20px;
 
       &__form-area {
         width: 60%;
@@ -182,16 +175,6 @@ $black: #000000;
 
         &__form {
           padding: 0;
-
-          &__checkbox {
-            display: flex;
-            align-items: center;
-            &__text {
-              font-size: 1rem;
-            }
-          }
-
-          
         }
       }
     }
@@ -204,6 +187,7 @@ $black: #000000;
       min-height: 100vh;
       align-items: center;
       justify-content: center;
+      gap: 10px;
 
       &__image {
         width: 50%;

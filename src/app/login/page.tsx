@@ -6,9 +6,14 @@ import Link from "@mui/material/Link";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+<<<<<<< HEAD:src/app/page.tsx
+import styles from "./home.styles.module.scss";
+import {colors} from "./mui.styles"
+=======
 import styles from "./login.styles.module.scss";
 import {colors} from "../mui.styles";
 import { useMediaQuery } from "@mui/material";
+>>>>>>> dev:src/app/login/page.tsx
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
