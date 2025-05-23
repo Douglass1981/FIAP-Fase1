@@ -114,7 +114,7 @@ export default function Cadastro() {
                 placeholder="Digite seu nome"
                 variant="outlined"
                 fullWidth
-                value={name}
+                value={nome}
                 onChange={(e) => setName(e.target.value)}
               />
               <TextField

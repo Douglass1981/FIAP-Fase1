@@ -135,7 +135,7 @@ export default function Login() {
                         "login__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="http://localhost:3000/cadastro"
+                    href="http://localhost:3000/signup"
                   >
                     Cadastre-se
                   </Link>
