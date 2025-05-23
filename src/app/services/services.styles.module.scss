@@ -50,4 +50,11 @@ $black: #000000;
       gap: 20px;
     }
   }
+
+  &__footer {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    color: $black;
+  }
 }
