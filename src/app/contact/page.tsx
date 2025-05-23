@@ -86,53 +86,48 @@ export default function Contact() {
                   >
                     Adoraríamos ouvir você
                   </p>
-                  </Box>
-                  <FormGroup
-                    className={
-                      styles["content__container__form-area__box__form"]
-                    }
-                  >
-                    <TextField
-                      id="name"
-                      label="Nome"
-                      placeholder="Digite seu nome"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      id="email"
-                      label="Email"
-                      placeholder="Digite seu email"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      id="message"
-                      label="Mensagem"
-                      multiline
-                      rows={4}
-                      placeholder="Deixe sua duvida, comentário ou sugestão"
-                      variant="outlined"
-                      fullWidth
-                    />
+                </Box>
+                <FormGroup
+                  className={styles["content__container__form-area__box__form"]}
+                >
+                  <TextField
+                    id="name"
+                    label="Nome"
+                    placeholder="Digite seu nome"
+                    variant="outlined"
+                    fullWidth
+                  />
+                  <TextField
+                    id="email"
+                    label="Email"
+                    placeholder="Digite seu email"
+                    variant="outlined"
+                    fullWidth
+                  />
+                  <TextField
+                    id="message"
+                    label="Mensagem"
+                    multiline
+                    rows={4}
+                    placeholder="Deixe sua duvida, comentário ou sugestão"
+                    variant="outlined"
+                    fullWidth
+                  />
 
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      className={
-                        styles[
-                          "content__container__form-area__box__form__button"
-                        ]
-                      }
-                      sx={{
-                        backgroundColor: colors.bluePrimary500,
-                        textTransform: "none",
-                      }}
-                    >
-                      Enviar
-                    </Button>
-                  </FormGroup>
-                
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    className={
+                      styles["content__container__form-area__box__form__button"]
+                    }
+                    sx={{
+                      backgroundColor: colors.bluePrimary500,
+                      textTransform: "none",
+                    }}
+                  >
+                    Enviar
+                  </Button>
+                </FormGroup>
               </Box>
             </Box>
             <Box className={styles["content__container__contact"]}>
@@ -140,7 +135,7 @@ export default function Contact() {
                 <h2
                   className={styles["content__container__contact__text__title"]}
                 >
-                  Entre em contato
+                  Ou entre em contato
                 </h2>
                 <p
                   className={
@@ -157,35 +152,13 @@ export default function Contact() {
                     styles["content__container__contact__mail__icon_box"]
                   }
                 >
-                  <MailOutlineIcon
-                    className={
-                      styles[
-                        "content__container__contact__mail__icon_box__Icon"
-                      ]
-                    }
-                  />
+                  <MailOutlineIcon sx={{ color: colors.bluePrimary500 }} />
                 </Box>
                 <Box
                   className={styles["content__container__contact__mail__info"]}
                 >
-                  <p
-                    className={
-                      styles[
-                        "content__container__contact__mail__info__paragraph"
-                      ]
-                    }
-                  >
-                    poupai.suport@mail.com
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "content__container__contact__mail__info__paragraph"
-                      ]
-                    }
-                  >
-                    poupai.suggestion@mail.com
-                  </p>
+                  <p>poupai.suport@mail.com</p>
+                  <p>poupai.suggestion@mail.com</p>
                 </Box>
               </Box>
               <Box className={styles["content__container__contact__phone"]}>
@@ -194,35 +167,13 @@ export default function Contact() {
                     styles["content__container__contact__phone__icon_box"]
                   }
                 >
-                  <PhoneIcon
-                    className={
-                      styles[
-                        "content__container__contact__phone__icon_box__Icon"
-                      ]
-                    }
-                  />
+                  <PhoneIcon sx={{ color: colors.bluePrimary500 }} />
                 </Box>
                 <Box
                   className={styles["content__container__contact__phone__info"]}
                 >
-                  <p
-                    className={
-                      styles[
-                        "content__container__contact__phone__info__paragraph"
-                      ]
-                    }
-                  >
-                    (11) 91234-8765
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "content__container__contact__phone__info__paragraph"
-                      ]
-                    }
-                  >
-                    (11) 94321-5678
-                  </p>
+                  <p>(11) 91234-8765</p>
+                  <p>(11) 94321-5678</p>
                 </Box>
               </Box>
             </Box>
