@@ -15,6 +15,8 @@ $bp-desktop: 1025px;
 
 $blue-primary-500: #002952;
 
+$secondary-purple-700: #512da8;
+
 $gray-neutral-800: #424242;
 
 $color-success: #164d00;
@@ -90,9 +92,15 @@ $black: #000000;
           color: $color-error;
         }
 
+        &__button:hover{
+          background-color: $secondary-purple-700;
+        }
+
         &__redirect {
           text-align: center;
         }
+
+
       }
     }
   }
