@@ -23,6 +23,10 @@ $white: #ffffff;
 $black: #000000;
 
 .content {
+  background-color: $white;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
   &__nav {
     padding: 30px 170px;
     display: flex;
@@ -44,5 +48,12 @@ $black: #000000;
       display: flex;
       gap: 20px;
     }
+  }
+
+  &__footer {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    color: $black;
   }
 }
