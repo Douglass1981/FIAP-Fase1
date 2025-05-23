@@ -1,6 +1,6 @@
 import styles from "./contact.styles.module.scss";
 import { colors } from "../mui.styles";
-import { Box, Button, Link, TextField } from "@mui/material";
+import { Box, Button, FormGroup, Link, TextField } from "@mui/material";
 import Image from "next/image";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -66,58 +66,73 @@ export default function Contact() {
         <main>
           <Box className={styles["content__container"]}>
             <Box className={styles["content__container__form-area"]}>
-              <Box className={styles["content_container__form-area__text"]}>
-                <h2
-                  className={
-                    styles["content_container__form-area__text__title"]
-                  }
+              <Box className={styles["content__container__form-area__box"]}>
+                <Box
+                  className={styles["content__container__form-area__box__text"]}
                 >
-                  Deixe sua mensagem
-                </h2>
-                <p
-                  className={
-                    styles["content_container__form-area__text__paragraph"]
-                  }
-                >
-                  Adorariamos ouvir você
-                </p>
-                <Box className={styles["content__container__form_area__form"]}>
-                  <TextField
-                    id="name"
-                    label="Nome"
-                    placeholder="Digite seu nome"
-                    variant="outlined"
-                    fullWidth
-                  />
-                  <TextField
-                    id="email"
-                    label="Email"
-                    placeholder="Digite seu email"
-                    variant="outlined"
-                    fullWidth
-                  />
-                  <TextField
-                    id="message"
-                    label="Mensagem"
-                    placeholder="Deixe sua duvida, comentário ou sugestão"
-                    variant="outlined"
-                    fullWidth
-                  />
-
-                  <Button
-                    variant="contained"
-                    fullWidth
+                  <h2
                     className={
-                      styles["content__container__form-area__form__button"]
+                      styles["content__container__form-area__box__text__title"]
                     }
-                    sx={{
-                      backgroundColor: colors.bluePrimary500,
-                      textTransform: "none",
-                    }}
                   >
-                    Enviar
-                  </Button>
-                </Box>
+                    Deixe sua mensagem
+                  </h2>
+                  <p
+                    className={
+                      styles[
+                        "content__container__form-area__box__text__paragraph"
+                      ]
+                    }
+                  >
+                    Adoraríamos ouvir você
+                  </p>
+                  </Box>
+                  <FormGroup
+                    className={
+                      styles["content__container__form-area__box__form"]
+                    }
+                  >
+                    <TextField
+                      id="name"
+                      label="Nome"
+                      placeholder="Digite seu nome"
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      id="email"
+                      label="Email"
+                      placeholder="Digite seu email"
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      id="message"
+                      label="Mensagem"
+                      multiline
+                      rows={4}
+                      placeholder="Deixe sua duvida, comentário ou sugestão"
+                      variant="outlined"
+                      fullWidth
+                    />
+
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      className={
+                        styles[
+                          "content__container__form-area__box__form__button"
+                        ]
+                      }
+                      sx={{
+                        backgroundColor: colors.bluePrimary500,
+                        textTransform: "none",
+                      }}
+                    >
+                      Enviar
+                    </Button>
+                  </FormGroup>
+                
               </Box>
             </Box>
             <Box className={styles["content__container__contact"]}>
