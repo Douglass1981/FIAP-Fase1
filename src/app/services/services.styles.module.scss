@@ -29,7 +29,7 @@ $black: #000000;
   box-sizing: border-box;
 
   &__nav {
-    padding: 30px 170px;
+    padding: 30px 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,10 +51,164 @@ $black: #000000;
     }
   }
 
+  &__container {
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__title {
+      @include typography(2.5rem, 700);
+    }
+
+    &__top {
+      background-color: $blue-primary-500;
+      padding: 30px;
+      border-radius: 16px;
+      display: flex;
+      width: 100%;
+      &__left {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        &__first {
+          &__title {
+            @include typography(1.5rem);
+            color: $white;
+          }
+          &__paragraph {
+            @include typography(1.25rem);
+            color: $white;
+          }
+        }
+        &__second {
+          padding: 0px 0px 0px 100px;
+          &__title {
+            @include typography(1.5rem);
+            color: $white;
+          }
+          &__paragraph {
+            @include typography(1.25rem);
+
+            color: $white;
+          }
+        }
+      }
+
+      &__right {
+        display: none;
+      }
+    }
+
+    &__bottom {
+      padding: 20px;
+      display: flex;
+
+      &__right {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 80%;
+        &__first {
+          &__title {
+            @include typography(1.5rem);
+          }
+          &__paragraph {
+            @include typography(1.25rem);
+          }
+        }
+        &__second {
+          padding: 0px 20px;
+          &__title {
+            @include typography(1.5rem);
+          }
+          &__paragraph {
+            @include typography(1.25rem);
+          }
+        }
+        &__third {
+          padding: 0px 40px;
+          &__title {
+            @include typography(1.5rem);
+          }
+          &__paragraph {
+            @include typography(1.25rem);
+          }
+        }
+      }
+    }
+  }
+
   &__footer {
     display: flex;
     padding: 30px;
     justify-content: center;
     color: $black;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .content {
+    &__nav {
+      padding: 30px 170px;
+    }
+
+    &__container {
+      padding: 0px 170px;
+
+      &__title {
+        @include typography(2.25rem, 700);
+      }
+
+      &__top {
+        &__left {
+            
+          &__first {
+            &__paragraph {
+              @include typography(1rem);
+            }
+          }
+          &__second {
+            padding: 0px 0px 0px 60px;
+
+            &__paragraph {
+              @include typography(1.1rem);
+            }
+          }
+        }
+        &__right {
+          display: block;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      &__bottom {
+        justify-content: center;
+
+        &__right {
+          justify-content: center;
+          width: auto;
+          &__first {
+            &__paragraph {
+              @include typography(1rem);
+            }
+          }
+          &__second {
+            &__paragraph {
+              @include typography(1rem);
+            }
+          }
+          &__third {
+            &__paragraph {
+              @include typography(1rem);
+            }
+          }
+        }
+      }
+    }
   }
 }

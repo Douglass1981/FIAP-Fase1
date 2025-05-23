@@ -71,18 +71,18 @@ export default function Services() {
                 <Box
                   className={styles["content__container__top__left__first"]}
                 >
-                  <h3>Análise Inteligente de Gastos</h3>
-                  <p>
+                  <h3 className={styles["content__container__top__left__first__title"]}>Análise Inteligente de Gastos</h3>
+                  <p className={styles["content__container__top__left__first__paragraph"]}>
                     Entenda para onde seu dinheiro está indo com relatórios
                     claros e personalizados. Identifique gastos fixos, variáveis
                     e oportunidades de economia.
                   </p>
                 </Box>
-                <Box
+                <Box 
                   className={styles["content__container__top__left__second"]}
                 >
-                  <h3>Educação Financeira Simplificada</h3>
-                  <p>
+                  <h3 className={styles["content__container__top__left__second__title"]}>Educação Financeira Simplificada</h3>
+                  <p className={styles["content__container__top__left__second__paragraph"]}>
                     Conteúdo prático, direto e sem complicação para ajudar você
                     a tomar decisões financeiras melhores todos os dias.
                   </p>
@@ -90,46 +90,47 @@ export default function Services() {
               </Box>
               <Box className={styles["content__container__top__right"]}>
                 <Image
-              src="/transactions.svg"
-              width="72"
+              src="/dashboard.svg"
+              width="100"
               height="100"
               alt="Logo"
-              style={{ width: "15%", height: "auto" }}
+              style={{ height: "100%", width: 'auto', maxWidth: '80%' }}
+              
             />
               </Box>
             </Box>
             <Box className={styles["content__container__bottom"]}>
               <Box className={styles["content__container__bottom__left"]}>
                 <Image
-              src="/dashboard.svg"
-              width="72"
+              src="/transactions.svg"
+              width="200"
               height="100"
               alt="Logo"
-              style={{ width: "15%", height: "auto" }}
+              style={{ height: "auto" }}
             />
               </Box>
               <Box className={styles["content__container__bottom__right"]}>
                 <Box
                   className={styles["content__container__bottom__right__first"]}
                 >
-                  <h3>Tecnologia acessível:</h3>
-                  <p>
+                  <h3 className={styles["content__container__bottom__right__first__title"]}>Tecnologia acessível:</h3>
+                  <p className={styles["content__container__bottom__right__first__paragraph"]}>
                     Tudo no seu celular ou computador, fácil e rápido.
                   </p>
                 </Box>
                 <Box
                   className={styles["content__container__bottom__right__second"]}
                 >
-                  <h3>Transparência:</h3>
-                  <p>
+                  <h3 className={styles["content__container__bottom__right__second__title"]}>Transparência:</h3>
+                  <p className={styles["content__container__bottom__right__second__paragraph"]}>
                     Informações claras, sem enrolação.
                   </p>
                 </Box>
                 <Box
                   className={styles["content__container__bottom__right__third"]}
                 >
-                  <h3>Suporte dedicado:</h3>
-                  <p>
+                  <h3 className={styles["content__container__bottom__right__third__title"]}>Suporte dedicado:</h3>
+                  <p className={styles["content__container__bottom__right__third__paragraph"]}>
                     Estamos aqui para ajudar você a crescer financeiramente.
                   </p>
                 </Box>
