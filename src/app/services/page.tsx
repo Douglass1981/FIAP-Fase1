@@ -10,7 +10,7 @@ export default function Services() {
         <nav className={styles["content__nav"]}>
           <Link
             className={styles["content__nav__logo_area"]}
-            href="http://localhost:3000/about"
+            href="http://localhost:3000"
             sx={{ textDecoration: "none" }}
           >
             <Image
