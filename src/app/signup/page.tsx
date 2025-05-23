@@ -56,6 +56,7 @@ export default function Cadastro() {
   };
 
   const [showPassword, setShowPassword] = useState(false);
+
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
   };
@@ -94,6 +95,26 @@ export default function Cadastro() {
               Poup.ai
             </h1>
             </Link>
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "30%", height: "auto" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}
+            <h1 className={styles["signup__container__logo_area__brand"]}>
+              Poup.ai
+            </h1>
           </Box>
 
           <Box className={styles["signup__container__form-area"]}>
@@ -118,7 +139,7 @@ export default function Cadastro() {
                 placeholder="Digite seu nome"
                 variant="outlined"
                 fullWidth
-                value={name}
+                value={nome}
                 onChange={(e) => setName(e.target.value)}
               />
               <TextField
