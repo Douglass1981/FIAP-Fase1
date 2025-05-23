@@ -21,3 +21,28 @@ $gray-neutral-800: #424242;
 
 $white: #ffffff;
 $black: #000000;
+
+.content {
+  &__nav {
+    padding: 30px 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo_area {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      &__brand {
+        @include typography(2.5rem, 700, 100%);
+        color: $blue-primary-500;
+      }
+    }
+
+    &__redirect_pages {
+      display: flex;
+      gap: 20px;
+    }
+  }
+}
