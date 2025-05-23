@@ -124,6 +124,7 @@ $black: #000000;
       padding: 50px;
 
       &__logo_area {
+        display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;

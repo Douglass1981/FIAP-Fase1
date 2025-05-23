@@ -1,14 +1,19 @@
 "use client";
 
-import theme from "@/styles/theme";
-import {Box, Button, Checkbox, IconButton, InputAdornment, TextField, useMediaQuery} from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+  useMediaQuery,
+} from "@mui/material";
 import { useState } from "react";
 import styles from "./signup.styles.module.scss";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {colors} from "../mui.styles"
-
+import { colors } from "../mui.styles";
 
 export default function Cadastro() {
   const [nome, setName] = useState("");
@@ -55,44 +60,58 @@ export default function Cadastro() {
     setShowPassword((prev) => !prev);
   };
 
-   const isMobile = useMediaQuery("(max-width:767px)");
-
+  const isMobile = useMediaQuery("(max-width:767px)");
 
   return (
     <>
-      <main className={styles['signup']}>
-        <Box className={styles['signup__container']}>
-          <Box className={styles['signup__container__logo_area']}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "30%", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
-            <h1 className={styles['signup__container__logo_area__brand']}>Poup.ai</h1>
+      <main className={styles["signup"]}>
+        <Box className={styles["signup__container"]}>
+          <Box className={styles["signup__container__logo_area"]}>
+            <Link
+              className={styles["signup__container__logo_area"]}
+              href="http://localhost:3000"
+              sx={{ textDecoration: "none" }}
+            >
+              {isMobile ? (
+                <Image
+                  src="/logo.png"
+                  width="232"
+                  height="232"
+                  alt="Logo"
+                  style={{ width: "60%", height: "auto" }}
+                />
+              ) : (
+                <Image
+                  src="/logo.png"
+                  width="72"
+                  height="100"
+                  alt="Logo"
+                  style={{ width: "20%", height: "auto" }}
+                />
+              )}{" "}
+            
+            <h1 className={styles["signup__container__logo_area__brand"]}>
+              Poup.ai
+            </h1>
+            </Link>
           </Box>
 
-          <Box className={styles['signup__container__form-area']}>
-<Box className={styles['signup__container__form-area__text']}>
-              <h2 className={styles['signup__container__form-area__text__title']}>
+          <Box className={styles["signup__container__form-area"]}>
+            <Box className={styles["signup__container__form-area__text"]}>
+              <h2
+                className={styles["signup__container__form-area__text__title"]}
+              >
                 Cadastre-se
               </h2>
-              <h3 className={styles['signup__container__form-area__text__subtitle']}>
+              <h3
+                className={
+                  styles["signup__container__form-area__text__subtitle"]
+                }
+              >
                 Com seus dados pessoais
               </h3>
             </Box>
-            <Box className={styles['signup__container__form-area__form']}>
+            <Box className={styles["signup__container__form-area__form"]}>
               <TextField
                 id="name"
                 label="Nome"
@@ -100,7 +119,7 @@ export default function Cadastro() {
                 variant="outlined"
                 fullWidth
                 value={name}
-              onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
               <TextField
                 id="email"
@@ -109,7 +128,7 @@ export default function Cadastro() {
                 variant="outlined"
                 fullWidth
                 value={email}
-              onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 id="senha"
@@ -128,32 +147,57 @@ export default function Cadastro() {
                   ),
                 }}
                 value={password}
-              onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               {cadastroSucesso && (
-            <p className={styles['signup__container__form-area__form__success']}>
-              Cadastro realizado com sucesso!
-            </p>
-          )}
-          {erroCadastro && (
-            <p className={styles['signup__container__form-area__form__error']}>{erroCadastro}</p>
-          )}
-              
+                <p
+                  className={
+                    styles["signup__container__form-area__form__success"]
+                  }
+                >
+                  Cadastro realizado com sucesso!
+                </p>
+              )}
+              {erroCadastro && (
+                <p
+                  className={
+                    styles["signup__container__form-area__form__error"]
+                  }
+                >
+                  {erroCadastro}
+                </p>
+              )}
+
               <Button
                 variant="contained"
                 fullWidth
-                className={styles['signup__container__form-area__form__button']}
+                className={styles["signup__container__form-area__form__button"]}
                 onClick={handleCadastroUser}
-                sx={{ backgroundColor: colors.bluePrimary500, textTransform: 'none' }}
+                sx={{
+                  backgroundColor: colors.bluePrimary500,
+                  textTransform: "none",
+                }}
               >
                 Entrar
               </Button>
-              <Box className={styles['signup__container__form-area__form__redirect']}>
-                <p className={styles['signup__container__form-area__form__redirect__text']}>
+              <Box
+                className={
+                  styles["signup__container__form-area__form__redirect"]
+                }
+              >
+                <p
+                  className={
+                    styles["signup__container__form-area__form__redirect__text"]
+                  }
+                >
                   Já possui uma conta?{" "}
                   <Link
-                    className={styles['signup__container__form-area__form__redirect__text__link']}
+                    className={
+                      styles[
+                        "signup__container__form-area__form__redirect__text__link"
+                      ]
+                    }
                     href="http://localhost:3000/"
                   >
                     Login
@@ -164,7 +208,7 @@ export default function Cadastro() {
           </Box>
         </Box>
 
-        <Box className={styles['signup__container-side']}>
+        <Box className={styles["signup__container-side"]}>
           <Image
             src="/undraw_crypto.svg"
             width={467}
@@ -176,8 +220,9 @@ export default function Cadastro() {
               height: "auto",
             }}
           />
-          <h3 className={styles['signup__container-side__description']}>
-            Controle total das suas finanças, a qualquer hora, em qualquer lugar.
+          <h3 className={styles["signup__container-side__description"]}>
+            Controle total das suas finanças, a qualquer hora, em qualquer
+            lugar.
           </h3>
         </Box>
       </main>
