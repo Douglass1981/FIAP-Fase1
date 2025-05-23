@@ -89,12 +89,24 @@ export default function Services() {
                 </Box>
               </Box>
               <Box className={styles["content__container__top__right"]}>
-                {/* adicionar imagem */}
+                <Image
+              src="/transactions.svg"
+              width="72"
+              height="100"
+              alt="Logo"
+              style={{ width: "15%", height: "auto" }}
+            />
               </Box>
             </Box>
             <Box className={styles["content__container__bottom"]}>
               <Box className={styles["content__container__bottom__left"]}>
-                {/* adicionar imagem */}
+                <Image
+              src="/dashboard.svg"
+              width="72"
+              height="100"
+              alt="Logo"
+              style={{ width: "15%", height: "auto" }}
+            />
               </Box>
               <Box className={styles["content__container__bottom__right"]}>
                 <Box
