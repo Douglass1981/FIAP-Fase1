@@ -2,6 +2,8 @@ import styles from "./contact.styles.module.scss";
 import { colors } from "../mui.styles";
 import { Box, Button, Link, TextField } from "@mui/material";
 import Image from "next/image";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import PhoneIcon from "@mui/icons-material/Phone";
 
 export default function Contact() {
   return (
@@ -118,8 +120,97 @@ export default function Contact() {
                 </Box>
               </Box>
             </Box>
+            <Box className={styles["content__container__contact"]}>
+              <Box className={styles["content__container__contact__text"]}>
+                <h2
+                  className={styles["content__container__contact__text__title"]}
+                >
+                  Entre em contato
+                </h2>
+                <p
+                  className={
+                    styles["content__container__contact__text__paragraph"]
+                  }
+                >
+                  Através dos nossos canais de comunicação
+                </p>
+              </Box>
 
-            
+              <Box className={styles["content__container__contact__mail"]}>
+                <Box
+                  className={
+                    styles["content__container__contact__mail__icon_box"]
+                  }
+                >
+                  <MailOutlineIcon
+                    className={
+                      styles[
+                        "content__container__contact__mail__icon_box__Icon"
+                      ]
+                    }
+                  />
+                </Box>
+                <Box
+                  className={styles["content__container__contact__mail__info"]}
+                >
+                  <p
+                    className={
+                      styles[
+                        "content__container__contact__mail__info__paragraph"
+                      ]
+                    }
+                  >
+                    poupai.suport@mail.com
+                  </p>
+                  <p
+                    className={
+                      styles[
+                        "content__container__contact__mail__info__paragraph"
+                      ]
+                    }
+                  >
+                    poupai.suggestion@mail.com
+                  </p>
+                </Box>
+              </Box>
+              <Box className={styles["content__container__contact__phone"]}>
+                <Box
+                  className={
+                    styles["content__container__contact__phone__icon_box"]
+                  }
+                >
+                  <PhoneIcon
+                    className={
+                      styles[
+                        "content__container__contact__phone__icon_box__Icon"
+                      ]
+                    }
+                  />
+                </Box>
+                <Box
+                  className={styles["content__container__contact__phone__info"]}
+                >
+                  <p
+                    className={
+                      styles[
+                        "content__container__contact__phone__info__paragraph"
+                      ]
+                    }
+                  >
+                    (11) 91234-8765
+                  </p>
+                  <p
+                    className={
+                      styles[
+                        "content__container__contact__phone__info__paragraph"
+                      ]
+                    }
+                  >
+                    (11) 94321-5678
+                  </p>
+                </Box>
+              </Box>
+            </Box>
           </Box>
         </main>
 
