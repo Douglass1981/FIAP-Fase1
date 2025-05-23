@@ -67,7 +67,7 @@ export default function Cadastro() {
     <>
       <main className={styles["signup"]}>
         <Box className={styles["signup__container"]}>
-          <Box className={styles["signup__container__logo_area"]}>
+          
             <Link
               className={styles["signup__container__logo_area"]}
               href="http://localhost:3000"
@@ -95,27 +95,7 @@ export default function Cadastro() {
               Poup.ai
             </h1>
             </Link>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "30%", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
-            <h1 className={styles["signup__container__logo_area__brand"]}>
-              Poup.ai
-            </h1>
-          </Box>
+            
 
           <Box className={styles["signup__container__form-area"]}>
             <Box className={styles["signup__container__form-area__text"]}>
