@@ -87,7 +87,7 @@ export default function Cadastro() {
                   width="72"
                   height="100"
                   alt="Logo"
-                  style={{ width: "20%", height: "auto" }}
+                  style={{ width: "15%", height: "auto" }}
                 />
               )}{" "}
             
