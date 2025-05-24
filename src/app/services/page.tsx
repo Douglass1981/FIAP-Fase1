@@ -88,16 +88,6 @@ export default function Services() {
                   </p>
                 </Box>
               </Box>
-              <Box className={styles["content__container__top__right"]}>
-                <Image
-              src="/dashboard.svg"
-              width="100"
-              height="100"
-              alt="Logo"
-              style={{ height: "100%", width: 'auto', maxWidth: '80%' }}
-              
-            />
-              </Box>
             </Box>
             <Box className={styles["content__container__bottom"]}>
               <Box className={styles["content__container__bottom__left"]}>

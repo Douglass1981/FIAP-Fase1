@@ -60,6 +60,7 @@ $black: #000000;
     padding: 20px 50px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 
     &__title {
@@ -71,7 +72,7 @@ $black: #000000;
       padding: 30px;
       border-radius: 16px;
       display: flex;
-      width: 100%;
+      width: 70%;
       &__left {
         justify-content: center;
         display: flex;
@@ -109,6 +110,7 @@ $black: #000000;
     &__bottom {
       padding: 20px;
       display: flex;
+      width: 70%;
 
       &__right {
         padding: 20px;
