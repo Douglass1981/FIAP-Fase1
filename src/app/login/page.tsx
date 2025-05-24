@@ -22,29 +22,33 @@ export default function Login() {
     <>
       <main className={styles["login"]}>
         <Box className={styles["login__container"]}>
-          <Box className={styles["login__container__logo_area"]}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "30%", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
-
+            <Link
+              className={styles["login__container__logo_area"]}
+              href="http://localhost:3000"
+              sx={{ textDecoration: "none" }}
+            >
+              {isMobile ? (
+                <Image
+                  src="/logo.png"
+                  width="232"
+                  height="232"
+                  alt="Logo"
+                  style={{ width: "30%", height: "auto" }}
+                />
+              ) : (
+                <Image
+                  src="/logo.png"
+                  width="72"
+                  height="100"
+                  alt="Logo"
+                  style={{ width: "20%", height: "auto" }}
+                />
+              )}
+            
             <h1 className={styles["login__container__logo_area__brand"]}>
               Poup.ai
             </h1>
-          </Box>
+            </Link>
 
           <Box className={styles["login__container__form-area"]}>
             <Box className={styles["login__container__form-area__text"]}>
