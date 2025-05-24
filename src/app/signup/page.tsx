@@ -199,7 +199,7 @@ export default function Cadastro() {
                         "signup__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="http://localhost:3000/"
+                    href="http://localhost:3000/login"
                   >
                     Login
                   </Link>
