@@ -79,7 +79,7 @@ export default function Cadastro() {
                   width="232"
                   height="232"
                   alt="Logo"
-                  style={{ width: "60%", height: "auto" }}
+                  style={{ width: "30%", height: "auto" }}
                 />
               ) : (
                 <Image
