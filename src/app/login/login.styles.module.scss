@@ -15,6 +15,8 @@ $blue-primary-500: #002952;
 
 $gray-neutral-800: #424242;
 
+$secondary-purple-700: #512da8;
+
 $white: #ffffff;
 $black: #000000;
 
@@ -172,6 +174,10 @@ $black: #000000;
 
         &__form {
           padding: 0;
+
+          &__button:hover{
+            background-color: $secondary-purple-700;
+          }
         }
       }
     }
