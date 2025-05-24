@@ -18,7 +18,7 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased`}
       >
-        Teste Cabeçalho
+        
         {children}
        
       </body>

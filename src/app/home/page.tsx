@@ -41,6 +41,24 @@ export default function Home(){
                 </div>
             </div>
 
+            <div className={styles['actions-bank-details-container']}>
+                <div>
+                    <div>
+                        <p>Receitas</p>
+                        <p>R$3.500.57</p>
+                    </div>
+                    <Icons.ArrowUp />
+                </div>
+
+                <div>
+                    <div>
+                        <p>Despesas</p>
+                        <p>R$3.500.57</p>
+                    </div>
+                    <Icons.ArrowDown />
+                </div>
+            </div>
+
             <div>
                 <div>
                     <div>
@@ -55,7 +73,7 @@ export default function Home(){
 
                 <div>
                     <div>
-                        <p>Total despesas</p>
+                        <p>Total receitas</p>
                         <span>R$1.659,35</span>
                     </div>
                     <div>
