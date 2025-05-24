@@ -215,7 +215,6 @@ export default function Cadastro() {
             width={467}
             height={448}
             alt="Bem Vindo"
-            className="signup__container-side__image"
             style={{
               width: "60%",
               height: "auto",
