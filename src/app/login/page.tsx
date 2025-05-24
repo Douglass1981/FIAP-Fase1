@@ -154,13 +154,15 @@ export default function Login() {
             className="login__container-side__image"
             style={{ width: "40%", height: "auto" }}
           />
-          <h2 className={styles["login__container-side__title"]}>
+          <Box className={styles["login__container-side__text"]}>
+            <h2 className={styles["login__container-side__text__title"]}>
             Seja bem-vindo!
           </h2>
-          <h3 className={styles["login__container-side__description"]}>
+          <h3 className={styles["login__container-side__text__description"]}>
             Descubra soluções financeiras inovadoras e confiáveis para garantir
             um futuro próspero
           </h3>
+          </Box>
         </Box>
       </main>
     </>
