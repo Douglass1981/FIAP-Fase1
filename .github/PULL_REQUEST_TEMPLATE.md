@@ -1,15 +1,15 @@
-# {{ Nome da Branch }}
+# feat/create-contact-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-Descreva a tarefa aqui
-
-## Link do cards de tarefa relacionado
-[Insira o link aqui]
+- criação da pagina de contato
+- adição do formulario de contato
+- ajuste de layout 
+- estilização de componentes
 
 ## Checklist
 
-- [ ] Estou marcado como responsável pelo PR
+- [x] Estou marcado como responsável pelo PR
 - [ ] Foram feitos testes unitários
 - [ ] Foi adicionado informações ao arquivo .env
 - [ ] Documentação está atualizada
