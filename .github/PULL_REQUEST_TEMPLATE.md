@@ -1,11 +1,11 @@
-# feat/create-contact-page
+# feat/style-signup-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- criação da pagina de contato
-- adição do formulario de contato
-- ajuste de layout 
-- estilização de componentes
+- adição do hover ao botão login
+- adição de link de redirecionamento na brand da página
+- refatoração de codigo
+- ajustes no tamanho da imagem
 
 
 ## Checklist
