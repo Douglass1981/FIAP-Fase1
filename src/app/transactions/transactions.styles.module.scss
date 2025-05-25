@@ -1,0 +1,50 @@
+@mixin typography(
+  $font-size,
+  $font-weight: 400,
+  $line-height: 1.5,
+  $letter-spacing: 0
+) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+$bp-tablet: 768px;
+$bp-desktop: 1025px;
+
+$blue-primary-500: #002952;
+
+$gray-neutral-300: #e0e0e0;
+$gray-neutral-800: #424242;
+
+$green-normal: #164d00;
+$red-normal: #e20303;
+
+$white: #ffffff;
+$black: #000000;
+
+.transactions {
+  box-sizing: border-box;
+  background-color: $white;
+  min-height: 100vh;
+  width: 100vw;
+
+  &__nav {
+    display: none;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 80px 30px;
+    background-color: $white;
+    min-height: 100vh;
+    width: 100vw;
+    color: black;
+    gap: 10px;
+    
+     
+  }
+}
