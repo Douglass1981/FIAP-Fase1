@@ -13,6 +13,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
+import ModalDetails from "./modalDetails";
 
 export default function Transactions() {
   const router = useRouter();
@@ -393,8 +394,8 @@ export default function Transactions() {
                 </Box>
               </Box>
               <Box>
-                <Button sx={{ minWidth: "0", color: colors.black }}>
-                  <VisibilityOutlinedIcon />
+                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
+                  <ModalDetails />
                 </Button>
                 <Button sx={{ minWidth: "0", color: colors.black }}>
                   <EditOutlinedIcon />
