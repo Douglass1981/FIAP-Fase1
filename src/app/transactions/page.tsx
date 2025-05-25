@@ -408,7 +408,16 @@ export default function Transactions() {
 
           <Button
             variant="contained"
-            
+            sx={{
+              position: "fixed",
+              bottom: 80,
+              left: 30,
+              right: 30,
+              p: 1,
+              zIndex: 1300,
+              backgroundColor: colors.bluePrimary500,
+              textTransform: "none",
+            }}
             className={styles["transactions__main__button--hidden"]}
           >
             <AddOutlinedIcon />
