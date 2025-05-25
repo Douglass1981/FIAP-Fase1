@@ -289,3 +289,34 @@ $black: #000000;
     }
   }
 }
+
+@media (min-width: $bp-desktop) {
+  .transactions {
+    &__nav {
+      padding: 30px 100px;
+      display: flex;
+      justify-content: end;
+
+      &__logo_area {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        &__brand {
+          @include typography(2.5rem, 700, 100%);
+          color: $blue-primary-500;
+        }
+      }
+    }
+    &__main {
+      padding: 00px 170px;
+      &__container-info {
+        &__container {
+          &__right {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}
