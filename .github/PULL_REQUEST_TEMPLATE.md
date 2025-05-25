@@ -7,6 +7,7 @@
 - ajuste de layout 
 - estilização de componentes
 
+
 ## Checklist
 
 - [x] Estou marcado como responsável pelo PR
