@@ -1,10 +1,11 @@
-# feat/style-login-page
+# feat/create-contact-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- Refatoração do codigo excluindo classes e trechos desnecessários ou duplicados
-- Adicionado hover no botao de login
-- Adicionado estilo ao checkbox de acordo com a identidade visual
+- criação da pagina de contato
+- adição do formulario de contato
+- ajuste de layout 
+- estilização de componentes
 
 
 ## Checklist
