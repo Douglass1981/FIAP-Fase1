@@ -1,0 +1,69 @@
+@use './variables.scss' as *;
+
+// Fonts
+
+@mixin typography($font-family: 'Poppins', $font-size, $font-weight: normal, $line-height: 1.5, $letter-spacing: normal, $text-transform: none) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  text-transform: $text-transform;
+}
+
+@mixin font-heading-1 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-heading-2 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-heading-3 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-heading-4 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-heading-5 {
+    @include typography('Poppins', 18px, 600, 28px, 0%);
+}
+
+@mixin font-subtitle-1 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-subtitle-2 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-body-1 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-body-2 {
+    @include typography(-family, -size, -weight, -height, -spacing, -transform);
+}
+
+@mixin font-button {
+    @include typography('Poppins', 28px, 500, 28px, 0%);
+}
+
+// Responsive
+@mixin respond($breakpoint) {
+  @if $breakpoint == xs {
+    @content;
+  } @else if $breakpoint == sm {
+    @media only screen and (min-width: $sm) { @content; }
+  } @else if $breakpoint == md {
+    @media only screen and (min-width: $md) { @content; }
+  } @else if $breakpoint == lg {
+    @media only screen and (min-width: $lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media only screen and (min-width: $xl) { @content; }
+  } @else {
+    @error "Breakpoints possiveis: xs, sm, md, lg ou xl.";
+  }
+}
