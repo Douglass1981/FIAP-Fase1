@@ -149,5 +149,33 @@ $black: #000000;
         }
       }
     }
+
+    &__container-carousel {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &__tag {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        border: 2px solid $blue-primary-500;
+        padding: 4px 8px;
+        border-radius: 32px;
+        white-space: nowrap;
+
+        &__text {
+          @include typography(0.875rem, 400, 28px, 0%);
+          color: $blue-primary-500;
+        }
+      }
+    }
+
   }
 }
