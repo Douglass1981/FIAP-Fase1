@@ -1,15 +1,14 @@
-# {{ Nome da Branch }}
+# feat/style-login-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-Descreva a tarefa aqui
-
-## Link do cards de tarefa relacionado
-[Insira o link aqui]
+- Refatoração do codigo excluindo classes e trechos desnecessários ou duplicados
+- Adicionado hover no botao de login
+- Adicionado estilo ao checkbox de acordo com a identidade visual
 
 ## Checklist
 
-- [ ] Estou marcado como responsável pelo PR
+- [x] Estou marcado como responsável pelo PR
 - [ ] Foram feitos testes unitários
 - [ ] Foi adicionado informações ao arquivo .env
 - [ ] Documentação está atualizada
