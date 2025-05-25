@@ -135,7 +135,7 @@ export default function Contact() {
                 <h2
                   className={styles["content__container__contact__text__title"]}
                 >
-                  Ou entre em contato
+                  Entre em contato
                 </h2>
                 <p
                   className={
