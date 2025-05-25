@@ -1,9 +1,12 @@
-# feat/create-initial-page
+# feat/style-signup-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- Ajuste do flex layout da página inicial
-- Adicionado link de redirecionamento de pagina no botão da tela mobile
+- adição do hover ao botão login
+- adição de link de redirecionamento na brand da página
+- refatoração de codigo
+- ajustes no tamanho da imagem
+
 
 ## Checklist
 

@@ -1,10 +1,8 @@
 "use client";
 
-import theme from "@/styles/theme";
 import {
   Box,
   Button,
-  Checkbox,
   IconButton,
   InputAdornment,
   TextField,
@@ -93,28 +91,35 @@ export default function Cadastro() {
     <>
       <main className={styles["signup"]}>
         <Box className={styles["signup__container"]}>
-          <Box className={styles["signup__container__logo_area"]}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "30%", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
+          
+            <Link
+              className={styles["signup__container__logo_area"]}
+              href="http://localhost:3000"
+              sx={{ textDecoration: "none" }}
+            >
+              {isMobile ? (
+                <Image
+                  src="/logo.png"
+                  width="232"
+                  height="232"
+                  alt="Logo"
+                  style={{ width: "30%", height: "auto" }}
+                />
+              ) : (
+                <Image
+                  src="/logo.png"
+                  width="72"
+                  height="100"
+                  alt="Logo"
+                  style={{ width: "15%", height: "auto" }}
+                />
+              )}{" "}
+            
             <h1 className={styles["signup__container__logo_area__brand"]}>
               Poup.ai
             </h1>
-          </Box>
+            </Link>
+            
 
           <Box className={styles["signup__container__form-area"]}>
             <Box className={styles["signup__container__form-area__text"]}>
@@ -234,7 +239,6 @@ export default function Cadastro() {
             width={467}
             height={448}
             alt="Bem Vindo"
-            className="signup__container-side__image"
             style={{
               width: "60%",
               height: "auto",
