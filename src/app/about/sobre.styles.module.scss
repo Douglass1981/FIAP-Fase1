@@ -27,6 +27,8 @@ $black: #000000;
   width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 
   &__nav {
     padding: 30px 170px;
@@ -51,8 +53,10 @@ $black: #000000;
     }
   }
 
-
-  .container {
+  > main {
+    flex-grow: 1;
+  }
+  &__container {
     padding: 0px 150px;
     display: flex;
     flex-direction: column;
@@ -94,45 +98,38 @@ $black: #000000;
   }
 }
 
-@media (max-width: $bp-tablet){
-    .content {
-
-  &__nav {
-    padding: 30px 50px;
-
-   
-  }
-
- 
-  .container {
-    padding: 50px;
-    &__title {
-      @include typography(1.5rem, 700);
-      color: $black;
-      text-align: center;
+@media (max-width: $bp-tablet) {
+  .content {
+    &__nav {
+      padding: 30px 50px;
     }
 
-    &__material {
-      display: flex;
-      flex-direction: column;
-      align-items: end;
-      &__left {
-        width: 100%;
+    &__container {
+      padding: 50px;
+      &__title {
+        @include typography(1.5rem, 700);
+        color: $black;
+        text-align: center;
+      }
 
-        &__text {
-          @include typography(1.25rem, 400);
-          color: $black;
-          padding: 15px 0px;
+      &__material {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        &__left {
+          width: 100%;
+
+          &__text {
+            @include typography(1.25rem, 400);
+            color: $black;
+            padding: 15px 0px;
+          }
+        }
+
+        &__right {
+          width: 50%;
         }
       }
-
-      &__right {
-        width: 50%;
-      }
     }
   }
-
-  &__footer {
-  }
-}
 }
