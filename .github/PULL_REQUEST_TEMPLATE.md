@@ -1,9 +1,9 @@
-# feat/create-initial-page
+# feat/create-services-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- Ajuste do flex layout da página inicial
-- Adicionado link de redirecionamento de pagina no botão da tela mobile
+- Criação da pagina de serviços
+- Estilização da pagina
 
 ## Checklist
 
