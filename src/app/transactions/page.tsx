@@ -1,17 +1,18 @@
-'use client'
+"use client";
 
 import styles from "./transactions.styles.module.scss";
-import { Box, Button} from "@mui/material";
+import { Box, Button, Link } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { colors } from "../mui.styles";
 
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import Image from "next/image";
 
 export default function Transactions() {
   const router = useRouter();
@@ -24,75 +25,397 @@ export default function Transactions() {
   };
   return (
     <>
-      <main className={styles["transactions"]}>
-        <Box className={styles["transactions__container-info"]}>
-          <Box className={styles["transactions__container-info__navigation"]}>
-            <ArrowBackIosIcon />
-            <select
-              onChange={handleChange}
+      <Box className={styles["transactions"]}>
+        <nav className={styles["transactions__nav"]}>
+          <Link
+            className={styles["transactions__nav__logo_area"]}
+            href="http://localhost:3000"
+            sx={{ textDecoration: "none" }}
+          >
+            <Image
+              src="/logo.png"
+              width="72"
+              height="100"
+              alt="Logo"
+              style={{ width: "15%", height: "auto" }}
+            />
+            <h1 className={styles["transactions__nav__logo_area__brand"]}>
+              Poup.ai
+            </h1>
+          </Link>
+        </nav>
+        <main className={styles["transactions__main"]}>
+          <Box className={styles["transactions__main__container-info"]}>
+            <Box
+              className={
+                styles["transactions__main__container-info__navigation"]
+              }
             >
-              <option value="/transactions">Transações</option>
-              <option value="/income">Receitas</option>
-              <option value="/expenses">Despesas</option>
-            </select>
-          </Box>
-          <Box className={styles["transactions__container-info__card-income"]}>
-            <Box className={styles["transactions__container-info__card-income__text-area"]}>
-                <p className={styles["transactions__container-info__card-income__text-area__title"]}>Receitas</p>
-            <p className={styles["transactions__container-info__card-income__text-area__amount"]}>R$ 0,00</p>
+              <select
+                onChange={handleChange}
+                className={
+                  styles[
+                    "transactions__main__container-info__navigation__select"
+                  ]
+                }
+              >
+                <option
+                  value="/transactions__main"
+                  className={
+                    styles[
+                      "transactions__main__container-info__navigation__select__options"
+                    ]
+                  }
+                >
+                  Transações
+                </option>
+                <option
+                  value="/income"
+                  className={
+                    styles[
+                      "transactions__main__container-info__navigation__select__options"
+                    ]
+                  }
+                >
+                  Receitas
+                </option>
+                <option
+                  value="/expenses"
+                  className={
+                    styles[
+                      "transactions__main__container-info__navigation__select__options"
+                    ]
+                  }
+                >
+                  Despesas
+                </option>
+              </select>
             </Box>
-            <Box className={styles["transactions__container-info__card-income__icon-area"]}>
-                <ArrowUpwardIcon/>
-            </Box>
-          </Box>
-          <Box className={styles["transactions__container-info__card-expenses"]}>
-            <Box className={styles["transactions__container-info__card-expenses__text-area"]}>
-                <p className={styles["transactions__container-info__card-expenses__text-area__title"]}>Receitas</p>
-            <p className={styles["transactions__container-info__card-expenses__text-area__value"]}>R$ 0,00</p>
-            </Box>
-            <Box className={styles["transactions__container-info__card-expenses__icon-area"]}>
-                <ArrowDownwardIcon/>
-            </Box>
-          </Box>  
-        </Box>
-        <Box className={styles["transactions__container-carousel"]}>
-            <Box className={styles["transactions__container-carousel__tag"]}>
-                <p className={styles["transactions__container-carousel__tag__text"]}>Ultima semana</p>
-            </Box>
-            <Box className={styles["transactions__container-carousel__tag"]}>
-                <p className={styles["transactions__container-carousel__tag__text"]}>Ultimo mês</p>
-            </Box>
-            <Box className={styles["transactions__container-carousel__tag"]}>
-                <p className={styles["transactions__container-carousel__tag__text"]}>Ultimos 6 meses</p>
-            </Box>
-            <Box className={styles["transactions__container-carousel__tag"]}>
-                <p className={styles["transactions__container-carousel__tag__text"]}>Ultimo ano</p>
-            </Box>
-        </Box>
-        <Box className={styles["transactions__container-transactions"]}>
-            <Box className={styles['transactions__container-transactions__card-transactions']}>
-                <Box className={styles['transactions__container-transactions__card-transactions__icon-area']}>
-                    <SyncAltOutlinedIcon/>
+            <Box
+              className={
+                styles["transactions__main__container-info__container"]
+              }
+            >
+              <Box
+                className={
+                  styles["transactions__main__container-info__container__left"]
+                }
+              >
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-info__container__left__card-income"
+                    ]
+                  }
+                >
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__left__card-income__text-area"
+                      ]
+                    }
+                  >
+                    <p
+                      className={
+                        styles[
+                          "transactions__main__container-info__container__left__card-income__text-area__title"
+                        ]
+                      }
+                    >
+                      Receitas
+                    </p>
+                    <p
+                      className={
+                        styles[
+                          "transactions__main__container-info__container__left__card-income__text-area__amount"
+                        ]
+                      }
+                    >
+                      R$ 0,00
+                    </p>
+                  </Box>
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__left__card-income__icon-area"
+                      ]
+                    }
+                  >
+                    <ArrowUpwardIcon />
+                  </Box>
                 </Box>
-                <Box className={styles['transactions__container-transactions__card-transactions__text-area']}>
-                    <p className={styles['transactions__container-transactions__card-transactions__text-area__category']}>Categoria</p>
-                    <p className={styles['transactions__container-transactions__card-transactions__text-area__info']}>Banco</p>
-                    <p className={styles['transactions__container-transactions__card-transactions__text-area__info']}>25/05/2025</p>
-                    <p className={styles['transactions__container-transactions__card-transactions__text-area__amount']}>R$ 0,00</p>
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-info__container__left__card-expenses"
+                    ]
+                  }
+                >
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__left__card-expenses__text-area"
+                      ]
+                    }
+                  >
+                    <p
+                      className={
+                        styles[
+                          "transactions__main__container-info__container__left__card-expenses__text-area__title"
+                        ]
+                      }
+                    >
+                      Despesas
+                    </p>
+                    <p
+                      className={
+                        styles[
+                          "transactions__main__container-info__container__left__card-expenses__text-area__amount"
+                        ]
+                      }
+                    >
+                      R$ 0,00
+                    </p>
+                  </Box>
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__left__card-expenses__icon-area"
+                      ]
+                    }
+                  >
+                    <ArrowDownwardIcon />
+                  </Box>
                 </Box>
-                <Box className={styles['transactions__container-transactions__card-transactions__actions-area']}>
-                    <VisibilityOutlinedIcon/>
-                    <EditOutlinedIcon/>
-                    <DeleteOutlineIcon/>
+              </Box>
+              <Box
+                className={
+                  styles["transactions__main__container-info__container__right"]
+                }
+              >
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-info__container__right__function"
+                    ]
+                  }
+                >
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__right__function__icon-area"
+                      ]
+                    }
+                  >
+                    <ArrowUpwardIcon />
+                  </Box>
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__right__function__text"
+                      ]
+                    }
+                  >
+                    Receitas
+                  </p>
                 </Box>
-            </Box>
-        </Box>
 
-        <Button variant="contained" fullWidth className={styles['transactions_button']}>
-            <AddOutlinedIcon/>
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-info__container__right__function"
+                    ]
+                  }
+                >
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__right__function__icon-area"
+                      ]
+                    }
+                  >
+                    <ArrowDownwardIcon />
+                  </Box>
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__right__function__text"
+                      ]
+                    }
+                  >
+                    Despesas
+                  </p>
+                </Box>
+
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-info__container__right__function"
+                    ]
+                  }
+                >
+                  <Box
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__right__function__icon-area"
+                      ]
+                    }
+                  >
+                    <SyncAltOutlinedIcon />
+                  </Box>
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-info__container__right__function__text"
+                      ]
+                    }
+                  >
+                    Transferência
+                  </p>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box className={styles["transactions__main__container-carousel"]}>
+            <Box
+              className={styles["transactions__main__container-carousel__tag"]}
+            >
+              <p
+                className={
+                  styles["transactions__main__container-carousel__tag__text"]
+                }
+              >
+                Ultima semana
+              </p>
+            </Box>
+            <Box
+              className={styles["transactions__main__container-carousel__tag"]}
+            >
+              <p
+                className={
+                  styles["transactions__main__container-carousel__tag__text"]
+                }
+              >
+                Ultimo mês
+              </p>
+            </Box>
+            <Box
+              className={styles["transactions__main__container-carousel__tag"]}
+            >
+              <p
+                className={
+                  styles["transactions__main__container-carousel__tag__text"]
+                }
+              >
+                Ultimos 6 meses
+              </p>
+            </Box>
+            <Box
+              className={styles["transactions__main__container-carousel__tag"]}
+            >
+              <p
+                className={
+                  styles["transactions__main__container-carousel__tag__text"]
+                }
+              >
+                Ultimo ano
+              </p>
+            </Box>
+          </Box>
+          <Box className={styles["transactions__main__container-transactions"]}>
+            <Box
+              className={
+                styles[
+                  "transactions__main__container-transactions__card-transactions"
+                ]
+              }
+            >
+              <Box
+                className={
+                  styles[
+                    "transactions__main__container-transactions__card-transactions__left"
+                  ]
+                }
+              >
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-transactions__card-transactions__left__icon-area"
+                    ]
+                  }
+                >
+                  <SyncAltOutlinedIcon />
+                </Box>
+                <Box
+                  className={
+                    styles[
+                      "transactions__main__container-transactions__card-transactions__left__text-area"
+                    ]
+                  }
+                >
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-transactions__card-transactions__left__text-area__category"
+                      ]
+                    }
+                  >
+                    Categoria
+                  </p>
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-transactions__card-transactions__left__text-area__info"
+                      ]
+                    }
+                  >
+                    Banco
+                  </p>
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-transactions__card-transactions__left__text-area__info"
+                      ]
+                    }
+                  >
+                    25/05/2025
+                  </p>
+                  <p
+                    className={
+                      styles[
+                        "transactions__main__container-transactions__card-transactions__left__text-area__amount"
+                      ]
+                    }
+                  >
+                    R$ 0,00
+                  </p>
+                </Box>
+              </Box>
+              <Box>
+                <Button sx={{ minWidth: "0", color: colors.black }}>
+                  <VisibilityOutlinedIcon />
+                </Button>
+                <Button sx={{ minWidth: "0", color: colors.black }}>
+                  <EditOutlinedIcon />
+                </Button>
+                <Button sx={{ minWidth: "0", color: colors.black }}>
+                  <DeleteOutlineIcon />
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+
+          <Button
+            variant="contained"
+            
+            className={styles["transactions__main__button--hidden"]}
+          >
+            <AddOutlinedIcon />
             Adicionar transferencia
-        </Button>
-      </main>
+          </Button>
+        </main>
+      </Box>
     </>
   );
 }
