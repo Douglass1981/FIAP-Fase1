@@ -7,6 +7,7 @@
 - refatoração de codigo
 - ajustes no tamanho da imagem
 
+
 ## Checklist
 
 - [x] Estou marcado como responsável pelo PR
