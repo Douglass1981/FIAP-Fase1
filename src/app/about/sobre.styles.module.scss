@@ -1,0 +1,138 @@
+@mixin typography(
+  $font-size,
+  $font-weight: 400,
+  $line-height: 1.5,
+  $letter-spacing: 0
+) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+$bp-tablet: 768px;
+$bp-desktop: 1025px;
+
+$blue-primary-500: #002952;
+
+$secondary-purple-700: #512da8;
+
+$gray-neutral-800: #424242;
+
+$white: #ffffff;
+$black: #000000;
+
+.content {
+  background-color: $white;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  &__nav {
+    padding: 30px 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo_area {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      &__brand {
+        @include typography(2.5rem, 700, 100%);
+        color: $blue-primary-500;
+      }
+    }
+
+    &__redirect_pages {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+
+  .container {
+    padding: 0px 150px;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      @include typography(2.25rem, 700);
+      color: $black;
+      text-align: center;
+    }
+
+    &__material {
+      display: flex;
+      &__left {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        &__text {
+          @include typography(1.25rem, 400);
+          color: $black;
+          padding: 15px 39px;
+        }
+      }
+
+      &__right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    color: $black;
+  }
+}
+
+@media (max-width: $bp-tablet){
+    .content {
+
+  &__nav {
+    padding: 30px 50px;
+
+   
+  }
+
+ 
+  .container {
+    padding: 50px;
+    &__title {
+      @include typography(1.5rem, 700);
+      color: $black;
+      text-align: center;
+    }
+
+    &__material {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      &__left {
+        width: 100%;
+
+        &__text {
+          @include typography(1.25rem, 400);
+          color: $black;
+          padding: 15px 0px;
+        }
+      }
+
+      &__right {
+        width: 50%;
+      }
+    }
+  }
+
+  &__footer {
+  }
+}
+}

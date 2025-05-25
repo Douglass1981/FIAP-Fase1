@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+//generator client {
+//  provider = "prisma-client-js"
+//  output   = "../app/generated/prisma"
+//}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id           Int            @id @default(autoincrement())
+  nome         String
+  email        String
+  password     String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  UsuarioBanco UsuarioBanco[]
+
+  @@map("usuario")
+}
+
+model Banco {
+  id           Int            @id @default(autoincrement())
+  nome         String
+  logoBase64   String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  UsuarioBanco UsuarioBanco[]
+  Transacoes   Transacoes[]
+
+  @@map("banco")
+}
+
+model UsuarioBanco {
+  id        Int      @id @default(autoincrement())
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId Int
+  banco     Banco    @relation(fields: [bancoId], references: [id])
+  bancoId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("usuarioBanco")
+}
+
+model TipoTransacoes {
+  id         Int          @unique
+  descricao  String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  Transacoes Transacoes[]
+
+  @@map("tipotransacoes")
+}
+
+model Categorias {
+  id         Int          @id @default(autoincrement())
+  nome       String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  Transacoes Transacoes[]
+
+  @@map("categorias")
+}
+
+model Transacoes {
+  id          Int            @id @default(autoincrement())
+  data        DateTime
+  descricao   String
+  valor       Decimal
+  tipo        TipoTransacoes @relation(fields: [tipoId], references: [id])
+  tipoId      Int
+  categoria   Categorias     @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+  bancos      Banco          @relation(fields: [bancoid], references: [id])
+  bancoid     Int
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@map("transacoes")
+}
