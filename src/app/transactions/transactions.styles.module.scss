@@ -44,7 +44,110 @@ $black: #000000;
     width: 100vw;
     color: black;
     gap: 10px;
-    
-     
+
+    &__container-info {
+      background-color: $blue-primary-500;
+      padding: 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      &__navigation {
+        color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__select {
+          font-size: 1.25rem;
+          padding: 8px;
+
+          &__options {
+            font-size: 1rem;
+            color: $black;
+          }
+        }
+      }
+      &__container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        &__left {
+          display: flex;
+          gap: 20px;
+          &__card-income {
+            background-color: $gray-neutral-300;
+            display: flex;
+            padding: 10px 8px;
+            border-radius: 8px;
+            max-width: 160px;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            &__text-area {
+              display: flex;
+              flex-direction: column;
+
+              &__title {
+                @include typography(0.875rem, 400, 28px, 0%);
+              }
+              &__amount {
+                @include typography(1.125rem, 600, 28px, 0%);
+              }
+            }
+
+            &__icon-area {
+              background-color: $green-normal;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: $white;
+              border-radius: 100%;
+              padding: 4px;
+              width: 40px;
+              height: 40px;
+            }
+          }
+
+          &__card-expenses {
+            background-color: $gray-neutral-300;
+            display: flex;
+            padding: 10px 8px;
+            border-radius: 8px;
+            max-width: 160px;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            &__text-area {
+              display: flex;
+              flex-direction: column;
+
+              &__title {
+                @include typography(0.875rem, 400, 28px, 0%);
+              }
+              &__amount {
+                @include typography(1.125rem, 600, 28px, 0%);
+              }
+            }
+
+            &__icon-area {
+              background-color: $red-normal;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: $white;
+              border-radius: 100%;
+              padding: 4px;
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
+
+        &__right {
+          display: none;
+        }
+      }
+    }
   }
 }
