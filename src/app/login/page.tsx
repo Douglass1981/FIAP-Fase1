@@ -22,29 +22,33 @@ export default function Login() {
     <>
       <main className={styles["login"]}>
         <Box className={styles["login__container"]}>
-          <Box className={styles["login__container__logo_area"]}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "30%", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
-
+            <Link
+              className={styles["login__container__logo_area"]}
+              href="http://localhost:3000"
+              sx={{ textDecoration: "none" }}
+            >
+              {isMobile ? (
+                <Image
+                  src="/logo.png"
+                  width="232"
+                  height="232"
+                  alt="Logo"
+                  style={{ width: "30%", height: "auto" }}
+                />
+              ) : (
+                <Image
+                  src="/logo.png"
+                  width="72"
+                  height="100"
+                  alt="Logo"
+                  style={{ width: "20%", height: "auto" }}
+                />
+              )}
+            
             <h1 className={styles["login__container__logo_area__brand"]}>
               Poup.ai
             </h1>
-          </Box>
+            </Link>
 
           <Box className={styles["login__container__form-area"]}>
             <Box className={styles["login__container__form-area__text"]}>
@@ -98,7 +102,14 @@ export default function Login() {
                   styles["login__container__form-area__form__checkbox"]
                 }
               >
-                <Checkbox />
+                <Checkbox
+  sx={{
+    '&.Mui-checked': {
+      color: colors.bluePrimary500,
+    },
+  }}
+/>
+
                 <p
                   className={
                     styles["login__container__form-area__form__checkbox__text"]
@@ -132,7 +143,7 @@ export default function Login() {
                   <Link
                     className={
                       styles[
-                        "login__container__form-area__form__redirect__text__link"
+                      "login__container__form-area__form__redirect__text__link"
                       ]
                     }
                     href="http://localhost:3000/signup"
@@ -154,13 +165,15 @@ export default function Login() {
             className="login__container-side__image"
             style={{ width: "40%", height: "auto" }}
           />
-          <h2 className={styles["login__container-side__title"]}>
-            Seja bem-vindo!
-          </h2>
-          <h3 className={styles["login__container-side__description"]}>
-            Descubra soluções financeiras inovadoras e confiáveis para garantir
-            um futuro próspero
-          </h3>
+          <Box className={styles["login__container-side__text"]}>
+            <h2 className={styles["login__container-side__text__title"]}>
+              Seja bem-vindo!
+            </h2>
+            <h3 className={styles["login__container-side__text__description"]}>
+              Descubra soluções financeiras inovadoras e confiáveis para garantir
+              um futuro próspero
+            </h3>
+          </Box>
         </Box>
       </main>
     </>
