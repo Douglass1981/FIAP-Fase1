@@ -1,9 +1,9 @@
-# feat/create-services-page
+# feat/create-about-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- Criação da pagina de serviços
-- Estilização da pagina
+- Ajuste do flex layout da página about
+- Adicionado hover no botao de login
 
 ## Checklist
 
