@@ -5,6 +5,7 @@ import {
     LogoutIcon,
     StatementIcon,
     TransferIcon,
+    WavingHandIcon
 } from "./material-icons"
 
 export const Icons = {
@@ -14,4 +15,5 @@ export const Icons = {
     Logout: LogoutIcon,
     Statement: StatementIcon,
     Transfer: TransferIcon,
+    WavingHand: WavingHandIcon
 }

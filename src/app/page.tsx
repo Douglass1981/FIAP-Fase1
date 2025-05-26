@@ -59,22 +59,20 @@ export default function Initial() {
             </Link>
           </Box>
           {isMobile ? (
+            <Button sx={{ display: "none" }}>Login</Button>
+          ) : (
             <Button
-            sx={{display: 'none'}}
-          >
-            Login
-          </Button>
-          ):(<Button
-            sx={{
-              textTransform: "none",
-              backgroundColor: colors.bluePrimary500,
-            }}
-            variant="contained"
-            href="http://localhost:3000/login"
-            className={styles["content__nav__button"]}
-          >
-            Login
-          </Button>)}
+              sx={{
+                textTransform: "none",
+                backgroundColor: colors.bluePrimary500,
+              }}
+              variant="contained"
+              href="http://localhost:3000/login"
+              className={styles["content__nav__button"]}
+            >
+              Login
+            </Button>
+          )}
         </nav>
         <main>
           <Box className={styles["content__desktop"]}>
@@ -116,9 +114,14 @@ export default function Initial() {
               garantir um futuro próspero.
             </p>
             <Button
+              href="http://localhost:3000/login"
               variant="contained"
               fullWidth
-              className={styles["content__mobile__button"]}
+              sx={{
+                textTransform: "none",
+                backgroundColor: colors.bluePrimary500,
+                fontSize: "1rem",
+              }}
             >
               Acessar
             </Button>

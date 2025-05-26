@@ -7,12 +7,12 @@ export default function Home(){
         <div className={styles.card}>
             <div className={styles['presentation-card-home']}>
                 <div>
-                    <p className={styles['hello-message-presentation-card']}>Olá Joana</p>
+                    <p className={styles['hello-message-text']}>Olá, Joana</p>
                     <p>Saldo total em conta</p>
                 </div>
                 <Icons.Logout />
             </div>
-            <span>R$400,00</span>
+            <span className={styles['account-balance-text']}>R$400,00</span>
         </div>
 
         <section className={styles['bank-details-container']}>
@@ -41,42 +41,42 @@ export default function Home(){
                 </div>
             </div>
 
-            <div className={styles['actions-bank-details-container']}>
-                <div>
+            <div className={styles['details-container']}>
+                <div className={styles['data-details-container']}>
                     <div>
                         <p>Receitas</p>
                         <p>R$3.500.57</p>
                     </div>
-                    <Icons.ArrowUp />
+                    <Icons.ArrowUp className={`${styles.icon} ${styles.income}`} />
                 </div>
 
-                <div>
+                <div className={styles['data-details-container']}>
                     <div>
                         <p>Despesas</p>
                         <p>R$3.500.57</p>
                     </div>
-                    <Icons.ArrowDown />
+                    <Icons.ArrowDown className={`${styles.icon} ${styles.expenses}`} />
                 </div>
             </div>
 
-            <div>
-                <div>
-                    <div>
+            <div className={styles['graph-details-container']}>
+                <div className={styles['graph-details-card']}>
+                    <div className={styles['graph-details']}>
                         <p>Total despesas</p>
                         <span>R$1.659,35</span>
                     </div>
-                    <div>
+                    <div className={styles.graph}>
                         Gráfico
                         dados
                     </div>
                 </div>
 
-                <div>
-                    <div>
+                <div className={styles['graph-details-card']}>
+                    <div className={styles['graph-details']}>
                         <p>Total receitas</p>
                         <span>R$1.659,35</span>
                     </div>
-                    <div>
+                    <div className={styles.graph}>
                         Gráfico
                         dados
                     </div>
