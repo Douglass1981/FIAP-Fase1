@@ -7,12 +7,12 @@ import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalDetails from "./modalDetails";
 import ModalDelete from "./modalDelete";
+import ModalEdit from "./modalEdit";
 
 export default function Transactions() {
   const router = useRouter();
@@ -397,7 +397,7 @@ export default function Transactions() {
                   <ModalDetails />
                 </Button>
                 <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <EditOutlinedIcon />
+                  <ModalEdit />
                 </Button>
                 <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
                   <ModalDelete />
