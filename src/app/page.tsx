@@ -1,112 +1,136 @@
 "use client";
 
-import theme from "@/styles/theme";
-import { Checkbox, ThemeProvider } from "@mui/material";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import TextField from "@mui/material/TextField";
+import { Box, Button, Link } from "@mui/material";
+import styles from "./initial.styles.module.scss";
 import Image from "next/image";
-import { useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { colors } from "./mui.styles";
 
-export default function HOME() {
+export default function Initial() {
+  const isMobile = useMediaQuery("(max-width:767px)");
   return (
-    <ThemeProvider theme={theme}>
-      <Grid
-        container
-        spacing={8}
-        columns={16}
-        direction="row"
-        style={{ height: "100vh" }}
-        sx={{
-          justifyContent: "center",
-          alignItems: "stretch",
-          
-        }}
-      >
-        <Grid size={{ xs: 12, sm: 6 }}>
-          <div style={{ justifyItems: "center", paddingTop: "250px" }}>
-            <Image src="/logo.png" width="72" height="72" alt="Logo" />
-             <div>Poup.ai</div>
-          </div>
-         
-          <div>
-            <div style={{ fontSize: "36px", fontWeight: "bold" }}>Acesse</div>
-            <div style={{ fontSize: "24px" }}>Com seu login e senha</div>
-            <div style={{ fontSize: "18px" }}>Email</div>
-          </div>
-          <div>
-            <TextField
-              id="email"
-              label="Digite seu E-mail"
-              variant="outlined"
+    <>
+      <Box className={styles["content"]}>
+        <nav className={styles["content__nav"]}>
+          <Box className={styles["content__nav__logo_area"]}>
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "50%", height: "50%" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}
+            <h1 className={styles["content__nav__logo_area__brand"]}>
+              Poup.ai
+            </h1>
+          </Box>
+
+          <Box className={styles["content__nav__redirect_pages"]}>
+            <Link
+              sx={{ textDecoration: "none", color: colors.black }}
+              href="http://localhost:3000/about"
+              className={styles["content__nav__redirect_pages__link"]}
+            >
+              Sobre nós
+            </Link>
+            <Link
+              sx={{ textDecoration: "none", color: colors.black }}
+              href="http://localhost:3000/services"
+              className={styles["content__nav__redirect_pages__link"]}
+            >
+              Serviços
+            </Link>
+            <Link
+              sx={{ textDecoration: "none", color: colors.black }}
+              href="http://localhost:3000/contact"
+              className={styles["content__nav__redirect_pages__link"]}
+            >
+              Entre em contato
+            </Link>
+          </Box>
+          {isMobile ? (
+            <Button sx={{ display: "none" }}>Login</Button>
+          ) : (
+            <Button
+              sx={{
+                textTransform: "none",
+                backgroundColor: colors.bluePrimary500,
+              }}
+              variant="contained"
+              href="http://localhost:3000/login"
+              className={styles["content__nav__button"]}
+            >
+              Login
+            </Button>
+          )}
+        </nav>
+        <main>
+          <Box className={styles["content__desktop"]}>
+            <Box className={styles["content__desktop__container"]}>
+              <Box className={styles["content__desktop__container__left"]}>
+                <h2
+                  className={styles["content__desktop__container__left__title"]}
+                >
+                  Seu futuro começa com escolhas inteligentes.
+                </h2>
+                <p
+                  className={styles["content__desktop__container__left__text"]}
+                >
+                  Descubra um novo jeito de cuidar das suas finanças com
+                  soluções inteligentes, práticas e seguras.
+                </p>
+                <p
+                  className={styles["content__desktop__container__left__text"]}
+                >
+                  Transforme sua relação com o dinheiro e alcance seus objetivos
+                  com confiança.
+                </p>
+              </Box>
+              <Box className={styles["content__desktop__container__rigth"]}>
+                <Image
+                  src="/initial-image.png"
+                  width="477"
+                  height="576"
+                  alt="Initial image"
+                  style={{ width: "100%", height: "auto" }}
+                ></Image>
+              </Box>
+            </Box>
+          </Box>
+          <Box className={styles["content__mobile"]}>
+            <h2 className={styles["content__mobile__title"]}>Bem Vindo!</h2>
+            <p className={styles["content__mobile__text"]}>
+              Descubra soluções financeiras inovadoras e confiáveis para
+              garantir um futuro próspero.
+            </p>
+            <Button
+              href="http://localhost:3000/login"
+              variant="contained"
               fullWidth
-            />
-          </div>
-          <div style={{ fontSize: "18px" }}>Senha</div>
-          <div>
-            <TextField
-              id="senha"
-              label="Digite sua Senha"
-              variant="outlined"
-              fullWidth
-            />{" "}
-          </div>
-
-          <div>
-            <Checkbox style={{ fontSize: "18px" }} />
-            Lembrar a minha senha
-          </div>
-
-          <Button variant="outlined" fullWidth>
-            Entrar
-          </Button>
-
-          <div
-            style={{ fontSize: "16px", textAlign: "center", padding: "10px" }}
-          >
-            Ainda não tem uma conta?
-            <Link href="http://localhost:3000/cadastro">Cadastre-se</Link>
-          </div>
-        </Grid>
-
-        <Grid
-          size={{ xs: 16, md: 8 }}
-          sx={{
-            backgroundColor: "#002952",
-            color: "#ffffff",
-            justifyItems: "center",
-          }}
-        >
-          <div style={{ justifyItems: "center", paddingTop: "200px" }}>
-            <Image
-              src="/logoBemVindo.png"
-              width={467}
-              height={448}
-              alt="Bem Vindo"
-            />
-          </div>
-          <div
-            style={{
-              justifyItems: "center",
-              fontSize: "60px",
-              fontWeight: "bold",
-            }}
-          >
-            Bem Vindo!
-          </div>
-          <div
-            style={{
-              justifyItems: "center",
-              fontSize: "24px",
-            }}
-          >
-            <h1>Descubra soluções financeiras inovadoras</h1>
-            <h1>e confiávies para garantir um futuro</h1>
-            <h1>próspero</h1>
-          </div>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+              sx={{
+                textTransform: "none",
+                backgroundColor: colors.bluePrimary500,
+                fontSize: "1rem",
+              }}
+            >
+              Acessar
+            </Button>
+          </Box>
+        </main>
+        <footer className={styles["content__footer"]}>
+          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
+        </footer>
+      </Box>
+    </>
   );
 }
