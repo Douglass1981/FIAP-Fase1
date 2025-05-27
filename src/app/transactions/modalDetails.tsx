@@ -3,6 +3,7 @@
 import { useState } from "react";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { Box, Button } from "@mui/material";
 
 export default function ModalDetails() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function ModalDetails() {
       </button>
 
       {isOpen && (
-        <div
+        <Box
           onClick={() => setIsOpen(false)}
           style={{
             position: "fixed",
@@ -26,7 +27,7 @@ export default function ModalDetails() {
             zIndex: 1000,
           }}
         >
-          <div
+          <Box
             onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: "white",
@@ -36,71 +37,75 @@ export default function ModalDetails() {
               boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             }}
           >
-            <button
-              onClick={() => setIsOpen(false)}
+            <Box
+            sx={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "end",
+                }}>
+              <Button
+                onClick={() => setIsOpen(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  padding: "0px 0px 10px 0px",
+                  color: "#424242",
+                  backgroundColor: "#FFFFFF",
+                }}
+              >
+                <CloseOutlinedIcon />
+              </Button>
+            </Box>
+            <Box
               style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "end",
-                padding: "8px 8px",
-                color: "#424242",
-                cursor: "pointer",
-              }}
-            >
-              <CloseOutlinedIcon />
-            </button>
-            <div
-              style={{
-                padding: "20px 0px",
                 display: "flex",
                 flexDirection: "column",
                 gap: 10,
               }}
             >
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  
-                }}
-              >
-                <p style={{fontSize: '0.875rem'}}>Saiu de</p>
-                <p style={{color: 'black'}}>Banco</p>
-              </div>
-              <div
+              <Box
                 style={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "space-between",
                 }}
               >
-                <p style={{fontSize: '0.875rem'}}>Para</p>
-                <p style={{color: 'black'}}>Banco</p>
-              </div>
-              <div
+                <p style={{ fontSize: "0.875rem" }}>Saiu de</p>
+                <p style={{ color: "black" }}>Banco</p>
+              </Box>
+              <Box
                 style={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "space-between",
                 }}
               >
-                <p style={{fontSize: '0.875rem'}}>Data</p>
-                <p style={{color: 'black'}}>25/05/2025</p>
-              </div>
-              <div
+                <p style={{ fontSize: "0.875rem" }}>Para</p>
+                <p style={{ color: "black" }}>Banco</p>
+              </Box>
+              <Box
                 style={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "space-between",
                 }}
               >
-                <p style={{fontSize: '0.875rem'}}>Valor</p>
-                <p style={{color: 'black'}}>R$ 0,00</p>
-              </div>
-            </div>
-          </div>
-        </div>
+                <p style={{ fontSize: "0.875rem" }}>Data</p>
+                <p style={{ color: "black" }}>25/05/2025</p>
+              </Box>
+              <Box
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <p style={{ fontSize: "0.875rem" }}>Valor</p>
+                <p style={{ color: "black" }}>R$ 0,00</p>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       )}
     </>
   );

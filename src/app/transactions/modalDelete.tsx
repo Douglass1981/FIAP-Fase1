@@ -3,7 +3,7 @@
 import { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { colors } from "../mui.styles";
 
 export default function ModalDelete() {
@@ -16,7 +16,7 @@ export default function ModalDelete() {
       </button>
 
       {isOpen && (
-        <div
+        <Box
           onClick={() => setIsOpen(false)}
           style={{
             position: "fixed",
@@ -28,7 +28,7 @@ export default function ModalDelete() {
             zIndex: 1000,
           }}
         >
-          <div
+          <Box
             onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: "white",
@@ -38,7 +38,7 @@ export default function ModalDelete() {
               boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             }}
           >
-            <div
+            <Box
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -53,7 +53,7 @@ export default function ModalDelete() {
                 Tem certeza que deseja excluir?
               </p>
 
-              <div
+              <Box
                 style={{
                   display: "flex",
                   gap: 10,
@@ -61,10 +61,10 @@ export default function ModalDelete() {
               >
                 <Button fullWidth variant="contained" sx={{padding: "12px 16px", textTransform: 'none', backgroundColor: colors.red, fontSize: '16px'}}onClick={() => setIsOpen(false)}>Não</Button>
                 <Button fullWidth variant="contained" sx={{padding: "12px 16px", textTransform: 'none', backgroundColor: colors.bluePrimary500, fontSize: '16px'}}>Sim</Button>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       )}
     </>
   );

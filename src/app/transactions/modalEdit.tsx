@@ -1,16 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import {
   Box,
   Button,
   FormControl,
-  InputAdornment,
   InputLabel,
   MenuItem,
-  OutlinedInput,
   Select,
   TextField,
 } from "@mui/material";
@@ -26,7 +23,7 @@ export default function ModalEdit() {
       </button>
 
       {isOpen && (
-        <div
+        <Box
           onClick={() => setIsOpen(false)}
           style={{
             position: "fixed",
@@ -38,7 +35,7 @@ export default function ModalEdit() {
             zIndex: 1000,
           }}
         >
-          <div
+          <Box
             onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: "white",
@@ -48,7 +45,7 @@ export default function ModalEdit() {
               boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             }}
           >
-            <div
+            <Box
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -64,7 +61,7 @@ export default function ModalEdit() {
               >
                 Tipo de transação
               </p>
-              <div style={{
+              <Box style={{
                 display: "flex",
                 flexDirection: "column",
                 gap: 15,
@@ -123,8 +120,8 @@ export default function ModalEdit() {
                     <MenuItem value="Categoria 3">Categoria 3</MenuItem>
                   </Select>
                 </FormControl>
-              </div>
-              <div
+              </Box>
+              <Box
                 style={{
                   display: "flex",
                   gap: 10,
@@ -155,10 +152,10 @@ export default function ModalEdit() {
                 >
                   Sim
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       )}
     </>
   );
