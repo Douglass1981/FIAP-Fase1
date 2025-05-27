@@ -1,5 +1,6 @@
+import { PrismaClient } from "@/generated/prisma-client-js/client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "../generated/prisma/client";
+// import { PrismaClient } from "../generated/prisma/client";
 
 
 const prisma = new PrismaClient();
@@ -8,16 +9,16 @@ const prisma = new PrismaClient();
 export default async function CadastroUser(req:NextApiRequest , res:NextApiResponse) {
   if (req.method === 'POST') {
     try {
-      const { name, email, password } = req.body;
+      const { nome, email, password } = req.body;
 
       // Validação básica dos dados 
-      if (!name || !email || !password) {
+      if (!nome || !email || !password) {
         return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
       }
 
-      const newUser = await prisma.user.create({
+      const newUser = await prisma.usuario.create({
         data: {
-          name,
+          nome,
           email,
           password, 
         },
