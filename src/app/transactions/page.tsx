@@ -4,16 +4,15 @@ import styles from "./transactions.styles.module.scss";
 import { Box, Button, Link } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
-
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalDetails from "./modalDetails";
+import ModalDelete from "./modalExcluir";
 
 export default function Transactions() {
   const router = useRouter();
@@ -397,11 +396,11 @@ export default function Transactions() {
                 <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
                   <ModalDetails />
                 </Button>
-                <Button sx={{ minWidth: "0", color: colors.black }}>
+                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
                   <EditOutlinedIcon />
                 </Button>
-                <Button sx={{ minWidth: "0", color: colors.black }}>
-                  <DeleteOutlineIcon />
+                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
+                  <ModalDelete />
                 </Button>
               </Box>
             </Box>
