@@ -71,7 +71,7 @@ export default function Login() {
           localStorage.removeItem("isLoggedIn");
         }
 
-        router.push("/dashboard"); // Redireciona para a página principal ou dashboard Alterar DOUGLAS
+        router.push("/dashboard"); // Redireciona para a página dashboard Alterar para home de Transações
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
       }
