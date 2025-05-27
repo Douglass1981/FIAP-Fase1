@@ -12,7 +12,7 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalDetails from "./modalDetails";
-import ModalDelete from "./modalExcluir";
+import ModalDelete from "./modalDelete";
 
 export default function Transactions() {
   const router = useRouter();
