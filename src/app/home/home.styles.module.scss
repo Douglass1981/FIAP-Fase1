@@ -1,0 +1,121 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.home {
+    font-family: var(--font-poppins);
+    height: 100dvh;
+    width: 80%;
+    margin: auto;
+}
+
+.card {
+    background-color: $blue-500;
+    color: $white;
+    padding: 1.25rem;
+    border-radius: .5rem;
+
+    .account-balance-text {
+        @include typography(60px, 600, 100%, 0%);
+        font-family: var(--font-poppins);
+        font-size: 40px;
+    }
+}
+
+.presentation-card-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .hello-message-text {
+        @include font-heading-3;
+    }
+}
+
+.actions-bank-details-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions-bank-details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.actions-bank-details {
+    .actions-icon-bank-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        border-radius: 3.125rem;
+    }
+
+    svg {
+        background-color: $gray-300;
+        border-radius: 3.125rem;
+        padding: 0.5rem; 
+        width: 2rem;
+        height: 2rem;
+        display: inline-block;
+    }
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .625rem;
+
+    .data-details-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: .625rem;
+        background-color: $gray-300;
+        border-radius: .5rem;
+        padding: .625rem;
+        width: 12.9375rem;
+        height: 4.75rem;
+
+        .icon {
+            color: $white;
+            padding: .25rem;
+            border-radius: 3.125rem;
+            display: inline-block;
+        }
+
+        .income {
+            background-color: $green-light;
+        }
+
+        .expenses {
+            background-color: $red-light;
+        }
+    }
+}
+
+.graph-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .625rem;
+
+    .graph-details-card {
+        background-color: $gray-300;
+        border-radius: .5rem;
+        padding: 1.25rem .9375rem;
+    }
+    
+    .graph-details {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .graph {
+        display: flex;
+        justify-content: space-between;
+        gap: .625rem;
+        padding: .6875rem;
+    }
+}
