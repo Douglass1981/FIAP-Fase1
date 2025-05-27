@@ -286,8 +286,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
    */
   export type PrismaVersion = {
     client: string
@@ -8315,16 +8315,16 @@ export namespace Prisma {
 
   export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    email?: string
     AND?: UsuarioWhereInput | UsuarioWhereInput[]
     OR?: UsuarioWhereInput[]
     NOT?: UsuarioWhereInput | UsuarioWhereInput[]
     nome?: StringFilter<"Usuario"> | string
-    email?: StringFilter<"Usuario"> | string
     password?: StringFilter<"Usuario"> | string
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
     updatedAt?: DateTimeFilter<"Usuario"> | Date | string
     UsuarioBanco?: UsuarioBancoListRelationFilter
-  }, "id">
+  }, "id" | "email">
 
   export type UsuarioOrderByWithAggregationInput = {
     id?: SortOrder
