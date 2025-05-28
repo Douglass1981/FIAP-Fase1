@@ -86,6 +86,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -145,6 +148,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 
 exports.Prisma.ModelName = {
   Usuario: 'Usuario',
@@ -165,7 +173,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
+      "value": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -174,16 +182,17 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.8.2",
@@ -191,8 +200,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
-  "postinstall": false,
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -201,8 +209,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n//generator client {\n//  provider = \"prisma-client-js\"\n//  output   = \"../app/generated/prisma\"\n//}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Usuario {\n  id           Int            @id @default(autoincrement())\n  nome         String\n  email        String         @unique // Adicione @unique para garantir que o email seja único\n  password     String\n  createdAt    DateTime       @default(now())\n  updatedAt    DateTime       @updatedAt\n  UsuarioBanco UsuarioBanco[]\n\n  @@map(\"usuario\")\n}\n\nmodel Banco {\n  id           Int            @id @default(autoincrement())\n  nome         String\n  logoBase64   String\n  createdAt    DateTime       @default(now())\n  updatedAt    DateTime       @updatedAt\n  UsuarioBanco UsuarioBanco[]\n  Transacoes   Transacoes[]\n\n  @@map(\"banco\")\n}\n\nmodel UsuarioBanco {\n  id        Int      @id @default(autoincrement())\n  usuario   Usuario  @relation(fields: [usuarioId], references: [id])\n  usuarioId Int\n  banco     Banco    @relation(fields: [bancoId], references: [id])\n  bancoId   Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@map(\"usuarioBanco\")\n}\n\nmodel TipoTransacoes {\n  id         Int          @unique\n  descricao  String\n  createdAt  DateTime     @default(now())\n  updatedAt  DateTime     @updatedAt\n  Transacoes Transacoes[]\n\n  @@map(\"tipotransacoes\")\n}\n\nmodel Categorias {\n  id         Int          @id @default(autoincrement())\n  nome       String\n  createdAt  DateTime     @default(now())\n  updatedAt  DateTime     @updatedAt\n  Transacoes Transacoes[]\n\n  @@map(\"categorias\")\n}\n\nmodel Transacoes {\n  id          Int            @id @default(autoincrement())\n  data        DateTime\n  descricao   String\n  valor       Decimal\n  tipo        TipoTransacoes @relation(fields: [tipoId], references: [id])\n  tipoId      Int\n  categoria   Categorias     @relation(fields: [categoriaId], references: [id])\n  categoriaId Int\n  bancos      Banco          @relation(fields: [bancoid], references: [id])\n  bancoid     Int\n  createdAt   DateTime       @default(now())\n  updatedAt   DateTime       @updatedAt\n\n  @@map(\"transacoes\")\n}\n",
-  "inlineSchemaHash": "11358694bdf53234fc3f74ce0647817d4118836c6b1add1de93fba3dfbad3c72",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n//generator client {\n//  provider = \"prisma-client-js\"\n//  output   = \"../app/generated/prisma\"\n//}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma-client-js\"\n}\n\n// datasource db {\n//   provider = \"sqlite\"\n//    url      = env(\"DATABASE_URL\")\n// }\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Usuario {\n  id           Int            @id @default(autoincrement())\n  nome         String\n  email        String         @unique // Adicione @unique para garantir que o email seja único\n  password     String\n  createdAt    DateTime       @default(now())\n  updatedAt    DateTime       @updatedAt\n  UsuarioBanco UsuarioBanco[]\n\n  @@map(\"usuario\")\n}\n\nmodel Banco {\n  id           Int            @id @default(autoincrement())\n  nome         String\n  logoBase64   String\n  createdAt    DateTime       @default(now())\n  updatedAt    DateTime       @updatedAt\n  UsuarioBanco UsuarioBanco[]\n  Transacoes   Transacoes[]\n\n  @@map(\"banco\")\n}\n\nmodel UsuarioBanco {\n  id        Int      @id @default(autoincrement())\n  usuario   Usuario  @relation(fields: [usuarioId], references: [id])\n  usuarioId Int\n  banco     Banco    @relation(fields: [bancoId], references: [id])\n  bancoId   Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@map(\"usuarioBanco\")\n}\n\nmodel TipoTransacoes {\n  id         Int          @unique\n  descricao  String\n  createdAt  DateTime     @default(now())\n  updatedAt  DateTime     @updatedAt\n  Transacoes Transacoes[]\n\n  @@map(\"tipotransacoes\")\n}\n\nmodel Categorias {\n  id         Int          @id @default(autoincrement())\n  nome       String\n  createdAt  DateTime     @default(now())\n  updatedAt  DateTime     @updatedAt\n  Transacoes Transacoes[]\n\n  @@map(\"categorias\")\n}\n\nmodel Transacoes {\n  id          Int            @id @default(autoincrement())\n  data        DateTime\n  descricao   String\n  valor       Decimal\n  tipo        TipoTransacoes @relation(fields: [tipoId], references: [id])\n  tipoId      Int\n  categoria   Categorias     @relation(fields: [categoriaId], references: [id])\n  categoriaId Int\n  bancos      Banco          @relation(fields: [bancoid], references: [id])\n  bancoid     Int\n  createdAt   DateTime       @default(now())\n  updatedAt   DateTime       @updatedAt\n\n  @@map(\"transacoes\")\n}\n",
+  "inlineSchemaHash": "8e7a8397a69503eacbe43754fbaf504fc50a34bf27d0744138048e2bef0d2961",
   "copyEngine": true
 }
 config.dirname = '/'
