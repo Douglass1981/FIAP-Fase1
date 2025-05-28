@@ -8,7 +8,7 @@ import HistoryIcon from '@mui/icons-material/History';
 
 import Logout from '@mui/icons-material/Logout';
 
-import WavingHand from '@mui/icons-material/WavingHand';
+import WavingHandOutlinedIcon from '@mui/icons-material/WavingHandOutlined';
 
 const ArrowDownIcon = ({ ...props }) => <ArrowDownwardIcon {...props} />
 const ArrowUpIcon = ({ ...props }) => <ArrowUpwardIcon {...props} />
@@ -19,7 +19,7 @@ const LogoutIcon = ({ ...props }) => <Logout {...props} />
 
 const StatementIcon = ({ ...props }) => <HistoryIcon {...props} />
 
-const WavingHandIcon = ({ ...props }) => <WavingHand {...props} />
+const WavingHandIcon = ({ ...props }) => <WavingHandOutlinedIcon {...props} />
 
 export {
     ArrowDownIcon,

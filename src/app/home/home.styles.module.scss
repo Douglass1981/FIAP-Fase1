@@ -6,6 +6,10 @@
     height: 100dvh;
     width: 80%;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 1rem;
 }
 
 .card {
@@ -15,9 +19,7 @@
     border-radius: .5rem;
 
     .account-balance-text {
-        @include typography(60px, 600, 100%, 0%);
-        font-family: var(--font-poppins);
-        font-size: 40px;
+        @include typography('Poppins', 40px, 600, 150%, 0%);
     }
 }
 
@@ -26,38 +28,42 @@
     justify-content: space-between;
     align-items: center;
 
+    .hello-message-container {
+        display: flex;
+        align-items: center;
+        gap: .625rem;
+    }
+
     .hello-message-text {
-        @include font-heading-3;
+        @include typography('Poppins', 28px, 700, 40px, 0%);
+    }
+
+    .total-balance-text {
+        @include typography('Poppins', 20px, 700, 28px, 0%);
     }
 }
 
 .actions-bank-details-container {
     display: flex;
     justify-content: space-between;
+    @include hiddenScrollbar;
 }
 
 .actions-bank-details {
     display: flex;
     align-items: center;
     flex-direction: column;
-}
+    gap: .5rem;
 
-.actions-bank-details {
-    .actions-icon-bank-details {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        border-radius: 3.125rem;
-    }
+    @include font-body-3;
+    font-weight: 500;
 
     svg {
         background-color: $gray-300;
         border-radius: 3.125rem;
-        padding: 0.5rem; 
-        width: 2rem;
-        height: 2rem;
+        padding: 0.5rem;
         display: inline-block;
+        box-sizing: content-box;
     }
 }
 
@@ -78,19 +84,29 @@
         width: 12.9375rem;
         height: 4.75rem;
 
+        .title-data-details-container {
+            @include font-body-3;
+            line-height: 28px;
+        }
+
+        .balance-data-details-container {
+            @include font-heading-5;
+        }
+
         .icon {
             color: $white;
             padding: .25rem;
-            border-radius: 3.125rem;
+            border-radius: 50%;
             display: inline-block;
+            box-sizing: content-box;
         }
 
         .income {
-            background-color: $green-light;
+            background-color: $green-normal;
         }
 
         .expenses {
-            background-color: $red-light;
+            background-color: $red-normal;
         }
     }
 }
@@ -100,16 +116,38 @@
     justify-content: space-between;
     align-items: center;
     gap: .625rem;
+    @include hiddenScrollbar;
 
     .graph-details-card {
         background-color: $gray-300;
         border-radius: .5rem;
         padding: 1.25rem .9375rem;
+        min-width: 273px;
+        height: 236px;
     }
     
     .graph-details {
         display: flex;
         justify-content: space-between;
+        align-items: center
+    }
+
+    .title-graph-details {
+        @include font-heading-5;
+        font-weight: 500;
+    }
+
+    .balance {
+        @include font-body-2;
+        font-weight: 500;
+    }
+
+    .income {
+        color: $green-normal;
+    }
+
+    .expenses {
+        color: $red-normal;
     }
     
     .graph {

@@ -1,9 +1,16 @@
 @use './variables.scss' as *;
 
+// scrollbar
+@mixin hiddenScrollbar {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 // Fonts
 
-@mixin typography($font-size, $font-weight: normal, $line-height: 1.5, $letter-spacing: normal, $text-transform: none) {
-  font-family: var(--font-poppins), Arial, sans-serif;
+@mixin typography( $font-family, $font-size, $font-weight: normal, $line-height: 1.5, $letter-spacing: normal, $text-transform: none) {
+  font-family: $font-family;
   font-size: $font-size;
   font-weight: $font-weight;
   line-height: $line-height;
@@ -12,11 +19,11 @@
 }
 
 @mixin font-heading-1 {
-    @include typography(60px, 700, 100%, 0%);
+    @include typography(var(--font-poppins), Arial, sans-serif, 60px, 700, 100%, 0%);
 }
 
 @mixin font-heading-2 {
-    @include typography(48px, 700, 72px, 0%);
+    @include typography(var(--font-poppins), Arial, sans-serif, 48px, 700, 72px, 0%);
 }
 
 @mixin font-heading-3 {
@@ -28,6 +35,10 @@
 }
 
 @mixin font-heading-5 {
+    @include typography('Poppins', 18px, 600, 28px, 0%);
+}
+
+@mixin font-heading-6 {
     @include typography(18px, 600, 28px, 0%);
 }
 
@@ -44,11 +55,11 @@
 }
 
 @mixin font-body-2 {
-    @include typography(16px, 400, 100%, 0%);
+    @include typography('Poppins', 16px, 400, 100%, 0%);
 }
 
 @mixin font-body-3 {
-    @include typography(14px, 400, 100%, 0%);
+    @include typography('Poppins', 14px, 400, 100%, 0%);
 }
 
 @mixin font-button {
