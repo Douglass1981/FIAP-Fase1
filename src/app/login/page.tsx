@@ -71,7 +71,7 @@ export default function Login() {
           localStorage.removeItem("isLoggedIn");
         }
 
-        router.push("/dashboard"); // Redireciona para a página dashboard Alterar para home de Transações
+        router.push("/home"); // Redireciona para a página home
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
       }
