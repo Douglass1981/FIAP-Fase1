@@ -1,13 +1,27 @@
+"use client";
+import { useEffect, useState } from 'react';
 import { Icons } from '../../icons';
 import styles from './home.styles.module.scss';
 
 export default function Home(){
+      const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Ao carregar o componente, tente recuperar o nome do usuário do localStorage
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []); // O array vazio garante que este useEffect roda apenas uma vez ao montar o componente
+
   return(
       <section className={styles.home}>
         <div className={styles.card}>
             <div className={styles['presentation-card-home']}>
                 <div>
-                    <p className={styles['hello-message-text']}>Olá, Joana</p>
+                    <p className={styles['hello-message-text']}>
+                        Olá, {userName ? userName :'Usuario'}
+                        </p>
                     <p>Saldo total em conta</p>
                 </div>
                 <Icons.Logout />
