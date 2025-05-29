@@ -1,12 +1,21 @@
-# feat/style-signup-page
+# feat/create-transactions-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- adição do hover ao botão login
-- adição de link de redirecionamento na brand da página
-- refatoração de codigo
-- ajustes no tamanho da imagem
+- criação da ágina de transações contendo
+    - menu dropdown 
+    - cards representativos de receita e despesas
+    - menu de ações
+    - menu de filtro
+    - card transação
 
+- criação dos modais
+    - editar
+    - visualizar
+    - excluir
+    - despesas
+    - receitas
+    - transaçoes
 
 ## Checklist
 
