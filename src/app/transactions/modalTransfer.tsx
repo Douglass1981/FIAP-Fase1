@@ -116,18 +116,7 @@ export default function ModalEdit() {
                     fullWidth
                   />
                 </Box>
-                <FormControl fullWidth>
-                  <InputLabel id="category-label">Categoria</InputLabel>
-                  <Select
-                    labelId="category-label"
-                    label="Categogia"
-                    sx={{ textAlign: "left" }}
-                  >
-                    <MenuItem value="Categoria 1">Categoria 1</MenuItem>
-                    <MenuItem value="Categoria 2">Categoria 2</MenuItem>
-                    <MenuItem value="Categoria 3">Categoria 3</MenuItem>
-                  </Select>
-                </FormControl>
+                
               </Box>
               <Box
                 style={{
