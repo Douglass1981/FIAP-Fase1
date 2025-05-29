@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import dayjs, { Dayjs } from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateField } from '@mui/x-date-pickers/DateField';
 import {
   Box,
   Button,
@@ -15,9 +20,10 @@ import { colors } from "../mui.styles";
 
 export default function ModalEdit() {
   const [isOpen, setIsOpen] = useState(false);
+  const [date, setDate] = useState<Dayjs | null>(dayjs()); //por enquanto inicializa com a data de hoje, mas deve inicializar com a data do card
 
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <button style={{ cursor: "pointer" }} onClick={() => setIsOpen(true)}>
         <EditOutlinedIcon />
       </button>
@@ -102,10 +108,12 @@ export default function ModalEdit() {
                     label="Valor"
                     variant="outlined"
                   />
-                  <TextField
-                    fullWidth
+                  <DateField
                     label="Data"
-                    variant="outlined"
+                    value={date}
+                    onChange={(newDate) => setDate(newDate)}
+                    format="DD-MM-YYYY"
+                    fullWidth
                   />
                 </Box>
                 <FormControl fullWidth>
@@ -157,6 +165,6 @@ export default function ModalEdit() {
           </Box>
         </Box>
       )}
-    </>
+    </LocalizationProvider>
   );
 }
