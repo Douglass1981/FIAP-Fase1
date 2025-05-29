@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalDetails from "./modalDetails";
 import ModalDelete from "./modalDelete";
 import ModalEdit from "./modalEdit";
+import ModalTransfer from "./modalTransfer";
 
 export default function Transactions() {
   const router = useRouter();
@@ -261,7 +261,7 @@ export default function Transactions() {
                       ]
                     }
                   >
-                    <SyncAltOutlinedIcon />
+                    <ModalTransfer />
                   </Box>
                   <p
                     className={
