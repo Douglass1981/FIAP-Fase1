@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./income.styles.module.scss";
-import { Box, Button, Link } from "@mui/material";
+import { Avatar, Box, Button, Link } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -36,24 +36,16 @@ export default function income() {
               alt="Logo"
               style={{ width: "15%", height: "auto" }}
             />
-            <h1 className={styles["income__nav__logo_area__brand"]}>
-              Poup.ai
-            </h1>
+            <h1 className={styles["income__nav__logo_area__brand"]}>Poup.ai</h1>
           </Link>
         </nav>
         <main className={styles["income__main"]}>
           <Box className={styles["income__main__container-info"]}>
-            <Box
-              className={
-                styles["income__main__container-info__navigation"]
-              }
-            >
+            <Box className={styles["income__main__container-info__navigation"]}>
               <select
                 onChange={handleChange}
                 className={
-                  styles[
-                    "income__main__container-info__navigation__select"
-                  ]
+                  styles["income__main__container-info__navigation__select"]
                 }
               >
                 <option
@@ -88,11 +80,7 @@ export default function income() {
                 </option>
               </select>
             </Box>
-            <Box
-              className={
-                styles["income__main__container-info__container"]
-              }
-            >
+            <Box className={styles["income__main__container-info__container"]}>
               <Box
                 className={
                   styles["income__main__container-info__container__left"]
@@ -251,11 +239,7 @@ export default function income() {
                     ]
                   }
                 >
-                  <Box
-                   
-                  >
-                    {/* <ModalTransfer /> */}
-                  </Box>
+                  <Box>{/* <ModalTransfer /> */}</Box>
                   <p
                     className={
                       styles[
@@ -271,9 +255,7 @@ export default function income() {
           </Box>
 
           <Box className={styles["income__main__container-carousel"]}>
-            <Box
-              className={styles["income__main__container-carousel__tag"]}
-            >
+            <Box className={styles["income__main__container-carousel__tag"]}>
               <p
                 className={
                   styles["income__main__container-carousel__tag__text"]
@@ -282,9 +264,7 @@ export default function income() {
                 Ultima semana
               </p>
             </Box>
-            <Box
-              className={styles["income__main__container-carousel__tag"]}
-            >
+            <Box className={styles["income__main__container-carousel__tag"]}>
               <p
                 className={
                   styles["income__main__container-carousel__tag__text"]
@@ -293,9 +273,7 @@ export default function income() {
                 Ultimo mês
               </p>
             </Box>
-            <Box
-              className={styles["income__main__container-carousel__tag"]}
-            >
+            <Box className={styles["income__main__container-carousel__tag"]}>
               <p
                 className={
                   styles["income__main__container-carousel__tag__text"]
@@ -304,9 +282,7 @@ export default function income() {
                 Ultimos 6 meses
               </p>
             </Box>
-            <Box
-              className={styles["income__main__container-carousel__tag"]}
-            >
+            <Box className={styles["income__main__container-carousel__tag"]}>
               <p
                 className={
                   styles["income__main__container-carousel__tag__text"]
@@ -318,17 +294,11 @@ export default function income() {
           </Box>
           <Box className={styles["income__main__container-income"]}>
             <Box
-              className={
-                styles[
-                  "income__main__container-income__card-income"
-                ]
-              }
+              className={styles["income__main__container-income__card-income"]}
             >
               <Box
                 className={
-                  styles[
-                    "income__main__container-income__card-income__left"
-                  ]
+                  styles["income__main__container-income__card-income__left"]
                 }
               >
                 <Box
@@ -338,7 +308,9 @@ export default function income() {
                     ]
                   }
                 >
-                  <SyncAltOutlinedIcon />
+                  <Avatar sx={{ backgroundColor: colors.green}}>
+                    <ArrowUpwardIcon />
+                  </Avatar>
                 </Box>
                 <Box
                   className={
@@ -386,13 +358,31 @@ export default function income() {
                 </Box>
               </Box>
               <Box>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
+                <Button
+                  sx={{
+                    minWidth: "0",
+                    color: colors.black,
+                    textTransform: "none",
+                  }}
+                >
                   {/* <ModalDetails /> */}
                 </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
+                <Button
+                  sx={{
+                    minWidth: "0",
+                    color: colors.black,
+                    textTransform: "none",
+                  }}
+                >
                   <ModalEdit />
                 </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
+                <Button
+                  sx={{
+                    minWidth: "0",
+                    color: colors.black,
+                    textTransform: "none",
+                  }}
+                >
                   {/* <ModalDelete /> */}
                 </Button>
               </Box>
