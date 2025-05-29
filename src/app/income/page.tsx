@@ -10,6 +10,7 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalEdit from "./modalEdit";
+import ModalDelete from "./modalDelete";
 
 export default function income() {
   const router = useRouter();
@@ -383,7 +384,7 @@ export default function income() {
                     textTransform: "none",
                   }}
                 >
-                  {/* <ModalDelete /> */}
+                  <ModalDelete />
                 </Button>
               </Box>
             </Box>
