@@ -14,6 +14,7 @@ import ModalDelete from "./modalDelete";
 import ModalEdit from "./modalEdit";
 import ModalTransfer from "./modalTransfer";
 import ModalExpenses from "./modalExpenses";
+import ModalIncome from "./modalIncome";
 
 export default function Transactions() {
   const router = useRouter();
@@ -208,7 +209,7 @@ export default function Transactions() {
                       ]
                     }
                   >
-                    <ArrowUpwardIcon />
+                    <ModalIncome />
                   </Box>
                   <p
                     className={
