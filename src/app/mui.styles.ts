@@ -3,5 +3,7 @@ export const colors = {
   black: '#000000',
   red: '#E20303',
   purple: '#512DA8',
-  lightRed: '#FF3232'
+  lightRed: '#FF3232',
+  yellow: '#FF9500',
+  lightYellow: '#FFB041'
 }

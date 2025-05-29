@@ -143,10 +143,13 @@ export default function ModalEdit() {
                     textTransform: "none",
                     backgroundColor: colors.red,
                     fontSize: "16px",
+                    '&:hover':{
+                        backgroundColor: colors.lightRed
+                    }
                   }}
                   onClick={() => setIsOpen(false)}
                 >
-                  Não
+                  Cancelar
                 </Button>
                 <Button
                   fullWidth
@@ -154,11 +157,15 @@ export default function ModalEdit() {
                   sx={{
                     padding: "12px 16px",
                     textTransform: "none",
-                    backgroundColor: colors.bluePrimary500,
+                    backgroundColor: colors.yellow,
                     fontSize: "16px",
+                    color: colors.black,
+                    '&:hover':{
+                        backgroundColor: colors.lightYellow
+                    }
                   }}
                 >
-                  Sim
+                  Editar
                 </Button>
               </Box>
             </Box>
