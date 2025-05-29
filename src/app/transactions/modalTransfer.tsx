@@ -4,9 +4,9 @@ import { useState } from "react";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
+import Avatar from "@mui/material/Avatar";
 import {
   Box,
   Button,
@@ -25,7 +25,9 @@ export default function ModalEdit() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <button style={{ cursor: "pointer" }} onClick={() => setIsOpen(true)}>
-        <SyncAltOutlinedIcon />
+        <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
+          <SyncAltOutlinedIcon />
+        </Avatar>
       </button>
 
       {isOpen && (

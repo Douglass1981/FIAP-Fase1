@@ -261,12 +261,6 @@ $black: #000000;
               justify-content: center;
               align-items: center;
               gap: 5px;
-              &__icon-area {
-                color: $gray-neutral-800;
-                background-color: $gray-neutral-300;
-                padding: 8px;
-                border-radius: 100%;
-              }
               &__text {
                 @include typography(0.875rem);
                 color: $white;

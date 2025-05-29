@@ -255,11 +255,7 @@ export default function Transactions() {
                   }
                 >
                   <Box
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__right__function__icon-area"
-                      ]
-                    }
+                   
                   >
                     <ModalTransfer />
                   </Box>
