@@ -1,0 +1,73 @@
+@use './variables.scss' as *;
+
+// Fonts
+
+@mixin typography($font-size, $font-weight: normal, $line-height: 1.5, $letter-spacing: normal, $text-transform: none) {
+  font-family: var(--font-poppins), Arial, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  text-transform: $text-transform;
+}
+
+@mixin font-heading-1 {
+    @include typography(60px, 700, 100%, 0%);
+}
+
+@mixin font-heading-2 {
+    @include typography(48px, 700, 72px, 0%);
+}
+
+@mixin font-heading-3 {
+    @include typography(36px, 500, 150%, 0%);
+}
+
+@mixin font-heading-4 {
+    @include typography(24px, 500, 100%, 0%);
+}
+
+@mixin font-heading-5 {
+    @include typography(18px, 600, 28px, 0%);
+}
+
+@mixin font-subtitle-1 {
+    @include typography(30px, 500, 100%, 0%);
+}
+
+@mixin font-subtitle-2 {
+    @include typography(24px, 500, 100%, 0%);
+}
+
+@mixin font-body-1 {
+    @include typography(24px, 400, 100%, 0%);
+}
+
+@mixin font-body-2 {
+    @include typography(16px, 400, 100%, 0%);
+}
+
+@mixin font-body-3 {
+    @include typography(14px, 400, 100%, 0%);
+}
+
+@mixin font-button {
+    @include typography(28px, 500, 28px, 0%);
+}
+
+// Responsive
+@mixin respond($breakpoint) {
+  @if $breakpoint == xs {
+    @content;
+  } @else if $breakpoint == sm {
+    @media only screen and (min-width: $sm) { @content; }
+  } @else if $breakpoint == md {
+    @media only screen and (min-width: $md) { @content; }
+  } @else if $breakpoint == lg {
+    @media only screen and (min-width: $lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media only screen and (min-width: $xl) { @content; }
+  } @else {
+    @error "Breakpoints possiveis: xs, sm, md, lg ou xl.";
+  }
+}
