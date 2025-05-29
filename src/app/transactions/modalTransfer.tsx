@@ -143,6 +143,9 @@ export default function ModalEdit() {
                     textTransform: "none",
                     backgroundColor: colors.red,
                     fontSize: "16px",
+                    '&:hover':{
+                        backgroundColor: colors.lightRed
+                    }
                   }}
                   onClick={() => setIsOpen(false)}
                 >
@@ -156,6 +159,9 @@ export default function ModalEdit() {
                     textTransform: "none",
                     backgroundColor: colors.bluePrimary500,
                     fontSize: "16px",
+                    '&:hover':{
+                        backgroundColor: colors.purple
+                    }
                   }}
                 >
                   Adicionar
