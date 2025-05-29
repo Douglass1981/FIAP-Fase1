@@ -6,12 +6,16 @@ import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalEdit from "./modalEdit";
 import ModalDelete from "./modalDelete";
 import ModalDetails from "./modalDetails";
+import ModalTransfer from "../transactions/modalTransfer";
+import ModalIncome from "../transactions/modalIncome";
+import ModalExpenses from "../transactions/modalExpenses";
+
+
 
 export default function income() {
   const router = useRouter();
@@ -194,7 +198,7 @@ export default function income() {
                       ]
                     }
                   >
-                    {/* <ModalIncome /> */}
+                    <ModalIncome />
                   </Box>
                   <p
                     className={
@@ -221,7 +225,7 @@ export default function income() {
                       ]
                     }
                   >
-                    {/* <ModalExpenses /> */}
+                    <ModalExpenses />
                   </Box>
                   <p
                     className={
@@ -241,7 +245,10 @@ export default function income() {
                     ]
                   }
                 >
-                  <Box>{/* <ModalTransfer /> */}</Box>
+                  <Box>
+                    <ModalTransfer />
+
+                  </Box>
                   <p
                     className={
                       styles[
