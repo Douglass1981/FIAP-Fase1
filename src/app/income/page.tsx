@@ -11,6 +11,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import ModalEdit from "./modalEdit";
 import ModalDelete from "./modalDelete";
+import ModalDetails from "./modalDetails";
 
 export default function income() {
   const router = useRouter();
@@ -366,7 +367,7 @@ export default function income() {
                     textTransform: "none",
                   }}
                 >
-                  {/* <ModalDetails /> */}
+                  <ModalDetails />
                 </Button>
                 <Button
                   sx={{
