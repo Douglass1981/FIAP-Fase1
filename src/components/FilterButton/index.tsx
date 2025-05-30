@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { colors } from "../../app/mui.styles"; 
+import { colors } from "../../app/mui.styles";
 
 interface FilterButtonProps {
   label: string;
@@ -23,6 +23,8 @@ const FilterButton: React.FC<FilterButtonProps> = ({ label, selected, onClick })
         borderColor: selected ? colors.bluePrimary500 : colors.bluePrimary500,
         backgroundColor: selected ? colors.bluePrimary500 : "transparent",
         transition: "all 0.2s ease-in-out",
+        scrollSnapAlign: "start",
+        flexShrink: 0,
         "&:hover": {
           backgroundColor: colors.purple,
           color: colors.white,

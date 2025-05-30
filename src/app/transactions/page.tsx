@@ -10,7 +10,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
 import { useState } from "react";
 import TransactionCard from "@/components/CardTransactions";
-import ModalTransaction from "@/components/modal-component/modaltransaction";
+import ModalTransaction from "@/components/modal-component/modalTransaction";
 import FilterButton from "@/components/FilterButton";
 
 export default function Transactions() {
@@ -298,17 +298,17 @@ export default function Transactions() {
           </Box>
 
           <Box className={styles["transactions__main__container-carousel"]}>
-            <Box className={styles["transactions__main__container-carousel"]}>
-              {filters.map((filter) => (
-                <FilterButton
-                  key={filter}
-                  label={filter}
-                  selected={selectedFilter === filter}
-                  onClick={() => setSelectedFilter(filter)}
-                />
-              ))}
-            </Box>
+            {filters.map((filter) => (
+              <FilterButton
+                key={filter}
+                label={filter}
+                selected={selectedFilter === filter}
+                onClick={() => setSelectedFilter(filter)}
+              />
+            ))}
           </Box>
+
+
           <Box className={styles["transactions__main__container-transactions"]}>
             <TransactionCard
               category="Categoria"
