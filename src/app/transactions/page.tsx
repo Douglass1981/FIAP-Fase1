@@ -8,13 +8,15 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Image from "next/image";
 import ModalDetails from "./modalDetails";
-import ModalDelete from "./modalDelete";
 import ModalEdit from "./modalEdit";
 import ModalTransfer from "./modalTransfer";
 import ModalExpenses from "./modalExpenses";
 import ModalIncome from "./modalIncome";
+import ModalDelete from "@/components/modal-component/modalDelete";
+import { useState } from "react";
 
 export default function Transactions() {
   const router = useRouter();
@@ -24,6 +26,14 @@ export default function Transactions() {
     if (selectedPath) {
       router.push(selectedPath);
     }
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleConfirm = () => {
+    // colocar a logica de exclusão aqui
+    console.log("Item excluído!");
+    setIsOpen(false);
   };
   return (
     <>
@@ -397,9 +407,10 @@ export default function Transactions() {
                 <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
                   <ModalEdit />
                 </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <ModalDelete />
+                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}} onClick={() => setIsOpen(true)}>
+                  <DeleteOutlineIcon/>
                 </Button>
+                  <ModalDelete open={isOpen} onClose={() => setIsOpen(false)} onConfirm={handleConfirm}  />
               </Box>
             </Box>
           </Box>
