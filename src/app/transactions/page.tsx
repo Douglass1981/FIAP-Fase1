@@ -1,18 +1,19 @@
 "use client";
 
 import styles from "./transactions.styles.module.scss";
-import { Box, Button, Link } from "@mui/material";
+import { Avatar, Box, Button, Link } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import Image from "next/image";
 import { useState } from "react";
 import TransactionCard from "@/components/CardTransactions";
 import ModalTransaction from "@/components/modal-component/modalTransaction";
 import FilterButton from "@/components/FilterButton";
 import TransactionInfo from "@/components/TransactionInfo";
+import ButtonTransactions from "@/components/ButtonTransactions";
 
 export default function Transactions() {
   const router = useRouter();
@@ -24,17 +25,11 @@ export default function Transactions() {
     }
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleConfirm = () => {
-    // colocar a logica de exclusão aqui
-    console.log("Item excluído!");
-    setIsOpen(false);
-  };
-
   const handleDelete = () => {
     console.log("Transação excluída");
   };
+
+  const [modalType, setModalType] = useState<"income" | "expenses" | "transfer" | null>(null);
 
   const [selectedFilter, setSelectedFilter] = useState("Última semana");
 
@@ -45,7 +40,11 @@ export default function Transactions() {
     "Último ano",
   ];
 
-
+  const iconMap = {
+    income: <ArrowUpwardIcon />,
+    expenses: <ArrowDownwardIcon />,
+    transfer: <SyncAltOutlinedIcon />,
+  };
 
   return (
     <>
@@ -133,83 +132,39 @@ export default function Transactions() {
                   styles["transactions__main__container-info__container__right"]
                 }
               >
-                <Box
-                  className={
-                    styles[
-                    "transactions__main__container-info__container__right__function"
-                    ]
-                  }
-                >
+                {(["income", "expenses", "transfer"] as const).map((type) => (
                   <Box
+                    key={type}
                     className={
-                      styles[
-                      "transactions__main__container-info__container__right__function__icon-area"
-                      ]
+                      styles["transactions__main__container-info__container__right__function"]
                     }
+                    onClick={() => setModalType(type)}
+                    style={{ cursor: "pointer" }}
                   >
-                    <ModalTransaction type="income" />
+                    <Box
+                      className={
+                        styles["transactions__main__container-info__container__right__function__icon-area"]
+                      }
+                    >
+                      <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
+                        {iconMap[type]}
+                      </Avatar>
+                    </Box>
+                    <p
+                      className={
+                        styles["transactions__main__container-info__container__right__function__text"]
+                      }
+                    >
+                      {type === "income"
+                        ? "Receitas"
+                        : type === "expenses"
+                          ? "Despesas"
+                          : "Transferência"}
+                    </p>
+
 
                   </Box>
-                  <p
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__right__function__text"
-                      ]
-                    }
-                  >
-                    Receitas
-                  </p>
-                </Box>
-
-                <Box
-                  className={
-                    styles[
-                    "transactions__main__container-info__container__right__function"
-                    ]
-                  }
-                >
-                  <Box
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__right__function__icon-area"
-                      ]
-                    }
-                  >
-                    <ModalTransaction type="expenses" />
-                  </Box>
-                  <p
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__right__function__text"
-                      ]
-                    }
-                  >
-                    Despesas
-                  </p>
-                </Box>
-
-                <Box
-                  className={
-                    styles[
-                    "transactions__main__container-info__container__right__function"
-                    ]
-                  }
-                >
-                  <Box
-
-                  >
-                    <ModalTransaction type="transfer" />
-                  </Box>
-                  <p
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__right__function__text"
-                      ]
-                    }
-                  >
-                    Transferência
-                  </p>
-                </Box>
+                ))}
               </Box>
             </Box>
           </Box>
@@ -225,7 +180,6 @@ export default function Transactions() {
             ))}
           </Box>
 
-
           <Box className={styles["transactions__main__container-transactions"]}>
             <TransactionCard
               category="Categoria"
@@ -234,28 +188,22 @@ export default function Transactions() {
               amount="R$ 0,00"
               onDelete={handleDelete}
             />
-
           </Box>
 
-          <Button
-            variant="contained"
-            sx={{
-              position: "fixed",
-              bottom: 80,
-              left: 30,
-              right: 30,
-              p: 1,
-              zIndex: 1300,
-              backgroundColor: colors.bluePrimary500,
-              textTransform: "none",
-            }}
+          <ButtonTransactions
+            onClick={() => setModalType("transfer")}
             className={styles["transactions__main__button--hidden"]}
-          >
-            <AddOutlinedIcon />
-            Adicionar transferencia
-          </Button>
+          />
         </main>
       </Box>
+      {modalType && (
+        <ModalTransaction
+          type={modalType}
+          open={true}
+          onClose={() => setModalType(null)}
+        />
+      )}
+
     </>
   );
 }
