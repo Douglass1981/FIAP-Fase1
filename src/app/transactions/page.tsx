@@ -53,7 +53,7 @@ export default function Transactions() {
         <nav className={styles["transactions__nav"]}>
           <Link
             className={styles["transactions__nav__logo_area"]}
-            href="http://localhost:3000"
+            href="http://localhost:3000/home"
             sx={{ textDecoration: "none" }}
           >
             <Image
