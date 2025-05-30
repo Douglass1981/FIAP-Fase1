@@ -4,12 +4,15 @@ import { Box, Button } from "@mui/material";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+
 
 import ModalDelete from "../modal-component/modalDelete";
 import { colors } from "../../app/mui.styles";
 import styles from "./cardTransactions.styles.module.scss";
 import { useState } from "react";
 import ModalEdit from "../modal-component/modalEdit";
+import ModalDetails from "../modal-component/modalDetails";
 
 type TransactionCardProps = {
     category: string;
@@ -33,6 +36,7 @@ export default function TransactionCard({
         setIsOpen(false);
     };
     const [isEditOpen, setIsEditOpen] = useState(false);
+    const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
 
     return (
@@ -58,8 +62,17 @@ export default function TransactionCard({
             </Box>
 
             <Box display="flex" gap={1}>
-                <Button sx={{ minWidth: 0, color: colors.black, textTransform: "none" }}>
+                <Button sx={{ minWidth: 0, color: colors.black, textTransform: "none" }} onClick={() => setIsDetailsOpen(true)}>
+                    <VisibilityOutlinedIcon />
                 </Button>
+                <ModalDetails
+                    open={isDetailsOpen}
+                    onClose={() => setIsDetailsOpen(false)}
+                    from="Banco 1"
+                    to="Banco 2"
+                    date="25/05/2025"
+                    amount="R$ 0,00"
+                />
                 <Button sx={{ minWidth: 0, color: colors.black, textTransform: "none" }} onClick={() => setIsEditOpen(true)}>
                     <EditOutlinedIcon />
                 </Button>
