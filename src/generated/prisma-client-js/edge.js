@@ -173,7 +173,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
+      "value": "C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -187,7 +187,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Desenvolvimento\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -201,6 +201,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
