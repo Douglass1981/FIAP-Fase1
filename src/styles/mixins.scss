@@ -1,10 +1,23 @@
 @use './variables.scss' as *;
 
-// scrollbar
+// Scrollbar
 @mixin hiddenScrollbar {
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+// Flexbox
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 // Fonts
@@ -27,11 +40,11 @@
 }
 
 @mixin font-heading-3 {
-    @include typography(36px, 500, 150%, 0%);
+    @include typography('Poppins', 36px, 500, 150%, 0%);
 }
 
 @mixin font-heading-4 {
-    @include typography(24px, 500, 100%, 0%);
+    @include typography('Poppins', 24px, 500, 100%, 0%);
 }
 
 @mixin font-heading-5 {
@@ -39,19 +52,19 @@
 }
 
 @mixin font-heading-6 {
-    @include typography(18px, 600, 28px, 0%);
+    @include typography('Poppins', 18px, 600, 28px, 0%);
 }
 
 @mixin font-subtitle-1 {
-    @include typography(30px, 500, 100%, 0%);
+    @include typography('Poppins', 30px, 500, 100%, 0%);
 }
 
 @mixin font-subtitle-2 {
-    @include typography(24px, 500, 100%, 0%);
+    @include typography('Poppins', 24px, 500, 100%, 0%);
 }
 
 @mixin font-body-1 {
-    @include typography(24px, 400, 100%, 0%);
+    @include typography('Poppins', 24px, 400, 100%, 0%);
 }
 
 @mixin font-body-2 {
@@ -63,7 +76,7 @@
 }
 
 @mixin font-button {
-    @include typography(28px, 500, 28px, 0%);
+    @include typography('Poppins', 28px, 500, 28px, 0%);
 }
 
 // Responsive

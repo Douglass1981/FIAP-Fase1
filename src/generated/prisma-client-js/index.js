@@ -166,7 +166,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\src\\generated\\prisma-client-js",
+      "value": "/home/ananazario/workspace/fiap/tech_challenge/FIAP-Fase1/src/generated/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -180,7 +180,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\IT\\Developer\\FIAP\\FIAP-Fase1\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/ananazario/workspace/fiap/tech_challenge/FIAP-Fase1/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -193,7 +193,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
