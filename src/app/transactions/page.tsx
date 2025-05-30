@@ -6,18 +6,12 @@ import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Image from "next/image";
-import ModalDetails from "./modalDetails";
-import ModalEdit from "./modalEdit";
-import ModalTransfer from "./modalTransfer";
-import ModalExpenses from "./modalExpenses";
-import ModalIncome from "./modalIncome";
-import ModalDelete from "@/components/modal-component/modalDelete";
 import { useState } from "react";
 import TransactionCard from "@/components/CardTransactions";
+import ModalTransaction from "@/components/modal-component/modaltransaction";
+import FilterButton from "@/components/FilterButton";
 
 export default function Transactions() {
   const router = useRouter();
@@ -40,6 +34,18 @@ export default function Transactions() {
   const handleDelete = () => {
     console.log("Transação excluída");
   };
+
+  const [selectedFilter, setSelectedFilter] = useState("Última semana");
+
+  const filters = [
+    "Última semana",
+    "Último mês",
+    "Últimos 6 meses",
+    "Último ano",
+  ];
+
+
+
   return (
     <>
       <Box className={styles["transactions"]}>
@@ -224,7 +230,8 @@ export default function Transactions() {
                       ]
                     }
                   >
-                    <ModalIncome />
+                    <ModalTransaction type="income" />
+
                   </Box>
                   <p
                     className={
@@ -251,7 +258,7 @@ export default function Transactions() {
                       ]
                     }
                   >
-                    <ModalExpenses />
+                    <ModalTransaction type="expenses" />
                   </Box>
                   <p
                     className={
@@ -274,7 +281,7 @@ export default function Transactions() {
                   <Box
 
                   >
-                    <ModalTransfer />
+                    <ModalTransaction type="transfer" />
                   </Box>
                   <p
                     className={
@@ -291,49 +298,15 @@ export default function Transactions() {
           </Box>
 
           <Box className={styles["transactions__main__container-carousel"]}>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultima semana
-              </p>
-            </Box>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultimo mês
-              </p>
-            </Box>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultimos 6 meses
-              </p>
-            </Box>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultimo ano
-              </p>
+            <Box className={styles["transactions__main__container-carousel"]}>
+              {filters.map((filter) => (
+                <FilterButton
+                  key={filter}
+                  label={filter}
+                  selected={selectedFilter === filter}
+                  onClick={() => setSelectedFilter(filter)}
+                />
+              ))}
             </Box>
           </Box>
           <Box className={styles["transactions__main__container-transactions"]}>
@@ -344,7 +317,7 @@ export default function Transactions() {
               amount="R$ 0,00"
               onDelete={handleDelete}
             />
-            
+
           </Box>
 
           <Button
