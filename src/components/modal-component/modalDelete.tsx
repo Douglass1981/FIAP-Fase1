@@ -1,4 +1,3 @@
-// components/ModalDelete.tsx
 "use client";
 
 import { Box, Button } from "@mui/material";
