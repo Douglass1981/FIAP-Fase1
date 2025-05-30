@@ -17,6 +17,7 @@ import ModalExpenses from "./modalExpenses";
 import ModalIncome from "./modalIncome";
 import ModalDelete from "@/components/modal-component/modalDelete";
 import { useState } from "react";
+import TransactionCard from "@/components/CardTransactions";
 
 export default function Transactions() {
   const router = useRouter();
@@ -34,6 +35,10 @@ export default function Transactions() {
     // colocar a logica de exclusão aqui
     console.log("Item excluído!");
     setIsOpen(false);
+  };
+
+  const handleDelete = () => {
+    console.log("Transação excluída");
   };
   return (
     <>
@@ -67,7 +72,7 @@ export default function Transactions() {
                 onChange={handleChange}
                 className={
                   styles[
-                    "transactions__main__container-info__navigation__select"
+                  "transactions__main__container-info__navigation__select"
                   ]
                 }
               >
@@ -75,7 +80,7 @@ export default function Transactions() {
                   value="/transactions__main"
                   className={
                     styles[
-                      "transactions__main__container-info__navigation__select__options"
+                    "transactions__main__container-info__navigation__select__options"
                     ]
                   }
                 >
@@ -85,7 +90,7 @@ export default function Transactions() {
                   value="/income"
                   className={
                     styles[
-                      "transactions__main__container-info__navigation__select__options"
+                    "transactions__main__container-info__navigation__select__options"
                     ]
                   }
                 >
@@ -95,7 +100,7 @@ export default function Transactions() {
                   value="/expenses"
                   className={
                     styles[
-                      "transactions__main__container-info__navigation__select__options"
+                    "transactions__main__container-info__navigation__select__options"
                     ]
                   }
                 >
@@ -116,21 +121,21 @@ export default function Transactions() {
                 <Box
                   className={
                     styles[
-                      "transactions__main__container-info__container__left__card-income"
+                    "transactions__main__container-info__container__left__card-income"
                     ]
                   }
                 >
                   <Box
                     className={
                       styles[
-                        "transactions__main__container-info__container__left__card-income__text-area"
+                      "transactions__main__container-info__container__left__card-income__text-area"
                       ]
                     }
                   >
                     <p
                       className={
                         styles[
-                          "transactions__main__container-info__container__left__card-income__text-area__title"
+                        "transactions__main__container-info__container__left__card-income__text-area__title"
                         ]
                       }
                     >
@@ -139,7 +144,7 @@ export default function Transactions() {
                     <p
                       className={
                         styles[
-                          "transactions__main__container-info__container__left__card-income__text-area__amount"
+                        "transactions__main__container-info__container__left__card-income__text-area__amount"
                         ]
                       }
                     >
@@ -149,7 +154,7 @@ export default function Transactions() {
                   <Box
                     className={
                       styles[
-                        "transactions__main__container-info__container__left__card-income__icon-area"
+                      "transactions__main__container-info__container__left__card-income__icon-area"
                       ]
                     }
                   >
@@ -159,21 +164,21 @@ export default function Transactions() {
                 <Box
                   className={
                     styles[
-                      "transactions__main__container-info__container__left__card-expenses"
+                    "transactions__main__container-info__container__left__card-expenses"
                     ]
                   }
                 >
                   <Box
                     className={
                       styles[
-                        "transactions__main__container-info__container__left__card-expenses__text-area"
+                      "transactions__main__container-info__container__left__card-expenses__text-area"
                       ]
                     }
                   >
                     <p
                       className={
                         styles[
-                          "transactions__main__container-info__container__left__card-expenses__text-area__title"
+                        "transactions__main__container-info__container__left__card-expenses__text-area__title"
                         ]
                       }
                     >
@@ -182,7 +187,7 @@ export default function Transactions() {
                     <p
                       className={
                         styles[
-                          "transactions__main__container-info__container__left__card-expenses__text-area__amount"
+                        "transactions__main__container-info__container__left__card-expenses__text-area__amount"
                         ]
                       }
                     >
@@ -192,7 +197,7 @@ export default function Transactions() {
                   <Box
                     className={
                       styles[
-                        "transactions__main__container-info__container__left__card-expenses__icon-area"
+                      "transactions__main__container-info__container__left__card-expenses__icon-area"
                       ]
                     }
                   >
@@ -208,14 +213,14 @@ export default function Transactions() {
                 <Box
                   className={
                     styles[
-                      "transactions__main__container-info__container__right__function"
+                    "transactions__main__container-info__container__right__function"
                     ]
                   }
                 >
                   <Box
                     className={
                       styles[
-                        "transactions__main__container-info__container__right__function__icon-area"
+                      "transactions__main__container-info__container__right__function__icon-area"
                       ]
                     }
                   >
@@ -224,7 +229,7 @@ export default function Transactions() {
                   <p
                     className={
                       styles[
-                        "transactions__main__container-info__container__right__function__text"
+                      "transactions__main__container-info__container__right__function__text"
                       ]
                     }
                   >
@@ -235,14 +240,14 @@ export default function Transactions() {
                 <Box
                   className={
                     styles[
-                      "transactions__main__container-info__container__right__function"
+                    "transactions__main__container-info__container__right__function"
                     ]
                   }
                 >
                   <Box
                     className={
                       styles[
-                        "transactions__main__container-info__container__right__function__icon-area"
+                      "transactions__main__container-info__container__right__function__icon-area"
                       ]
                     }
                   >
@@ -251,7 +256,7 @@ export default function Transactions() {
                   <p
                     className={
                       styles[
-                        "transactions__main__container-info__container__right__function__text"
+                      "transactions__main__container-info__container__right__function__text"
                       ]
                     }
                   >
@@ -262,19 +267,19 @@ export default function Transactions() {
                 <Box
                   className={
                     styles[
-                      "transactions__main__container-info__container__right__function"
+                    "transactions__main__container-info__container__right__function"
                     ]
                   }
                 >
                   <Box
-                   
+
                   >
                     <ModalTransfer />
                   </Box>
                   <p
                     className={
                       styles[
-                        "transactions__main__container-info__container__right__function__text"
+                      "transactions__main__container-info__container__right__function__text"
                       ]
                     }
                   >
@@ -332,87 +337,14 @@ export default function Transactions() {
             </Box>
           </Box>
           <Box className={styles["transactions__main__container-transactions"]}>
-            <Box
-              className={
-                styles[
-                  "transactions__main__container-transactions__card-transactions"
-                ]
-              }
-            >
-              <Box
-                className={
-                  styles[
-                    "transactions__main__container-transactions__card-transactions__left"
-                  ]
-                }
-              >
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-transactions__card-transactions__left__icon-area"
-                    ]
-                  }
-                >
-                  <SyncAltOutlinedIcon />
-                </Box>
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-transactions__card-transactions__left__text-area"
-                    ]
-                  }
-                >
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__category"
-                      ]
-                    }
-                  >
-                    Categoria
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__info"
-                      ]
-                    }
-                  >
-                    Banco
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__info"
-                      ]
-                    }
-                  >
-                    25/05/2025
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__amount"
-                      ]
-                    }
-                  >
-                    R$ 0,00
-                  </p>
-                </Box>
-              </Box>
-              <Box>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <ModalDetails />
-                </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <ModalEdit />
-                </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}} onClick={() => setIsOpen(true)}>
-                  <DeleteOutlineIcon/>
-                </Button>
-                  <ModalDelete open={isOpen} onClose={() => setIsOpen(false)} onConfirm={handleConfirm}  />
-              </Box>
-            </Box>
+            <TransactionCard
+              category="Categoria"
+              description="Banco"
+              date="25/05/2025"
+              amount="R$ 0,00"
+              onDelete={handleDelete}
+            />
+            
           </Box>
 
           <Button
