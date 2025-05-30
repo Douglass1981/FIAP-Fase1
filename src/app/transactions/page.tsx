@@ -12,6 +12,7 @@ import { useState } from "react";
 import TransactionCard from "@/components/CardTransactions";
 import ModalTransaction from "@/components/modal-component/modalTransaction";
 import FilterButton from "@/components/FilterButton";
+import TransactionInfo from "@/components/TransactionInfo";
 
 export default function Transactions() {
   const router = useRouter();
@@ -124,92 +125,8 @@ export default function Transactions() {
                   styles["transactions__main__container-info__container__left"]
                 }
               >
-                <Box
-                  className={
-                    styles[
-                    "transactions__main__container-info__container__left__card-income"
-                    ]
-                  }
-                >
-                  <Box
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__left__card-income__text-area"
-                      ]
-                    }
-                  >
-                    <p
-                      className={
-                        styles[
-                        "transactions__main__container-info__container__left__card-income__text-area__title"
-                        ]
-                      }
-                    >
-                      Receitas
-                    </p>
-                    <p
-                      className={
-                        styles[
-                        "transactions__main__container-info__container__left__card-income__text-area__amount"
-                        ]
-                      }
-                    >
-                      R$ 0,00
-                    </p>
-                  </Box>
-                  <Box
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__left__card-income__icon-area"
-                      ]
-                    }
-                  >
-                    <ArrowUpwardIcon />
-                  </Box>
-                </Box>
-                <Box
-                  className={
-                    styles[
-                    "transactions__main__container-info__container__left__card-expenses"
-                    ]
-                  }
-                >
-                  <Box
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__left__card-expenses__text-area"
-                      ]
-                    }
-                  >
-                    <p
-                      className={
-                        styles[
-                        "transactions__main__container-info__container__left__card-expenses__text-area__title"
-                        ]
-                      }
-                    >
-                      Despesas
-                    </p>
-                    <p
-                      className={
-                        styles[
-                        "transactions__main__container-info__container__left__card-expenses__text-area__amount"
-                        ]
-                      }
-                    >
-                      R$ 0,00
-                    </p>
-                  </Box>
-                  <Box
-                    className={
-                      styles[
-                      "transactions__main__container-info__container__left__card-expenses__icon-area"
-                      ]
-                    }
-                  >
-                    <ArrowDownwardIcon />
-                  </Box>
-                </Box>
+                <TransactionInfo type="income" title="Receitas" amount="R$ 0,00" />
+                <TransactionInfo type="expenses" title="Despesas" amount="R$ 0,00" />
               </Box>
               <Box
                 className={
