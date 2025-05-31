@@ -1,7 +1,11 @@
+
+"use client"; 
+
 import Image from 'next/image';
 import { Icons } from '../../icons';
 import styles from './home.styles.module.scss';
 import { PieChart } from '@/components/Graphs';
+import { useEffect, useState } from 'react';
 
 const receitas_data = [
     { id: 'Alimentação', value: 25, label: 'Alimentação' },
