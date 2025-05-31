@@ -10,10 +10,10 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import Image from "next/image";
 import { useState } from "react";
 import TransactionCard from "@/components/CardTransactions";
-import ModalTransaction from "@/components/modal-component/modalTransaction";
 import FilterButton from "@/components/FilterButton";
 import TransactionInfo from "@/components/TransactionInfo";
 import ButtonTransactions from "@/components/ButtonTransactions";
+import ModalTransaction from "@/components/modal-component/modaltransaction";
 
 export default function Transactions() {
   const router = useRouter();
