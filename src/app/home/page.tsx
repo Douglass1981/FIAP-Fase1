@@ -1,7 +1,11 @@
+
+"use client"; 
+
 import Image from 'next/image';
 import { Icons } from '../../icons';
 import styles from './home.styles.module.scss';
 import { PieChart } from '@/components/Graphs';
+import { useEffect, useState } from 'react';
 
 const receitas_data = [
     { id: 'Alimentação', value: 25, label: 'Alimentação' },
@@ -29,6 +33,16 @@ const despesas_size = {
 
 
 export default function Home(){
+      const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Ao carregar o componente, tente recuperar o nome do usuário do localStorage
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []); // O array vazio garante que este useEffect roda apenas uma vez ao montar o componente
+
   return(
       <section className={styles.home}>
         <div className={styles['logo-container']}>

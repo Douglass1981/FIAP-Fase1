@@ -15,7 +15,6 @@ import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
-
 import styles from "./login.styles.module.scss";
 import { colors } from "../mui.styles";
 
@@ -59,19 +58,24 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        // Login bem-sucedido!
-        // Se "Lembrar minha senha" estiver marcado, salve o email no localStorage
+          if(data.user && data.user.nome){
+            localStorage.setItem("userName", data.user.nome);
+          } else {
+            console.warn("Usuario não encontrado");
+          }
+
+
         if (rememberMe) {
           localStorage.setItem("rememberedEmail", email);
-          // Opcionalmente, você pode salvar um indicador de login
           localStorage.setItem("isLoggedIn", "true");
         } else {
-          // Se não estiver marcado, remova qualquer email ou indicador salvo
           localStorage.removeItem("rememberedEmail");
           localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("userName");
+          localStorage.removeItem("userEmail");
         }
 
-        router.push("/dashboard"); // Redireciona para a página dashboard Alterar para home de Transações
+        router.push("/home"); // Redireciona para a página home
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
       }
