@@ -1,9 +1,29 @@
 @use './variables.scss' as *;
 
+// Scrollbar
+@mixin hiddenScrollbar {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+// Flexbox
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 // Fonts
 
-@mixin typography($font-size, $font-weight: normal, $line-height: 1.5, $letter-spacing: normal, $text-transform: none) {
-  font-family: var(--font-poppins), Arial, sans-serif;
+@mixin typography( $font-family, $font-size, $font-weight: normal, $line-height: 1.5, $letter-spacing: normal, $text-transform: none) {
+  font-family: $font-family;
   font-size: $font-size;
   font-weight: $font-weight;
   line-height: $line-height;
@@ -12,47 +32,51 @@
 }
 
 @mixin font-heading-1 {
-    @include typography(60px, 700, 100%, 0%);
+    @include typography(var(--font-poppins), Arial, sans-serif, 60px, 700, 100%, 0%);
 }
 
 @mixin font-heading-2 {
-    @include typography(48px, 700, 72px, 0%);
+    @include typography(var(--font-poppins), Arial, sans-serif, 48px, 700, 72px, 0%);
 }
 
 @mixin font-heading-3 {
-    @include typography(36px, 500, 150%, 0%);
+    @include typography('Poppins', 36px, 500, 150%, 0%);
 }
 
 @mixin font-heading-4 {
-    @include typography(24px, 500, 100%, 0%);
+    @include typography('Poppins', 24px, 500, 100%, 0%);
 }
 
 @mixin font-heading-5 {
-    @include typography(18px, 600, 28px, 0%);
+    @include typography('Poppins', 18px, 600, 28px, 0%);
+}
+
+@mixin font-heading-6 {
+    @include typography('Poppins', 18px, 600, 28px, 0%);
 }
 
 @mixin font-subtitle-1 {
-    @include typography(30px, 500, 100%, 0%);
+    @include typography('Poppins', 30px, 500, 100%, 0%);
 }
 
 @mixin font-subtitle-2 {
-    @include typography(24px, 500, 100%, 0%);
+    @include typography('Poppins', 24px, 500, 100%, 0%);
 }
 
 @mixin font-body-1 {
-    @include typography(24px, 400, 100%, 0%);
+    @include typography('Poppins', 24px, 400, 100%, 0%);
 }
 
 @mixin font-body-2 {
-    @include typography(16px, 400, 100%, 0%);
+    @include typography('Poppins', 16px, 400, 100%, 0%);
 }
 
 @mixin font-body-3 {
-    @include typography(14px, 400, 100%, 0%);
+    @include typography('Poppins', 14px, 400, 100%, 0%);
 }
 
 @mixin font-button {
-    @include typography(28px, 500, 28px, 0%);
+    @include typography('Poppins', 28px, 500, 28px, 0%);
 }
 
 // Responsive

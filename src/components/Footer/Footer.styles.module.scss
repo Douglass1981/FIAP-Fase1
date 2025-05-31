@@ -1,0 +1,18 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.footer {
+    display: none;
+
+    @include respond(md) {
+        height: 5.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p {
+        color: $black;
+        @include typography(var(--font-poppins), 18px, 500, 28px, 0%);
+    }
+}

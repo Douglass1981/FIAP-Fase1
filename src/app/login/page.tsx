@@ -7,7 +7,7 @@ import {
   CircularProgress,
   Alert,
   FormControlLabel,
-} from "@mui/material"; // Adicione FormControlLabel
+} from "@mui/material";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import { useState, useEffect } from "react"; // Importe useEffect
