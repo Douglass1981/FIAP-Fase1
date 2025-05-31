@@ -2,20 +2,17 @@
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- criação da ágina de transações contendo
-    - menu dropdown 
-    - cards representativos de receita e despesas
-    - menu de ações
-    - menu de filtro
-    - card transação
-
-- criação dos modais
+- componentização dos modais:
     - editar
+    - delete
     - visualizar
-    - excluir
-    - despesas
-    - receitas
-    - transaçoes
+    - botoes de ações
+    - botao de transação
+    - botao de filtro
+    - card de informaçoes
+
+- ajuste:
+    adicionando modal de adicionar transação no botao de adicionar transação
 
 ## Checklist
 
