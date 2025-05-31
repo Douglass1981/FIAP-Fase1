@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
-import dayjs, { Dayjs } from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateField } from '@mui/x-date-pickers/DateField';
+import dayjs, { Dayjs } from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateField } from "@mui/x-date-pickers/DateField";
 import Avatar from "@mui/material/Avatar";
 import {
   Box,
@@ -18,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { colors } from "../mui.styles";
-import { SelectChangeEvent } from '@mui/material/Select'; // Importe SelectChangeEvent
+import { SelectChangeEvent } from "@mui/material/Select"; // Importe SelectChangeEvent
 
 interface Banco {
   id: number;
@@ -28,23 +28,29 @@ interface Banco {
 export default function ModalEdit() {
   const [isOpen, setIsOpen] = useState(false);
   const [date, setDate] = useState<Dayjs | null>(dayjs());
-  
+
   const [bancos, setBancos] = useState<Banco[]>([]);
   const [loadingBancos, setLoadingBancos] = useState(false);
   const [errorBancos, setErrorBancos] = useState<string | null>(null);
-  
+
   // O estado pode ser number (o ID) ou string vazia (se nada estiver selecionado)
-  const [selectedBancoSaiuDe, setSelectedBancoSaiuDe] = useState<number | string>('');
-  const [selectedBancoPara, setSelectedBancoPara] = useState<number | string>('');
+  const [selectedBancoSaiuDe, setSelectedBancoSaiuDe] = useState<
+    number | string
+  >("");
+  const [selectedBancoPara, setSelectedBancoPara] = useState<number | string>(
+    ""
+  );
 
   const fetchBancos = async () => {
     setLoadingBancos(true);
     setErrorBancos(null);
     try {
-      const response = await fetch('/api/bancos');
+      const response = await fetch("/api/bancos");
 
       if (!response.ok) {
-        throw new Error(`Erro ao buscar bancos: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Erro ao buscar bancos: ${response.status} ${response.statusText}`
+        );
       }
 
       const data: Banco[] = await response.json();
@@ -72,11 +78,15 @@ export default function ModalEdit() {
   // CORREÇÃO AQUI: Use o tipo de evento que o Material-UI espera, que pode ser o tipo do próprio estado
   // ou simplesmente `string` se o valor sempre for lido como string do evento.
   // Optamos por `SelectChangeEvent<typeof selectedBancoSaiuDe>` para maior compatibilidade.
-  const handleBancoSaiuDeChange = (event: SelectChangeEvent<typeof selectedBancoSaiuDe>) => {
+  const handleBancoSaiuDeChange = (
+    event: SelectChangeEvent<typeof selectedBancoSaiuDe>
+  ) => {
     setSelectedBancoSaiuDe(event.target.value);
   };
 
-  const handleBancoParaChange = (event: SelectChangeEvent<typeof selectedBancoPara>) => {
+  const handleBancoParaChange = (
+    event: SelectChangeEvent<typeof selectedBancoPara>
+  ) => {
     setSelectedBancoPara(event.target.value);
   };
 
@@ -111,17 +121,24 @@ export default function ModalEdit() {
               boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             }}
           >
-            <Box sx={{ display: "flex", width: "100%", justifyContent: "end", marginBottom: '1rem' }}>
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "end",
+                marginBottom: "1rem",
+              }}
+            >
               <Button
                 onClick={() => setIsOpen(false)}
                 sx={{
                   padding: "0px 0px 10px 0px",
                   color: colors.gray800,
-                  backgroundColor: 'transparent',
+                  backgroundColor: "transparent",
                   minWidth: 0,
-                  '&:hover': {
-                    backgroundColor: colors.gray300
-                  }
+                  "&:hover": {
+                    backgroundColor: colors.gray300,
+                  },
                 }}
               >
                 Fechar
@@ -144,11 +161,13 @@ export default function ModalEdit() {
               >
                 Tipo de transação
               </Typography>
-              <Box style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 15,
-              }}>
+              <Box
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 15,
+                }}
+              >
                 <FormControl fullWidth>
                   <InputLabel id="saiu-de-label">Saiu de</InputLabel>
                   <Select
@@ -160,18 +179,24 @@ export default function ModalEdit() {
                     onChange={handleBancoSaiuDeChange} // CORREÇÃO AQUI
                     disabled={loadingBancos || errorBancos !== null}
                   >
-                    {loadingBancos && <MenuItem disabled>Carregando bancos...</MenuItem>}
-                    {errorBancos && <MenuItem disabled sx={{ color: 'error.main' }}>{errorBancos}</MenuItem>}
+                    {loadingBancos && (
+                      <MenuItem disabled>Carregando bancos...</MenuItem>
+                    )}
+                    {errorBancos && (
+                      <MenuItem disabled sx={{ color: "error.main" }}>
+                        {errorBancos}
+                      </MenuItem>
+                    )}
                     {!loadingBancos && bancos.length === 0 && !errorBancos && (
                       <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
                     )}
-                    {!loadingBancos && bancos.length > 0 && (
+                    {!loadingBancos &&
+                      bancos.length > 0 &&
                       bancos.map((banco) => (
                         <MenuItem key={banco.id} value={banco.id}>
                           {banco.nome}
                         </MenuItem>
-                      ))
-                    )}
+                      ))}
                   </Select>
                 </FormControl>
 
@@ -186,31 +211,35 @@ export default function ModalEdit() {
                     onChange={handleBancoParaChange} // CORREÇÃO AQUI
                     disabled={loadingBancos || errorBancos !== null}
                   >
-                    {loadingBancos && <MenuItem disabled>Carregando bancos...</MenuItem>}
-                    {errorBancos && <MenuItem disabled sx={{ color: 'error.main' }}>{errorBancos}</MenuItem>}
+                    {loadingBancos && (
+                      <MenuItem disabled>Carregando bancos...</MenuItem>
+                    )}
+                    {errorBancos && (
+                      <MenuItem disabled sx={{ color: "error.main" }}>
+                        {errorBancos}
+                      </MenuItem>
+                    )}
                     {!loadingBancos && bancos.length === 0 && !errorBancos && (
                       <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
                     )}
-                    {!loadingBancos && bancos.length > 0 && (
+                    {!loadingBancos &&
+                      bancos.length > 0 &&
                       bancos.map((banco) => (
                         <MenuItem key={banco.id} value={banco.id}>
                           {banco.nome}
                         </MenuItem>
-                      ))
-                    )}
+                      ))}
                   </Select>
                 </FormControl>
 
-                <Box style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: 15,
-                }}>
-                  <TextField
-                    fullWidth
-                    label="Valor"
-                    variant="outlined"
-                  />
+                <Box
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 15,
+                  }}
+                >
+                  <TextField fullWidth label="Valor" variant="outlined" />
                   <DateField
                     label="Data"
                     value={date}
@@ -234,9 +263,9 @@ export default function ModalEdit() {
                     textTransform: "none",
                     backgroundColor: colors.red,
                     fontSize: "16px",
-                    '&:hover': {
-                      backgroundColor: colors.lightRed
-                    }
+                    "&:hover": {
+                      backgroundColor: colors.lightRed,
+                    },
                   }}
                   onClick={() => setIsOpen(false)}
                 >
@@ -250,9 +279,9 @@ export default function ModalEdit() {
                     textTransform: "none",
                     backgroundColor: colors.bluePrimary500,
                     fontSize: "16px",
-                    '&:hover': {
-                      backgroundColor: colors.purple
-                    }
+                    "&:hover": {
+                      backgroundColor: colors.purple,
+                    },
                   }}
                 >
                   Adicionar

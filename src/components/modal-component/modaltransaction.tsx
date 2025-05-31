@@ -30,7 +30,11 @@ const labelMap = {
   transfer: "Transferência",
 };
 
-export default function ModalTransaction({ type, open, onClose }: ModalTransactionProps) {
+export default function ModalTransaction({
+  type,
+  open,
+  onClose,
+}: ModalTransactionProps) {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
 
   if (!open) return null;
@@ -60,7 +64,13 @@ export default function ModalTransaction({ type, open, onClose }: ModalTransacti
           }}
         >
           <Box style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <p style={{ fontSize: "16px", fontWeight: "bold", textAlign: "start" }}>
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "bold",
+                textAlign: "start",
+              }}
+            >
               {labelMap[type]}
             </p>
 
