@@ -38,7 +38,7 @@
 }
 
 @mixin font-heading-1 {
-  @include typography(var(--font-poppins), 60px, 700, 150%, 0%);
+  @include typography(var(--font-poppins), 3.75rem, 700, 150%, 0%);
 }
 
 @mixin font-heading-2 {
