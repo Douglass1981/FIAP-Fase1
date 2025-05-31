@@ -1,0 +1,180 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.home {
+    font-family: var(--font-poppins);
+    height: calc(100dvh - #{$footer} - #{$header});
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 1rem;
+}
+
+.logo-container {
+  display: none;
+
+  .title-logo-container {
+    @include font-heading-3;
+    font-weight: 700;
+  }
+  
+  @include respond(md) {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+}
+
+.card {
+    background-color: $blue-500;
+    color: $white;
+    padding: 1.25rem;
+    border-radius: .5rem;
+
+    .account-balance-text {
+        @include typography('Poppins', 40px, 600, 150%, 0%);
+    }
+}
+
+.presentation-card-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .hello-message-container {
+        display: flex;
+        align-items: center;
+        gap: .625rem;
+    }
+
+    .hello-message-text {
+        @include typography('Poppins', 28px, 700, 40px, 0%);
+    }
+
+    .total-balance-text {
+        @include typography('Poppins', 20px, 700, 28px, 0%);
+    }
+}
+
+.actions-bank-details-container {
+    display: flex;
+    justify-content: space-between;
+    gap: .625rem;
+    @include hiddenScrollbar;
+}
+
+.actions-bank-details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: .5rem;
+
+    @include font-body-3;
+    font-weight: 500;
+
+    svg {
+        background-color: $gray-300;
+        border-radius: 3.125rem;
+        padding: 0.5rem;
+        display: inline-block;
+        box-sizing: content-box;
+    }
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .625rem;
+    @include hiddenScrollbar;
+
+    .data-details-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: .625rem;
+        background-color: $gray-300;
+        border-radius: .5rem;
+        padding: .625rem;
+        width: 12.9375rem;
+        height: 4.75rem;
+
+        .title-data-details-container {
+            @include font-body-3;
+            line-height: 28px;
+        }
+
+        .balance-data-details-container {
+            @include font-heading-5;
+        }
+
+        .icon {
+            color: $white;
+            padding: .25rem;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: content-box;
+        }
+
+        .income {
+            background-color: $green-normal;
+        }
+
+        .expenses {
+            background-color: $red-normal;
+        }
+    }
+}
+
+.graph-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .625rem;
+    @include hiddenScrollbar;
+
+    .graph-details-card {
+        background-color: $gray-300;
+        border-radius: .5rem;
+        padding: 1.25rem .9375rem;
+        min-width: 273px;
+    }
+    
+    .graph-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+
+    .title-graph-details {
+        @include font-heading-5;
+        font-weight: 500;
+    }
+
+    .balance {
+        @include font-body-2;
+        font-weight: 500;
+    }
+
+    .income {
+        color: $green-normal;
+    }
+
+    .expenses {
+        color: $red-normal;
+    }
+    
+    .graph {
+        display: flex;
+        justify-content: space-between;
+        gap: .625rem;
+        padding: .6875rem;
+    }
+
+    .chart {
+        height: 214px;
+    }
+}

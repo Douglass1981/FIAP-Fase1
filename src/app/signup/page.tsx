@@ -1,21 +1,21 @@
 "use client";
 
-import theme from "@/styles/theme";
 import {
   Box,
   Button,
-  Checkbox,
   IconButton,
   InputAdornment,
   TextField,
   useMediaQuery,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./signup.styles.module.scss";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { colors } from "../mui.styles";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export default function Cadastro() {
   const [nome, setName] = useState("");
@@ -24,7 +24,15 @@ export default function Cadastro() {
   const [cadastroSucesso, setCadastroSucesso] = useState(false);
   const [erroCadastro, setErroCadastro] = useState("");
 
+  const router = useRouter(); // Inicialize o useRouter
+
   const handleCadastroUser = async () => {
+    // Validação de campos obrigatórios
+    if (!nome || !email || !password) {
+      setErroCadastro("Por favor, preencha todos os campos.");
+      setCadastroSucesso(false);
+      return; // Interrompe a execução se houver campos vazios
+    }
     try {
       const response = await fetch("/api/users", {
         method: "POST",
@@ -41,7 +49,9 @@ export default function Cadastro() {
         console.log("Cadastro realizado com sucesso!", data);
         setCadastroSucesso(true);
         setErroCadastro("");
-        // Opcional: Redirecionar o usuário ou limpar o formulário
+        setName("");
+        setEmail("");
+        setPassword("");
       } else {
         console.error(
           "Erro ao cadastrar:",
@@ -56,6 +66,18 @@ export default function Cadastro() {
       setCadastroSucesso(false);
     }
   };
+  // --- Novo código para redirecionamento ---
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
+    if (cadastroSucesso) {
+      timer = setTimeout(() => {
+        router.push("http://localhost:3000/login"); // Redireciona para a página de login
+      }, 2000); // 2000 milissegundos = 2 segundos
+    }
+
+    // Limpa o timer se o componente for desmontado ou se cadastroSucesso mudar para false
+    return () => clearTimeout(timer);
+  }, [cadastroSucesso, router]); // Dependências do useEffect
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -69,28 +91,35 @@ export default function Cadastro() {
     <>
       <main className={styles["signup"]}>
         <Box className={styles["signup__container"]}>
-          <Box className={styles["signup__container__logo_area"]}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "30%", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
+          
+            <Link
+              className={styles["signup__container__logo_area"]}
+              href="http://localhost:3000"
+              sx={{ textDecoration: "none" }}
+            >
+              {isMobile ? (
+                <Image
+                  src="/logo.png"
+                  width="232"
+                  height="232"
+                  alt="Logo"
+                  style={{ width: "30%", height: "auto" }}
+                />
+              ) : (
+                <Image
+                  src="/logo.png"
+                  width="72"
+                  height="100"
+                  alt="Logo"
+                  style={{ width: "15%", height: "auto" }}
+                />
+              )}{" "}
+            
             <h1 className={styles["signup__container__logo_area__brand"]}>
               Poup.ai
             </h1>
-          </Box>
+            </Link>
+            
 
           <Box className={styles["signup__container__form-area"]}>
             <Box className={styles["signup__container__form-area__text"]}>
@@ -194,7 +223,7 @@ export default function Cadastro() {
                         "signup__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="http://localhost:3000/"
+                    href="http://localhost:3000/login"
                   >
                     Login
                   </Link>
@@ -210,7 +239,6 @@ export default function Cadastro() {
             width={467}
             height={448}
             alt="Bem Vindo"
-            className="signup__container-side__image"
             style={{
               width: "60%",
               height: "auto",

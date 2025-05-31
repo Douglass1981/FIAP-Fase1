@@ -83,9 +83,8 @@ $black: #000000;
 
 @media (min-width: $bp-tablet) {
   .content {
-    justify-content: start;
     background-color: $white;
-    min-height: 100vh;
+    
     &__nav {
       display: flex;
       justify-content: space-between;
@@ -96,6 +95,7 @@ $black: #000000;
         flex-direction: row;
         gap: 10px;
         padding-bottom: 0%;
+        justify-content: start;
 
         &__brand {
           @include typography(2.5rem, 700, 100%);
@@ -155,25 +155,15 @@ $black: #000000;
     &__nav {
       padding: 30px 170px;
 
-      &__redirect_pages {
-        &__link:hover {
-          text-decoration: underline;
-          color: $gray-neutral-800;
-        }
-      }
-
       &__button:hover{
         background-color: $secondary-purple-700;
       }
     }
 
-    > main {
-      flex-grow: 1;
-    }
+   
     &__desktop {
       &__container {
-        padding: 30px 150px;
-        display: flex;
+        padding: 30px 170px;
       }
     }
   }

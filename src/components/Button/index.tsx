@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ReactNode } from 'react';
-import { Button, ButtonProps } from '@mui/material';
+import { Button as ButtonMui, ButtonProps } from '@mui/material';
 
 interface MuiButtonProps extends ButtonProps {
   children: ReactNode;
@@ -14,7 +14,7 @@ interface MuiButtonProps extends ButtonProps {
 }
 
 
-function MuiButton({
+function Button({
   children,
   onClick,
   variant = 'contained',
@@ -25,7 +25,7 @@ function MuiButton({
   ...props
 }: MuiButtonProps) {
   return (
-    <Button
+    <ButtonMui
       variant={variant}
       color={color}
       size={size}
@@ -35,8 +35,8 @@ function MuiButton({
       {...props}
     >
       {children}
-    </Button>
+    </ButtonMui>
   );
 }
 
-export default MuiButton;
+export default Button;
