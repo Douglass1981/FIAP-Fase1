@@ -16,47 +16,51 @@
 }
 
 @mixin font-heading-1 {
-    @include typography('Poppins, sans-serif', 3.75rem, 700, 150%, 0%);
+    @include typography(var(--font-poppins), 60px, 700, 150%, 0%);
 }
 
 @mixin font-heading-2 {
-    @include typography('Poppins, sans-serif', 3rem, 700, 150%, 0%);
+    @include typography(var(--font-poppins),  48px, 700, 150%, 0%);
 }
 
 @mixin font-heading-3 {
-    @include typography('Poppins, sans-serif', 2.25rem, 500, 150%, 0%);
+    @include typography('Poppins', 36px, 600, 150%, 0%);
 }
 
 @mixin font-heading-4 {
-    @include typography('Poppins, sans-serif', 1.5rem, 500, 150%, 0%);
+    @include typography('Poppins', 24px, 600, 150%, 0%);
 }
 
 @mixin font-heading-5 {
-    @include typography('Poppins, sans-serif', 1.125rem, 600, 150%, 0%);
+    @include typography('Poppins', 18px, 500, 150%, 0%);
+}
+
+@mixin font-heading-6 {
+    @include typography('Poppins', 18px, 600, 150%, 0%);
 }
 
 @mixin font-subtitle-1 {
-    @include typography('Poppins, sans-serif', 1.875rem, 500, 150%, 0%);
+    @include typography('Poppins', 30px, 500, 150% 0%);
 }
 
 @mixin font-subtitle-2 {
-    @include typography('Poppins, sans-serif', 1.5rem, 500, 150%, 0%);
+    @include typography('Poppins', 24px, 500, 150%, 0%);
 }
 
 @mixin font-body-1 {
-    @include typography('Inter, sans-serif', 1.5rem, 400, 150%, 0%);
+    @include typography('Poppins', 24px, 400, 150%, 0%);
 }
 
 @mixin font-body-2 {
-    @include typography('Poppins, sans-serif', 1rem, 400, 150%, 0%);
+    @include typography('Poppins', 16px, 400, 150%, 0%);
 }
 
 @mixin font-body-3 {
-    @include typography('Poppins, sans-serif', 0.875rem, 400, 150%, 0%);
+    @include typography('Poppins', 14px, 400, 150%, 0%);
 }
 
 @mixin font-button {
-    @include typography('Poppins, sans-serif', 1.75rem, 500, 150%, 0%);
+    @include typography('Poppins', 28px, 500, 150%, 0%);
 }
 
 // Responsive
