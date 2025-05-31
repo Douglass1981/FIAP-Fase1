@@ -1,20 +1,19 @@
 "use client";
 
 import styles from "./transactions.styles.module.scss";
-import { Box, Button, Link } from "@mui/material";
+import { Avatar, Box, Button, Link } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { colors } from "../mui.styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Image from "next/image";
-import ModalDetails from "./modalDetails";
-import ModalDelete from "./modalDelete";
-import ModalEdit from "./modalEdit";
-import ModalTransfer from "./modalTransfer";
-import ModalExpenses from "./modalExpenses";
-import ModalIncome from "./modalIncome";
+import { useState } from "react";
+import TransactionCard from "@/components/CardTransactions";
+import ModalTransaction from "@/components/modal-component/modalTransaction";
+import FilterButton from "@/components/FilterButton";
+import TransactionInfo from "@/components/TransactionInfo";
+import ButtonTransactions from "@/components/ButtonTransactions";
 
 export default function Transactions() {
   const router = useRouter();
@@ -25,13 +24,35 @@ export default function Transactions() {
       router.push(selectedPath);
     }
   };
+
+  const handleDelete = () => {
+    console.log("Transação excluída");
+  };
+
+  const [modalType, setModalType] = useState<"income" | "expenses" | "transfer" | null>(null);
+
+  const [selectedFilter, setSelectedFilter] = useState("Última semana");
+
+  const filters = [
+    "Última semana",
+    "Último mês",
+    "Últimos 6 meses",
+    "Último ano",
+  ];
+
+  const iconMap = {
+    income: <ArrowUpwardIcon />,
+    expenses: <ArrowDownwardIcon />,
+    transfer: <SyncAltOutlinedIcon />,
+  };
+
   return (
     <>
       <Box className={styles["transactions"]}>
         <nav className={styles["transactions__nav"]}>
           <Link
             className={styles["transactions__nav__logo_area"]}
-            href="http://localhost:3000"
+            href="http://localhost:3000/home"
             sx={{ textDecoration: "none" }}
           >
             <Image
@@ -57,7 +78,7 @@ export default function Transactions() {
                 onChange={handleChange}
                 className={
                   styles[
-                    "transactions__main__container-info__navigation__select"
+                  "transactions__main__container-info__navigation__select"
                   ]
                 }
               >
@@ -65,7 +86,7 @@ export default function Transactions() {
                   value="/transactions__main"
                   className={
                     styles[
-                      "transactions__main__container-info__navigation__select__options"
+                    "transactions__main__container-info__navigation__select__options"
                     ]
                   }
                 >
@@ -75,7 +96,7 @@ export default function Transactions() {
                   value="/income"
                   className={
                     styles[
-                      "transactions__main__container-info__navigation__select__options"
+                    "transactions__main__container-info__navigation__select__options"
                     ]
                   }
                 >
@@ -85,7 +106,7 @@ export default function Transactions() {
                   value="/expenses"
                   className={
                     styles[
-                      "transactions__main__container-info__navigation__select__options"
+                    "transactions__main__container-info__navigation__select__options"
                     ]
                   }
                 >
@@ -103,326 +124,86 @@ export default function Transactions() {
                   styles["transactions__main__container-info__container__left"]
                 }
               >
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-info__container__left__card-income"
-                    ]
-                  }
-                >
-                  <Box
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__left__card-income__text-area"
-                      ]
-                    }
-                  >
-                    <p
-                      className={
-                        styles[
-                          "transactions__main__container-info__container__left__card-income__text-area__title"
-                        ]
-                      }
-                    >
-                      Receitas
-                    </p>
-                    <p
-                      className={
-                        styles[
-                          "transactions__main__container-info__container__left__card-income__text-area__amount"
-                        ]
-                      }
-                    >
-                      R$ 0,00
-                    </p>
-                  </Box>
-                  <Box
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__left__card-income__icon-area"
-                      ]
-                    }
-                  >
-                    <ArrowUpwardIcon />
-                  </Box>
-                </Box>
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-info__container__left__card-expenses"
-                    ]
-                  }
-                >
-                  <Box
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__left__card-expenses__text-area"
-                      ]
-                    }
-                  >
-                    <p
-                      className={
-                        styles[
-                          "transactions__main__container-info__container__left__card-expenses__text-area__title"
-                        ]
-                      }
-                    >
-                      Despesas
-                    </p>
-                    <p
-                      className={
-                        styles[
-                          "transactions__main__container-info__container__left__card-expenses__text-area__amount"
-                        ]
-                      }
-                    >
-                      R$ 0,00
-                    </p>
-                  </Box>
-                  <Box
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__left__card-expenses__icon-area"
-                      ]
-                    }
-                  >
-                    <ArrowDownwardIcon />
-                  </Box>
-                </Box>
+                <TransactionInfo type="income" title="Receitas" amount="R$ 0,00" />
+                <TransactionInfo type="expenses" title="Despesas" amount="R$ 0,00" />
               </Box>
               <Box
                 className={
                   styles["transactions__main__container-info__container__right"]
                 }
               >
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-info__container__right__function"
-                    ]
-                  }
-                >
+                {(["income", "expenses", "transfer"] as const).map((type) => (
                   <Box
+                    key={type}
                     className={
-                      styles[
-                        "transactions__main__container-info__container__right__function__icon-area"
-                      ]
+                      styles["transactions__main__container-info__container__right__function"]
                     }
+                    onClick={() => setModalType(type)}
+                    style={{ cursor: "pointer" }}
                   >
-                    <ModalIncome />
-                  </Box>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__right__function__text"
-                      ]
-                    }
-                  >
-                    Receitas
-                  </p>
-                </Box>
+                    <Box
+                      className={
+                        styles["transactions__main__container-info__container__right__function__icon-area"]
+                      }
+                    >
+                      <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
+                        {iconMap[type]}
+                      </Avatar>
+                    </Box>
+                    <p
+                      className={
+                        styles["transactions__main__container-info__container__right__function__text"]
+                      }
+                    >
+                      {type === "income"
+                        ? "Receitas"
+                        : type === "expenses"
+                          ? "Despesas"
+                          : "Transferência"}
+                    </p>
 
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-info__container__right__function"
-                    ]
-                  }
-                >
-                  <Box
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__right__function__icon-area"
-                      ]
-                    }
-                  >
-                    <ModalExpenses />
-                  </Box>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__right__function__text"
-                      ]
-                    }
-                  >
-                    Despesas
-                  </p>
-                </Box>
 
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-info__container__right__function"
-                    ]
-                  }
-                >
-                  <Box
-                   
-                  >
-                    <ModalTransfer />
                   </Box>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-info__container__right__function__text"
-                      ]
-                    }
-                  >
-                    Transferência
-                  </p>
-                </Box>
+                ))}
               </Box>
             </Box>
           </Box>
 
           <Box className={styles["transactions__main__container-carousel"]}>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultima semana
-              </p>
-            </Box>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultimo mês
-              </p>
-            </Box>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultimos 6 meses
-              </p>
-            </Box>
-            <Box
-              className={styles["transactions__main__container-carousel__tag"]}
-            >
-              <p
-                className={
-                  styles["transactions__main__container-carousel__tag__text"]
-                }
-              >
-                Ultimo ano
-              </p>
-            </Box>
-          </Box>
-          <Box className={styles["transactions__main__container-transactions"]}>
-            <Box
-              className={
-                styles[
-                  "transactions__main__container-transactions__card-transactions"
-                ]
-              }
-            >
-              <Box
-                className={
-                  styles[
-                    "transactions__main__container-transactions__card-transactions__left"
-                  ]
-                }
-              >
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-transactions__card-transactions__left__icon-area"
-                    ]
-                  }
-                >
-                  <SyncAltOutlinedIcon />
-                </Box>
-                <Box
-                  className={
-                    styles[
-                      "transactions__main__container-transactions__card-transactions__left__text-area"
-                    ]
-                  }
-                >
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__category"
-                      ]
-                    }
-                  >
-                    Categoria
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__info"
-                      ]
-                    }
-                  >
-                    Banco
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__info"
-                      ]
-                    }
-                  >
-                    25/05/2025
-                  </p>
-                  <p
-                    className={
-                      styles[
-                        "transactions__main__container-transactions__card-transactions__left__text-area__amount"
-                      ]
-                    }
-                  >
-                    R$ 0,00
-                  </p>
-                </Box>
-              </Box>
-              <Box>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <ModalDetails />
-                </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <ModalEdit />
-                </Button>
-                <Button sx={{ minWidth: "0", color: colors.black, textTransform: 'none'}}>
-                  <ModalDelete />
-                </Button>
-              </Box>
-            </Box>
+            {filters.map((filter) => (
+              <FilterButton
+                key={filter}
+                label={filter}
+                selected={selectedFilter === filter}
+                onClick={() => setSelectedFilter(filter)}
+              />
+            ))}
           </Box>
 
-          <Button
-            variant="contained"
-            sx={{
-              position: "fixed",
-              bottom: 80,
-              left: 30,
-              right: 30,
-              p: 1,
-              zIndex: 1300,
-              backgroundColor: colors.bluePrimary500,
-              textTransform: "none",
-            }}
+          <Box className={styles["transactions__main__container-transactions"]}>
+            <TransactionCard
+              category="Categoria"
+              description="Banco"
+              date="25/05/2025"
+              amount="R$ 0,00"
+              onDelete={handleDelete}
+            />
+          </Box>
+
+          <ButtonTransactions
+            onClick={() => setModalType("transfer")}
             className={styles["transactions__main__button--hidden"]}
-          >
-            <AddOutlinedIcon />
-            Adicionar transferencia
-          </Button>
+          />
         </main>
       </Box>
+      {modalType && (
+        <ModalTransaction
+          type={modalType}
+          open={true}
+          onClose={() => setModalType(null)}
+        />
+      )}
+
     </>
   );
 }
