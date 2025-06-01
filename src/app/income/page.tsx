@@ -83,16 +83,6 @@ export default function Income() {
                 }
               >
                 <option
-                  value="/income__main"
-                  className={
-                    styles[
-                    "income__main__container-info__navigation__select__options"
-                    ]
-                  }
-                >
-                  Transações
-                </option>
-                <option
                   value="/income"
                   className={
                     styles[
@@ -101,6 +91,16 @@ export default function Income() {
                   }
                 >
                   Receitas
+                </option>
+                <option
+                  value="/transactions"
+                  className={
+                    styles[
+                    "income__main__container-info__navigation__select__options"
+                    ]
+                  }
+                >
+                  Transações
                 </option>
                 <option
                   value="/expenses"
