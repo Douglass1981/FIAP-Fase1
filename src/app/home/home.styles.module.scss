@@ -131,8 +131,8 @@
 
 .graph-details-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    // justify-content: space-between;
+    // align-items: center;
     gap: .625rem;
     @include hiddenScrollbar;
 
@@ -140,13 +140,17 @@
         background-color: $gray-300;
         border-radius: .5rem;
         padding: 1.25rem .9375rem;
-        min-width: 273px;
+        // min-width: 273px;
+        flex:1;
+        display: flex;
+        flex-direction:column;
     }
     
     .graph-details {
         display: flex;
         justify-content: space-between;
-        align-items: center
+        align-items: center;
+         margin-bottom: 10px;
     }
 
     .title-graph-details {
@@ -169,12 +173,14 @@
     
     .graph {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         gap: .625rem;
         padding: .6875rem;
+        flex-grow: 1;
     }
 
     .chart {
         height: 214px;
+        width: 100%;
     }
 }
