@@ -1,12 +1,18 @@
-# feat/style-signup-page
+# feat/create-transactions-page
 
 ## Descreva, em poucas palavras, o que foi feito
 
-- adição do hover ao botão login
-- adição de link de redirecionamento na brand da página
-- refatoração de codigo
-- ajustes no tamanho da imagem
+- componentização dos modais:
+    - editar
+    - delete
+    - visualizar
+    - botoes de ações
+    - botao de transação
+    - botao de filtro
+    - card de informaçoes
 
+- ajuste:
+    adicionando modal de adicionar transação no botao de adicionar transação
 
 ## Checklist
 

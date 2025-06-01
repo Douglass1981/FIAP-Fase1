@@ -11,15 +11,22 @@ generator client {
     output   = "../src/generated/prisma-client-js"
 }
 
+// datasource db {
+//   provider = "sqlite"
+//    url      = env("DATABASE_URL")
+// }
+
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
    url      = env("DATABASE_URL")
+
 }
+
 
 model Usuario {
   id        Int   @id @default(autoincrement())
   nome      String
-  email     String
+  email     String @unique // Adicione @unique para garantir que o email seja único
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,30 +1,51 @@
-import { NextRequest , NextResponse } from  "next/server" ; 
 
-//req é a abreviação de request 
-export  async  function  GET ( req: NextRequest ) { 
-  return  NextResponse . json ( 
-    { message : "this is a get request" }, 
-    { status : 200 } 
-  ); 
-} 
+import prisma from "@/app/lib/prisma";
+import { NextResponse } from "next/server";
+import bcrypt from "bcrypt"; 
 
-export  async  function  POST ( req: NextRequest ) { 
-  return  NextResponse . json ( 
-    { message : "This is a post request" }, 
-    { status : 200 } 
-  ); 
-} 
+export async function POST(req: Request) {
+    const { email, password } = await req.json();
 
-export  async  function  PATCH ( req: NextRequest ) { 
-  return  NextResponse . json ( 
-    { message : "This is a patch request" }, 
-    { status : 200 } 
-  ); 
-} 
+    // 1. Validação básica
+    if (!email || !password) {
+        return NextResponse.json({ error: "Email e senha são obrigatórios." }, { status: 400 });
+    }
 
-export  async  function  DELETE ( req: NextRequest ) { 
-  return  NextResponse . json ( 
-    { message : "This is a delete request" }, 
-    { status : 200 } 
-  ); 
-} 
+    try {
+        // 2. Encontrar o usuário pelo email
+        const user = await prisma.usuario.findUnique({
+            where: { email: email },
+        });
+
+        if (!user) {
+            // Não encontrou o usuário
+            return NextResponse.json({ error: "Credenciais inválidas." }, { status: 401 });
+        }
+
+        // 3. Comparar a senha fornecida com o hash armazenado
+        // bcrypt.compare(senha_texto_puro, senha_hash_banco)
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            // Senha incorreta
+            return NextResponse.json({ error: "Credenciais inválidas." }, { status: 401 });
+        }
+
+        // 4. Login bem-sucedido!
+        // Neste ponto, o usuário está autenticado.
+        // Você pode retornar os dados do usuário (sem a senha) ou um token JWT.
+        // Para uma autenticação de sessão real, você normalmente usaria NextAuth.js ou JWT.
+        // Para este exemplo simples, retornaremos o nome do usuário.
+
+        const { password: _, ...userWithoutPassword } = user; // Remove a senha do objeto de retorno
+
+        return NextResponse.json({
+            message: "Login bem-sucedido!",
+            user: userWithoutPassword,
+        }, { status: 200 });
+
+    } catch (error) {
+        console.error("Erro no processo de login:", error);
+        return NextResponse.json({ error: "Erro interno do servidor." }, { status: 500 });
+    }
+}
