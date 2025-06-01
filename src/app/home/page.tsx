@@ -1,11 +1,11 @@
 
 "use client"; 
 
-import Image from 'next/image';
-import { Icons } from '../../icons';
-import styles from './home.styles.module.scss';
-import { PieChart } from '@/components/Graphs';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { PieChart } from '@/components/Graphs';
+import { Icons } from '@/icons';
+import styles from './home.styles.module.scss';
 
 const receitas_data = [
     { id: 'Alimentação', value: 25, label: 'Alimentação' },
@@ -30,7 +30,6 @@ const despesas_size = {
     width: 50,
     height: 50,
 };
-
 
 export default function Home(){
       const [userName, setUserName] = useState<string | null>(null);
@@ -60,7 +59,7 @@ export default function Home(){
                 <div>
                     <div className={styles['hello-message-container']}>
                         <p className={styles['hello-message-text']}>Olá, Joana</p>
-                        <Icons.WavingHand /> 
+                        <Icons.WavingHand />
                     </div>
                     <p className={styles['total-balance-text']}>Saldo total em conta</p>
                 </div>
