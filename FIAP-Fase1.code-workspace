@@ -14,7 +14,8 @@
       "**/Thumbs.db": true
     },
     "terminal.integrated.env.windows": {
-      "DATABASE_URL": "file:${workspaceFolder:FIAP-Fase1}\\src\\prisma\\dev.db",
+      "DATABASE_URL_SQLITE": "file:${workspaceFolder:FIAP-Fase1}\\src\\prisma\\dev.db",
+      "DATABASE_URL": "postgresql://u6vkbvrep5vpr3rin3y4:B8cAYZl83RYNKZBhDzot7s13aHoxSQ@b9papihx1ndg4fs8ohmj-postgresql.services.clever-cloud.com:5432/b9papihx1ndg4fs8ohmj",
       "NODE-ENV": "development",
       "NODE_OPTIONS": "--inspect",
       "NODE_PATH": "${workspaceFolder:FIAP-Fase1}/src"
@@ -22,9 +23,13 @@
     "sqltools.connections": [
       {
         "previewLimit": 50,
-        "driver": "SQLite",
-        "database": "${workspaceFolder:FIAP-Fase1}/src/prisma/dev.db",
-        "name": "db"
+        "server": "b9papihx1ndg4fs8ohmj-postgresql.services.clever-cloud.com",
+        "port": 5432,
+        "askForPassword": true,
+        "driver": "PostgreSQL",
+        "name": "dev",
+        "database": "b9papihx1ndg4fs8ohmj",
+        "username": "u6vkbvrep5vpr3rin3y4"
       }
     ]
   },
