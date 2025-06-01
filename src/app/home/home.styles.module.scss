@@ -221,6 +221,7 @@
             background-color: $blue-500;
             color: $white;
             border-radius: .5rem;
+            
 
             .account-balance-text {
                 @include font-heading-4;
@@ -235,7 +236,7 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        
         
 
         .actions-bank-details {
@@ -248,48 +249,26 @@
 
         .graph-details-card {
             flex: 0 0 50%;
-            scroll-snap-align: center;
-            background-color: $gray-300;
-            border-radius: 0.5rem;
             padding: 1.5rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            height: 17.5rem;
 
         }
 
-        .graph-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.625rem;
+
+    }
+}
+
+@include respond(lg) {
+    .home {
+        padding: 0rem 10.625rem;
+    }
+    .graph-details-container {
+        @include flex-center;
+
+        .graph-details-card {
+            flex: 0 0 30%;
 
         }
 
-        .title-graph-details {
-            @include font-heading-6;
-        }
-
-        .balance {
-            @include font-body-2;
-        }
-
-        .income {
-            color: $green-normal;
-        }
-
-        .expenses {
-            color: $red-normal;
-        }
-
-        .graph {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-        }
 
     }
 }
