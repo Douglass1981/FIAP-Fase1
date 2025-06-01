@@ -122,7 +122,7 @@ export default function Home() {
                         <span className={`${styles.balance} ${styles.income}`}>R$1.659,35</span>
                     </div>
                     <div className={styles.graph}>
-                        <PieChart data={receitas_data} size={receitas_size} className={styles.chart} />
+                        <PieChart data={receitas_data} size={receitas_size} className={styles.chart} sx={{height: '100%', width: '100%'}} />
                     </div>
                 </div>
 
@@ -132,7 +132,7 @@ export default function Home() {
                         <span className={`${styles.balance} ${styles.expenses}`}>R$1.659,35</span>
                     </div>
                     <div className={styles.graph}>
-                        <PieChart data={despesas_data} size={despesas_size} className={styles.chart} />
+                        <PieChart data={despesas_data} size={despesas_size} className={styles.chart} sx={{height: '100%', width: '100%'}} />
                     </div>
                 </div>
             </div>
