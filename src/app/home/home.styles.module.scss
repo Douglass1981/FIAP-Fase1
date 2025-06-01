@@ -3,7 +3,7 @@
 
 .home {
     font-family: var(--font-poppins);
-    padding: 5rem 1.875rem;
+    padding: 0rem 1.875rem;
     height: 100dvh;
     width: 100dvw;
     display: flex;
@@ -29,6 +29,12 @@
     }
 }
 
+.card-breakpoint {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem
+}
+
 .card {
     background-color: $blue-500;
     color: $white;
@@ -43,7 +49,7 @@
 .presentation-card-home {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 
     .hello-message-container {
         display: flex;
@@ -58,6 +64,16 @@
     .total-balance-text {
         @include font-heading-5;
     }
+
+    .logout-text-card{
+        padding-top: 0.3125rem;
+    }
+}
+
+.actions-info-container {
+    display: flex;
+    gap: 0.625rem;
+    flex-direction: column;
 }
 
 .actions-bank-details-container {
@@ -175,4 +191,105 @@
         width: 100%;
     }
 
+}
+
+@include respond(md) {
+    .home {
+        padding: 0rem 3.125rem;
+        box-sizing: border-box;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 0.625rem;
+
+        .title-logo-container {
+            @include font-heading-2;
+            color: $blue-500;
+        }
+
+    }
+
+    .card-breakpoint {
+        background-color: $blue-500;
+        padding: 1.25rem;
+        border-radius: .5rem;
+
+        .card {
+            background-color: $blue-500;
+            color: $white;
+            border-radius: .5rem;
+
+            .account-balance-text {
+                @include font-heading-4;
+            }
+        }
+
+        
+
+        .actions-info-container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        
+
+        .actions-bank-details {
+            color: $white;
+
+        }
+    }
+
+    .graph-details-container {
+
+        .graph-details-card {
+            flex: 0 0 50%;
+            scroll-snap-align: center;
+            background-color: $gray-300;
+            border-radius: 0.5rem;
+            padding: 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 17.5rem;
+
+        }
+
+        .graph-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.625rem;
+
+        }
+
+        .title-graph-details {
+            @include font-heading-6;
+        }
+
+        .balance {
+            @include font-body-2;
+        }
+
+        .income {
+            color: $green-normal;
+        }
+
+        .expenses {
+            color: $red-normal;
+        }
+
+        .graph {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+    }
 }

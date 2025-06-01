@@ -76,45 +76,46 @@ export default function Home() {
                 />
                 <h3 className={styles['title-logo-container']}>Poup.ai</h3>
             </div>
-
-            <div className={styles.card}>
-                <div className={styles['presentation-card-home']}>
-                    <div>
-                        <div className={styles['hello-message-container']}>
-                            <p className={styles['hello-message-text']}>Olá, Joana</p>
-                            <Icons.WavingHand />
+            <div className={styles['card-breakpoint']}>
+                <div className={styles.card}>
+                    <div className={styles['presentation-card-home']}>
+                        <div>
+                            <div className={styles['hello-message-container']}>
+                                <p className={styles['hello-message-text']}>Olá, Joana</p>
+                                <Icons.WavingHand />
+                            </div>
+                            <p className={styles['total-balance-text']}>Saldo total em conta</p>
                         </div>
-                        <p className={styles['total-balance-text']}>Saldo total em conta</p>
+                        <div className={styles['logout-text-card']}>
+                            <Icons.Logout />
+                            <span >Sair</span>
+                        </div>
                     </div>
-                    <div>
-                        <Icons.Logout />
-                        <span className={styles['logout-text-card']}>Sair</span>
+                    <span className={styles['account-balance-text']}>R$400,00</span>
+                </div>
+                <div className={styles['actions-info-container']}>
+                    <div className={styles['actions-bank-details-container']}>
+                        {(["income", "expenses", "transfer"] as TransactionType[]).map((type) => (
+                            <div
+                                key={type}
+                                className={styles['actions-bank-details']}
+                                onClick={() => setModalType(type)}
+                                style={{ cursor: "pointer" }}
+                            >
+                                <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
+                                    {iconMap[type]}
+                                </Avatar>
+                                <p className={styles['actions-bank-details-text']}>{labelMap[type]}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className={styles['details-container']}>
+                        <TransactionInfo type="income" title="Receitas" amount="R$ 0,00" />
+                        <TransactionInfo type="expenses" title="Despesas" amount="R$ 0,00" />
                     </div>
                 </div>
-                <span className={styles['account-balance-text']}>R$400,00</span>
             </div>
-
-            <div className={styles['actions-bank-details-container']}>
-                {(["income", "expenses", "transfer"] as TransactionType[]).map((type) => (
-                    <div
-                        key={type}
-                        className={styles['actions-bank-details']}
-                        onClick={() => setModalType(type)}
-                        style={{ cursor: "pointer" }}
-                    >
-                        <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
-                            {iconMap[type]}
-                        </Avatar>
-                        <p className={styles['actions-bank-details-text']}>{labelMap[type]}</p>
-                    </div>
-                ))}
-            </div>
-
-            <div className={styles['details-container']}>
-                <TransactionInfo type="income" title="Receitas" amount="R$ 0,00" />
-                <TransactionInfo type="expenses" title="Despesas" amount="R$ 0,00" />
-            </div>
-
             <div className={styles['graph-details-container']}>
                 <div className={styles['graph-details-card']}>
                     <div className={styles['graph-details']}>
@@ -122,7 +123,7 @@ export default function Home() {
                         <span className={`${styles.balance} ${styles.income}`}>R$1.659,35</span>
                     </div>
                     <div className={styles.graph}>
-                        <PieChart data={receitas_data} size={receitas_size} className={styles.chart} sx={{height: '100%', width: '100%'}} />
+                        <PieChart data={receitas_data} size={receitas_size} className={styles.chart} sx={{ height: '100%', width: '100%' }} />
                     </div>
                 </div>
 
@@ -132,7 +133,7 @@ export default function Home() {
                         <span className={`${styles.balance} ${styles.expenses}`}>R$1.659,35</span>
                     </div>
                     <div className={styles.graph}>
-                        <PieChart data={despesas_data} size={despesas_size} className={styles.chart} sx={{height: '100%', width: '100%'}} />
+                        <PieChart data={despesas_data} size={despesas_size} className={styles.chart} sx={{ height: '100%', width: '100%' }} />
                     </div>
                 </div>
             </div>
