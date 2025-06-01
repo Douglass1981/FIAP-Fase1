@@ -3,11 +3,12 @@
 
 .content {
   background-color: $white;
-  width: 100vw;
-  min-height: 100vh;
+  width: 100dvw;
+  min-height: 100dvh;
   box-sizing: border-box;
+
   &__nav {
-    padding: 30px 170px;
+    padding: 1.875rem 3.125rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,45 +16,49 @@
     &__logo_area {
       display: flex;
       flex-direction: row;
-      gap: 10px;
+      gap: 0.625rem;
 
       &__brand {
-        @include typography(2.5rem, 700, 100%);
-        color: $blue-primary-500;
+        @include font-heading-2;
+        color: $blue-500;
       }
     }
 
     &__redirect_pages {
       display: flex;
-      gap: 20px;
+      gap: 1.25rem;
     }
 
     &__button:hover {
-      background-color: $secondary-purple-700;
+      background-color: $purple-700;
     }
   }
 
   &__container {
-    padding: 0px 170px;
-    display: flex;
+    padding: 0rem 3.125rem;
+    @include flex-center;
+    flex-direction: column;
+    //temporario
+    height: calc(100dvh - 216px);
 
     &__form-area {
-      width: 50%;
-      padding: 50px;
+      width: 80%;
+      padding: 0rem 3.125rem;
 
       &__box {
-        background-color: $gray-neutral-300;
-        padding: 50px;
-        border-radius: 16px;
+        background-color: $gray-300;
+        padding: 3.125rem;
+        border-radius: 1rem;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 1.25rem;
 
         &__text {
           &__title {
-            @include typography(1.5rem, 700);
+            @include font-heading-4;
             text-align: center;
           }
+
           &__paragraph {
             text-align: center;
           }
@@ -62,46 +67,47 @@
         &__form {
           display: flex;
           flex-direction: column;
-          gap: 15px;
+          gap: 0.9375rem;
 
           &__button:hover {
-            background-color: $secondary-purple-700;
+            background-color: $purple-700;
           }
         }
       }
     }
 
     &__contact {
-      padding: 50px;
+      padding: 3.125rem;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 1.25rem;
 
       &__text {
         &__title {
-          @include typography(1.5rem, 700);
+          @include font-heading-4;
         }
       }
 
       &__mail {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
 
         &__icon_box {
-          background-color: $gray-neutral-300;
-          padding: 10px;
+          background-color: $gray-300;
+          padding: 0.625rem;
           border-radius: 100%;
         }
       }
+
       &__phone {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
 
         &__icon_box {
-          background-color: $gray-neutral-300;
-          padding: 10px;
+          background-color: $gray-300;
+          padding: 0.625rem;
           border-radius: 100%;
         }
       }
@@ -109,78 +115,22 @@
   }
 
   &__footer {
-    display: flex;
-    padding: 30px;
-    justify-content: center;
+    @include flex-center;
+    padding: 1.875rem;
     color: $black;
   }
 }
 
-@media (max-width: $bp-tablet) {
+@include respond(lg) {
   .content {
-    &__nav {
-      padding: 30px 50px;
-    }
 
     &__container {
-      padding: 0px 50px;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center ;
+      flex-direction: row;
 
       &__form-area {
-        width: 100%;
-        padding: 50px;
-        display: flex;
-        justify-content: center;
-
+        width: 40%;
       }
 
-      &__contact {
-        width: 55%;
-        padding: 20px 0px;
-        
-
-        &__text {
-          &__title {
-            @include typography(1.5rem, 700);
-            text-align: center;
-          }
-          &__paragraph{
-            text-align: center;
-          }
-        }
-
-        &__mail {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-
-          &__icon_box {
-            background-color: $gray-neutral-300;
-            padding: 10px;
-            border-radius: 100%;
-          }
-        }
-        &__phone {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-
-          &__icon_box {
-            background-color: $gray-neutral-300;
-            padding: 10px;
-            border-radius: 100%;
-          }
-        }
-      }
-    }
-
-    &__footer {
-      display: flex;
-      padding: 30px;
-      justify-content: center;
-      color: $black;
     }
   }
 }
