@@ -1,3 +1,6 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
 @mixin typography($font-size,
   $font-weight: 400,
   $line-height: 1.5,
@@ -28,19 +31,15 @@ $black: #000000;
 
   &__container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-color: $blue-primary-500;
+    @include flex-end;
+    background-color: $blue-500;
 
     &__logo_area {
-      display: flex;
+      @include flex-center;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
       &__brand {
-        @include typography(3rem, 700);
+        @include font-heading-2;
         color: $white;
       }
     }
@@ -50,7 +49,7 @@ $black: #000000;
       flex-direction: column;
 
       &__text {
-        padding: 20px 30px;
+        padding: 1.25rem 1.875rem;
 
         &__title,
         &__subtitle {
@@ -58,42 +57,41 @@ $black: #000000;
         }
 
         &__title {
-          @include typography(1.75rem, 700);
+          @include font-heading-4 ;
         }
 
         &__subtitle {
-          @include typography(1.25rem);
+          @include font-heading-5 ;
         }
       }
 
       &__form {
         background-color: $white;
         width: 100%;
-        border-radius: 16px 16px 0px 0px;
+        border-radius: 1rem 1rem 0rem 0rem;
         display: flex;
         flex-direction: column;
-        padding: 50px 30px;
-        gap: 15px;
+        padding: 3.125rem 1.875rem;
 
         &__checkbox {
           display: flex;
           align-items: center;
 
-          &__text {
-            font-size: 1rem;
+          
+        }
 
-
-          }
+        &__button:hover {
+          background-color: $purple-700;
         }
 
         &__redirect {
           text-align: center;
 
           &__text {
-            font-size: 0.9rem;
+            @include font-body-3;
 
             &__link {
-              font-size: 0.9rem;
+              @include font-body-3;
             }
           }
         }
@@ -106,34 +104,26 @@ $black: #000000;
   }
 }
 
-@media (min-width: $bp-tablet) {
+@include respond(md) {
   .login {
-    background-color: $blue-primary-500;
-    align-items: center;
-    justify-content: center;
+    background-color: $blue-500;
+    @include flex-center;
 
     &__container {
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-radius: 16px;
+      border-radius: 1rem;
       background-color: $white;
       width: 70%;
-      height: auto;
-      padding: 50px;
+      padding: 3.125rem;
 
       &__logo_area {
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+        @include flex-center;
+        gap: 0.625rem;
 
 
 
         &__brand {
-          @include typography(2.5rem, 700);
-          color: $blue-primary-500;
+          color: $blue-500;
         }
       }
 
@@ -147,26 +137,26 @@ $black: #000000;
         }
 
         &__form {
-          padding: 0 30px;
+          padding: 0 1.875rem;
         }
       }
     }
   }
 }
 
-@media (min-width: $bp-desktop) {
+@include respond(lg) {
   .login {
     background-color: $white;
 
     &__container {
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       width: 50%;
-      gap: 20px;
+      gap: 1.25rem;
+      height: 100dvh;
 
       &__form-area {
         width: 60%;
-        gap: 20px;
+        gap: 1.25rem;
 
         &__text {
           padding: 0;
@@ -174,23 +164,17 @@ $black: #000000;
 
         &__form {
           padding: 0;
-
-          &__button:hover{
-            background-color: $secondary-purple-700;
-          }
         }
       }
     }
 
     &__container-side {
-      background-color: $blue-primary-500;
-      display: flex;
+      background-color: $blue-500;
+      @include flex-center;
       flex-direction: column;
       width: 50%;
       min-height: 100vh;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      gap: 0.625rem;
 
       &__image {
         width: 50%;
@@ -203,15 +187,14 @@ $black: #000000;
         align-items: center;
 
         &__title {
-          @include typography(2.5rem, 700);
+          @include font-heading-3;
           color: $white;
         }
 
         &__description {
           color: $white;
-          width: 50%;
-          text-align: center;
-          @include typography(1rem);
+          width: 60%;
+          text-align: center
         }
       }
     }
