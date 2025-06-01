@@ -12,6 +12,8 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import ModalTransaction from "../../components/modal-component/modaltransaction";
 import { colors } from "../../app/mui.styles";
 import TransactionInfo from '@/components/TransactionInfo';
+import Link from 'next/link';
+import HistoryIcon from '@mui/icons-material/History';
 
 type TransactionType = "income" | "expenses" | "transfer";
 
@@ -86,10 +88,10 @@ export default function Home() {
                             </div>
                             <p className={styles['total-balance-text']}>Saldo total em conta</p>
                         </div>
-                        <div className={styles['logout-text-card']}>
+                        <Link href='/'>
                             <Icons.Logout />
                             <span >Sair</span>
-                        </div>
+                        </Link>
                     </div>
                     <span className={styles['account-balance-text']}>R$400,00</span>
                 </div>
@@ -108,6 +110,16 @@ export default function Home() {
                                 <p className={styles['actions-bank-details-text']}>{labelMap[type]}</p>
                             </div>
                         ))}
+
+                        <Link href="/transactions" passHref>
+                            <div className={styles['actions-bank-details']} style={{ cursor: 'pointer' }}>
+                                <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
+                                    <HistoryIcon/>
+                                </Avatar>
+                                <p className={styles['actions-bank-details-text']}>Extrato</p>
+                            </div>
+                        </Link>
+
                     </div>
 
                     <div className={styles['details-container']}>
