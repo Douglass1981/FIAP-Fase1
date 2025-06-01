@@ -11,6 +11,7 @@ import Logout from '@mui/icons-material/Logout';
 import WavingHandOutlinedIcon from '@mui/icons-material/WavingHandOutlined';
 
 const ArrowDownIcon = ({ ...props }) => <ArrowDownwardIcon {...props} />
+
 const ArrowUpIcon = ({ ...props }) => <ArrowUpwardIcon {...props} />
 const CompareArrowsIcon = ({ ...props }) => <CompareArrows {...props} />
 const TransferIcon = ({ ...props }) => <SyncAltIcon {...props} />

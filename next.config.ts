@@ -3,7 +3,8 @@ import { env } from "process";
 
 module.exports = {
   env: {
-    DATABASE_URL: env.DATABASE_URL
+    DATABASE_URL: env.DATABASE_URL,
+    // PORT: env.PORT
   }
 }
 const nextConfig: NextConfig = {

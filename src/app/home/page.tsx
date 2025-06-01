@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Icons } from '../../icons';
-import styles from './home.styles.module.scss';
 import { PieChart } from '@/components/Graphs';
+import { Icons } from '@/icons';
+import styles from './home.styles.module.scss';
 
 const receitas_data = [
     { id: 'Alimentação', value: 25, label: 'Alimentação' },
@@ -27,7 +27,6 @@ const despesas_size = {
     height: 50,
 };
 
-
 export default function Home(){
   return(
       <section className={styles.home}>
@@ -46,7 +45,7 @@ export default function Home(){
                 <div>
                     <div className={styles['hello-message-container']}>
                         <p className={styles['hello-message-text']}>Olá, Joana</p>
-                        <Icons.WavingHand /> 
+                        <Icons.WavingHand />
                     </div>
                     <p className={styles['total-balance-text']}>Saldo total em conta</p>
                 </div>
