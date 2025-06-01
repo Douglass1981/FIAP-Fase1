@@ -5,7 +5,7 @@ import { Icons } from '../../icons';
 import styles from './home.styles.module.scss';
 import { PieChart } from '@/components/Graphs';
 import { useEffect, useState } from 'react';
-import { Avatar, Box } from '@mui/material';
+import { Avatar, Box, Button } from '@mui/material';
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
@@ -14,6 +14,7 @@ import { colors } from "../../app/mui.styles";
 import TransactionInfo from '@/components/TransactionInfo';
 import Link from 'next/link';
 import HistoryIcon from '@mui/icons-material/History';
+import AddIcon from '@mui/icons-material/Add';
 
 type TransactionType = "income" | "expenses" | "transfer";
 
@@ -87,14 +88,19 @@ export default function Home() {
                                 <Icons.WavingHand />
                             </div>
                             <p className={styles['total-balance-text']}>Saldo total em conta</p>
+                    <span className={styles['account-balance-text']}>R$400,00</span>
                         </div>
                         <Link href='/'>
                             <Icons.Logout />
                             <span >Sair</span>
                         </Link>
                     </div>
-                    <span className={styles['account-balance-text']}>R$400,00</span>
+                    <Button sx={{color: colors.white, textTransform: 'none', display: 'flex', alignItems: 'center', gap: 2, justifyContent: 'center'
+                    }}>
+                        Adicionar conta <AddIcon/>
+                    </Button>
                 </div>
+
                 <div className={styles['actions-info-container']}>
                     <div className={styles['actions-bank-details-container']}>
                         {(["income", "expenses", "transfer"] as TransactionType[]).map((type) => (
