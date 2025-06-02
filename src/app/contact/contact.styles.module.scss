@@ -9,9 +9,7 @@
 
   &__nav {
     padding: 1.875rem 3.125rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-between;
 
     &__logo_area {
       display: flex;

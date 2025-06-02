@@ -55,13 +55,12 @@
 
           &__card-income {
             background-color: $gray-300;
-            display: flex;
+            @include flex-between;
             padding: 0.625rem 0.5rem;
             border-radius: 0.5rem;
             max-width: 10rem;
             gap: 0.625rem;
-            justify-content: space-between;
-            align-items: center;
+            
 
             &__text-area {
               display: flex;
@@ -89,13 +88,11 @@
 
           &__card-expenses {
             background-color: $gray-300;
-            display: flex;
+            @include flex-between;
             padding: 0.625rem 0.5rem;
             border-radius: 0.5rem;
             max-width: 10rem;
             gap: 0.625rem;
-            justify-content: space-between;
-            align-items: center;
 
             &__text-area {
               display: flex;

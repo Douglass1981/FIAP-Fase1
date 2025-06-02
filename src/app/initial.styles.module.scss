@@ -61,9 +61,7 @@
     background-color: $white;
     
     &__nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-between;
       padding: 1.875rem 3.125rem;
 
       &__logo_area {
