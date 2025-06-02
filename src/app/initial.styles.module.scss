@@ -113,25 +113,13 @@
       display: none;
     }
 
-    &__footer {
-      display: flex;
-      padding: 1.875rem;
-
-      color: $black;
-      justify-content: center;
-    }
+    
   }
 }
 
 @include respond(lg) {
   .content {
-    &__nav {
-      padding: 1.875rem 10.625rem;
-
-      &__button:hover{
-        background-color: $purple-700;
-      }
-    }
+    
 
    
     &__desktop {

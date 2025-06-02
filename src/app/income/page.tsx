@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Avatar, Box, Button, Link } from "@mui/material";
+import { Avatar, Box,  Link } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
@@ -12,6 +12,7 @@ import FilterButton from "@/components/FilterButton";
 import TransactionInfo from "@/components/TransactionInfo";
 import ButtonTransactions from "@/components/ButtonTransactions";
 import ModalTransaction from "@/components/modal-component/modaltransaction";
+import { Footer } from "@/components/Footer";
 import { colors } from "../mui.styles";
 import styles from "./income.styles.module.scss";
 
@@ -196,6 +197,7 @@ export default function Income() {
           />
         </main>
       </Box>
+      <Footer/>
       {modalType && (
         <ModalTransaction
           type={modalType}

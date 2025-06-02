@@ -17,18 +17,24 @@ export default async function Initial() {
             </h2>
             <Box className={styles["content__container__material"]}>
               <Box className={styles["content__container__material__left"]}>
-                <p className={styles["content__container__material__left__text"]}>
+                <p
+                  className={styles["content__container__material__left__text"]}
+                >
                   Somos uma plataforma criada para ajudar você a entender,
                   planejar e otimizar seus gastos com tecnologia acessível e
                   insights personalizados.
                 </p>
-                <p className={styles["content__container__material__left__text"]}>
+                <p
+                  className={styles["content__container__material__left__text"]}
+                >
                   Acreditamos que educação financeira não precisa ser
                   complicada. Com o Poup.ai, você tem uma visão clara do que faz
                   sentido manter, ou melhorar — sem fórmulas mágicas, apenas
                   transparência, praticidade e resultados.
                 </p>
-                <p className={styles["content__container__material__left__text"]}>
+                <p
+                  className={styles["content__container__material__left__text"]}
+                >
                   Nosso compromisso é com a sua liberdade financeira. Estamos
                   aqui para mostrar que, com informação e organização, seu
                   dinheiro pode trabalhar melhor para você.
@@ -46,7 +52,7 @@ export default async function Initial() {
             </Box>
           </Box>
         </main>
-        <Footer/>
+        <Footer />
       </Box>
     </>
   );

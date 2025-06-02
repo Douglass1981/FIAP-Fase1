@@ -64,7 +64,7 @@ export default function Contact() {
                     fullWidth
                   />
 
-                  <MyButton label="Enviar" fullWidth/>
+                  <MyButton label="Enviar" fullWidth />
                 </FormGroup>
               </Box>
             </Box>
@@ -118,7 +118,7 @@ export default function Contact() {
           </Box>
         </main>
 
-        <Footer/>
+        <Footer />
       </Box>
     </>
   );
