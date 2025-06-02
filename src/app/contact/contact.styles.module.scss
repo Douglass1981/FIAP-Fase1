@@ -3,7 +3,7 @@
 
 .content {
   background-color: $white;
-  width: 100dvw;
+  max-width: 100dvw;
   min-height: 100dvh;
   box-sizing: border-box;
 
@@ -13,8 +13,6 @@
     padding: 0rem 3.125rem;
     @include flex-center;
     flex-direction: column;
-    //temporario
-    height: calc(100dvh - 216px);
 
     &__form-area {
       width: 80%;

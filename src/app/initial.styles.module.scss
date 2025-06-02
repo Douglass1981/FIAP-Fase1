@@ -3,7 +3,7 @@
 
 .content {
   background-color: $blue-500;
-  width: 100dvw;
+  max-width: 100dvw;
   min-height: 100dvh;
   box-sizing: border-box;
   @include flex-end;
@@ -59,28 +59,12 @@
 @include respond(md) {
   .content {
     background-color: $white;
-    
-    &__nav {
-      @include flex-between;
-      padding: 1.875rem 3.125rem;
-
-      &__logo_area {
-        flex-direction: row;
-        gap: 0.625rem;
-        padding-bottom: 0%;
-        justify-content: start;
-
-        &__brand {
-          @include font-heading-2;
-          color: $blue-500;
-        }
-      }
-
-      &__redirect_pages {
-        display: flex;
-        gap: 1.25rem;
+    &__nav{
+      &__logo_area{
+        align-items: initial;
       }
     }
+    
 
     > main {
       flex-grow: 1;
@@ -89,7 +73,7 @@
       display: block;
 
       &__container {
-        padding: 1.875rem 3.125rem;
+        padding: 0rem 3.125rem;
         display: flex;
         &__left {
           width: 70%;
@@ -124,7 +108,7 @@
    
     &__desktop {
       &__container {
-        padding: 1.875rem 10.625rem;
+        padding: 0rem 10.625rem;
       }
     }
   }

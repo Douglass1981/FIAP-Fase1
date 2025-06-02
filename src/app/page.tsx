@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { ROUTES } from "@/constants";
 import { colors } from "./mui.styles";
 import styles from "./initial.styles.module.scss";
+import Navbar from "@/components/Navbar";
 
 export default function Initial() {
   const isMobile = useMediaQuery("(max-width:767px)");
@@ -15,68 +16,27 @@ export default function Initial() {
     <>
       <Box className={styles["content"]}>
         <nav className={styles["content__nav"]}>
-          <Box className={styles["content__nav__logo_area"]}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "50%", height: "50%" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
-            <h1 className={styles["content__nav__logo_area__brand"]}>
-              Poup.ai
-            </h1>
-          </Box>
+  <Box className={styles["content__nav__logo_area"]}>
+    {isMobile ? (
+      <>
+        <Image
+          src="/logo.png"
+          width="232"
+          height="232"
+          alt="Logo"
+          style={{ width: "50%", height: "50%" }}
+        />
+        <h1 className={styles["content__nav__logo_area__brand"]}>
+          Poup.ai
+        </h1>
+        <Button sx={{ display: "none" }}>Login</Button>
+      </>
+    ) : (
+      <Navbar />
+    )}
+  </Box>
+</nav>
 
-          <Box className={styles["content__nav__redirect_pages"]}>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href={ROUTES.ABOUT}
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Sobre nós
-            </Link>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href={ROUTES.SERVICES}
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Serviços
-            </Link>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href={ROUTES.CONTACT}
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Entre em contato
-            </Link>
-          </Box>
-          {isMobile ? (
-            <Button sx={{ display: "none" }}>Login</Button>
-          ) : (
-            <Button
-              sx={{
-                textTransform: "none",
-                backgroundColor: colors.bluePrimary500,
-              }}
-              variant="contained"
-              href={ROUTES.LOGIN}
-              className={styles["content__nav__button"]}
-            >
-              Login
-            </Button>
-          )}
-        </nav>
         <main>
           <Box className={styles["content__desktop"]}>
             <Box className={styles["content__desktop__container"]}>
