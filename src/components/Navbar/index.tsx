@@ -1,17 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Box, Button } from "@mui/material";
-import { colors } from "@/app/mui.styles";
+import { Box} from "@mui/material";
 import { ROUTES } from "@/constants";
-import styles from './navbar.styles.module.scss';
+import styles from "./navbar.styles.module.scss";
+import MyButton from "../Button";
 
 export default function Navbar() {
   return (
     <nav className={styles.nav}>
-      <Link
-        href={ROUTES.DEFAULT}
-        className={styles.logo_area}
-      >
+      <Link href={ROUTES.DEFAULT} className={styles.logo_area}>
         <Image
           src="/logo.png"
           width={72}
@@ -23,40 +20,18 @@ export default function Navbar() {
       </Link>
 
       <Box className={styles.redirect_pages}>
-        <Link
-          href={ROUTES.ABOUT}
-          className={styles.link}
-        >
+        <Link href={ROUTES.ABOUT} className={styles.link}>
           Sobre nós
         </Link>
-        <Link
-          href={ROUTES.SERVICES}
-          className={styles.link}
-        >
+        <Link href={ROUTES.SERVICES} className={styles.link}>
           Serviços
         </Link>
-        <Link
-          href={ROUTES.CONTACT}
-          className={styles.link}
-        >
+        <Link href={ROUTES.CONTACT} className={styles.link}>
           Entre em contato
         </Link>
       </Box>
 
-      <Button
-        variant="contained"
-        href={ROUTES.LOGIN}
-        className={styles.button}
-        sx={{
-          textTransform: "none",
-          backgroundColor: colors.bluePrimary500,
-          "&:hover": {
-            backgroundColor: colors.purple700,
-          },
-        }}
-      >
-        Login
-      </Button>
+      <MyButton label="Login" href={ROUTES.LOGIN} />
     </nav>
   );
 }

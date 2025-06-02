@@ -1,4 +1,4 @@
-import { env } from "@/config/env";
+import { clientEnv } from '@/config/env.client';
 
 export const ROUTES = {
   DEFAULT: '/',
@@ -11,6 +11,6 @@ export const ROUTES = {
   DASHBOARD: '/dashboard',
   TRANSACTIONS: '/transactions',
   BACKEND: {
-    MOCK: env.MOCK_BASE_URL,
-  }
+    MOCK: clientEnv.NEXT_PUBLIC_MOCK_BASE_URL,
+  },
 } as const;

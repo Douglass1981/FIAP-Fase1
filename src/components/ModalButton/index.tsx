@@ -1,8 +1,9 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { colors } from "@/app/mui.styles";
+import { SxProps, Theme } from "@mui/material/styles";
 
-interface MyButtonProps {
+interface ModalButtonProps {
   label: string;
   onClick?: () => void;
   href?: string;
@@ -12,9 +13,10 @@ interface MyButtonProps {
   variant?: "contained" | "outlined" | "text";
   disabled?: boolean;
   fullWidth?: boolean
+  sx?: SxProps<Theme>;
 }
 
-const MyButton: React.FC<MyButtonProps> = ({
+const ModalButton: React.FC<ModalButtonProps> = ({
   label,
   onClick,
   href,
@@ -24,6 +26,8 @@ const MyButton: React.FC<MyButtonProps> = ({
   variant = "contained",
   disabled = false,
   fullWidth = false,
+  sx,
+  
 }) => {
   const isLink = Boolean(href);
 
@@ -36,6 +40,7 @@ const MyButton: React.FC<MyButtonProps> = ({
       component={isLink ? "a" : "button"}
       href={isLink ? href : undefined}
       sx={{
+        padding: "12px 16px",
         textTransform: "none",
         backgroundColor: variant === "contained" ? bgColor : "transparent",
         color: textColor,
@@ -44,6 +49,7 @@ const MyButton: React.FC<MyButtonProps> = ({
           backgroundColor:
             variant === "contained" ? colors.purple : `${hvColor}22`,
         },
+        ...sx,
       }}
     >
       {label}
@@ -51,4 +57,4 @@ const MyButton: React.FC<MyButtonProps> = ({
   );
 };
 
-export default MyButton;
+export default ModalButton;

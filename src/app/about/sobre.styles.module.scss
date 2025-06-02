@@ -7,35 +7,6 @@
   box-sizing: border-box;
   @include flex-end;
 
-  &__nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.875rem 3.125rem;
-
-    &__logo_area {
-      @include flex-center;
-      flex-direction: row;
-      gap: 0.625rem;
-      padding-bottom: 0%;
-      justify-content: start;
-
-      &__brand {
-        @include font-heading-2;
-        color: $blue-500;
-      }
-    }
-
-    &__redirect_pages {
-      display: flex;
-      gap: 1.25rem;
-    }
-
-    &__button:hover {
-      background-color: $purple-700;
-    }
-  }
-
   > main {
     flex-grow: 1;
   }
@@ -67,11 +38,7 @@
     }
   }
 
-  &__footer {
-    @include flex-center;
-    padding: 1.875rem;
-    color: $black;
-  }
+  
 }
 
 @include respond(lg){

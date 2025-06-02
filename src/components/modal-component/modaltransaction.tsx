@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { colors } from "../../app/mui.styles";
 import { useState } from "react";
+import ModalButton from "../ModalButton";
 
 type TransactionType = "income" | "expenses" | "transfer";
 
@@ -128,33 +129,16 @@ export default function ModalTransaction({
             </Box>
 
             <Box style={{ display: "flex", gap: 10 }}>
-              <Button
-                fullWidth
-                variant="contained"
+              <ModalButton
+                label="Não"
+                onClick={onClose}
                 sx={{
-                  padding: "12px 16px",
-                  textTransform: "none",
                   backgroundColor: colors.red,
-                  fontSize: "16px",
                   "&:hover": { backgroundColor: colors.lightRed },
                 }}
-                onClick={onClose}
-              >
-                Cancelar
-              </Button>
-              <Button
                 fullWidth
-                variant="contained"
-                sx={{
-                  padding: "12px 16px",
-                  textTransform: "none",
-                  backgroundColor: colors.bluePrimary500,
-                  fontSize: "16px",
-                  "&:hover": { backgroundColor: colors.purple },
-                }}
-              >
-                Adicionar
-              </Button>
+              />
+              <ModalButton label="Sim" fullWidth />
             </Box>
           </Box>
         </Box>

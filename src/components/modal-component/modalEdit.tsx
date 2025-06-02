@@ -15,6 +15,7 @@ import {
   TextField,
 } from "@mui/material";
 import { colors } from "../../app/mui.styles";
+import ModalButton from "../ModalButton";
 
 type ModalEditProps = {
   open: boolean;
@@ -31,7 +32,7 @@ type ModalEditProps = {
     amount: string;
     date: string;
   };
-   transactionTypeLabel: string;
+  transactionTypeLabel: string;
 };
 
 export default function ModalEdit({
@@ -138,39 +139,25 @@ export default function ModalEdit({
             </Box>
 
             <Box style={{ display: "flex", gap: 10 }}>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{
-                  padding: "12px 16px",
-                  textTransform: "none",
-                  backgroundColor: colors.red,
-                  fontSize: "16px",
-                  "&:hover": {
-                    backgroundColor: colors.lightRed,
-                  },
-                }}
+              <ModalButton
+                label="Cancelar"
                 onClick={onClose}
-              >
-                Cancelar
-              </Button>
-              <Button
-                fullWidth
-                variant="contained"
                 sx={{
-                  padding: "12px 16px",
-                  textTransform: "none",
-                  backgroundColor: colors.yellow,
-                  fontSize: "16px",
-                  color: colors.black,
-                  "&:hover": {
-                    backgroundColor: colors.lightYellow,
-                  },
+                  backgroundColor: colors.red,
+                  "&:hover": { backgroundColor: colors.lightRed },
                 }}
+                fullWidth
+              />
+              <ModalButton
+                label="Editar"
                 onClick={handleSubmit}
-              >
-                Editar
-              </Button>
+                sx={{
+                  backgroundColor: colors.yellow,
+                  color: colors.black,
+                  "&:hover": { backgroundColor: colors.lightYellow },
+                }}
+                fullWidth
+              />
             </Box>
           </Box>
         </Box>

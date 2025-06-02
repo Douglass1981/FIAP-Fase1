@@ -2,9 +2,7 @@
 @use "../../styles/mixins.scss" as *;
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-between;
   padding: 1.875rem 3.125rem;
 
   @include respond(lg) {

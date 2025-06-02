@@ -1,22 +1,22 @@
 
 "use client";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Box,
-  Button,
   Checkbox,
-  CircularProgress,
   Alert,
   FormControlLabel,
 } from "@mui/material";
-import Image from "next/image";
-import Link from "@mui/material/Link";
-import { useState, useEffect } from "react"; // Importe useEffect
-import { TextField, InputAdornment, IconButton } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
-import { useRouter } from "next/navigation";
-import styles from "./login.styles.module.scss";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import Link from "@mui/material/Link";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import MyButton from "@/components/Button";
+import { ROUTES } from "@/constants";
 import { colors } from "../mui.styles";
+import styles from "./login.styles.module.scss";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -97,7 +97,7 @@ export default function Login() {
         <Box className={styles["login__container"]}>
           <Link
             className={styles["login__container__logo_area"]}
-            href="http://localhost:3000"
+            href={ROUTES.DEFAULT}
             sx={{ textDecoration: "none" }}
           >
             {isMobile ? (
@@ -211,8 +211,9 @@ export default function Login() {
                   {error}
                 </Alert>
               )}
+              <MyButton label="Entrar"  href="" fullWidth/>
 
-              <Button
+              {/* <Button
                 variant="contained"
                 fullWidth
                 type="submit"
@@ -229,7 +230,7 @@ export default function Login() {
                 ) : (
                   "Entrar"
                 )}
-              </Button>
+              </Button> */}
               <Box
                 className={
                   styles["login__container__form-area__form__redirect"]
@@ -247,7 +248,7 @@ export default function Login() {
                         "login__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="/signup"
+                    href={ROUTES.SIGNUP}
                   >
                     Cadastre-se
                   </Link>
