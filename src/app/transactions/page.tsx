@@ -13,6 +13,7 @@ import TransactionInfo from "@/components/TransactionInfo";
 import ButtonTransactions from "@/components/ButtonTransactions";
 import ModalTransaction from "@/components/modal-component/modaltransaction";
 import { colors } from "../mui.styles";
+import { ROUTES } from "@/constants";
 import styles from "./transactions.styles.module.scss";
 import { Footer } from "@/components/Footer";
 
@@ -53,7 +54,7 @@ export default function Transactions() {
         <nav className={styles["transactions__nav"]}>
           <Link
             className={styles["transactions__nav__logo_area"]}
-            href="http://localhost:3000/home"
+            href={ROUTES.HOME}
             sx={{ textDecoration: "none" }}
           >
             <Image

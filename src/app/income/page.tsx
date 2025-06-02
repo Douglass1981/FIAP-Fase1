@@ -13,6 +13,7 @@ import TransactionInfo from "@/components/TransactionInfo";
 import ButtonTransactions from "@/components/ButtonTransactions";
 import ModalTransaction from "@/components/modal-component/modaltransaction";
 import { Footer } from "@/components/Footer";
+import { ROUTES } from "@/constants";
 import { colors } from "../mui.styles";
 import styles from "./income.styles.module.scss";
 
@@ -53,7 +54,7 @@ export default function Income() {
         <nav className={styles["income__nav"]}>
           <Link
             className={styles["income__nav__logo_area"]}
-            href="http://localhost:3000/home"
+            href={ROUTES.HOME}
             sx={{ textDecoration: "none" }}
           >
             <Image

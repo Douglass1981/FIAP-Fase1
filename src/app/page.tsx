@@ -5,6 +5,7 @@ import { Box, Button, Link } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import MyButton from "@/components/Button";
 import { Footer } from "@/components/Footer";
+import { ROUTES } from "@/constants";
 import { colors } from "./mui.styles";
 import styles from "./initial.styles.module.scss";
 
@@ -40,21 +41,21 @@ export default function Initial() {
           <Box className={styles["content__nav__redirect_pages"]}>
             <Link
               sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/about"
+              href={ROUTES.ABOUT}
               className={styles["content__nav__redirect_pages__link"]}
             >
               Sobre nós
             </Link>
             <Link
               sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/services"
+              href={ROUTES.SERVICES}
               className={styles["content__nav__redirect_pages__link"]}
             >
               Serviços
             </Link>
             <Link
               sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/contact"
+              href={ROUTES.CONTACT}
               className={styles["content__nav__redirect_pages__link"]}
             >
               Entre em contato
@@ -69,7 +70,7 @@ export default function Initial() {
                 backgroundColor: colors.bluePrimary500,
               }}
               variant="contained"
-              href="http://localhost:3000/login"
+              href={ROUTES.LOGIN}
               className={styles["content__nav__button"]}
             >
               Login
@@ -115,7 +116,7 @@ export default function Initial() {
               Descubra soluções financeiras inovadoras e confiáveis para
               garantir um futuro próspero.
             </p>
-            <MyButton label="Acessar" href="/login" fullWidth/>
+            <MyButton label="Acessar" href={ROUTES.LOGIN} fullWidth/>
 
           </Box>
         </main>

@@ -16,6 +16,7 @@ import { PieChart } from "@/components/Graphs";
 import { Footer } from "@/components/Footer";
 import { colors } from "../../app/mui.styles";
 import styles from "./home.styles.module.scss";
+import { ROUTES } from "@/constants";
 
 
 type TransactionType = "income" | "expenses" | "transfer";
@@ -99,7 +100,7 @@ export default function Home() {
                   Adicionar conta <AddIcon />
                 </Button>
               </div>
-              <Link href="/">
+              <Link href={ROUTES.DEFAULT}>
                 <Icons.Logout />
                 <span>Sair</span>
               </Link>
@@ -130,7 +131,7 @@ export default function Home() {
                   )
                 )}
 
-                <Link href="/transactions" passHref>
+                <Link href={ROUTES.TRANSACTIONS} passHref>
                   <div
                     className={styles["actions-bank-details"]}
                     style={{ cursor: "pointer" }}

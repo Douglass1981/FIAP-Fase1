@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { ROUTES } from "@/constants";
 import MyButton from "@/components/Button";
 import styles from "./signup.styles.module.scss";
 
@@ -91,7 +92,7 @@ export default function Cadastro() {
         <Box className={styles["signup__container"]}>
           <Link
             className={styles["signup__container__logo_area"]}
-            href="http://localhost:3000"
+            href={ROUTES.DEFAULT}
             sx={{ textDecoration: "none" }}
           >
             {isMobile ? (
@@ -212,7 +213,7 @@ export default function Cadastro() {
                         "signup__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="http://localhost:3000/login"
+                    href={ROUTES.LOGIN}
                   >
                     Login
                   </Link>

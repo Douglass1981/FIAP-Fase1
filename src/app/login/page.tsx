@@ -14,6 +14,7 @@ import { TextField, InputAdornment, IconButton } from "@mui/material";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import MyButton from "@/components/Button";
+import { ROUTES } from "@/constants";
 import { colors } from "../mui.styles";
 import styles from "./login.styles.module.scss";
 
@@ -96,7 +97,7 @@ export default function Login() {
         <Box className={styles["login__container"]}>
           <Link
             className={styles["login__container__logo_area"]}
-            href="http://localhost:3000"
+            href={ROUTES.DEFAULT}
             sx={{ textDecoration: "none" }}
           >
             {isMobile ? (
@@ -247,7 +248,7 @@ export default function Login() {
                         "login__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="/signup"
+                    href={ROUTES.SIGNUP}
                   >
                     Cadastre-se
                   </Link>
