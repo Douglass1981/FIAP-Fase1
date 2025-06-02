@@ -1,4 +1,4 @@
-// TransactionCard.tsx
+// src/components/CardTransactions.tsx
 "use client";
 
 import { Box, Button } from "@mui/material";
@@ -6,38 +6,36 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-
-// import ModalDelete from "./modal-component/modalDelete"; // Ajuste o caminho se necessário
-// import ModalEdit from "./modal-component/modalEdit"; // Ajuste o caminho se necessário
-// import ModalDetails from "./modal-component/modalDetails"; // Ajuste o caminho se necessário
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
-import { colors } from "../../app/mui.styles"; // Ajuste o caminho se necessário
+import { colors } from "../../app/mui.styles";
 import styles from "./cardTransactions.styles.module.scss";
 import { useState } from "react";
 import ModalDetails from "../modal-component/modalDetails";
 import ModalEdit from "../modal-component/modalEdit";
 import ModalDelete from "../modal-component/modalDelete";
-import dayjs from "dayjs"; // Adicione esta linha
-import customParseFormat from 'dayjs/plugin/customParseFormat'; // Se você estiver usando formato personalizado como "DD/MM/YYYY"
+import dayjs from "dayjs";
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 
 type TransactionType = "income" | "expenses" | "transfer";
 
 type TransactionCardProps = {
+  id: number; // <--- ADICIONE ESTA LINHA: O ID da transação
   category: string;
   description: string;
   date: string;
-  amount: string; // Já está formatado para string com R$
+  amount: string;
   onDelete: () => void;
-  type: TransactionType; // Adicionado o tipo de transação
-  bankFrom?: string; // Opcional, para transferências
-  bankTo?: string; // Opcional, para transferências
-  bank?: string; // Opcional, para receitas/despesas
+  type: TransactionType;
+  bankFrom?: string;
+  bankTo?: string;
+  bank?: string;
 };
 
 export default function TransactionCard({
+  id, // <--- ADICIONE A DESESTRUTURAÇÃO DO ID AQUI
   category,
   description,
   date,
@@ -61,7 +59,7 @@ export default function TransactionCard({
     if (type === "income") return <ArrowUpwardIcon style={{ color: colors.green }} />;
     if (type === "expenses") return <ArrowDownwardIcon style={{ color: colors.red }} />;
     if (type === "transfer") return <SyncAltOutlinedIcon />;
-    return <SyncAltOutlinedIcon />; // Fallback
+    return <SyncAltOutlinedIcon />;
   };
 
   const getAmountColor = () => {
@@ -102,13 +100,13 @@ export default function TransactionCard({
         <ModalDetails
           open={isDetailsOpen}
           onClose={() => setIsDetailsOpen(false)}
-          from={bankFrom || bank || "N/A"} // Adapte conforme o tipo de transação
-          to={bankTo || "N/A"} // Para transferências
+          from={bankFrom || bank || "N/A"}
+          to={bankTo || "N/A"}
           date={date}
           amount={amount}
-          category={category} // Adicionado categoria para detalhes
-          description={description} // Adicionado descrição para detalhes
-          type={type} // Passar o tipo para a modal de detalhes
+          category={category}
+          description={description}
+          type={type}
         />
         <Button sx={{ minWidth: 0, color: colors.black, textTransform: "none" }} onClick={() => setIsEditOpen(true)}>
           <EditOutlinedIcon />
@@ -121,14 +119,15 @@ export default function TransactionCard({
             type === "income" ? "Receita" : type === "expenses" ? "Despesa" : "Transferência"
           }
           initialData={{
+            id: id, // <--- ADICIONE ESTA LINHA: Passe o ID para o initialData
             from: bankFrom || bank || "N/A",
             to: bankTo || "N/A",
-            amount: amount.replace(/[R$\s.,]/g, '').replace(',', '.'), // Converte "R$ 1.000,00" para "1000.00"
-            date: dayjs(date, "DD/MM/YYYY").format("YYYY-MM-DD"), // Converte para formato DateField espera
+            amount: amount.replace(/[R$\s.,]/g, '').replace(',', '.'),
+            date: dayjs(date, "DD/MM/YYYY").format("YYYY-MM-DD"),
             category: category,
             description: description,
           }}
-          type={type} // Passa o tipo para a modal de edição
+          type={type}
         />
         <Button
           sx={{ minWidth: 0, color: colors.black, textTransform: "none" }}

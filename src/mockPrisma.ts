@@ -37,6 +37,8 @@ let mockCategorias = [
   { id: 4, nome: 'Lazer', createdAt: new Date(), updatedAt: new Date() },
   { id: 5, nome: 'Saúde', createdAt: new Date(), updatedAt: new Date() },
   { id: 6, nome: 'Alimentação', createdAt: new Date(), updatedAt: new Date() }, 
+  { id: 7, nome: 'Pix', createdAt: new Date(), updatedAt: new Date() }, 
+  { id: 8, nome: 'Cartão de Credito', createdAt: new Date(), updatedAt: new Date() }, 
 ];
 let nextCategoriaId = mockCategorias.length > 0 ? Math.max(...mockCategorias.map(c => c.id)) + 1 : 1;
 

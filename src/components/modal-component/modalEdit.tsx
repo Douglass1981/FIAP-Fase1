@@ -16,11 +16,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { colors } from "../../app/mui.styles"; // Ajuste o caminho conforme necessário
+import { colors } from "../../app/mui.styles";
 
-import mockPrisma from "../../mockPrisma"; // Verifique este caminho!
+import mockPrisma from "../../mockPrisma";
 
-// Interfaces (copie do ModalTransaction ou de um arquivo de tipos comum, se houver)
+// Certifique-se de que SelectChangeEvent está importado
+import { SelectChangeEvent } from "@mui/material/Select"; // Adicione esta linha para SelectChangeEvent
+
+
+// Interfaces (mantenha estas interfaces consistentes em seu projeto)
 interface Banco {
   id: number;
   nome: string;
@@ -38,8 +42,8 @@ interface InitialEditData {
   from: string; // Nome do banco (para receita/despesa) ou banco de origem (para transferência)
   to: string;   // Nome do banco de destino (para transferência)
   amount: string; // Valor como string
-  date: string; // Data no formato ISO 8601
-  category: string;    // Nome da categoria
+  date: string; // Data no formato ISO 8601 (YYYY-MM-DD)
+  category: string;     // Nome da categoria
   description: string; // Descrição da transação
 }
 
@@ -51,13 +55,13 @@ interface ModalEditProps {
     description: string;
     amount: number;
     date: string;
-    category?: string | number; // Pode ser nome ou ID, mas enviaremos ID
-    bank?: string | number;     // Pode ser nome ou ID, mas enviaremos ID
-    bankFrom?: string | number; // Pode ser nome ou ID, mas enviaremos ID
-    bankTo?: string | number;   // Pode ser nome ou ID, mas enviaremos ID
+    category?: string | number;
+    bank?: string | number;
+    bankFrom?: string | number;
+    bankTo?: string | number;
     type: TransactionType;
   }) => void;
-  transactionTypeLabel: string;
+  transactionTypeLabel: string; // Esta prop não está sendo usada, mas pode ser mantida
   initialData: InitialEditData;
   type: TransactionType;
 }
@@ -75,13 +79,11 @@ export default function ModalEdit({
   initialData,
   type,
 }: ModalEditProps) {
-  const [date, setDate] = useState<Dayjs | null>(
-    initialData.date ? dayjs(initialData.date) : null
-  );
-  const [amount, setAmount] = useState<string>(initialData.amount);
-  const [description, setDescription] = useState<string>(initialData.description || '');
+  // Inicialize os estados com valores padrão ou nulos, eles serão preenchidos no useEffect
+  const [date, setDate] = useState<Dayjs | null>(null);
+  const [amount, setAmount] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
-  // Estes estados AGORA armazenarão IDs numéricos, ou string vazia para "nada selecionado"
   const [selectedCategoriaId, setSelectedCategoriaId] = useState<number | string>("");
   const [selectedBancoId, setSelectedBancoId] = useState<number | string>("");
   const [selectedBancoSaiuDeId, setSelectedBancoSaiuDeId] = useState<number | string>("");
@@ -94,62 +96,93 @@ export default function ModalEdit({
   const [loadingCategorias, setLoadingCategorias] = useState(false);
   const [errorCategorias, setErrorCategorias] = useState<string | null>(null);
 
-  // Função para buscar os bancos
-  const fetchBancos = async () => {
-    setLoadingBancos(true);
-    setErrorBancos(null);
-    try {
-      const data: Banco[] = await mockPrisma.banco.findMany({});
-      setBancos(data);
-    } catch (error) {
-      console.error("Erro ao carregar bancos:", error);
-      setErrorBancos("Falha ao carregar bancos.");
-    } finally { setLoadingBancos(false); }
-  };
+  // --- NOVO useEffect para buscar bancos QUANDO A MODAL ABRE ---
+  useEffect(() => {
+    const fetchBancosData = async () => {
+      setLoadingBancos(true);
+      setErrorBancos(null);
+      try {
+        const data: Banco[] = await mockPrisma.banco.findMany({});
+        setBancos(data);
+      } catch (error) {
+        console.error("Erro ao carregar bancos:", error);
+        setErrorBancos("Falha ao carregar bancos.");
+      } finally {
+        setLoadingBancos(false);
+      }
+    };
 
-  // Função para buscar as categorias
-  const fetchCategorias = async () => {
-    setLoadingCategorias(true);
-    setErrorCategorias(null);
-    try {
-      const data: Categoria[] = await mockPrisma.categorias.findMany({});
-      setCategorias(data);
-    } catch (error) {
-      console.error("Erro ao carregar categorias:", error);
-      setErrorCategorias("Falha ao carregar categorias.");
-    } finally { setLoadingCategorias(false); }
-  };
+    if (open) {
+      fetchBancosData();
+    }
+    // Não inclua 'bancos' na dependência para evitar loop infinito
+  }, [open]);
 
+  // --- NOVO useEffect para buscar categorias QUANDO A MODAL ABRE (se não for transferência) ---
+  useEffect(() => {
+    const fetchCategoriasData = async () => {
+      setLoadingCategorias(true);
+      setErrorCategorias(null);
+      try {
+        const data: Categoria[] = await mockPrisma.categorias.findMany({});
+        setCategorias(data);
+      } catch (error) {
+        console.error("Erro ao carregar categorias:", error);
+        setErrorCategorias("Falha ao carregar categorias.");
+      } finally {
+        setLoadingCategorias(false);
+      }
+    };
+
+    if (open && type !== "transfer") {
+      fetchCategoriasData();
+    } else if (open && type === "transfer") {
+      // Limpa as categorias e o ID selecionado se for uma transferência
+      setCategorias([]);
+      setSelectedCategoriaId("");
+    }
+    // Não inclua 'categorias' na dependência para evitar loop infinito
+  }, [open, type]);
+
+
+  // --- useEffect PRINCIPAL para inicializar os dados do formulário e IDs selecionados ---
   useEffect(() => {
     if (open) {
-      // Sempre buscar os bancos e categorias para popular os dropdowns
-      fetchBancos();
-      if (type !== "transfer") {
-        fetchCategorias();
-      } else {
-        setCategorias([]);
-        setSelectedCategoriaId(""); // Limpa o estado se for transferência
-      }
-
       // Reinicializa os estados do formulário com base em initialData
       setDate(initialData.date ? dayjs(initialData.date) : null);
       setAmount(initialData.amount);
       setDescription(initialData.description || '');
 
-      // --- CRÍTICO: Inicializar selected IDs encontrando o ID pelo NOME ---
+      // Inicializa selected IDs encontrando o ID pelo NOME
+      // Garante que bancos e categorias estejam carregados antes de tentar encontrar
       if (type === "transfer") {
-        const initialBancoSaiuDeMatch = bancos.find(b => b.nome === initialData.from);
-        const initialBancoParaMatch = bancos.find(b => b.nome === initialData.to);
-        setSelectedBancoSaiuDeId(initialBancoSaiuDeMatch ? initialBancoSaiuDeMatch.id : "");
-        setSelectedBancoParaId(initialBancoParaMatch ? initialBancoParaMatch.id : "");
+        if (bancos.length > 0) { // Só tenta encontrar se os bancos já foram carregados
+          const initialBancoSaiuDeMatch = bancos.find(b => b.nome === initialData.from);
+          const initialBancoParaMatch = bancos.find(b => b.nome === initialData.to);
+          setSelectedBancoSaiuDeId(initialBancoSaiuDeMatch ? initialBancoSaiuDeMatch.id : "");
+          setSelectedBancoParaId(initialBancoParaMatch ? initialBancoParaMatch.id : "");
+        }
       } else { // income or expenses
-        const initialCategoriaMatch = categorias.find(c => c.nome === initialData.category);
-        const initialBancoMatch = bancos.find(b => b.nome === initialData.from); // 'from' é o banco para receita/despesa
-        setSelectedCategoriaId(initialCategoriaMatch ? initialCategoriaMatch.id : "");
-        setSelectedBancoId(initialBancoMatch ? initialBancoMatch.id : "");
+        if (bancos.length > 0 && categorias.length > 0) { // Só tenta encontrar se bancos E categorias foram carregados
+          const initialCategoriaMatch = categorias.find(c => c.nome === initialData.category);
+          const initialBancoMatch = bancos.find(b => b.nome === initialData.from);
+          setSelectedCategoriaId(initialCategoriaMatch ? initialCategoriaMatch.id : "");
+          setSelectedBancoId(initialBancoMatch ? initialBancoMatch.id : "");
+        }
       }
+    } else {
+      // Quando a modal fecha, limpa os estados para a próxima abertura
+      setDate(null);
+      setAmount("");
+      setDescription("");
+      setSelectedCategoriaId("");
+      setSelectedBancoId("");
+      setSelectedBancoSaiuDeId("");
+      setSelectedBancoParaId("");
+      // Não é necessário resetar bancos/categorias aqui, pois eles são carregados novamente na abertura
     }
-  }, [open, initialData, type, bancos, categorias]); // Adicione bancos e categorias nas dependências
+  }, [open, initialData, type, bancos, categorias]); // Mantenha bancos/categorias aqui para re-avaliar a inicialização após o carregamento deles
+
 
   // Handler para os Selects, agora atualizam os estados de ID
   const handleSelectChange = (setter: React.Dispatch<React.SetStateAction<string | number>>) =>
@@ -207,13 +240,17 @@ export default function ModalEdit({
     if (type === "transfer") {
         updateDataForPrisma.bancoOrigemId = bankOrigemIdToSave;
         updateDataForPrisma.bancoDestinoId = bankDestinoIdToSave;
-        updateDataForPrisma.categoriaId = null; // Garante que estes campos sejam nulos no banco para transferências
+        updateDataForPrisma.categoriaId = null;
         updateDataForPrisma.bancoid = null;
+        // Para transferências, o tipo é 3 no seu mockPrisma
+        updateDataForPrisma.tipoId = 3; 
     } else {
         updateDataForPrisma.categoriaId = categoryIdToSave;
         updateDataForPrisma.bancoid = bankIdToSave;
-        updateDataForPrisma.bancoOrigemId = null; // Garante que estes campos sejam nulos no banco para receita/despesa
+        updateDataForPrisma.bancoOrigemId = null;
         updateDataForPrisma.bancoDestinoId = null;
+        // Para receita (1) ou despesa (2)
+        updateDataForPrisma.tipoId = type === "income" ? 1 : 2; 
     }
 
     try {
@@ -224,6 +261,7 @@ export default function ModalEdit({
         console.log("Transação atualizada no mockPrisma:", updatedTransactionFromPrisma);
 
         // Agora, formata os dados para o componente pai (Transactions.tsx)
+        // Busque os nomes com base nos IDs que foram salvos
         const categoryName = updatedTransactionFromPrisma.categoriaId
             ? (await mockPrisma.categorias.findUnique({ where: { id: updatedTransactionFromPrisma.categoriaId } }))?.nome || "N/A"
             : "N/A";
@@ -313,7 +351,7 @@ export default function ModalEdit({
                       labelId="saiu-label"
                       id="select-saiu-de"
                       label="Saiu de"
-                      value={selectedBancoSaiuDeId} // Usa o estado de ID
+                      value={selectedBancoSaiuDeId}
                       onChange={handleSelectChange(setSelectedBancoSaiuDeId)}
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
@@ -332,7 +370,7 @@ export default function ModalEdit({
                       labelId="para-label"
                       id="select-para"
                       label="Para"
-                      value={selectedBancoParaId} // Usa o estado de ID
+                      value={selectedBancoParaId}
                       onChange={handleSelectChange(setSelectedBancoParaId)}
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
@@ -354,7 +392,7 @@ export default function ModalEdit({
                       labelId="categoria-label"
                       id="select-categoria"
                       label="Categoria"
-                      value={selectedCategoriaId} // Usa o estado de ID
+                      value={selectedCategoriaId}
                       onChange={handleSelectChange(setSelectedCategoriaId)}
                       disabled={loadingCategorias || errorCategorias !== null}
                       sx={{ textAlign: "left" }}
@@ -373,7 +411,7 @@ export default function ModalEdit({
                       labelId="banco-label"
                       id="select-banco"
                       label="Banco"
-                      value={selectedBancoId} // Usa o estado de ID
+                      value={selectedBancoId}
                       onChange={handleSelectChange(setSelectedBancoId)}
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}

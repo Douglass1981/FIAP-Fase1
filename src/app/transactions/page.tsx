@@ -42,9 +42,7 @@ export default function Transactions() {
   const [modalType, setModalType] = useState<"income" | "expenses" | "transfer" | null>(null);
   const [selectedFilter, setSelectedFilter] = useState("Última semana");
 
-  // O MAIN_BANK_ID não é mais tão relevante para a soma de transferências em si,
-  // mas pode ser útil para outras lógicas ou filtros futuros, então podemos mantê-lo.
-  const MAIN_BANK_ID = 2; // <<--- AJUSTE AQUI PARA O ID DO SEU BANCO PRINCIPAL SE FOR USAR EM OUTRO CONTEXTO
+  const MAIN_BANK_ID = 2;
 
   const { totalIncome, totalExpenses } = useMemo(() => {
     let income = 0;
@@ -56,9 +54,7 @@ export default function Transactions() {
       } else if (transaction.type === "expenses") {
         expenses += transaction.amount; // transaction.amount já é negativo
       } else if (transaction.type === "transfer") {
-        // --- ÚLTIMA CORREÇÃO AQUI: Transferências SEMPRE somam na receita ---
         income += transaction.amount; // Todas as transferências somam na receita.
-        // Nenhuma lógica para despesas em transferências.
       }
     });
 
@@ -69,7 +65,6 @@ export default function Transactions() {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
   };
 
-  // Carrega transações mockadas iniciais
   useEffect(() => {
     const loadInitialTransactions = async () => {
       const initialData = await mockPrisma.transacoes.findMany({});
@@ -94,7 +89,7 @@ export default function Transactions() {
               ? (await mockPrisma.banco.findUnique({ where: { id: t.bancoDestinoId } }))?.nome || "N/A"
               : "N/A";
             descriptionText = `De ${bankFromName} para ${bankToName}`;
-          } else { // income or expenses
+          } else {
             categoryName = t.categoriaId
               ? (await mockPrisma.categorias.findUnique({ where: { id: t.categoriaId } }))?.nome || "N/A"
               : "N/A";
@@ -109,7 +104,7 @@ export default function Transactions() {
             category: categoryName,
             description: descriptionText,
             date: dayjs(t.data).format("DD/MM/YYYY"),
-            amount: t.valor, // O valor já vem como número, positivo para receita/transferência, negativo para despesa
+            amount: t.valor,
             type: transactionType,
             bank: bankName,
             bankFrom: bankFromName,
@@ -153,6 +148,14 @@ export default function Transactions() {
     income: <ArrowUpwardIcon />,
     expenses: <ArrowDownwardIcon />,
     transfer: <SyncAltOutlinedIcon />,
+  };
+
+  const handleUpdateTransaction = (updatedTransaction: Transaction) => {
+    setTransactions(prevTransactions =>
+      prevTransactions.map(t =>
+        t.id === updatedTransaction.id ? updatedTransaction : t
+      )
+    );
   };
 
   return (
@@ -292,6 +295,7 @@ export default function Transactions() {
               transactions.map((transaction) => (
                 <TransactionCard
                   key={transaction.id}
+                  id={transaction.id} /* <--- SINTAXE DE COMENTÁRIO CORRIGIDA AQUI */
                   category={transaction.category}
                   description={transaction.description}
                   date={transaction.date}
