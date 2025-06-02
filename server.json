@@ -1,0 +1,146 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Ana",
+            "email": "anacarolina@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "name": "Douglas",
+            "email": "douglas@gmail.com",
+            "password": "douglas"
+        },
+        {
+            "id": 3,
+            "name": "Clara",
+            "email": "clara@gmail.com",
+            "password": "clara"
+        }
+    ],
+    "bank_accounts": [
+        {
+            "id": 1,
+            "userId": 1,
+            "value": 200,
+            "bank_name": "Itau"
+        },
+        {
+            "id": 2,
+            "userId": 2,
+            "value": 600,
+            "bank_name": "Santander"
+        }
+    ],
+    "transactions": [
+        {
+            "id": 1,
+            "userId": 1,
+            "type": "receita",
+            "title": "Salário",
+            "value": 5000,
+            "date": "2025-04-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "type": "receita",
+            "title": "Investimentos",
+            "value": 5000,
+            "date": "2025-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 3,
+            "userId": 1,
+            "type": "receita",
+            "title": "Vale salarial",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 4,
+            "userId": 1,
+            "type": "despesa",
+            "title": "Alimentação",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 5,
+            "userId": 1,
+            "type": "despesa",
+            "title": "Shopping",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 6,
+            "userId": 2,
+            "type": "receita",
+            "title": "Salário",
+            "value": 5000,
+            "date": "2025-04-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 7,
+            "userId": 2,
+            "type": "receita",
+            "title": "Investimentos",
+            "value": 5000,
+            "date": "2025-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 8,
+            "userId": 2,
+            "type": "receita",
+            "title": "Vale salarial",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 9,
+            "userId": 2,
+            "type": "despesa",
+            "title": "Alimentação",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 10,
+            "userId": 2,
+            "type": "despesa",
+            "title": "Shopping",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 11,
+            "userId": 2,
+            "type": "despesa",
+            "title": "Shopping",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        },
+        {
+            "id": 12,
+            "userId": 2,
+            "type": "despesa",
+            "title": "Condomínio",
+            "value": 2000,
+            "date": "2023-06-01",
+            "category": "Trabalho"
+        }
+    ]
+}
