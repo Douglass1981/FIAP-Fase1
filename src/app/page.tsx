@@ -1,11 +1,11 @@
 "use client";
 
-import { Box, Button, Link } from "@mui/material";
-import styles from "./initial.styles.module.scss";
 import Image from "next/image";
+import { Box, Button, Link } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
-import { colors } from "./mui.styles";
 import MyButton from "@/components/Button";
+import { colors } from "./mui.styles";
+import styles from "./initial.styles.module.scss";
 
 export default function Initial() {
   const isMobile = useMediaQuery("(max-width:767px)");

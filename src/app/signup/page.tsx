@@ -1,22 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Box,
-  Button,
   IconButton,
   InputAdornment,
   TextField,
   useMediaQuery,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import styles from "./signup.styles.module.scss";
-import Image from "next/image";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { colors } from "../mui.styles";
-import { useRouter } from "next/navigation";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import MyButton from "@/components/Button";
+import styles from "./signup.styles.module.scss";
 
 export default function Cadastro() {
   const [nome, setName] = useState("");

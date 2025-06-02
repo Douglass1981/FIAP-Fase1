@@ -1,7 +1,7 @@
-import { Box, Button, Link } from "@mui/material";
-import styles from "./services.styles.module.scss";
 import Image from "next/image";
+import { Box, Button, Link } from "@mui/material";
 import Navbar from "@/components/Navbar";
+import styles from "./services.styles.module.scss";
 
 export default function Services() {
   return (

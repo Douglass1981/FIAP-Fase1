@@ -1,23 +1,21 @@
 
 "use client";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Box,
-  Button,
   Checkbox,
-  CircularProgress,
   Alert,
   FormControlLabel,
 } from "@mui/material";
-import Image from "next/image";
-import Link from "@mui/material/Link";
-import { useState, useEffect } from "react"; // Importe useEffect
-import { TextField, InputAdornment, IconButton } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
-import { useRouter } from "next/navigation";
-import styles from "./login.styles.module.scss";
-import { colors } from "../mui.styles";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import Link from "@mui/material/Link";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import MyButton from "@/components/Button";
+import { colors } from "../mui.styles";
+import styles from "./login.styles.module.scss";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);

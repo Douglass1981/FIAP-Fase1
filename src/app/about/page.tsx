@@ -1,8 +1,7 @@
-import { Box } from "@mui/material";
-import styles from "./sobre.styles.module.scss";
 import Image from "next/image";
+import { Box } from "@mui/material";
 import Navbar from "@/components/Navbar";
-import { Users } from "@/services";
+import styles from "./sobre.styles.module.scss";
 
 export default async function Initial() {
   return (

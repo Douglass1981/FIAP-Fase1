@@ -1,24 +1,24 @@
 "use client";
 
-import Image from "next/image";
-import { PieChart } from "@/components/Graphs";
 import { useEffect, useState } from "react";
-import { Avatar, Box, Button } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import { Avatar,  Button } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
-import ModalTransaction from "../../components/modal-component/modaltransaction";
-import { colors } from "../../app/mui.styles";
-import TransactionInfo from "@/components/TransactionInfo";
-import Link from "next/link";
 import HistoryIcon from "@mui/icons-material/History";
 import AddIcon from "@mui/icons-material/Add";
+import ModalTransaction from "../../components/modal-component/modaltransaction";
+import TransactionInfo from "@/components/TransactionInfo";
+import { Icons } from "@/icons";
+import { PieChart } from "@/components/Graphs";
+import { Footer } from "@/components/Footer";
+import { colors } from "../../app/mui.styles";
+import styles from "./home.styles.module.scss";
+
 
 type TransactionType = "income" | "expenses" | "transfer";
-import { Icons } from "@/icons";
-import styles from "./home.styles.module.scss";
-import { Footer } from "@/components/Footer";
-
 const receitas_data = [
   { id: "Alimentação", value: 25, label: "Alimentação" },
   { id: "Educação", value: 15, label: "Educação" },
