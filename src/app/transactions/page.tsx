@@ -14,6 +14,7 @@ import ButtonTransactions from "@/components/ButtonTransactions";
 import ModalTransaction from "@/components/modal-component/modaltransaction";
 import { colors } from "../mui.styles";
 import styles from "./transactions.styles.module.scss";
+import { Footer } from "@/components/Footer";
 
 export default function Transactions() {
   const router = useRouter();
@@ -196,6 +197,7 @@ export default function Transactions() {
           />
         </main>
       </Box>
+      <Footer/>
       {modalType && (
         <ModalTransaction
           type={modalType}

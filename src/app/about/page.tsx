@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Box } from "@mui/material";
 import Navbar from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import styles from "./sobre.styles.module.scss";
 
 export default async function Initial() {
@@ -45,9 +46,7 @@ export default async function Initial() {
             </Box>
           </Box>
         </main>
-        <footer className={styles["content__footer"]}>
-          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
-        </footer>
+        <Footer/>
       </Box>
     </>
   );

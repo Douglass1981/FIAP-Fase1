@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Box, Button, Link } from "@mui/material";
+import { Footer } from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import styles from "./services.styles.module.scss";
 
@@ -76,9 +77,7 @@ export default function Services() {
             </Box>
           </Box>
         </main>
-        <footer className={styles["content__footer"]}>
-          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
-        </footer>
+        <Footer/>
       </Box>
     </>
   );

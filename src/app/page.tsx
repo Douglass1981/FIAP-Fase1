@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Box, Button, Link } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import MyButton from "@/components/Button";
+import { Footer } from "@/components/Footer";
 import { colors } from "./mui.styles";
 import styles from "./initial.styles.module.scss";
 
@@ -118,9 +119,7 @@ export default function Initial() {
 
           </Box>
         </main>
-        <footer className={styles["content__footer"]}>
-          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
-        </footer>
+        <Footer/>
       </Box>
     </>
   );

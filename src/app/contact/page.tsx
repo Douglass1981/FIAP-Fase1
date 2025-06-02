@@ -3,6 +3,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Navbar from "@/components/Navbar";
 import MyButton from "@/components/Button";
+import { Footer } from "@/components/Footer";
 import { colors } from "../mui.styles";
 import styles from "./contact.styles.module.scss";
 
@@ -117,9 +118,7 @@ export default function Contact() {
           </Box>
         </main>
 
-        <footer className={styles["content__footer"]}>
-          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
-        </footer>
+        <Footer/>
       </Box>
     </>
   );
