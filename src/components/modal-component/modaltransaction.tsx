@@ -1,24 +1,26 @@
-
 "use client";
 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from "dayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import {
   Box,
-  Button,
+  Button, // Mantenha este se você usa o Button do Material-UI em outro lugar no componente
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   TextField,
-  Typography 
+  Typography
 } from "@mui/material";
-import { colors } from "../../app/mui.styles"; 
+import { colors } from "../../app/mui.styles";
 import { useState, useEffect } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import mockPrisma from "@/mockPrisma";
+
+// Renomear o import do seu componente Button customizado para o nome que você usa no JSX
+import ModalButton from "@/components/Button"; // Corrigido de MyButton para ModalButton
 
 
 interface Banco {
@@ -71,29 +73,24 @@ export default function ModalTransaction({
 }: ModalTransactionProps) {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
   const [amount, setAmount] = useState<string>("");
-  // A descrição não será usada no UI da modal, mas o estado pode ser mantido se a lógica de descrição gerada depender dela.
-  // No momento, a descrição é gerada ou vazia, então não precisamos mais do TextField.
   const [description, setDescription] = useState<string>("");
 
-  // Estados para listas de bancos e categorias (seus fetches existentes)
   const [bancos, setBancos] = useState<Banco[]>([]);
   const [loadingBancos, setLoadingBancos] = useState(false);
-  const [errorBancos, setErrorBancos] = useState<string | null>(null);
+  const [errorBancos, useStateErrorBancos] = useState<string | null>(null);
 
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [loadingCategorias, setLoadingCategorias] = useState(false);
   const [errorCategorias, setErrorCategorias] = useState<string | null>(null);
 
-  // Estados para os valores selecionados dos dropdowns
   const [selectedBancoSaiuDe, setSelectedBancoSaiuDe] = useState<number | string>("");
   const [selectedBancoPara, setSelectedBancoPara] = useState<number | string>("");
   const [selectedBanco, setSelectedBanco] = useState<number | string>("");
   const [selectedCategoria, setSelectedCategoria] = useState<number | string>("");
 
-  // Funções para buscar bancos e categorias (seus fetches existentes)
   const fetchBancos = async () => {
     setLoadingBancos(true);
-    setErrorBancos(null);
+    useStateErrorBancos(null);
     try {
       const data: Banco[] = await mockPrisma.banco.findMany({});
       setBancos(data);
@@ -106,7 +103,7 @@ export default function ModalTransaction({
       }
     } catch (error) {
       console.error("Erro ao carregar bancos:", error);
-      setErrorBancos("Falha ao carregar bancos.");
+      useStateErrorBancos("Falha ao carregar bancos.");
     } finally { setLoadingBancos(false); }
   };
 
@@ -127,38 +124,34 @@ export default function ModalTransaction({
     } finally { setLoadingCategorias(false); }
   };
 
-  // Efeito para carregar dados e resetar estados ao abrir/mudar tipo
   useEffect(() => {
     if (open) {
       fetchBancos();
-      // Sempre resetar os campos ao abrir a modal
       setAmount('');
       setDate(dayjs());
-      setDescription(''); // Limpa a descrição sempre
+      setDescription('');
 
       if (type !== "transfer") {
         fetchCategorias();
-        setSelectedCategoria(""); // Garante que a categoria seja resetada
-        setSelectedBanco(""); // Garante que o banco de transação seja resetado
+        setSelectedCategoria("");
+        setSelectedBanco("");
       } else {
-        setCategorias([]); // Limpa categorias para transferência
+        setCategorias([]);
         setSelectedCategoria("");
         setErrorCategorias(null);
         setLoadingCategorias(false);
-        setSelectedBancoSaiuDe(""); // Garante que os bancos de transferência sejam resetados
+        setSelectedBancoSaiuDe("");
         setSelectedBancoPara("");
       }
     }
   }, [open, type]);
 
-  // Handlers genéricos para os Selects (simplifica o código)
   const handleSelectChange = (setter: React.Dispatch<React.SetStateAction<string | number>>) =>
     (event: SelectChangeEvent<string | number>) => {
       setter(event.target.value);
     };
 
   const handleSubmit = async () => {
-    // Validações básicas
     if (!amount || !date) {
       alert("Por favor, preencha o valor e a data.");
       return;
@@ -169,7 +162,6 @@ export default function ModalTransaction({
         return;
     }
 
-    // Validações específicas por tipo
     if (type !== "transfer") {
         if (!selectedCategoria) {
             alert("Por favor, selecione uma categoria.");
@@ -179,7 +171,7 @@ export default function ModalTransaction({
             alert("Por favor, selecione o banco.");
             return;
         }
-    } else { // type === "transfer"
+    } else {
         if (!selectedBancoSaiuDe || !selectedBancoPara) {
             alert("Por favor, selecione os bancos de origem e destino.");
             return;
@@ -190,35 +182,32 @@ export default function ModalTransaction({
         }
     }
 
-    // Preparando dados para o mockPrisma
     const newTransactionDataForPrisma: any = {
-      // Descrição será vazia para Receita/Despesa, e gerada para Transferência
       descricao: type === "transfer" ? `Transferência de ${parsedAmount.toFixed(2).replace('.', ',')}` : '',
       data: date ? date.toISOString() : new Date().toISOString(),
-      valor: parsedAmount * (type === "expenses" ? -1 : 1), // Valor negativo para despesas
-      tipoId: type === "income" ? 1 : type === "expenses" ? 2 : 3, // Assumindo 3 para Transferência no seu mockTipoTransacoes
-      usuarioId: 1, // Assumindo um usuário mockado, ajuste se tiver autenticação real
+      valor: parsedAmount * (type === "expenses" ? -1 : 1),
+      tipoId: type === "income" ? 1 : type === "expenses" ? 2 : 3,
+      usuarioId: 1,
     };
 
     if (type === "transfer") {
       newTransactionDataForPrisma.bancoOrigemId = selectedBancoSaiuDe as number;
       newTransactionDataForPrisma.bancoDestinoId = selectedBancoPara as number;
-      delete newTransactionDataForPrisma.categoriaId; // Garante que não envie categoria para transferência
-      delete newTransactionDataForPrisma.bancoid;     // Garante que não envie bancoid para transferência
-    } else { // income or expenses
+      delete newTransactionDataForPrisma.categoriaId;
+      delete newTransactionDataForPrisma.bancoid;
+    } else {
       newTransactionDataForPrisma.categoriaId = selectedCategoria as number;
       newTransactionDataForPrisma.bancoid = selectedBanco as number;
-      delete newTransactionDataForPrisma.bancoOrigemId; // Garante que não envie bancos de origem/destino para receita/despesa
+      delete newTransactionDataForPrisma.bancoOrigemId;
       delete newTransactionDataForPrisma.bancoDestinoId;
     }
 
     try {
       const createdTransaction = await mockPrisma.transacoes.create(newTransactionDataForPrisma);
 
-      // Buscando nomes para exibir no TransactionCard
       const categoryName = createdTransaction.categoriaId
         ? (await mockPrisma.categorias.findUnique({ where: { id: createdTransaction.categoriaId } }))?.nome || "N/A"
-        : "N/A"; // "N/A" para transferências
+        : "N/A";
 
       const bankName = createdTransaction.bancoid
         ? (await mockPrisma.banco.findUnique({ where: { id: createdTransaction.bancoid } }))?.nome || "N/A"
@@ -232,25 +221,23 @@ export default function ModalTransaction({
         ? (await mockPrisma.banco.findUnique({ where: { id: createdTransaction.bancoDestinoId } }))?.nome || "N/A"
         : "N/A";
 
-      // Formata a transação para o formato que o TransactionCard espera
       const formattedTransaction: TransactionDataForCard = {
         id: createdTransaction.id,
         category: type === "transfer" ? "Transferência" : categoryName,
-        description: type === "transfer" ? `De ${bankFromName} para ${bankToName}` : `${bankName} - ${createdTransaction.descricao || 'Sem Descrição'}`, // Descrição gerada/vazia
+        description: type === "transfer" ? `De ${bankFromName} para ${bankToName}` : `${bankName} - ${createdTransaction.descricao || 'Sem Descrição'}`,
         date: dayjs(createdTransaction.data).format("DD/MM/YYYY"),
-        amount: createdTransaction.valor, // Já vem tratado como positivo/negativo do mockPrisma
+        amount: createdTransaction.valor,
         type: type,
         bank: bankName,
         bankFrom: bankFromName,
         bankTo: bankToName,
-        // Incluindo os IDs para o componente pai fazer os cálculos
         bancoOrigemId: createdTransaction.bancoOrigemId,
         bancoDestinoId: createdTransaction.bancoDestinoId,
         bancoid: createdTransaction.bancoid,
       };
 
       onAddTransaction(formattedTransaction);
-      onClose(); // Fecha a modal
+      onClose();
     } catch (error) {
       console.error("Erro ao adicionar transação:", error);
       alert("Erro ao adicionar transação. Verifique o console.");
@@ -285,14 +272,10 @@ export default function ModalTransaction({
         >
           <Box style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <Typography style={{ fontSize: "16px", fontWeight: "bold", textAlign: "start" }}>
-              {labelMap[type]} {/* Título da modal */}
+              {labelMap[type]}
             </Typography>
 
             <Box style={{ display: "flex", flexDirection: "column", gap: 15 }}>
-              {/* === CAMPO DE DESCRIÇÃO REMOVIDO PARA TODOS OS TIPOS === */}
-              {/* Se quiser reabilitar para um tipo específico, adicione a condição aqui. */}
-              {/* Ex: {type !== "transfer" && ( /* <TextField ... /> */ /* )} */}
-
               {type === "transfer" ? (
                 <>
                   <FormControl fullWidth>
@@ -397,34 +380,35 @@ export default function ModalTransaction({
             </Box>
 
             <Box style={{ display: "flex", gap: 10 }}>
-              <Button
-                fullWidth
-                variant="contained"
+              {/* PRIMEIRO BOTÃO: Cancelar */}
+              <ModalButton
+                label="Não" // Este label faz sentido para "Cancelar"
+                onClick={onClose} // Fecha a modal
                 sx={{
-                  padding: "12px 16px",
-                  textTransform: "none",
                   backgroundColor: colors.red,
-                  fontSize: "16px",
                   "&:hover": { backgroundColor: colors.lightRed },
-                }}
-                onClick={onClose}
-              >
-                Cancelar
-              </Button>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{
                   padding: "12px 16px",
                   textTransform: "none",
-                  backgroundColor: colors.bluePrimary500,
                   fontSize: "16px",
-                  "&:hover": { backgroundColor: colors.purple },
                 }}
-                onClick={handleSubmit}
-              >
-                Adicionar
-              </Button>
+                fullWidth
+                variant="contained" // Use 'text' ou 'outlined' para botões secundários se preferir
+              />
+
+              {/* SEGUNDO BOTÃO: Adicionar/Confirmar */}
+              <ModalButton
+                label="Adicionar" // Este label faz sentido com a função handleSubmit
+                onClick={handleSubmit} // Chama a função de submissão
+                sx={{
+                  backgroundColor: colors.bluePrimary500,
+                  "&:hover": { backgroundColor: colors.purple },
+                  padding: "12px 16px",
+                  textTransform: "none",
+                  fontSize: "16px",
+                }}
+                fullWidth
+                variant="contained"
+              />
             </Box>
           </Box>
         </Box>

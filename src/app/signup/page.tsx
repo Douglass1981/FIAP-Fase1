@@ -1,21 +1,20 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Box,
-  Button,
   IconButton,
   InputAdornment,
   TextField,
   useMediaQuery,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import styles from "./signup.styles.module.scss";
-import Image from "next/image";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { colors } from "../mui.styles";
-import { useRouter } from "next/navigation";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { ROUTES } from "@/constants";
+import MyButton from "@/components/Button";
+import styles from "./signup.styles.module.scss";
 
 export default function Cadastro() {
   const [nome, setName] = useState("");
@@ -91,7 +90,7 @@ export default function Cadastro() {
         <Box className={styles["signup__container"]}>
           <Link
             className={styles["signup__container__logo_area"]}
-            href="http://localhost:3000"
+            href={ROUTES.DEFAULT}
             sx={{ textDecoration: "none" }}
           >
             {isMobile ? (
@@ -189,18 +188,12 @@ export default function Cadastro() {
                 </p>
               )}
 
-              <Button
-                variant="contained"
-                fullWidth
-                className={styles["signup__container__form-area__form__button"]}
+              <MyButton
+                label="Cadastrar"
                 onClick={handleCadastroUser}
-                sx={{
-                  backgroundColor: colors.bluePrimary500,
-                  textTransform: "none",
-                }}
-              >
-                Entrar
-              </Button>
+                href=""
+                fullWidth
+              />
               <Box
                 className={
                   styles["signup__container__form-area__form__redirect"]
@@ -218,7 +211,7 @@ export default function Cadastro() {
                         "signup__container__form-area__form__redirect__text__link"
                       ]
                     }
-                    href="http://localhost:3000/login"
+                    href={ROUTES.LOGIN}
                   >
                     Login
                   </Link>

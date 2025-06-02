@@ -7,7 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import {
   Box,
-  Button,
+  Button, // Mantenha este se usar o Button do Material-UI em outro lugar no componente, caso contrário, pode remover.
   FormControl,
   InputLabel,
   MenuItem,
@@ -20,6 +20,10 @@ import { colors } from "../../app/mui.styles";
 import mockPrisma from "../../mockPrisma";
 
 import { SelectChangeEvent } from "@mui/material/Select";
+
+// Importe seu componente de botão customizado
+import ModalButton from "@/components/Button";
+
 
 interface Banco {
   id: number;
@@ -57,7 +61,7 @@ interface ModalEditProps {
     bankTo?: string | number;
     type: TransactionType;
   }) => void;
-  transactionTypeLabel: string;
+  transactionTypeLabel: string; // Essa prop não está sendo usada no componente, pode ser removida se for o caso
   initialData: InitialEditData;
   type: TransactionType;
 }
@@ -540,22 +544,21 @@ export default function ModalEdit({
 
             <Box style={{ display: "flex", gap: 10 }}>
               <Button
-                fullWidth
-                variant="contained"
+                label="Cancelar" // ATENÇÃO: Button do MUI não tem prop 'label', use children
+                onClick={onClose}
                 sx={{
-                  padding: "12px 16px",
-                  textTransform: "none",
                   backgroundColor: colors.red,
                   fontSize: "16px",
                   "&:hover": { backgroundColor: colors.lightRed },
                 }}
-                onClick={onClose}
-              >
-                Cancelar
-              </Button>
-              <Button
                 fullWidth
                 variant="contained"
+              >
+                Cancelar {/* Conteúdo do botão */}
+              </Button>
+              <Button
+                label="Editar" // ATENÇÃO: Button do MUI não tem prop 'label', use children
+                onClick={handleSubmit}
                 sx={{
                   padding: "12px 16px",
                   textTransform: "none",
@@ -563,9 +566,10 @@ export default function ModalEdit({
                   fontSize: "16px",
                   "&:hover": { backgroundColor: colors.purple },
                 }}
-                onClick={handleSubmit}
+                fullWidth
+                variant="contained"
               >
-                Salvar Edição
+                Salvar Edição {/* Conteúdo do botão */}
               </Button>
             </Box>
           </Box>

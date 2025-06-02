@@ -1,67 +1,17 @@
-import styles from "./contact.styles.module.scss";
-import { colors } from "../mui.styles";
-import { Box, Button, FormGroup, Link, TextField } from "@mui/material";
-import Image from "next/image";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { Box, FormGroup, TextField } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import Navbar from "@/components/Navbar";
+import MyButton from "@/components/Button";
+import { Footer } from "@/components/Footer";
+import { colors } from "../mui.styles";
+import styles from "./contact.styles.module.scss";
 
 export default function Contact() {
   return (
     <>
       <Box className={styles["content"]}>
-        <nav className={styles["content__nav"]}>
-          <Link
-            className={styles["content__nav__logo_area"]}
-            href="http://localhost:3000"
-            sx={{ textDecoration: "none" }}
-          >
-            <Image
-              src="/logo.png"
-              width="72"
-              height="100"
-              alt="Logo"
-              style={{ width: "15%", height: "auto" }}
-            />
-            <h1 className={styles["content__nav__logo_area__brand"]}>
-              Poup.ai
-            </h1>
-          </Link>
-
-          <Box className={styles["content__nav__redirect_pages"]}>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/about"
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Sobre nós
-            </Link>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/services"
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Serviços
-            </Link>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/contact"
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Entre em contato
-            </Link>
-          </Box>
-          <Button
-            sx={{
-              textTransform: "none",
-              backgroundColor: colors.bluePrimary500,
-            }}
-            variant="contained"
-            href="http://localhost:3000/login"
-            className={styles["content__nav__button"]}
-          >
-            Login
-          </Button>
-        </nav>
+        <Navbar />
 
         <main>
           <Box className={styles["content__container"]}>
@@ -114,19 +64,7 @@ export default function Contact() {
                     fullWidth
                   />
 
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    className={
-                      styles["content__container__form-area__box__form__button"]
-                    }
-                    sx={{
-                      backgroundColor: colors.bluePrimary500,
-                      textTransform: "none",
-                    }}
-                  >
-                    Enviar
-                  </Button>
+                  <MyButton label="Enviar" fullWidth />
                 </FormGroup>
               </Box>
             </Box>
@@ -180,9 +118,7 @@ export default function Contact() {
           </Box>
         </main>
 
-        <footer className={styles["content__footer"]}>
-          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
-        </footer>
+        <Footer />
       </Box>
     </>
   );

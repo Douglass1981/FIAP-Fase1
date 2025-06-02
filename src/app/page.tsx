@@ -1,10 +1,14 @@
 "use client";
 
-import { Box, Button, Link } from "@mui/material";
-import styles from "./initial.styles.module.scss";
 import Image from "next/image";
+import { Box, Button, Link } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import MyButton from "@/components/Button";
+import { Footer } from "@/components/Footer";
+import { ROUTES } from "@/constants";
 import { colors } from "./mui.styles";
+import styles from "./initial.styles.module.scss";
+import Navbar from "@/components/Navbar";
 
 export default function Initial() {
   const isMobile = useMediaQuery("(max-width:767px)");
@@ -12,68 +16,27 @@ export default function Initial() {
     <>
       <Box className={styles["content"]}>
         <nav className={styles["content__nav"]}>
-          <Box className={styles["content__nav__logo_area"]}>
-            {isMobile ? (
-              <Image
-                src="/logo.png"
-                width="232"
-                height="232"
-                alt="Logo"
-                style={{ width: "50%", height: "50%" }}
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                width="72"
-                height="100"
-                alt="Logo"
-                style={{ width: "15%", height: "auto" }}
-              />
-            )}
-            <h1 className={styles["content__nav__logo_area__brand"]}>
-              Poup.ai
-            </h1>
-          </Box>
+  <Box className={styles["content__nav__logo_area"]}>
+    {isMobile ? (
+      <>
+        <Image
+          src="/logo.png"
+          width="232"
+          height="232"
+          alt="Logo"
+          style={{ width: "50%", height: "50%" }}
+        />
+        <h1 className={styles["content__nav__logo_area__brand"]}>
+          Poup.ai
+        </h1>
+        <Button sx={{ display: "none" }}>Login</Button>
+      </>
+    ) : (
+      <Navbar />
+    )}
+  </Box>
+</nav>
 
-          <Box className={styles["content__nav__redirect_pages"]}>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/about"
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Sobre nós
-            </Link>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/services"
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Serviços
-            </Link>
-            <Link
-              sx={{ textDecoration: "none", color: colors.black }}
-              href="http://localhost:3000/contact"
-              className={styles["content__nav__redirect_pages__link"]}
-            >
-              Entre em contato
-            </Link>
-          </Box>
-          {isMobile ? (
-            <Button sx={{ display: "none" }}>Login</Button>
-          ) : (
-            <Button
-              sx={{
-                textTransform: "none",
-                backgroundColor: colors.bluePrimary500,
-              }}
-              variant="contained"
-              href="http://localhost:3000/login"
-              className={styles["content__nav__button"]}
-            >
-              Login
-            </Button>
-          )}
-        </nav>
         <main>
           <Box className={styles["content__desktop"]}>
             <Box className={styles["content__desktop__container"]}>
@@ -113,23 +76,11 @@ export default function Initial() {
               Descubra soluções financeiras inovadoras e confiáveis para
               garantir um futuro próspero.
             </p>
-            <Button
-              href="http://localhost:3000/login"
-              variant="contained"
-              fullWidth
-              sx={{
-                textTransform: "none",
-                backgroundColor: colors.bluePrimary500,
-                fontSize: "1rem",
-              }}
-            >
-              Acessar
-            </Button>
+            <MyButton label="Acessar" href={ROUTES.LOGIN} fullWidth/>
+
           </Box>
         </main>
-        <footer className={styles["content__footer"]}>
-          <p>© 2025 Poup.ai | Todos os direitos reservados</p>
-        </footer>
+        <Footer/>
       </Box>
     </>
   );

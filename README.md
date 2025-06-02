@@ -1,39 +1,69 @@
+## 📌 Sobre o projeto
+
 Este é um projeto [Next.js](https://nextjs.org) inicializado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## 📌 Sobre o Projeto
+UI Design: [Figma](https://www.figma.com/design/lVpj5m1jJ532gIgRZkfVvd/SafeMoney-2.0?node-id=0-1&t=5BrJxdbhfrdaNJ5f-1)  <br/>
+Organização e planejamento: [Trello](https://trello.com/b/IjZv1dee/poupai)
 
+## 🚀 Tecnologias Utilizadas
+<br />
 
-## Como executar o projeto
+## ⚙️ Como Executar o Projeto
 
-First, run the development server:
-
+### ✅ 1. Certifique-se de ter o node e npm instalados
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node -v
+npm -v
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🛠️ 2. Clone o repositório
+```bash
+git clone git@github.com:buttinimoraes/bm-uis-organizer.git
+```
+```bash
+cd FIAP-Fase1
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📦 3. Instale as dependências
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🚀 4. Execute o projeto
+```bash
+npm start
+```
 
-## Learn More
+### Lista de script next.js
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "prettier": "prettier --check --write \"src/**/*.{ts,tsx,js,jsx}\""
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
 
-## Deploy on Vercel
+## 🧹 ESLint e Prettier
+<br />
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Estrutura do projeto
+<br />
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Estilização (CSS)
+Este projeto utiliza SCSS para estilização.
+
+## Saiba Mais
+
+Para saber mais sobre o Next.js, consulte os seguintes recursos:
+
+- [Documentação do Next.js](https://nextjs.org/docs) - saiba mais sobre os recursos e a API do Next.js.
+- [Aprenda o Next.js](https://nextjs.org/learn) - um tutorial interativo do Next.js.
+
+Você pode conferir [o repositório do Next.js no GitHub](https://github.com/vercel/next.js)

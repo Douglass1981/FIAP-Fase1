@@ -1,0 +1,48 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.nav {
+  @include flex-between;
+  padding: 1.875rem 3.125rem;
+
+  @include respond(lg) {
+    padding: 1.875rem 10.625rem;
+  }
+}
+
+.logo_area {
+  @include flex-center;
+  flex-direction: row;
+  gap: 0.625rem;
+  justify-content: start;
+  text-decoration: none;
+}
+
+.logo_image {
+  width: 15%;
+  height: auto;
+}
+
+.brand {
+  @include font-heading-2;
+  color: $blue-500;
+}
+
+.redirect_pages {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.link {
+  @include font-heading-5;
+  text-decoration: none;
+  color: $black;
+}
+
+.button {
+  text-transform: none;
+
+  &:hover {
+    background-color: $purple-700;
+  }
+}
