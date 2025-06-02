@@ -1,4 +1,4 @@
-
+// src/components/modal-component/modaltransaction.tsx
 "use client";
 
 import dayjs, { Dayjs } from "dayjs";
@@ -13,21 +13,39 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography // Adicione Typography se for usar para títulos
 } from "@mui/material";
 import { colors } from "../../app/mui.styles"; // Ajuste o caminho conforme necessário
 import { useState, useEffect } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
+import mockPrisma from "@/mockPrisma";
 
-// Interface para o tipo Banco
+// Interface para o tipo Banco (certifique-se de que está consistente com seu mockPrisma)
 interface Banco {
   id: number;
   nome: string;
 }
 
-// Interface para o tipo Categoria, baseada no seu schema
+// Interface para o tipo Categoria (certifique-se de que está consistente com seu mockPrisma)
 interface Categoria {
   id: number;
   nome: string;
+}
+
+// Interface para a transação que será adicionada e passada para o Card (consistente com Transaction interface em Transactions.tsx)
+interface TransactionDataForCard {
+    id: number;
+    category: string;
+    description: string;
+    date: string;
+    amount: number;
+    type: "income" | "expenses" | "transfer";
+    bankFrom?: string; // Nome do banco de origem
+    bankTo?: string;   // Nome do banco de destino
+    bank?: string;     // Nome do banco para receitas/despesas
+    bancoOrigemId?: number; // ID do banco de origem (importante para cálculos no pai)
+    bancoDestinoId?: number; // ID do banco de destino (importante para cálculos no pai)
+    bancoid?: number; // ID do banco para receitas/despesas (importante para cálculos no pai)
 }
 
 type TransactionType = "income" | "expenses" | "transfer";
@@ -36,152 +54,207 @@ interface ModalTransactionProps {
   type: TransactionType;
   open: boolean;
   onClose: () => void;
+  onAddTransaction: (transaction: TransactionDataForCard) => void;
 }
 
 const labelMap = {
-  income: "Receitas",
-  expenses: "Despesas",
-  transfer: "Transferência",
+  income: "Nova Receita",
+  expenses: "Nova Despesa",
+  transfer: "Nova Transferência",
 };
 
 export default function ModalTransaction({
   type,
   open,
   onClose,
+  onAddTransaction,
 }: ModalTransactionProps) {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
+  const [amount, setAmount] = useState<string>("");
+  // A descrição não será usada no UI da modal, mas o estado pode ser mantido se a lógica de descrição gerada depender dela.
+  // No momento, a descrição é gerada ou vazia, então não precisamos mais do TextField.
+  const [description, setDescription] = useState<string>("");
 
-  // Estados para a lista de bancos
+  // Estados para listas de bancos e categorias (seus fetches existentes)
   const [bancos, setBancos] = useState<Banco[]>([]);
   const [loadingBancos, setLoadingBancos] = useState(false);
   const [errorBancos, setErrorBancos] = useState<string | null>(null);
 
-  // Estados para a lista de categorias
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [loadingCategorias, setLoadingCategorias] = useState(false);
   const [errorCategorias, setErrorCategorias] = useState<string | null>(null);
 
-  // Estados para os valores selecionados dos dropdowns de banco
-  const [selectedBancoSaiuDe, setSelectedBancoSaiuDe] = useState<
-    number | string
-  >("");
-  const [selectedBancoPara, setSelectedBancoPara] = useState<number | string>(
-    ""
-  );
+  // Estados para os valores selecionados dos dropdowns
+  const [selectedBancoSaiuDe, setSelectedBancoSaiuDe] = useState<number | string>("");
+  const [selectedBancoPara, setSelectedBancoPara] = useState<number | string>("");
   const [selectedBanco, setSelectedBanco] = useState<number | string>("");
+  const [selectedCategoria, setSelectedCategoria] = useState<number | string>("");
 
-  // Estado para o valor selecionado do dropdown de categoria
-  const [selectedCategoria, setSelectedCategoria] = useState<
-    number | string
-  >("");
-
-  // Função para buscar os bancos
+  // Funções para buscar bancos e categorias (seus fetches existentes)
   const fetchBancos = async () => {
     setLoadingBancos(true);
     setErrorBancos(null);
     try {
-      const response = await fetch("/api/bancos"); 
-
-      if (!response.ok) {
-        throw new Error(
-          `Erro ao buscar bancos: ${response.status} ${response.statusText}`
-        );
-      }
-
-      const data: Banco[] = await response.json();
+      const data: Banco[] = await mockPrisma.banco.findMany({});
       setBancos(data);
-
       if (data.length > 0) {
-        // Inicializa com o primeiro ID para todos os dropdowns de banco
         setSelectedBancoSaiuDe(data[0].id);
         setSelectedBancoPara(data[0].id);
         setSelectedBanco(data[0].id);
       } else {
-        // Se não houver bancos, garante que os estados estejam vazios
-        setSelectedBancoSaiuDe("");
-        setSelectedBancoPara("");
-        setSelectedBanco("");
+        setSelectedBancoSaiuDe(""); setSelectedBancoPara(""); setSelectedBanco("");
       }
     } catch (error) {
-      console.error("Erro ao carregar bancos no frontend:", error);
-      setErrorBancos("Falha ao carregar a lista de bancos.");
-      setSelectedBancoSaiuDe(""); // Limpa seleção em caso de erro
-      setSelectedBancoPara("");
-      setSelectedBanco("");
-    } finally {
-      setLoadingBancos(false);
-    }
+      console.error("Erro ao carregar bancos:", error);
+      setErrorBancos("Falha ao carregar bancos.");
+    } finally { setLoadingBancos(false); }
   };
 
-  // Função para buscar as categorias
   const fetchCategorias = async () => {
     setLoadingCategorias(true);
     setErrorCategorias(null);
     try {
-      const response = await fetch("/api/categorias"); 
-      if (!response.ok) {
-        throw new Error(
-          `Erro ao buscar categorias: ${response.status} ${response.statusText}`
-        );
-      }
-
-      const data: Categoria[] = await response.json();
+      const data: Categoria[] = await mockPrisma.categorias.findMany({});
       setCategorias(data);
-
       if (data.length > 0) {
-        setSelectedCategoria(data[0].id); // Inicializa com a primeira categoria
+        setSelectedCategoria(data[0].id);
       } else {
-        setSelectedCategoria(""); // Se não houver categorias, garante que o estado esteja vazio
+        setSelectedCategoria("");
       }
     } catch (error) {
-      console.error("Erro ao carregar categorias no frontend:", error);
-      setErrorCategorias("Falha ao carregar a lista de categorias.");
-      setSelectedCategoria(""); // Limpa seleção em caso de erro
-    } finally {
-      setLoadingCategorias(false);
-    }
+      console.error("Erro ao carregar categorias:", error);
+      setErrorCategorias("Falha ao carregar categorias.");
+    } finally { setLoadingCategorias(false); }
   };
 
-  // Efeito para carregar bancos e categorias quando o modal é aberto ou o tipo muda
+  // Efeito para carregar dados e resetar estados ao abrir/mudar tipo
   useEffect(() => {
     if (open) {
       fetchBancos();
+      // Sempre resetar os campos ao abrir a modal
+      setAmount('');
+      setDate(dayjs());
+      setDescription(''); // Limpa a descrição sempre
+
       if (type !== "transfer") {
         fetchCategorias();
+        setSelectedCategoria(""); // Garante que a categoria seja resetada
+        setSelectedBanco(""); // Garante que o banco de transação seja resetado
       } else {
-        // Se o tipo for 'transfer', limpa os estados de categoria
-        setCategorias([]);
+        setCategorias([]); // Limpa categorias para transferência
         setSelectedCategoria("");
         setErrorCategorias(null);
         setLoadingCategorias(false);
+        setSelectedBancoSaiuDe(""); // Garante que os bancos de transferência sejam resetados
+        setSelectedBancoPara("");
       }
     }
   }, [open, type]);
 
-  // Handlers para as mudanças nos dropdowns de banco
-  const handleBancoSaiuDeChange = (
-    event: SelectChangeEvent<typeof selectedBancoSaiuDe>
-  ) => {
-    setSelectedBancoSaiuDe(event.target.value);
-  };
+  // Handlers genéricos para os Selects (simplifica o código)
+  const handleSelectChange = (setter: React.Dispatch<React.SetStateAction<string | number>>) =>
+    (event: SelectChangeEvent<string | number>) => {
+      setter(event.target.value);
+    };
 
-  const handleBancoParaChange = (
-    event: SelectChangeEvent<typeof selectedBancoPara>
-  ) => {
-    setSelectedBancoPara(event.target.value);
-  };
+  const handleSubmit = async () => {
+    // Validações básicas
+    if (!amount || !date) {
+      alert("Por favor, preencha o valor e a data.");
+      return;
+    }
+    const parsedAmount = parseFloat(amount);
+    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+        alert("Por favor, insira um valor válido e positivo.");
+        return;
+    }
 
-  const handleBancoChange = (
-    event: SelectChangeEvent<typeof selectedBanco>
-  ) => {
-    setSelectedBanco(event.target.value);
-  };
+    // Validações específicas por tipo
+    if (type !== "transfer") {
+        if (!selectedCategoria) {
+            alert("Por favor, selecione uma categoria.");
+            return;
+        }
+        if (!selectedBanco) {
+            alert("Por favor, selecione o banco.");
+            return;
+        }
+    } else { // type === "transfer"
+        if (!selectedBancoSaiuDe || !selectedBancoPara) {
+            alert("Por favor, selecione os bancos de origem e destino.");
+            return;
+        }
+        if (selectedBancoSaiuDe === selectedBancoPara) {
+            alert("O banco de origem e o banco de destino não podem ser o mesmo.");
+            return;
+        }
+    }
 
-  // Handler para a mudança no dropdown de categoria
-  const handleCategoriaChange = (
-    event: SelectChangeEvent<typeof selectedCategoria>
-  ) => {
-    setSelectedCategoria(event.target.value);
+    // Preparando dados para o mockPrisma
+    const newTransactionDataForPrisma: any = {
+      // Descrição será vazia para Receita/Despesa, e gerada para Transferência
+      descricao: type === "transfer" ? `Transferência de ${parsedAmount.toFixed(2).replace('.', ',')}` : '',
+      data: date ? date.toISOString() : new Date().toISOString(),
+      valor: parsedAmount * (type === "expenses" ? -1 : 1), // Valor negativo para despesas
+      tipoId: type === "income" ? 1 : type === "expenses" ? 2 : 3, // Assumindo 3 para Transferência no seu mockTipoTransacoes
+      usuarioId: 1, // Assumindo um usuário mockado, ajuste se tiver autenticação real
+    };
+
+    if (type === "transfer") {
+      newTransactionDataForPrisma.bancoOrigemId = selectedBancoSaiuDe as number;
+      newTransactionDataForPrisma.bancoDestinoId = selectedBancoPara as number;
+      delete newTransactionDataForPrisma.categoriaId; // Garante que não envie categoria para transferência
+      delete newTransactionDataForPrisma.bancoid;     // Garante que não envie bancoid para transferência
+    } else { // income or expenses
+      newTransactionDataForPrisma.categoriaId = selectedCategoria as number;
+      newTransactionDataForPrisma.bancoid = selectedBanco as number;
+      delete newTransactionDataForPrisma.bancoOrigemId; // Garante que não envie bancos de origem/destino para receita/despesa
+      delete newTransactionDataForPrisma.bancoDestinoId;
+    }
+
+    try {
+      const createdTransaction = await mockPrisma.transacoes.create(newTransactionDataForPrisma);
+
+      // Buscando nomes para exibir no TransactionCard
+      const categoryName = createdTransaction.categoriaId
+        ? (await mockPrisma.categorias.findUnique({ where: { id: createdTransaction.categoriaId } }))?.nome || "N/A"
+        : "N/A"; // "N/A" para transferências
+
+      const bankName = createdTransaction.bancoid
+        ? (await mockPrisma.banco.findUnique({ where: { id: createdTransaction.bancoid } }))?.nome || "N/A"
+        : "N/A";
+
+      const bankFromName = createdTransaction.bancoOrigemId
+        ? (await mockPrisma.banco.findUnique({ where: { id: createdTransaction.bancoOrigemId } }))?.nome || "N/A"
+        : "N/A";
+
+      const bankToName = createdTransaction.bancoDestinoId
+        ? (await mockPrisma.banco.findUnique({ where: { id: createdTransaction.bancoDestinoId } }))?.nome || "N/A"
+        : "N/A";
+
+      // Formata a transação para o formato que o TransactionCard espera
+      const formattedTransaction: TransactionDataForCard = {
+        id: createdTransaction.id,
+        category: type === "transfer" ? "Transferência" : categoryName,
+        description: type === "transfer" ? `De ${bankFromName} para ${bankToName}` : `${bankName} - ${createdTransaction.descricao || 'Sem Descrição'}`, // Descrição gerada/vazia
+        date: dayjs(createdTransaction.data).format("DD/MM/YYYY"),
+        amount: createdTransaction.valor, // Já vem tratado como positivo/negativo do mockPrisma
+        type: type,
+        bank: bankName,
+        bankFrom: bankFromName,
+        bankTo: bankToName,
+        // Incluindo os IDs para o componente pai fazer os cálculos
+        bancoOrigemId: createdTransaction.bancoOrigemId,
+        bancoDestinoId: createdTransaction.bancoDestinoId,
+        bancoid: createdTransaction.bancoid,
+      };
+
+      onAddTransaction(formattedTransaction);
+      onClose(); // Fecha a modal
+    } catch (error) {
+      console.error("Erro ao adicionar transação:", error);
+      alert("Erro ao adicionar transação. Verifique o console.");
+    }
   };
 
   if (!open) return null;
@@ -211,17 +284,15 @@ export default function ModalTransaction({
           }}
         >
           <Box style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <p
-              style={{
-                fontSize: "16px",
-                fontWeight: "bold",
-                textAlign: "start",
-              }}
-            >
-              {labelMap[type]}
-            </p>
+            <Typography style={{ fontSize: "16px", fontWeight: "bold", textAlign: "start" }}>
+              {labelMap[type]} {/* Título da modal */}
+            </Typography>
 
             <Box style={{ display: "flex", flexDirection: "column", gap: 15 }}>
+              {/* === CAMPO DE DESCRIÇÃO REMOVIDO PARA TODOS OS TIPOS === */}
+              {/* Se quiser reabilitar para um tipo específico, adicione a condição aqui. */}
+              {/* Ex: {type !== "transfer" && ( /* <TextField ... /> */ /* )} */}
+
               {type === "transfer" ? (
                 <>
                   <FormControl fullWidth>
@@ -231,28 +302,16 @@ export default function ModalTransaction({
                       id="select-saiu-de"
                       label="Saiu de"
                       value={selectedBancoSaiuDe}
-                      onChange={handleBancoSaiuDeChange}
+                      onChange={handleSelectChange(setSelectedBancoSaiuDe)}
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingBancos && (
-                        <MenuItem disabled>Carregando bancos...</MenuItem>
-                      )}
-                      {errorBancos && (
-                        <MenuItem disabled sx={{ color: "error.main" }}>
-                          {errorBancos}
-                        </MenuItem>
-                      )}
-                      {!loadingBancos && bancos.length === 0 && !errorBancos && (
-                        <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
-                      )}
-                      {!loadingBancos &&
-                        bancos.length > 0 &&
-                        bancos.map((banco) => (
-                          <MenuItem key={banco.id} value={banco.id}>
-                            {banco.nome}
-                          </MenuItem>
-                        ))}
+                      {loadingBancos && (<MenuItem disabled>Carregando bancos...</MenuItem>)}
+                      {errorBancos && (<MenuItem disabled sx={{ color: "error.main" }}>{errorBancos}</MenuItem>)}
+                      {!loadingBancos && bancos.length === 0 && !errorBancos && (<MenuItem disabled>Nenhum banco encontrado.</MenuItem>)}
+                      {!loadingBancos && bancos.length > 0 && bancos.map((banco) => (
+                        <MenuItem key={banco.id} value={banco.id}>{banco.nome}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
@@ -262,28 +321,16 @@ export default function ModalTransaction({
                       id="select-para"
                       label="Para"
                       value={selectedBancoPara}
-                      onChange={handleBancoParaChange}
+                      onChange={handleSelectChange(setSelectedBancoPara)}
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingBancos && (
-                        <MenuItem disabled>Carregando bancos...</MenuItem>
-                      )}
-                      {errorBancos && (
-                        <MenuItem disabled sx={{ color: "error.main" }}>
-                          {errorBancos}
-                        </MenuItem>
-                      )}
-                      {!loadingBancos && bancos.length === 0 && !errorBancos && (
-                        <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
-                      )}
-                      {!loadingBancos &&
-                        bancos.length > 0 &&
-                        bancos.map((banco) => (
-                          <MenuItem key={banco.id} value={banco.id}>
-                            {banco.nome}
-                          </MenuItem>
-                        ))}
+                      {loadingBancos && (<MenuItem disabled>Carregando bancos...</MenuItem>)}
+                      {errorBancos && (<MenuItem disabled sx={{ color: "error.main" }}>{errorBancos}</MenuItem>)}
+                      {!loadingBancos && bancos.length === 0 && !errorBancos && (<MenuItem disabled>Nenhum banco encontrado.</MenuItem>)}
+                      {!loadingBancos && bancos.length > 0 && bancos.map((banco) => (
+                        <MenuItem key={banco.id} value={banco.id}>{banco.nome}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </>
@@ -296,30 +343,16 @@ export default function ModalTransaction({
                       id="select-categoria"
                       label="Categoria"
                       value={selectedCategoria}
-                      onChange={handleCategoriaChange}
+                      onChange={handleSelectChange(setSelectedCategoria)}
                       disabled={loadingCategorias || errorCategorias !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingCategorias && (
-                        <MenuItem disabled>Carregando categorias...</MenuItem>
-                      )}
-                      {errorCategorias && (
-                        <MenuItem disabled sx={{ color: "error.main" }}>
-                          {errorCategorias}
-                        </MenuItem>
-                      )}
-                      {!loadingCategorias &&
-                        categorias.length === 0 &&
-                        !errorCategorias && (
-                          <MenuItem disabled>Nenhuma categoria encontrada.</MenuItem>
-                        )}
-                      {!loadingCategorias &&
-                        categorias.length > 0 &&
-                        categorias.map((categoria) => (
-                          <MenuItem key={categoria.id} value={categoria.id}>
-                            {categoria.nome}
-                          </MenuItem>
-                        ))}
+                      {loadingCategorias && (<MenuItem disabled>Carregando categorias...</MenuItem>)}
+                      {errorCategorias && (<MenuItem disabled sx={{ color: "error.main" }}>{errorCategorias}</MenuItem>)}
+                      {!loadingCategorias && categorias.length === 0 && !errorCategorias && (<MenuItem disabled>Nenhuma categoria encontrada.</MenuItem>)}
+                      {!loadingCategorias && categorias.length > 0 && categorias.map((categoria) => (
+                        <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
@@ -329,35 +362,30 @@ export default function ModalTransaction({
                       id="select-banco"
                       label="Banco"
                       value={selectedBanco}
-                      onChange={handleBancoChange}
+                      onChange={handleSelectChange(setSelectedBanco)}
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingBancos && (
-                        <MenuItem disabled>Carregando bancos...</MenuItem>
-                      )}
-                      {errorBancos && (
-                        <MenuItem disabled sx={{ color: "error.main" }}>
-                          {errorBancos}
-                        </MenuItem>
-                      )}
-                      {!loadingBancos && bancos.length === 0 && !errorBancos && (
-                        <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
-                      )}
-                      {!loadingBancos &&
-                        bancos.length > 0 &&
-                        bancos.map((banco) => (
-                          <MenuItem key={banco.id} value={banco.id}>
-                            {banco.nome}
-                          </MenuItem>
-                        ))}
+                      {loadingBancos && (<MenuItem disabled>Carregando bancos...</MenuItem>)}
+                      {errorBancos && (<MenuItem disabled sx={{ color: "error.main" }}>{errorBancos}</MenuItem>)}
+                      {!loadingBancos && bancos.length === 0 && !errorBancos && (<MenuItem disabled>Nenhum banco encontrado.</MenuItem>)}
+                      {!loadingBancos && bancos.length > 0 && bancos.map((banco) => (
+                        <MenuItem key={banco.id} value={banco.id}>{banco.nome}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </>
               )}
 
               <Box style={{ display: "flex", flexDirection: "row", gap: 15 }}>
-                <TextField fullWidth label="Valor" variant="outlined" />
+                <TextField
+                  fullWidth
+                  label="Valor"
+                  variant="outlined"
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
                 <DateField
                   label="Data"
                   value={date}
@@ -393,6 +421,7 @@ export default function ModalTransaction({
                   fontSize: "16px",
                   "&:hover": { backgroundColor: colors.purple },
                 }}
+                onClick={handleSubmit}
               >
                 Adicionar
               </Button>
