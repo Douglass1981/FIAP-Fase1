@@ -5,6 +5,7 @@ import styles from "./initial.styles.module.scss";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 import { colors } from "./mui.styles";
+import MyButton from "@/components/Button";
 
 export default function Initial() {
   const isMobile = useMediaQuery("(max-width:767px)");
@@ -113,18 +114,7 @@ export default function Initial() {
               Descubra soluções financeiras inovadoras e confiáveis para
               garantir um futuro próspero.
             </p>
-            <Button
-              href="http://localhost:3000/login"
-              variant="contained"
-              fullWidth
-              sx={{
-                textTransform: "none",
-                backgroundColor: colors.bluePrimary500,
-                fontSize: "1rem",
-              }}
-            >
-              Acessar
-            </Button>
+            <MyButton label="Acessar" href="/login" fullWidth/>
           </Box>
         </main>
         <footer className={styles["content__footer"]}>

@@ -16,6 +16,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { colors } from "../mui.styles";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import MyButton from "@/components/Button";
 
 export default function Cadastro() {
   const [nome, setName] = useState("");
@@ -194,18 +195,8 @@ export default function Cadastro() {
                 </p>
               )}
 
-              <Button
-                variant="contained"
-                fullWidth
-                className={styles["signup__container__form-area__form__button"]}
-                onClick={handleCadastroUser}
-                sx={{
-                  backgroundColor: colors.bluePrimary500,
-                  textTransform: "none",
-                }}
-              >
-                Entrar
-              </Button>
+              <MyButton label="Cadastrar" onClick={handleCadastroUser} href="" fullWidth/>
+
               <Box
                 className={
                   styles["signup__container__form-area__form__redirect"]

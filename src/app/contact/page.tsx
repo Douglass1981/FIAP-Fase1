@@ -1,9 +1,10 @@
 import styles from "./contact.styles.module.scss";
 import { colors } from "../mui.styles";
-import { Box, Button, FormGroup, TextField } from "@mui/material";
+import { Box, FormGroup, TextField } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
 import Navbar from "@/components/Navbar";
+import MyButton from "@/components/Button";
 
 export default function Contact() {
   return (
@@ -62,19 +63,7 @@ export default function Contact() {
                     fullWidth
                   />
 
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    className={
-                      styles["content__container__form-area__box__form__button"]
-                    }
-                    sx={{
-                      backgroundColor: colors.bluePrimary500,
-                      textTransform: "none",
-                    }}
-                  >
-                    Enviar
-                  </Button>
+                  <MyButton label="Enviar" fullWidth/>
                 </FormGroup>
               </Box>
             </Box>

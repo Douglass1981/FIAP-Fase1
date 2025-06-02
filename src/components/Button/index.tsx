@@ -1,42 +1,54 @@
-'use client';
+import React from "react";
+import Button from "@mui/material/Button";
+import { colors } from "@/app/mui.styles";
 
-import React, { ReactNode } from 'react';
-import { Button as ButtonMui, ButtonProps } from '@mui/material';
-
-interface MuiButtonProps extends ButtonProps {
-  children: ReactNode;
+interface MyButtonProps {
+  label: string;
   onClick?: () => void;
-  variant?: 'contained' | 'outlined' | 'text';
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
-  size?: 'small' | 'medium' | 'large';
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+  href?: string;
+  bgColor?: string;
+  hvColor?: string;
+  textColor?: string;
+  variant?: "contained" | "outlined" | "text";
+  disabled?: boolean;
+  fullWidth?: boolean
 }
 
-
-function Button({
-  children,
+const MyButton: React.FC<MyButtonProps> = ({
+  label,
   onClick,
-  variant = 'contained',
-  color = 'primary',
-  size = 'small',
-  startIcon,
-  endIcon,
-  ...props
-}: MuiButtonProps) {
-  return (
-    <ButtonMui
-      variant={variant}
-      color={color}
-      size={size}
-      startIcon={startIcon}
-      endIcon={endIcon}
-      onClick={onClick}
-      {...props}
-    >
-      {children}
-    </ButtonMui>
-  );
-}
+  href,
+  bgColor = colors.bluePrimary500,
+  hvColor = colors.purple,
+  textColor = colors.white,
+  variant = "contained",
+  disabled = false,
+  fullWidth = false,
+}) => {
+  const isLink = Boolean(href);
 
-export default Button;
+  return (
+    <Button
+      variant={variant}
+      onClick={onClick}
+      disabled={disabled}
+      fullWidth={fullWidth}
+      component={isLink ? "a" : "button"}
+      href={isLink ? href : undefined}
+      sx={{
+        textTransform: "none",
+        backgroundColor: variant === "contained" ? bgColor : "transparent",
+        color: textColor,
+        textDecoration: "none",
+        "&:hover": {
+          backgroundColor:
+            variant === "contained" ? colors.purple : `${hvColor}22`,
+        },
+      }}
+    >
+      {label}
+    </Button>
+  );
+};
+
+export default MyButton;

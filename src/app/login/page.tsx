@@ -17,6 +17,8 @@ import { useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
 import styles from "./login.styles.module.scss";
 import { colors } from "../mui.styles";
+import MyButton from "@/components/Button";
+import { ROUTES } from "@/constants";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -212,7 +214,9 @@ export default function Login() {
                 </Alert>
               )}
 
-              <Button
+              <MyButton label="Entrar"  href="" fullWidth/>
+
+              {/* <Button
                 variant="contained"
                 fullWidth
                 type="submit"
@@ -229,7 +233,7 @@ export default function Login() {
                 ) : (
                   "Entrar"
                 )}
-              </Button>
+              </Button> */}
               <Box
                 className={
                   styles["login__container__form-area__form__redirect"]
