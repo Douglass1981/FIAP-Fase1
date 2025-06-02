@@ -1,7 +1,8 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import { colors } from "../../app/mui.styles";
+import ModalButton from "../ModalButton";
+import { colors } from "@/app/mui.styles";
 
 type ModalDeleteProps = {
   open: boolean;
@@ -42,35 +43,19 @@ export default function ModalDelete({
         }}
       >
         <Box display="flex" flexDirection="column" gap={2}>
-          <p style={{ fontSize: "16px", textAlign: 'center' }}>{message}</p>
+          <p style={{ fontSize: "16px", textAlign: "center" }}>{message}</p>
 
           <Box display="flex" gap={2}>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{
-                padding: "12px 16px",
-                textTransform: "none",
-                backgroundColor: colors.red,
-                fontSize: "16px",
-              }}
+            <ModalButton
+              label="Não"
               onClick={onClose}
-            >
-              Não
-            </Button>
-            <Button
-              fullWidth
-              variant="contained"
               sx={{
-                padding: "12px 16px",
-                textTransform: "none",
-                backgroundColor: colors.bluePrimary500,
-                fontSize: "16px",
+                backgroundColor: colors.red,
+                "&:hover": { backgroundColor: colors.lightRed },
               }}
-              onClick={onConfirm}
-            >
-              Sim
-            </Button>
+              fullWidth
+            />
+            <ModalButton label="Sim" onClick={onConfirm} fullWidth />
           </Box>
         </Box>
       </Box>

@@ -16,6 +16,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { colors } from "../mui.styles";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import MyButton from "@/components/Button";
 
 export default function Cadastro() {
   const [nome, setName] = useState("");
@@ -91,35 +92,32 @@ export default function Cadastro() {
     <>
       <main className={styles["signup"]}>
         <Box className={styles["signup__container"]}>
-          
-            <Link
-              className={styles["signup__container__logo_area"]}
-              href="http://localhost:3000"
-              sx={{ textDecoration: "none" }}
-            >
-              {isMobile ? (
-                <Image
-                  src="/logo.png"
-                  width="232"
-                  height="232"
-                  alt="Logo"
-                  style={{ width: "30%", height: "auto" }}
-                />
-              ) : (
-                <Image
-                  src="/logo.png"
-                  width="72"
-                  height="100"
-                  alt="Logo"
-                  style={{ width: "15%", height: "auto" }}
-                />
-              )}{" "}
-            
+          <Link
+            className={styles["signup__container__logo_area"]}
+            href="http://localhost:3000"
+            sx={{ textDecoration: "none" }}
+          >
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "30%", height: "auto" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}{" "}
             <h1 className={styles["signup__container__logo_area__brand"]}>
               Poup.ai
             </h1>
-            </Link>
-            
+          </Link>
 
           <Box className={styles["signup__container__form-area"]}>
             <Box className={styles["signup__container__form-area__text"]}>
@@ -194,18 +192,12 @@ export default function Cadastro() {
                 </p>
               )}
 
-              <Button
-                variant="contained"
-                fullWidth
-                className={styles["signup__container__form-area__form__button"]}
+              <MyButton
+                label="Cadastrar"
                 onClick={handleCadastroUser}
-                sx={{
-                  backgroundColor: colors.bluePrimary500,
-                  textTransform: "none",
-                }}
-              >
-                Entrar
-              </Button>
+                href=""
+                fullWidth
+              />
               <Box
                 className={
                   styles["signup__container__form-area__form__redirect"]
