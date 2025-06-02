@@ -1,17 +1,21 @@
-
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
+// REMOVA: import NextImage from "next/image"; // Esta linha é redundante se você usa Image
+import Image from "next/image"; // Mantenha este import para o componente Image do Next.js
+import Link from "next/link"; // Adicione este import para o componente Link do Next.js
 import { useRouter } from "next/navigation";
-import {
-  Box,
-  Checkbox,
-  Alert,
-  FormControlLabel,
-} from "@mui/material";
-import { useMediaQuery } from "@mui/material";
-import { TextField, InputAdornment, IconButton } from "@mui/material";
-import Link from "@mui/material/Link";
+import { Box, Checkbox, Alert, FormControlLabel } from "@mui/material";
+
+import { TextField, InputAdornment, IconButton, useMediaQuery } from "@mui/material";
+
+// REMOVA ESTA LINHA se você não está usando react-router-dom para navegação interna
+// Se você está usando react-router-dom APENAS para algum componente específico do Mui
+// que espera um 'component' prop com Link, e você não tem Link do Next.js
+// ou MuiLink de @mui/material/Link (que usa sx={{ textDecoration: "none" }}),
+// então você pode precisar disso, mas para 'href' é Next.js Link.
+// Neste contexto, com 'href', este Link NÃO é do react-router-dom.
+// import { Link as ReactRouterLink } from "react-router-dom"; // PROVAVELMENTE REMOVER ESTA LINHA
+
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import MyButton from "@/components/Button";
 import { ROUTES } from "@/constants";
@@ -22,20 +26,19 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false); // Novo estado para o checkbox
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
 
-  // useEffect para carregar o email salvo se "Lembrar-me" foi marcado anteriormente
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     if (savedEmail) {
       setEmail(savedEmail);
-      setRememberMe(true); // Marca o checkbox se houver um email salvo
+      setRememberMe(true);
     }
-  }, []); // Executa apenas uma vez ao montar o componente
+  }, []);
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
@@ -58,12 +61,11 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok) {
-          if(data.user && data.user.nome){
-            localStorage.setItem("userName", data.user.nome);
-          } else {
-            console.warn("Usuario não encontrado");
-          }
-
+        if (data.user && data.user.nome) {
+          localStorage.setItem("userName", data.user.nome);
+        } else {
+          console.warn("Usuario não encontrado");
+        }
 
         if (rememberMe) {
           localStorage.setItem("rememberedEmail", email);
@@ -75,7 +77,7 @@ export default function Login() {
           localStorage.removeItem("userEmail");
         }
 
-        router.push("/home"); // Redireciona para a página home
+        router.push("/home");
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
       }
@@ -95,10 +97,12 @@ export default function Login() {
     <>
       <main className={styles["login"]}>
         <Box className={styles["login__container"]}>
+          {/* Este Link usa 'href' e navega para uma rota do Next.js, então deve ser de 'next/link' */}
           <Link
             className={styles["login__container__logo_area"]}
             href={ROUTES.DEFAULT}
-            sx={{ textDecoration: "none" }}
+            // sx={{ textDecoration: "none" }} // 'sx' é do Material-UI. Link do Next.js não tem 'sx'
+                                            // Você pode aplicar estilos diretamente ou usar um componente do MUI que encapsule o Link do Next.js
           >
             {isMobile ? (
               <Image
@@ -183,8 +187,8 @@ export default function Login() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={rememberMe} // Conecta ao estado 'rememberMe'
-                      onChange={(e) => setRememberMe(e.target.checked)} // Atualiza o estado
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
                       sx={{
                         "&.Mui-checked": {
                           color: colors.bluePrimary500,
@@ -211,26 +215,8 @@ export default function Login() {
                   {error}
                 </Alert>
               )}
-              <MyButton label="Entrar"  href="" fullWidth/>
+              <MyButton label="Entrar" href="" fullWidth />
 
-              {/* <Button
-                variant="contained"
-                fullWidth
-                type="submit"
-                disabled={loading}
-                className={styles["login__container__form-area__form__button"]}
-                sx={{
-                  backgroundColor: colors.bluePrimary500,
-                  textTransform: "none",
-                  mt: 2,
-                }}
-              >
-                {loading ? (
-                  <CircularProgress size={24} color="inherit" />
-                ) : (
-                  "Entrar"
-                )}
-              </Button> */}
               <Box
                 className={
                   styles["login__container__form-area__form__redirect"]
@@ -242,6 +228,7 @@ export default function Login() {
                   }
                 >
                   Ainda não tem uma conta?{" "}
+                  {/* Este Link usa 'href' e navega para uma rota do Next.js */}
                   <Link
                     className={
                       styles[

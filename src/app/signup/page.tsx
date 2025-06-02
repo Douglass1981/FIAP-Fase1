@@ -23,14 +23,13 @@ export default function Cadastro() {
   const [cadastroSucesso, setCadastroSucesso] = useState(false);
   const [erroCadastro, setErroCadastro] = useState("");
 
-  const router = useRouter(); // Inicialize o useRouter
+  const router = useRouter();
 
   const handleCadastroUser = async () => {
-    // Validação de campos obrigatórios
     if (!nome || !email || !password) {
       setErroCadastro("Por favor, preencha todos os campos.");
       setCadastroSucesso(false);
-      return; // Interrompe a execução se houver campos vazios
+      return;
     }
     try {
       const response = await fetch("/api/users", {
@@ -65,18 +64,17 @@ export default function Cadastro() {
       setCadastroSucesso(false);
     }
   };
-  // --- Novo código para redirecionamento ---
+
   useEffect(() => {
     let timer: string | number | NodeJS.Timeout | undefined;
     if (cadastroSucesso) {
       timer = setTimeout(() => {
-        router.push("http://localhost:3000/login"); // Redireciona para a página de login
-      }, 2000); // 2000 milissegundos = 2 segundos
+        router.push("http://localhost:3000/login");
+      }, 2000);
     }
 
-    // Limpa o timer se o componente for desmontado ou se cadastroSucesso mudar para false
     return () => clearTimeout(timer);
-  }, [cadastroSucesso, router]); // Dependências do useEffect
+  }, [cadastroSucesso, router]);
 
   const [showPassword, setShowPassword] = useState(false);
 
