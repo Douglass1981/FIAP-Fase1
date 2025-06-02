@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import styles from "./sobre.styles.module.scss";
 import Image from "next/image";
-import { colors } from "../mui.styles";
 import Navbar from "@/components/Navbar";
+import { Users } from "@/services";
 
-export default function Initial() {
+export default async function Initial() {
   return (
     <>
       <Box className={styles["content"]}>
