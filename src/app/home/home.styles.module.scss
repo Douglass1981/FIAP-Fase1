@@ -4,7 +4,7 @@
 .home {
     font-family: var(--font-poppins);
     padding: 0rem 1.875rem;
-    height: 100dvh;
+    min-height: 100dvh;
     width: 100dvw;
     display: flex;
     flex-direction: column;
@@ -29,18 +29,31 @@
     }
 }
 
+.home > main{
+    flex-grow: 1;
+}
+
+.container-card{
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
 .card-breakpoint {
     display: flex;
     flex-direction: column;
-    gap: 0.9375rem
+    gap: 0.9375rem;
 }
 
 .card {
     background-color: $blue-500;
-    color: $white;
     padding: 1.25rem;
     border-radius: .5rem;
+    
+    .presentation-card-home, .actions-bank-details-container{
+        color: $white;
 
+    }
+    
     .account-balance-text {
         @include font-heading-4;
     }
@@ -118,7 +131,6 @@
         }
 
         .icon {
-            color: $white;
             padding: .25rem;
             border-radius: 50%;
             display: inline-block;
@@ -154,7 +166,7 @@
         padding: 1.25rem 0.9375rem;
         display: flex;
         flex-direction: column;
-        height: 17.5rem;
+        height: 18rem;
 
     }
 
@@ -219,7 +231,6 @@
 
         .card {
             background-color: $blue-500;
-            color: $white;
             border-radius: .5rem;
             
 
