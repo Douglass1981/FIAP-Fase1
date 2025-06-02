@@ -1,4 +1,3 @@
-// src/components/modal-component/modalEdit.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -20,11 +19,8 @@ import { colors } from "../../app/mui.styles";
 
 import mockPrisma from "../../mockPrisma";
 
-// Certifique-se de que SelectChangeEvent está importado
-import { SelectChangeEvent } from "@mui/material/Select"; // Adicione esta linha para SelectChangeEvent
+import { SelectChangeEvent } from "@mui/material/Select";
 
-
-// Interfaces (mantenha estas interfaces consistentes em seu projeto)
 interface Banco {
   id: number;
   nome: string;
@@ -39,12 +35,12 @@ type TransactionType = "income" | "expenses" | "transfer";
 
 interface InitialEditData {
   id: number;
-  from: string; // Nome do banco (para receita/despesa) ou banco de origem (para transferência)
-  to: string;   // Nome do banco de destino (para transferência)
-  amount: string; // Valor como string
-  date: string; // Data no formato ISO 8601 (YYYY-MM-DD)
-  category: string;     // Nome da categoria
-  description: string; // Descrição da transação
+  from: string;
+  to: string;
+  amount: string;
+  date: string;
+  category: string;
+  description: string;
 }
 
 interface ModalEditProps {
@@ -61,7 +57,7 @@ interface ModalEditProps {
     bankTo?: string | number;
     type: TransactionType;
   }) => void;
-  transactionTypeLabel: string; // Esta prop não está sendo usada, mas pode ser mantida
+  transactionTypeLabel: string;
   initialData: InitialEditData;
   type: TransactionType;
 }
@@ -79,15 +75,20 @@ export default function ModalEdit({
   initialData,
   type,
 }: ModalEditProps) {
-  // Inicialize os estados com valores padrão ou nulos, eles serão preenchidos no useEffect
   const [date, setDate] = useState<Dayjs | null>(null);
   const [amount, setAmount] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
-  const [selectedCategoriaId, setSelectedCategoriaId] = useState<number | string>("");
+  const [selectedCategoriaId, setSelectedCategoriaId] = useState<
+    number | string
+  >("");
   const [selectedBancoId, setSelectedBancoId] = useState<number | string>("");
-  const [selectedBancoSaiuDeId, setSelectedBancoSaiuDeId] = useState<number | string>("");
-  const [selectedBancoParaId, setSelectedBancoParaId] = useState<number | string>("");
+  const [selectedBancoSaiuDeId, setSelectedBancoSaiuDeId] = useState<
+    number | string
+  >("");
+  const [selectedBancoParaId, setSelectedBancoParaId] = useState<
+    number | string
+  >("");
 
   const [bancos, setBancos] = useState<Banco[]>([]);
   const [categorias, setCategorias] = useState<Categoria[]>([]);
@@ -96,7 +97,6 @@ export default function ModalEdit({
   const [loadingCategorias, setLoadingCategorias] = useState(false);
   const [errorCategorias, setErrorCategorias] = useState<string | null>(null);
 
-  // --- NOVO useEffect para buscar bancos QUANDO A MODAL ABRE ---
   useEffect(() => {
     const fetchBancosData = async () => {
       setLoadingBancos(true);
@@ -115,10 +115,8 @@ export default function ModalEdit({
     if (open) {
       fetchBancosData();
     }
-    // Não inclua 'bancos' na dependência para evitar loop infinito
   }, [open]);
 
-  // --- NOVO useEffect para buscar categorias QUANDO A MODAL ABRE (se não for transferência) ---
   useEffect(() => {
     const fetchCategoriasData = async () => {
       setLoadingCategorias(true);
@@ -137,41 +135,47 @@ export default function ModalEdit({
     if (open && type !== "transfer") {
       fetchCategoriasData();
     } else if (open && type === "transfer") {
-      // Limpa as categorias e o ID selecionado se for uma transferência
       setCategorias([]);
       setSelectedCategoriaId("");
     }
-    // Não inclua 'categorias' na dependência para evitar loop infinito
   }, [open, type]);
 
-
-  // --- useEffect PRINCIPAL para inicializar os dados do formulário e IDs selecionados ---
   useEffect(() => {
     if (open) {
-      // Reinicializa os estados do formulário com base em initialData
       setDate(initialData.date ? dayjs(initialData.date) : null);
       setAmount(initialData.amount);
-      setDescription(initialData.description || '');
+      setDescription(initialData.description || "");
 
-      // Inicializa selected IDs encontrando o ID pelo NOME
-      // Garante que bancos e categorias estejam carregados antes de tentar encontrar
       if (type === "transfer") {
-        if (bancos.length > 0) { // Só tenta encontrar se os bancos já foram carregados
-          const initialBancoSaiuDeMatch = bancos.find(b => b.nome === initialData.from);
-          const initialBancoParaMatch = bancos.find(b => b.nome === initialData.to);
-          setSelectedBancoSaiuDeId(initialBancoSaiuDeMatch ? initialBancoSaiuDeMatch.id : "");
-          setSelectedBancoParaId(initialBancoParaMatch ? initialBancoParaMatch.id : "");
+        if (bancos.length > 0) {
+          const initialBancoSaiuDeMatch = bancos.find(
+            (b) => b.nome === initialData.from
+          );
+          const initialBancoParaMatch = bancos.find(
+            (b) => b.nome === initialData.to
+          );
+          setSelectedBancoSaiuDeId(
+            initialBancoSaiuDeMatch ? initialBancoSaiuDeMatch.id : ""
+          );
+          setSelectedBancoParaId(
+            initialBancoParaMatch ? initialBancoParaMatch.id : ""
+          );
         }
-      } else { // income or expenses
-        if (bancos.length > 0 && categorias.length > 0) { // Só tenta encontrar se bancos E categorias foram carregados
-          const initialCategoriaMatch = categorias.find(c => c.nome === initialData.category);
-          const initialBancoMatch = bancos.find(b => b.nome === initialData.from);
-          setSelectedCategoriaId(initialCategoriaMatch ? initialCategoriaMatch.id : "");
+      } else {
+        if (bancos.length > 0 && categorias.length > 0) {
+          const initialCategoriaMatch = categorias.find(
+            (c) => c.nome === initialData.category
+          );
+          const initialBancoMatch = bancos.find(
+            (b) => b.nome === initialData.from
+          );
+          setSelectedCategoriaId(
+            initialCategoriaMatch ? initialCategoriaMatch.id : ""
+          );
           setSelectedBancoId(initialBancoMatch ? initialBancoMatch.id : "");
         }
       }
     } else {
-      // Quando a modal fecha, limpa os estados para a próxima abertura
       setDate(null);
       setAmount("");
       setDescription("");
@@ -179,127 +183,151 @@ export default function ModalEdit({
       setSelectedBancoId("");
       setSelectedBancoSaiuDeId("");
       setSelectedBancoParaId("");
-      // Não é necessário resetar bancos/categorias aqui, pois eles são carregados novamente na abertura
     }
-  }, [open, initialData, type, bancos, categorias]); // Mantenha bancos/categorias aqui para re-avaliar a inicialização após o carregamento deles
+  }, [open, initialData, type, bancos, categorias]);
 
-
-  // Handler para os Selects, agora atualizam os estados de ID
-  const handleSelectChange = (setter: React.Dispatch<React.SetStateAction<string | number>>) =>
+  const handleSelectChange =
+    (setter: React.Dispatch<React.SetStateAction<string | number>>) =>
     (event: SelectChangeEvent<string | number>) => {
       setter(event.target.value);
     };
 
   const handleSubmit = async () => {
     if (!amount || !date) {
-        alert("Por favor, preencha o valor e a data.");
-        return;
+      alert("Por favor, preencha o valor e a data.");
+      return;
     }
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-        alert("Por favor, insira um valor válido e positivo.");
-        return;
+      alert("Por favor, insira um valor válido e positivo.");
+      return;
     }
 
-    // Determine os IDs a serem enviados para o mockPrisma
     let categoryIdToSave: number | null = null;
     let bankIdToSave: number | null = null;
     let bankOrigemIdToSave: number | null = null;
     let bankDestinoIdToSave: number | null = null;
 
     if (type === "transfer") {
-        bankOrigemIdToSave = selectedBancoSaiuDeId ? (selectedBancoSaiuDeId as number) : null;
-        bankDestinoIdToSave = selectedBancoParaId ? (selectedBancoParaId as number) : null;
-        if (!bankOrigemIdToSave || !bankDestinoIdToSave) {
-            alert("Selecione os bancos de origem e destino para a transferência.");
-            return;
-        }
-        if (bankOrigemIdToSave === bankDestinoIdToSave) {
-            alert("O banco de origem e o banco de destino não podem ser o mesmo.");
-            return;
-        }
-    } else { // income or expenses
-        categoryIdToSave = selectedCategoriaId ? (selectedCategoriaId as number) : null;
-        bankIdToSave = selectedBancoId ? (selectedBancoId as number) : null;
-        if (!categoryIdToSave) {
-            alert("Selecione uma categoria.");
-            return;
-        }
-        if (!bankIdToSave) {
-            alert("Selecione um banco.");
-            return;
-        }
+      bankOrigemIdToSave = selectedBancoSaiuDeId
+        ? (selectedBancoSaiuDeId as number)
+        : null;
+      bankDestinoIdToSave = selectedBancoParaId
+        ? (selectedBancoParaId as number)
+        : null;
+      if (!bankOrigemIdToSave || !bankDestinoIdToSave) {
+        alert("Selecione os bancos de origem e destino para a transferência.");
+        return;
+      }
+      if (bankOrigemIdToSave === bankDestinoIdToSave) {
+        alert("O banco de origem e o banco de destino não podem ser o mesmo.");
+        return;
+      }
+    } else {
+      categoryIdToSave = selectedCategoriaId
+        ? (selectedCategoriaId as number)
+        : null;
+      bankIdToSave = selectedBancoId ? (selectedBancoId as number) : null;
+      if (!categoryIdToSave) {
+        alert("Selecione uma categoria.");
+        return;
+      }
+      if (!bankIdToSave) {
+        alert("Selecione um banco.");
+        return;
+      }
     }
 
     const updateDataForPrisma: any = {
-        descricao: description,
-        valor: parsedAmount * (type === "expenses" ? -1 : 1),
-        data: date ? dayjs(date).toISOString() : new Date().toISOString(),
+      descricao: description,
+      valor: parsedAmount * (type === "expenses" ? -1 : 1),
+      data: date ? dayjs(date).toISOString() : new Date().toISOString(),
     };
 
     if (type === "transfer") {
-        updateDataForPrisma.bancoOrigemId = bankOrigemIdToSave;
-        updateDataForPrisma.bancoDestinoId = bankDestinoIdToSave;
-        updateDataForPrisma.categoriaId = null;
-        updateDataForPrisma.bancoid = null;
-        // Para transferências, o tipo é 3 no seu mockPrisma
-        updateDataForPrisma.tipoId = 3; 
+      updateDataForPrisma.bancoOrigemId = bankOrigemIdToSave;
+      updateDataForPrisma.bancoDestinoId = bankDestinoIdToSave;
+      updateDataForPrisma.categoriaId = null;
+      updateDataForPrisma.bancoid = null;
+
+      updateDataForPrisma.tipoId = 3;
     } else {
-        updateDataForPrisma.categoriaId = categoryIdToSave;
-        updateDataForPrisma.bancoid = bankIdToSave;
-        updateDataForPrisma.bancoOrigemId = null;
-        updateDataForPrisma.bancoDestinoId = null;
-        // Para receita (1) ou despesa (2)
-        updateDataForPrisma.tipoId = type === "income" ? 1 : 2; 
+      updateDataForPrisma.categoriaId = categoryIdToSave;
+      updateDataForPrisma.bancoid = bankIdToSave;
+      updateDataForPrisma.bancoOrigemId = null;
+      updateDataForPrisma.bancoDestinoId = null;
+
+      updateDataForPrisma.tipoId = type === "income" ? 1 : 2;
     }
 
     try {
-        const updatedTransactionFromPrisma = await mockPrisma.transacoes.update({
-            where: { id: initialData.id },
-            data: updateDataForPrisma
-        });
-        console.log("Transação atualizada no mockPrisma:", updatedTransactionFromPrisma);
+      const updatedTransactionFromPrisma = await mockPrisma.transacoes.update({
+        where: { id: initialData.id },
+        data: updateDataForPrisma,
+      });
+      console.log(
+        "Transação atualizada no mockPrisma:",
+        updatedTransactionFromPrisma
+      );
 
-        // Agora, formata os dados para o componente pai (Transactions.tsx)
-        // Busque os nomes com base nos IDs que foram salvos
-        const categoryName = updatedTransactionFromPrisma.categoriaId
-            ? (await mockPrisma.categorias.findUnique({ where: { id: updatedTransactionFromPrisma.categoriaId } }))?.nome || "N/A"
-            : "N/A";
+      const categoryName = updatedTransactionFromPrisma.categoriaId
+        ? (
+            await mockPrisma.categorias.findUnique({
+              where: { id: updatedTransactionFromPrisma.categoriaId },
+            })
+          )?.nome || "N/A"
+        : "N/A";
 
-        const bankName = updatedTransactionFromPrisma.bancoid
-            ? (await mockPrisma.banco.findUnique({ where: { id: updatedTransactionFromPrisma.bancoid } }))?.nome || "N/A"
-            : "N/A";
+      const bankName = updatedTransactionFromPrisma.bancoid
+        ? (
+            await mockPrisma.banco.findUnique({
+              where: { id: updatedTransactionFromPrisma.bancoid },
+            })
+          )?.nome || "N/A"
+        : "N/A";
 
-        const bankFromName = updatedTransactionFromPrisma.bancoOrigemId
-            ? (await mockPrisma.banco.findUnique({ where: { id: updatedTransactionFromPrisma.bancoOrigemId } }))?.nome || "N/A"
-            : "N/A";
+      const bankFromName = updatedTransactionFromPrisma.bancoOrigemId
+        ? (
+            await mockPrisma.banco.findUnique({
+              where: { id: updatedTransactionFromPrisma.bancoOrigemId },
+            })
+          )?.nome || "N/A"
+        : "N/A";
 
-        const bankToName = updatedTransactionFromPrisma.bancoDestinoId
-            ? (await mockPrisma.banco.findUnique({ where: { id: updatedTransactionFromPrisma.bancoDestinoId } }))?.nome || "N/A"
-            : "N/A";
+      const bankToName = updatedTransactionFromPrisma.bancoDestinoId
+        ? (
+            await mockPrisma.banco.findUnique({
+              where: { id: updatedTransactionFromPrisma.bancoDestinoId },
+            })
+          )?.nome || "N/A"
+        : "N/A";
 
-        const formattedForParent = {
-            id: updatedTransactionFromPrisma.id,
-            category: type === "transfer" ? "Transferência" : categoryName,
-            description: type === "transfer" ? `De ${bankFromName} para ${bankToName}` : `${bankName} - ${updatedTransactionFromPrisma.descricao || 'Sem Descrição'}`,
-            date: dayjs(updatedTransactionFromPrisma.data).format("DD/MM/YYYY"),
-            amount: updatedTransactionFromPrisma.valor,
-            type: type,
-            bank: bankName,
-            bankFrom: bankFromName,
-            bankTo: bankToName,
-            bancoOrigemId: updatedTransactionFromPrisma.bancoOrigemId,
-            bancoDestinoId: updatedTransactionFromPrisma.bancoDestinoId,
-            bancoid: updatedTransactionFromPrisma.bancoid,
-        };
-        onSubmit(formattedForParent);
-        onClose();
+      const formattedForParent = {
+        id: updatedTransactionFromPrisma.id,
+        category: type === "transfer" ? "Transferência" : categoryName,
+        description:
+          type === "transfer"
+            ? `De ${bankFromName} para ${bankToName}`
+            : `${bankName} - ${
+                updatedTransactionFromPrisma.descricao || "Sem Descrição"
+              }`,
+        date: dayjs(updatedTransactionFromPrisma.data).format("DD/MM/YYYY"),
+        amount: updatedTransactionFromPrisma.valor,
+        type: type,
+        bank: bankName,
+        bankFrom: bankFromName,
+        bankTo: bankToName,
+        bancoOrigemId: updatedTransactionFromPrisma.bancoOrigemId,
+        bancoDestinoId: updatedTransactionFromPrisma.bancoDestinoId,
+        bancoid: updatedTransactionFromPrisma.bancoid,
+      };
+      onSubmit(formattedForParent);
+      onClose();
     } catch (error) {
-        console.error("Erro ao salvar edição:", error);
-        alert("Erro ao salvar edição. Verifique o console.");
+      console.error("Erro ao salvar edição:", error);
+      alert("Erro ao salvar edição. Verifique o console.");
     }
   };
-
 
   if (!open) return null;
 
@@ -328,7 +356,13 @@ export default function ModalEdit({
           }}
         >
           <Box style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <Typography style={{ fontSize: "16px", fontWeight: "bold", textAlign: "start" }}>
+            <Typography
+              style={{
+                fontSize: "16px",
+                fontWeight: "bold",
+                textAlign: "start",
+              }}
+            >
               {labelMap[type]}
             </Typography>
 
@@ -356,12 +390,26 @@ export default function ModalEdit({
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingBancos && (<MenuItem disabled>Carregando bancos...</MenuItem>)}
-                      {errorBancos && (<MenuItem disabled sx={{ color: "error.main" }}>{errorBancos}</MenuItem>)}
-                      {!loadingBancos && bancos.length === 0 && !errorBancos && (<MenuItem disabled>Nenhum banco encontrado.</MenuItem>)}
-                      {!loadingBancos && bancos.length > 0 && bancos.map((banco) => (
-                        <MenuItem key={banco.id} value={banco.id}>{banco.nome}</MenuItem>
-                      ))}
+                      {loadingBancos && (
+                        <MenuItem disabled>Carregando bancos...</MenuItem>
+                      )}
+                      {errorBancos && (
+                        <MenuItem disabled sx={{ color: "error.main" }}>
+                          {errorBancos}
+                        </MenuItem>
+                      )}
+                      {!loadingBancos &&
+                        bancos.length === 0 &&
+                        !errorBancos && (
+                          <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
+                        )}
+                      {!loadingBancos &&
+                        bancos.length > 0 &&
+                        bancos.map((banco) => (
+                          <MenuItem key={banco.id} value={banco.id}>
+                            {banco.nome}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
@@ -375,12 +423,26 @@ export default function ModalEdit({
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingBancos && (<MenuItem disabled>Carregando bancos...</MenuItem>)}
-                      {errorBancos && (<MenuItem disabled sx={{ color: "error.main" }}>{errorBancos}</MenuItem>)}
-                      {!loadingBancos && bancos.length === 0 && !errorBancos && (<MenuItem disabled>Nenhum banco encontrado.</MenuItem>)}
-                      {!loadingBancos && bancos.length > 0 && bancos.map((banco) => (
-                        <MenuItem key={banco.id} value={banco.id}>{banco.nome}</MenuItem>
-                      ))}
+                      {loadingBancos && (
+                        <MenuItem disabled>Carregando bancos...</MenuItem>
+                      )}
+                      {errorBancos && (
+                        <MenuItem disabled sx={{ color: "error.main" }}>
+                          {errorBancos}
+                        </MenuItem>
+                      )}
+                      {!loadingBancos &&
+                        bancos.length === 0 &&
+                        !errorBancos && (
+                          <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
+                        )}
+                      {!loadingBancos &&
+                        bancos.length > 0 &&
+                        bancos.map((banco) => (
+                          <MenuItem key={banco.id} value={banco.id}>
+                            {banco.nome}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
                 </>
@@ -397,12 +459,28 @@ export default function ModalEdit({
                       disabled={loadingCategorias || errorCategorias !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingCategorias && (<MenuItem disabled>Carregando categorias...</MenuItem>)}
-                      {errorCategorias && (<MenuItem disabled sx={{ color: "error.main" }}>{errorCategorias}</MenuItem>)}
-                      {!loadingCategorias && categorias.length === 0 && !errorCategorias && (<MenuItem disabled>Nenhuma categoria encontrada.</MenuItem>)}
-                      {!loadingCategorias && categorias.length > 0 && categorias.map((categoria) => (
-                        <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>
-                      ))}
+                      {loadingCategorias && (
+                        <MenuItem disabled>Carregando categorias...</MenuItem>
+                      )}
+                      {errorCategorias && (
+                        <MenuItem disabled sx={{ color: "error.main" }}>
+                          {errorCategorias}
+                        </MenuItem>
+                      )}
+                      {!loadingCategorias &&
+                        categorias.length === 0 &&
+                        !errorCategorias && (
+                          <MenuItem disabled>
+                            Nenhuma categoria encontrada.
+                          </MenuItem>
+                        )}
+                      {!loadingCategorias &&
+                        categorias.length > 0 &&
+                        categorias.map((categoria) => (
+                          <MenuItem key={categoria.id} value={categoria.id}>
+                            {categoria.nome}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
@@ -416,12 +494,26 @@ export default function ModalEdit({
                       disabled={loadingBancos || errorBancos !== null}
                       sx={{ textAlign: "left" }}
                     >
-                      {loadingBancos && (<MenuItem disabled>Carregando bancos...</MenuItem>)}
-                      {errorBancos && (<MenuItem disabled sx={{ color: "error.main" }}>{errorBancos}</MenuItem>)}
-                      {!loadingBancos && bancos.length === 0 && !errorBancos && (<MenuItem disabled>Nenhum banco encontrado.</MenuItem>)}
-                      {!loadingBancos && bancos.length > 0 && bancos.map((banco) => (
-                        <MenuItem key={banco.id} value={banco.id}>{banco.nome}</MenuItem>
-                      ))}
+                      {loadingBancos && (
+                        <MenuItem disabled>Carregando bancos...</MenuItem>
+                      )}
+                      {errorBancos && (
+                        <MenuItem disabled sx={{ color: "error.main" }}>
+                          {errorBancos}
+                        </MenuItem>
+                      )}
+                      {!loadingBancos &&
+                        bancos.length === 0 &&
+                        !errorBancos && (
+                          <MenuItem disabled>Nenhum banco encontrado.</MenuItem>
+                        )}
+                      {!loadingBancos &&
+                        bancos.length > 0 &&
+                        bancos.map((banco) => (
+                          <MenuItem key={banco.id} value={banco.id}>
+                            {banco.nome}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
                 </>

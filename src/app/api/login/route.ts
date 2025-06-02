@@ -6,9 +6,8 @@ import bcrypt from "bcrypt";
 export async function POST(req: Request) {
     const { email, password } = await req.json();
 
-    console.log("Tentativa de login para email:", email); // Log 1
-    console.log("Senha recebida (texto puro):", password); // Log 2 (CUIDADO EM PRODUÇÃO!)
-
+    console.log("Tentativa de login para email:", email); 
+    console.log("Senha recebida (texto puro):", password); 
     if (!email || !password) {
         return NextResponse.json({ error: "Email e senha são obrigatórios." }, { status: 400 });
     }
@@ -19,16 +18,16 @@ export async function POST(req: Request) {
         });
 
         if (!user) {
-            console.log("Usuário não encontrado no mock para email:", email); // Log 3
+            console.log("Usuário não encontrado no mock para email:", email); 
             return NextResponse.json({ error: "Credenciais inválidas." }, { status: 401 });
         }
 
-        console.log("Usuário mockado encontrado:", user.email); // Log 4
-        console.log("Hash armazenado no mock:", user.password); // Log 5
+        console.log("Usuário mockado encontrado:", user.email);
+        console.log("Hash armazenado no mock:", user.password); 
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
-        console.log("Resultado da comparação da senha:", isPasswordValid); // Log 6
+        console.log("Resultado da comparação da senha:", isPasswordValid);
 
         if (!isPasswordValid) {
             return NextResponse.json({ error: "Credenciais inválidas." }, { status: 401 });

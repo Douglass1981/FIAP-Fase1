@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const categorias = await prisma.categorias.findMany({
       orderBy: {
-        nome: 'asc', // Opcional: ordenar as categorias por nome
+        nome: 'asc', 
       },
     });
 

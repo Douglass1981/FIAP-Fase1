@@ -24,14 +24,13 @@ export default function Cadastro() {
   const [cadastroSucesso, setCadastroSucesso] = useState(false);
   const [erroCadastro, setErroCadastro] = useState("");
 
-  const router = useRouter(); // Inicialize o useRouter
+  const router = useRouter();
 
   const handleCadastroUser = async () => {
-    // Validação de campos obrigatórios
     if (!nome || !email || !password) {
       setErroCadastro("Por favor, preencha todos os campos.");
       setCadastroSucesso(false);
-      return; // Interrompe a execução se houver campos vazios
+      return;
     }
     try {
       const response = await fetch("/api/users", {
@@ -66,18 +65,17 @@ export default function Cadastro() {
       setCadastroSucesso(false);
     }
   };
-  // --- Novo código para redirecionamento ---
+
   useEffect(() => {
     let timer: string | number | NodeJS.Timeout | undefined;
     if (cadastroSucesso) {
       timer = setTimeout(() => {
-        router.push("http://localhost:3000/login"); // Redireciona para a página de login
-      }, 2000); // 2000 milissegundos = 2 segundos
+        router.push("http://localhost:3000/login");
+      }, 2000);
     }
 
-    // Limpa o timer se o componente for desmontado ou se cadastroSucesso mudar para false
     return () => clearTimeout(timer);
-  }, [cadastroSucesso, router]); // Dependências do useEffect
+  }, [cadastroSucesso, router]);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -91,35 +89,32 @@ export default function Cadastro() {
     <>
       <main className={styles["signup"]}>
         <Box className={styles["signup__container"]}>
-          
-            <Link
-              className={styles["signup__container__logo_area"]}
-              href="http://localhost:3000"
-              sx={{ textDecoration: "none" }}
-            >
-              {isMobile ? (
-                <Image
-                  src="/logo.png"
-                  width="232"
-                  height="232"
-                  alt="Logo"
-                  style={{ width: "30%", height: "auto" }}
-                />
-              ) : (
-                <Image
-                  src="/logo.png"
-                  width="72"
-                  height="100"
-                  alt="Logo"
-                  style={{ width: "15%", height: "auto" }}
-                />
-              )}{" "}
-            
+          <Link
+            className={styles["signup__container__logo_area"]}
+            href="http://localhost:3000"
+            sx={{ textDecoration: "none" }}
+          >
+            {isMobile ? (
+              <Image
+                src="/logo.png"
+                width="232"
+                height="232"
+                alt="Logo"
+                style={{ width: "30%", height: "auto" }}
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                width="72"
+                height="100"
+                alt="Logo"
+                style={{ width: "15%", height: "auto" }}
+              />
+            )}{" "}
             <h1 className={styles["signup__container__logo_area__brand"]}>
               Poup.ai
             </h1>
-            </Link>
-            
+          </Link>
 
           <Box className={styles["signup__container__form-area"]}>
             <Box className={styles["signup__container__form-area__text"]}>

@@ -1,4 +1,3 @@
-// src/app/transactions/page.tsx
 "use client";
 
 import styles from "./transactions.styles.module.scss";
@@ -17,7 +16,7 @@ import ButtonTransactions from "@/components/ButtonTransactions";
 import ModalTransaction from "@/components/modal-component/modaltransaction";
 import mockPrisma from "@/mockPrisma";
 import dayjs from "dayjs";
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 dayjs.extend(customParseFormat);
 
@@ -26,20 +25,22 @@ interface Transaction {
   category: string;
   description: string;
   date: string;
-  amount: number; // Valor numérico, positivo para receita/transferência, negativo para despesa
+  amount: number;
   type: "income" | "expenses" | "transfer";
-  bankFrom?: string; // Nome do banco de origem
-  bankTo?: string;   // Nome do banco de destino
-  bank?: string;     // Nome do banco para receitas/despesas
-  bancoOrigemId?: number; // ID do banco de origem
-  bancoDestinoId?: number; // ID do banco de destino
-  bancoid?: number; // ID do banco para receitas/despesas
+  bankFrom?: string;
+  bankTo?: string;
+  bank?: string;
+  bancoOrigemId?: number;
+  bancoDestinoId?: number;
+  bancoid?: number;
 }
 
 export default function Transactions() {
   const router = useRouter();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [modalType, setModalType] = useState<"income" | "expenses" | "transfer" | null>(null);
+  const [modalType, setModalType] = useState<
+    "income" | "expenses" | "transfer" | null
+  >(null);
   const [selectedFilter, setSelectedFilter] = useState("Última semana");
 
   const MAIN_BANK_ID = 2;
@@ -48,13 +49,13 @@ export default function Transactions() {
     let income = 0;
     let expenses = 0;
 
-    transactions.forEach(transaction => {
+    transactions.forEach((transaction) => {
       if (transaction.type === "income") {
         income += transaction.amount;
       } else if (transaction.type === "expenses") {
-        expenses += transaction.amount; // transaction.amount já é negativo
+        expenses += transaction.amount;
       } else if (transaction.type === "transfer") {
-        income += transaction.amount; // Todas as transferências somam na receita.
+        income += transaction.amount;
       }
     });
 
@@ -62,7 +63,10 @@ export default function Transactions() {
   }, [transactions]);
 
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(value);
   };
 
   useEffect(() => {
@@ -78,25 +82,45 @@ export default function Transactions() {
           let bankName: string | undefined;
 
           const transactionType: Transaction["type"] =
-            t.tipoId === 1 ? "income" : t.tipoId === 2 ? "expenses" : "transfer";
+            t.tipoId === 1
+              ? "income"
+              : t.tipoId === 2
+              ? "expenses"
+              : "transfer";
 
           if (transactionType === "transfer") {
             categoryName = "Transferência";
             bankFromName = t.bancoOrigemId
-              ? (await mockPrisma.banco.findUnique({ where: { id: t.bancoOrigemId } }))?.nome || "N/A"
+              ? (
+                  await mockPrisma.banco.findUnique({
+                    where: { id: t.bancoOrigemId },
+                  })
+                )?.nome || "N/A"
               : "N/A";
             bankToName = t.bancoDestinoId
-              ? (await mockPrisma.banco.findUnique({ where: { id: t.bancoDestinoId } }))?.nome || "N/A"
+              ? (
+                  await mockPrisma.banco.findUnique({
+                    where: { id: t.bancoDestinoId },
+                  })
+                )?.nome || "N/A"
               : "N/A";
             descriptionText = `De ${bankFromName} para ${bankToName}`;
           } else {
             categoryName = t.categoriaId
-              ? (await mockPrisma.categorias.findUnique({ where: { id: t.categoriaId } }))?.nome || "N/A"
+              ? (
+                  await mockPrisma.categorias.findUnique({
+                    where: { id: t.categoriaId },
+                  })
+                )?.nome || "N/A"
               : "N/A";
             bankName = t.bancoid
-              ? (await mockPrisma.banco.findUnique({ where: { id: t.bancoid } }))?.nome || "N/A"
+              ? (
+                  await mockPrisma.banco.findUnique({
+                    where: { id: t.bancoid },
+                  })
+                )?.nome || "N/A"
               : "N/A";
-            descriptionText = `${bankName} - ${t.descricao || 'Sem Descrição'}`;
+            descriptionText = `${bankName} - ${t.descricao || "Sem Descrição"}`;
           }
 
           return {
@@ -128,12 +152,17 @@ export default function Transactions() {
   };
 
   const handleDelete = (idToDelete: number) => {
-    setTransactions(transactions.filter((transaction) => transaction.id !== idToDelete));
+    setTransactions(
+      transactions.filter((transaction) => transaction.id !== idToDelete)
+    );
     console.log(`Transação com ID ${idToDelete} excluída`);
   };
 
   const handleAddTransaction = (newTransaction: Transaction) => {
-    setTransactions((prevTransactions) => [...prevTransactions, newTransaction]);
+    setTransactions((prevTransactions) => [
+      ...prevTransactions,
+      newTransaction,
+    ]);
     setModalType(null);
   };
 
@@ -151,8 +180,8 @@ export default function Transactions() {
   };
 
   const handleUpdateTransaction = (updatedTransaction: Transaction) => {
-    setTransactions(prevTransactions =>
-      prevTransactions.map(t =>
+    setTransactions((prevTransactions) =>
+      prevTransactions.map((t) =>
         t.id === updatedTransaction.id ? updatedTransaction : t
       )
     );
@@ -236,8 +265,16 @@ export default function Transactions() {
                   styles["transactions__main__container-info__container__left"]
                 }
               >
-                <TransactionInfo type="income" title="Receitas" amount={formatCurrency(totalIncome)} />
-                <TransactionInfo type="expenses" title="Despesas" amount={formatCurrency(totalExpenses)} />
+                <TransactionInfo
+                  type="income"
+                  title="Receitas"
+                  amount={formatCurrency(totalIncome)}
+                />
+                <TransactionInfo
+                  type="expenses"
+                  title="Despesas"
+                  amount={formatCurrency(totalExpenses)}
+                />
               </Box>
               <Box
                 className={
@@ -248,30 +285,41 @@ export default function Transactions() {
                   <Box
                     key={type}
                     className={
-                      styles["transactions__main__container-info__container__right__function"]
+                      styles[
+                        "transactions__main__container-info__container__right__function"
+                      ]
                     }
                     onClick={() => setModalType(type)}
                     style={{ cursor: "pointer" }}
                   >
                     <Box
                       className={
-                        styles["transactions__main__container-info__container__right__function__icon-area"]
+                        styles[
+                          "transactions__main__container-info__container__right__function__icon-area"
+                        ]
                       }
                     >
-                      <Avatar sx={{ backgroundColor: colors.gray300, color: colors.gray800 }}>
+                      <Avatar
+                        sx={{
+                          backgroundColor: colors.gray300,
+                          color: colors.gray800,
+                        }}
+                      >
                         {iconMap[type]}
                       </Avatar>
                     </Box>
                     <p
                       className={
-                        styles["transactions__main__container-info__container__right__function__text"]
+                        styles[
+                          "transactions__main__container-info__container__right__function__text"
+                        ]
                       }
                     >
                       {type === "income"
                         ? "Receitas"
                         : type === "expenses"
-                          ? "Despesas"
-                          : "Transferência"}
+                        ? "Despesas"
+                        : "Transferência"}
                     </p>
                   </Box>
                 ))}
@@ -295,7 +343,7 @@ export default function Transactions() {
               transactions.map((transaction) => (
                 <TransactionCard
                   key={transaction.id}
-                  id={transaction.id} /* <--- SINTAXE DE COMENTÁRIO CORRIGIDA AQUI */
+                  id={transaction.id}
                   category={transaction.category}
                   description={transaction.description}
                   date={transaction.date}

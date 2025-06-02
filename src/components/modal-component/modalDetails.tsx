@@ -1,24 +1,22 @@
-// src/components/modal-component/modalDetails.tsx
 "use client";
 
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { Box, Button, Typography } from "@mui/material"; // Adicionando Typography
-import { colors } from "../../app/mui.styles"; // Ajuste o caminho conforme necessário
+import { Box, Button, Typography } from "@mui/material";
+import { colors } from "../../app/mui.styles";
 
-// Definição do tipo de transação (se não estiver em um arquivo de tipos global)
 type TransactionType = "income" | "expenses" | "transfer";
 
 interface ModalDetailsProps {
   open: boolean;
   onClose: () => void;
-  from: string; // Banco de origem (para transferência) ou o banco da transação
-  to: string;   // Banco de destino (apenas para transferência)
+  from: string;
+  to: string;
   date: string;
   amount: string;
-  // --- PROPS ADICIONADAS E CORRIGIDAS ---
-  category: string;    // Nome da categoria (para receita/despesa)
-  description: string; // Descrição da transação (texto livre ou "De X para Y")
-  type: TransactionType; // Tipo da transação
+
+  category: string;
+  description: string;
+  type: TransactionType;
 }
 
 export default function ModalDetails({
@@ -28,13 +26,12 @@ export default function ModalDetails({
   to,
   date,
   amount,
-  category, // Desestruturando
-  description, // Desestruturando
-  type, // Desestruturando
+  category,
+  description,
+  type,
 }: ModalDetailsProps) {
   if (!open) return null;
 
-  // Componente auxiliar para exibir linhas de detalhe
   function DetailRow({ label, value }: { label: string; value: string }) {
     return (
       <Box
@@ -45,34 +42,37 @@ export default function ModalDetails({
           alignItems: "center",
         }}
       >
-        <Typography variant="body2" sx={{ margin: 0 }}>{label}</Typography>
-        <Typography variant="body2" sx={{ color: "black", margin: 0 }}>{value}</Typography>
+        <Typography variant="body2" sx={{ margin: 0 }}>
+          {label}
+        </Typography>
+        <Typography variant="body2" sx={{ color: "black", margin: 0 }}>
+          {value}
+        </Typography>
       </Box>
     );
   }
 
-  // Renderiza dinamicamente as informações com base no tipo
   const renderDetails = () => {
     if (type === "transfer") {
       return (
         <>
           <DetailRow label="De" value={from} />
           <DetailRow label="Para" value={to} />
-          {/* Adicione a descrição para transferências também, se houver.
-              No seu caso, 'description' para transferências já é "De X para Y",
-              então pode ser redundante aqui, mas vou manter o campo caso queira um campo extra. */}
-          {description && description.length > 0 && description !== `De ${from} para ${to}` && (
-            <DetailRow label="Detalhes" value={description} />
-          )}
+
+          {description &&
+            description.length > 0 &&
+            description !== `De ${from} para ${to}` && (
+              <DetailRow label="Detalhes" value={description} />
+            )}
           <DetailRow label="Valor" value={amount} />
           <DetailRow label="Data" value={date} />
         </>
       );
-    } else { // income or expenses
+    } else {
       return (
         <>
           <DetailRow label="Categoria" value={category} />
-          <DetailRow label="Banco" value={from} /> {/* 'from' aqui é o banco da transação */}
+          <DetailRow label="Banco" value={from} />
           <DetailRow label="Descrição" value={description} />
           <DetailRow label="Valor" value={amount} />
           <DetailRow label="Data" value={date} />
@@ -107,9 +107,25 @@ export default function ModalDetails({
           gap: "1rem",
         }}
       >
-        <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-          <Typography variant="h6" component="h2" sx={{ fontWeight: "bold", flexGrow: 1, textAlign: "start" }}>
-            Detalhes da {type === "income" ? "Receita" : type === "expenses" ? "Despesa" : "Transferência"}
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="h6"
+            component="h2"
+            sx={{ fontWeight: "bold", flexGrow: 1, textAlign: "start" }}
+          >
+            Detalhes da{" "}
+            {type === "income"
+              ? "Receita"
+              : type === "expenses"
+              ? "Despesa"
+              : "Transferência"}
           </Typography>
           <Button
             onClick={onClose}

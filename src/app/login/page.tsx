@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "@mui/material/Link";
-import { useState, useEffect } from "react"; // Importe useEffect
+import { useState, useEffect } from "react"; 
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
@@ -22,20 +22,20 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false); // Novo estado para o checkbox
+  const [rememberMe, setRememberMe] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
 
-  // useEffect para carregar o email salvo se "Lembrar-me" foi marcado anteriormente
+  
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     if (savedEmail) {
       setEmail(savedEmail);
-      setRememberMe(true); // Marca o checkbox se houver um email salvo
+      setRememberMe(true); 
     }
-  }, []); // Executa apenas uma vez ao montar o componente
+  }, []); 
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
@@ -75,7 +75,7 @@ export default function Login() {
           localStorage.removeItem("userEmail");
         }
 
-        router.push("/home"); // Redireciona para a página home
+        router.push("/home"); 
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
       }
@@ -183,8 +183,8 @@ export default function Login() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={rememberMe} // Conecta ao estado 'rememberMe'
-                      onChange={(e) => setRememberMe(e.target.checked)} // Atualiza o estado
+                      checked={rememberMe} 
+                      onChange={(e) => setRememberMe(e.target.checked)} 
                       sx={{
                         "&.Mui-checked": {
                           color: colors.bluePrimary500,

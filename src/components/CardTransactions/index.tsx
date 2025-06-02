@@ -1,4 +1,3 @@
-// src/components/CardTransactions.tsx
 "use client";
 
 import { Box, Button } from "@mui/material";
@@ -16,13 +15,12 @@ import ModalDetails from "../modal-component/modalDetails";
 import ModalEdit from "../modal-component/modalEdit";
 import ModalDelete from "../modal-component/modalDelete";
 import dayjs from "dayjs";
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 type TransactionType = "income" | "expenses" | "transfer";
 
 type TransactionCardProps = {
-  id: number; // <--- ADICIONE ESTA LINHA: O ID da transação
+  id: number;
   category: string;
   description: string;
   date: string;
@@ -35,7 +33,7 @@ type TransactionCardProps = {
 };
 
 export default function TransactionCard({
-  id, // <--- ADICIONE A DESESTRUTURAÇÃO DO ID AQUI
+  id,
   category,
   description,
   date,
@@ -56,8 +54,10 @@ export default function TransactionCard({
   };
 
   const getIcon = () => {
-    if (type === "income") return <ArrowUpwardIcon style={{ color: colors.green }} />;
-    if (type === "expenses") return <ArrowDownwardIcon style={{ color: colors.red }} />;
+    if (type === "income")
+      return <ArrowUpwardIcon style={{ color: colors.green }} />;
+    if (type === "expenses")
+      return <ArrowDownwardIcon style={{ color: colors.red }} />;
     if (type === "transfer") return <SyncAltOutlinedIcon />;
     return <SyncAltOutlinedIcon />;
   };
@@ -94,7 +94,10 @@ export default function TransactionCard({
       </Box>
 
       <Box display="flex" gap={1}>
-        <Button sx={{ minWidth: 0, color: colors.black, textTransform: "none" }} onClick={() => setIsDetailsOpen(true)}>
+        <Button
+          sx={{ minWidth: 0, color: colors.black, textTransform: "none" }}
+          onClick={() => setIsDetailsOpen(true)}
+        >
           <VisibilityOutlinedIcon />
         </Button>
         <ModalDetails
@@ -108,7 +111,10 @@ export default function TransactionCard({
           description={description}
           type={type}
         />
-        <Button sx={{ minWidth: 0, color: colors.black, textTransform: "none" }} onClick={() => setIsEditOpen(true)}>
+        <Button
+          sx={{ minWidth: 0, color: colors.black, textTransform: "none" }}
+          onClick={() => setIsEditOpen(true)}
+        >
           <EditOutlinedIcon />
         </Button>
         <ModalEdit
@@ -116,13 +122,17 @@ export default function TransactionCard({
           onClose={() => setIsEditOpen(false)}
           onSubmit={(updatedData) => console.log(updatedData)}
           transactionTypeLabel={
-            type === "income" ? "Receita" : type === "expenses" ? "Despesa" : "Transferência"
+            type === "income"
+              ? "Receita"
+              : type === "expenses"
+              ? "Despesa"
+              : "Transferência"
           }
           initialData={{
-            id: id, // <--- ADICIONE ESTA LINHA: Passe o ID para o initialData
+            id: id,
             from: bankFrom || bank || "N/A",
             to: bankTo || "N/A",
-            amount: amount.replace(/[R$\s.,]/g, '').replace(',', '.'),
+            amount: amount.replace(/[R$\s.,]/g, "").replace(",", "."),
             date: dayjs(date, "DD/MM/YYYY").format("YYYY-MM-DD"),
             category: category,
             description: description,

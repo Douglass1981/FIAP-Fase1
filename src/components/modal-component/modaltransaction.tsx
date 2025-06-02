@@ -1,4 +1,4 @@
-// src/components/modal-component/modaltransaction.tsx
+
 "use client";
 
 import dayjs, { Dayjs } from "dayjs";
@@ -13,20 +13,20 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography // Adicione Typography se for usar para títulos
+  Typography 
 } from "@mui/material";
-import { colors } from "../../app/mui.styles"; // Ajuste o caminho conforme necessário
+import { colors } from "../../app/mui.styles"; 
 import { useState, useEffect } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import mockPrisma from "@/mockPrisma";
 
-// Interface para o tipo Banco (certifique-se de que está consistente com seu mockPrisma)
+
 interface Banco {
   id: number;
   nome: string;
 }
 
-// Interface para o tipo Categoria (certifique-se de que está consistente com seu mockPrisma)
+
 interface Categoria {
   id: number;
   nome: string;
