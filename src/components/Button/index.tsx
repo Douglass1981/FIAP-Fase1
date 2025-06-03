@@ -1,7 +1,6 @@
 import React from "react";
-import MuiButton from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import { colors } from "@/app/mui.styles";
-import type { ButtonProps } from './button.types';
 
 interface MyButtonProps {
   label: string;
@@ -12,12 +11,11 @@ interface MyButtonProps {
   textColor?: string;
   variant?: "contained" | "outlined" | "text";
   disabled?: boolean;
-  fullWidth?: boolean
-  type?: "button" | "submit" | "reset"; 
+  fullWidth?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
 const MyButton: React.FC<MyButtonProps> = ({
-
   label,
   onClick,
   href,
@@ -32,15 +30,14 @@ const MyButton: React.FC<MyButtonProps> = ({
   const isLink = Boolean(href);
 
   return (
-    <MuiButton
+    <Button
       variant={variant}
       onClick={onClick}
       disabled={disabled}
       fullWidth={fullWidth}
       component={isLink ? "a" : "button"}
       href={isLink ? href : undefined}
-       type={!isLink ? type : undefined}
-
+      type={!isLink ? type : undefined}
       sx={{
         textTransform: "none",
         backgroundColor: variant === "contained" ? bgColor : "transparent",
@@ -53,8 +50,8 @@ const MyButton: React.FC<MyButtonProps> = ({
       }}
     >
       {label}
-    </MuiButton>
+    </Button>
   );
 };
 
-export default Button;
+export default MyButton;

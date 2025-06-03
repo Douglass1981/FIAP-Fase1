@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Box, Checkbox, Alert, FormControlLabel } from "@mui/material";
 
-
 import {
   TextField,
   InputAdornment,
@@ -13,9 +12,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import Button from "@/components/Button";
+import MyButton from "@/components/Button";
 import { ROUTES } from "@/constants";
 import { colors } from "../mui.styles";
 import styles from "./login.styles.module.scss";
@@ -63,10 +61,10 @@ export default function Login() {
           localStorage.setItem("userName", data.user.nome);
           localStorage.setItem("userEmail", data.user.email);
           localStorage.setItem("isLoggedIn", "true");
+        } else {
           console.warn(
             "Informações do usuário (nome) não encontradas na resposta da API."
           );
-
           localStorage.removeItem("userName");
           localStorage.removeItem("userEmail");
           localStorage.removeItem("isLoggedIn");
@@ -81,7 +79,6 @@ export default function Login() {
         router.push("/home");
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
-
         localStorage.removeItem("isLoggedIn");
         localStorage.removeItem("userName");
         localStorage.removeItem("userEmail");
@@ -92,7 +89,6 @@ export default function Login() {
       setError(
         "Não foi possível conectar ao servidor. Tente novamente mais tarde."
       );
-
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("userName");
       localStorage.removeItem("userEmail");
@@ -222,15 +218,12 @@ export default function Login() {
                   {error}
                 </Alert>
               )}
-
-
               <MyButton
                 label="Entrar"
                 fullWidth
                 type="submit"
                 disabled={loading}
               />
-
 
               <Box
                 className={
