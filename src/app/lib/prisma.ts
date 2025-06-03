@@ -9,7 +9,6 @@ let mockUsuarios = [
     createdAt: new Date(),
     updatedAt: new Date(),
   },
-  // Adicione outros usuários mockados se precisar
 ];
 let nextUsuarioId =
   mockUsuarios.length > 0 ? Math.max(...mockUsuarios.map((u) => u.id)) + 1 : 1;
@@ -178,7 +177,7 @@ const mockPrisma = {
       }
       return result;
     },
-    // Adicione outros métodos mockados para Categorias
+
     findUnique: async ({ where }: { where: { id: number } }) => {
       return mockCategorias.find((c) => c.id === where.id) || null;
     },
