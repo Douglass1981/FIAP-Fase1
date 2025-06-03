@@ -54,6 +54,8 @@ interface TransactionCardProps {
   onEdit: (updatedTransaction: TransactionDataForCard) => void;
 }
 
+dayjs.extend(customParseFormat);
+
 
 const getIcon = (type: TransactionType) => {
   if (type === "income")
