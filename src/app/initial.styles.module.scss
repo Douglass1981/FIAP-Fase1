@@ -59,13 +59,15 @@
 @include respond(md) {
   .content {
     background-color: $white;
+    justify-content: initial;
     &__nav{
       &__logo_area{
         align-items: initial;
+        padding-bottom: 0;
       }
     }
     
-
+    
     > main {
       flex-grow: 1;
     }
@@ -108,7 +110,7 @@
    
     &__desktop {
       &__container {
-        padding: 0rem 10.625rem;
+        padding: 0 10.625rem;
       }
     }
   }
