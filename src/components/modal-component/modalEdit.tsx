@@ -200,7 +200,7 @@ export default function ModalEdit({
 
     const updateDataForPrisma: any = {
       descricao: description,
-      valor: parsedAmount * (type === "expenses" ? -1 : 1),
+      valor: parsedAmount * (type === "expenses" ? 1 : 1),
       data: date ? dayjs(date).toISOString() : new Date().toISOString(),
     };
 

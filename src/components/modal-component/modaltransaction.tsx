@@ -149,7 +149,7 @@ export default function ModalTransaction({
     const newTransactionDataForPrisma: any = {
       descricao: type === "transfer" ? `Transferência de ${parsedAmount.toFixed(2).replace('.', ',')}` : '',
       data: date ? date.toISOString() : new Date().toISOString(),
-      valor: parsedAmount * (type === "expenses" ? -1 : 1),
+      valor: parsedAmount * (type === "expenses" ? 1 : 1),
       tipoId: type === "income" ? 1 : type === "expenses" ? 2 : 3,
       usuarioId: 1,
     };

@@ -419,7 +419,7 @@ export default function Transactions() {
                     type={modalType}
                     open={true}
                     onClose={() => setModalType(null)}
-                    onAddTransaction={handleAddTransaction} l
+                    onAddTransaction={handleAddTransaction} 
                 />
             )}
         </>
