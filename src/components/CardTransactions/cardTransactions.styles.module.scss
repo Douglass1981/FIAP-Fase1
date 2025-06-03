@@ -1,62 +1,111 @@
-@mixin typography(
-  $font-size,
-  $font-weight: 400,
-  $line-height: 1.5,
-  $letter-spacing: 0
-) {
-  font-size: $font-size;
-  font-weight: $font-weight;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
-}
-
-$bp-tablet: 768px;
-$bp-desktop: 1025px;
-
-$blue-primary-500: #002952;
-
-$gray-neutral-300: #e0e0e0;
-$gray-neutral-800: #424242;
-
-$green-normal: #164d00;
-$red-normal: #e20303;
-
-$white: #ffffff;
-$black: #000000;
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
 
 .card-transactions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        &__left {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          &__icon-area {
-            border: 2px solid $blue-primary-500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $blue-primary-500;
-            border-radius: 100%;
-            padding: 4px;
-            width: 40px;
-            height: 40px;
-          }
+  @include flex-between;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 90%;
 
-          &__text-area {
-            &__category {
-              @include typography(1rem, 600);
-            }
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    width: 25%;
 
-            &__info {
-              @include typography(0.875rem);
-            }
+    &__icon-area {
+      border: 2px solid $blue-500;
+      @include flex-center;
+      color: $blue-500;
+      border-radius: 100%;
+      padding: 4px;
+      width: 40px;
+      height: 40px;
+    }
 
-            &__amount {
-              @include typography(1rem, 600);
-              color: $blue-primary-500;
-            }
-          }
+    &__text-area {
+      &__category {
+        @include font-body-2;
+      }
+
+      &__info {
+        @include font-body-3;
+      }
+
+      &__amount {
+        @include font-body-2;
+        color: $blue-500;
+      }
+    }
+  }
+
+  &__content {
+    &__description {
+      display: none
+    }
+  }
+
+  &__bank-to {
+    display: none
+  }
+}
+
+@include respond(lg) {
+  .card-transactions {
+    @include flex-between;
+    gap: 10px;
+    box-sizing: border-box;
+    width: 90%;
+
+    &__left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px;
+      width: 25%;
+
+      &__icon-area {
+        border: 2px solid $blue-500;
+        @include flex-center;
+        color: $blue-500;
+        border-radius: 100%;
+        padding: 4px;
+        width: 40px;
+        height: 40px;
+      }
+
+      &__text-area {
+        &__category {
+          @include font-body-2;
+        }
+
+        &__info {
+          @include font-body-3;
+        }
+
+        &__amount {
+          @include font-body-2;
+          color: $blue-500;
         }
       }
+    }
+
+    &__content {
+      width: 25%;
+      @include flex-center;
+      flex-direction: column;
+      text-align: center;
+
+      &__description {
+        display: block;
+      }
+    }
+
+    &__bank-to {
+      @include flex-center;
+      width: 25%;
+      text-align: center
+    }
+  }
+}

@@ -159,38 +159,43 @@ export default function TransactionCard({
         }}
       >
         <Box className={styles["card-transactions__left"]}>
-          <Box className={styles["card-transactions__left__icon-area"]}>
+          <Box className={styles["card-transactions__left__icon-area"]} sx={{border: `2px solid ${
+            type === "income"
+              ? colors.green
+              : type === "expenses"
+              ? colors.red
+              : colors.bluePrimary500
+          }`}}>
             {getIcon(type)}
           </Box>
           <Box className={styles["card-transactions__left__text-area"]}>
-            <Typography variant="body2" className={styles["card__category"]}>
+            <Typography variant="body2" className={styles["card-transactions__category"]}>
               {category}
             </Typography>
-            <Typography variant="body1" className={styles["card__date"]}>
+            <Typography variant="body1" className={styles["card-transactions__date"]}>
               {date}
             </Typography>
-          </Box>
-        </Box>
-
-        <Box className={styles["card__content"]}>
-          <Typography variant="h6" className={styles["card__description"]}>
-            {description}
-          </Typography>
           <Typography
-            variant="h6"
-            className={styles["card__amount"]}
+            className={styles["card-transactions__amount"]}
             sx={{
               color: getAmountColor(type),
             }}
           >
             {formatCurrency(amount)}
           </Typography>
+          </Box>
         </Box>
 
-        <Box className={styles["card__footer"]}>
-          <Typography variant="caption" className={styles["card__type"]}>
+        <Box className={styles["card-transactions__content"]} sx={{display: 'flex'}}>
+          <Typography  className={styles["card-transactions__content__description"]}>
+            {description}
+          </Typography>
+        </Box>
+
+        <Box className={styles["card-transactions__bank-to"]}>
+          <Typography variant="caption" className={styles["card-transactions__bank-to__type"]}>
             {getIcon(type)}{" "}
-            {bank || (bankFrom && bankTo ? `${bankFrom} -> ${bankTo}` : "N/A")}
+            {bank || (bankFrom && bankTo ? `${bankFrom} > ${bankTo}` : "N/A")}
           </Typography>
         </Box>
 

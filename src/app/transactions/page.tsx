@@ -22,6 +22,7 @@ import { colors } from "../mui.styles";
 import styles from "./transactions.styles.module.scss";
 
 import { ROUTES } from "@/constants";
+import { Footer } from "@components/Footer";
 
 dayjs.extend(customParseFormat);
 
@@ -413,7 +414,7 @@ export default function Transactions() {
                     />
                 </main>
             </Box>
-            
+            <Footer/>
             {modalType && (
                 <ModalTransaction
                     type={modalType}
