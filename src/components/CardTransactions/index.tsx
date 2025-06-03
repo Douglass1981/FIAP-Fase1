@@ -11,49 +11,15 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 
-import styles from "./cardTransactions.styles.module.scss";
-
 import ModalDetails from "../modal-component/modalDetails";
 import ModalEdit from "../modal-component/modalEdit";
 import ModalDelete from "../modal-component/modalDelete";
 import { colors } from "@/app/mui.styles";
+import type { TransactionCardProps, TransactionDataForCard, TransactionType } from "./cardTransactions.types";
+
+import styles from "./cardTransactions.styles.module.scss";
 
 dayjs.extend(customParseFormat);
-
-interface TransactionDataForCard {
-  id: number;
-  category: string;
-  description: string;
-  date: string;
-  amount: number;
-  type: "income" | "expenses" | "transfer";
-  bankFrom?: string;
-  bankTo?: string;
-  bank?: string;
-  bancoOrigemId?: number;
-  bancoDestinoId?: number;
-  bancoid?: number;
-}
-
-// NOTE: Add this type definition if it's not globally defined or imported
-type TransactionType = "income" | "expenses" | "transfer";
-
-interface TransactionCardProps {
-  id: number;
-  category: string;
-  description: string;
-  date: string;
-  amount: number;
-  type: TransactionType;
-  bankFrom?: string;
-  bankTo?: string;
-  bank?: string;
-  bancoOrigemId?: number;
-  bancoDestinoId?: number;
-  bancoid?: number;
-  onDelete: (id: number) => void;
-  onEdit: (updatedTransaction: TransactionDataForCard) => void;
-}
 
 const getIcon = (type: TransactionType) => {
   if (type === "income")

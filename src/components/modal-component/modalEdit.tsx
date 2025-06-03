@@ -7,7 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import {
   Box,
-  Button, // Mantenha este se usar o Button do Material-UI em outro lugar no componente, caso contrário, pode remover.
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -20,51 +20,7 @@ import { colors } from "../../app/mui.styles";
 import mockPrisma from "../../mockPrisma";
 
 import { SelectChangeEvent } from "@mui/material/Select";
-
-// Importe seu componente de botão customizado
-import ModalButton from "@/components/Button";
-
-
-interface Banco {
-  id: number;
-  nome: string;
-}
-
-interface Categoria {
-  id: number;
-  nome: string;
-}
-
-type TransactionType = "income" | "expenses" | "transfer";
-
-interface InitialEditData {
-  id: number;
-  from: string;
-  to: string;
-  amount: string;
-  date: string;
-  category: string;
-  description: string;
-}
-
-interface ModalEditProps {
-  open: boolean;
-  onClose: () => void;
-  onSubmit: (updatedData: {
-    id: number;
-    description: string;
-    amount: number;
-    date: string;
-    category?: string | number;
-    bank?: string | number;
-    bankFrom?: string | number;
-    bankTo?: string | number;
-    type: TransactionType;
-  }) => void;
-  transactionTypeLabel: string; // Essa prop não está sendo usada no componente, pode ser removida se for o caso
-  initialData: InitialEditData;
-  type: TransactionType;
-}
+import type { Banco, Categoria, ModalEditProps } from "./modal.types";
 
 const labelMap = {
   income: "Editar Receita",

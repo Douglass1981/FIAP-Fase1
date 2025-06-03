@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Box} from "@mui/material";
+import { Box } from "@mui/material";
+import Button from "../Button";
 import { ROUTES } from "@/constants";
 import styles from "./navbar.styles.module.scss";
-import MyButton from "../Button";
 
 export default function Navbar() {
   return (
@@ -31,7 +31,7 @@ export default function Navbar() {
         </Link>
       </Box>
 
-      <MyButton label="Login" href={ROUTES.LOGIN} />
+      <Button label="Login" href={ROUTES.LOGIN} />
     </nav>
   );
 }
