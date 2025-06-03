@@ -12,6 +12,7 @@ interface MyButtonProps {
   variant?: "contained" | "outlined" | "text";
   disabled?: boolean;
   fullWidth?: boolean
+  type?: "button" | "submit" | "reset"; 
 }
 
 const MyButton: React.FC<MyButtonProps> = ({
@@ -24,6 +25,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   variant = "contained",
   disabled = false,
   fullWidth = false,
+  type = "button",
 }) => {
   const isLink = Boolean(href);
 
@@ -35,6 +37,8 @@ const MyButton: React.FC<MyButtonProps> = ({
       fullWidth={fullWidth}
       component={isLink ? "a" : "button"}
       href={isLink ? href : undefined}
+       type={!isLink ? type : undefined}
+
       sx={{
         textTransform: "none",
         backgroundColor: variant === "contained" ? bgColor : "transparent",
