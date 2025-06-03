@@ -4,7 +4,7 @@ let mockUsuarios = [
   {
     id: 1,
     email: "teste@email.com",
-    password: "$2b$12$yk6nisSx67kudVciNF6GzOJ5eoixq7E.Rqo9sQnTO4BIhKN61Vg3u",
+    password: "$2b$12$74IWe1t8za.N352Mfv2Q..ZrL20muTQHKX/agQSiUw5pjYUgDDKIa",
     nome: "Usuário Mock",
     createdAt: new Date(),
     updatedAt: new Date(),

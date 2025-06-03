@@ -5,10 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Box, Checkbox, Alert, FormControlLabel } from "@mui/material";
 
-import { TextField, InputAdornment, IconButton, useMediaQuery } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import Button from "@/components/Button";
+import MyButton from "@/components/Button";
 import { ROUTES } from "@/constants";
 import { colors } from "../mui.styles";
 import styles from "./login.styles.module.scss";
@@ -54,29 +59,40 @@ export default function Login() {
       if (response.ok) {
         if (data.user && data.user.nome) {
           localStorage.setItem("userName", data.user.nome);
+          localStorage.setItem("userEmail", data.user.email);
+          localStorage.setItem("isLoggedIn", "true");
         } else {
-          console.warn("Usuario não encontrado");
+          console.warn(
+            "Informações do usuário (nome) não encontradas na resposta da API."
+          );
+          localStorage.removeItem("userName");
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("isLoggedIn");
         }
 
         if (rememberMe) {
           localStorage.setItem("rememberedEmail", email);
-          localStorage.setItem("isLoggedIn", "true");
         } else {
           localStorage.removeItem("rememberedEmail");
-          localStorage.removeItem("isLoggedIn");
-          localStorage.removeItem("userName");
-          localStorage.removeItem("userEmail");
         }
 
         router.push("/home");
       } else {
         setError(data.error || "Erro desconhecido ao fazer login.");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userName");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("rememberedEmail");
       }
     } catch (err) {
       console.error("Erro na requisição de login:", err);
       setError(
         "Não foi possível conectar ao servidor. Tente novamente mais tarde."
       );
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("rememberedEmail");
     } finally {
       setLoading(false);
     }
@@ -202,7 +218,12 @@ export default function Login() {
                   {error}
                 </Alert>
               )}
-              <Button label="Entrar" href="" fullWidth />
+              <MyButton
+                label="Entrar"
+                fullWidth
+                type="submit"
+                disabled={loading}
+              />
 
               <Box
                 className={

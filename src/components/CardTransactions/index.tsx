@@ -19,6 +19,7 @@ import type { TransactionCardProps, TransactionDataForCard, TransactionType } fr
 
 import styles from "./cardTransactions.styles.module.scss";
 
+
 interface TransactionDataForCard {
   id: number;
   category: string;
@@ -54,6 +55,7 @@ interface TransactionCardProps {
 }
 
 dayjs.extend(customParseFormat);
+
 
 const getIcon = (type: TransactionType) => {
   if (type === "income")

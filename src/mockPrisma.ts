@@ -2,20 +2,14 @@
 let mockUsuarios = [
     {
         id: 1, 
-        email: "usuario1@email.com",
-        password: "$2b$12$yk6nisSx67kudVciNF6GzOJ5eoixq7E.Rqo9sQnTO4BIhKN61Vg3u", 
-        nome: "Joana Silva",
+
+       email: "teste@email.com",
+        password: "$2b$12$74IWe1t8za.N352Mfv2Q..ZrL20muTQHKX/agQSiUw5pjYUgDDKIa", 
+        nome: "Joana Oliveira Silva",
         createdAt: new Date("2024-01-01T10:00:00Z"),
         updatedAt: new Date("2024-01-01T10:00:00Z"),
     },
-    {
-        id: 2,
-        email: "usuario2@email.com",
-        password: "$2b$12$yk6nisSx67kudVciNF6GzOJ5eoixq7E.Rqo9sQnTO4BIhKN61Vg3u",
-        nome: "Carlos Souza",
-        createdAt: new Date("2024-01-02T10:00:00Z"),
-        updatedAt: new Date("2024-01-02T10:00:00Z"),
-    },
+  
 ];
 let nextUsuarioId = mockUsuarios.length > 0 ? Math.max(...mockUsuarios.map((u) => u.id)) + 1 : 1;
 
