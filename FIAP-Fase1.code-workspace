@@ -1,0 +1,79 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.js": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    },
+    "terminal.integrated.env.windows": {
+      "DATABASE_URL_SQLITE": "file:${workspaceFolder:FIAP-Fase1}\\src\\prisma\\dev.db",
+      "DATABASE_URL": "postgresql://u6vkbvrep5vpr3rin3y4:B8cAYZl83RYNKZBhDzot7s13aHoxSQ@b9papihx1ndg4fs8ohmj-postgresql.services.clever-cloud.com:5432/b9papihx1ndg4fs8ohmj",
+      "NODE-ENV": "development",
+      "NODE_OPTIONS": "--inspect",
+      "NODE_PATH": "${workspaceFolder:FIAP-Fase1}/src"
+    },
+    "sqltools.connections": [
+      {
+        "previewLimit": 50,
+        "server": "b9papihx1ndg4fs8ohmj-postgresql.services.clever-cloud.com",
+        "port": 5432,
+        "askForPassword": true,
+        "driver": "PostgreSQL",
+        "name": "dev",
+        "database": "b9papihx1ndg4fs8ohmj",
+        "username": "u6vkbvrep5vpr3rin3y4"
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Next.js: backend",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run dev",
+
+        "env": {
+          "NODE_OPTIONS": "--inspect"
+        }
+      },
+      {
+        "name": "Next.js: front-end chrome",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000"
+      },
+      {
+        "name": "Next.js: full-stack",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+        "runtimeArgs": ["--inspect"],
+        "skipFiles": ["<node_internals>/**"],
+        "serverReadyAction": {
+          "action": "debugWithEdge",
+          "killOnServerStop": true,
+          "pattern": "- Local:.+(https?://.+)",
+          "uriFormat": "%s",
+          "webRoot": "${workspaceFolder}"
+        }
+      }
+    ],
+    "compounds": []
+  },
+  "extensions": {
+    "recommendations": [
+      "prisma.prisma",
+      "humao.rest-client"
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.content {
+  background-color: $white;
+  max-width: 100dvw;
+  min-height: 100dvh;
+  box-sizing: border-box;
+
+  
+
+  &__container {
+    padding: 0rem 3.125rem;
+    @include flex-center;
+    flex-direction: column;
+
+    &__form-area {
+      width: 80%;
+      padding: 0rem 3.125rem;
+
+      &__box {
+        background-color: $gray-300;
+        padding: 3.125rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        &__text {
+          &__title {
+            @include font-heading-4;
+            text-align: center;
+          }
+
+          &__paragraph {
+            text-align: center;
+          }
+        }
+
+        &__form {
+          display: flex;
+          flex-direction: column;
+          gap: 0.9375rem;
+
+          &__button:hover {
+            background-color: $purple-700;
+          }
+        }
+      }
+    }
+
+    &__contact {
+      padding: 3.125rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      &__text {
+        &__title {
+          @include font-heading-4;
+        }
+      }
+
+      &__mail {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+
+        &__icon_box {
+          background-color: $gray-300;
+          padding: 0.625rem;
+          border-radius: 100%;
+        }
+      }
+
+      &__phone {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+
+        &__icon_box {
+          background-color: $gray-300;
+          padding: 0.625rem;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+
+  
+}
+
+@include respond(lg) {
+  .content {
+
+    &__container {
+      flex-direction: row;
+
+      &__form-area {
+        width: 40%;
+      }
+
+    }
+  }
+}

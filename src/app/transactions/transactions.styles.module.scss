@@ -1,0 +1,175 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+
+.transactions {
+  box-sizing: border-box;
+  background-color: $white;
+  
+  max-width: 100dvw;
+
+  &__nav {
+    display: none;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 5rem 1.875rem;
+    background-color: $white;
+    color: $black;
+    gap: 0.625rem;
+    flex-grow: 1;
+
+    &__container-info {
+      background-color: $blue-500;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      &__navigation {
+        color: $white;
+        @include flex-center;
+
+        &__select {
+          @include font-heading-5;
+          padding: 0.5rem;
+
+          &__options {
+            @include font-body-2;
+            color: $black;
+          }
+        }
+      }
+
+      &__container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        &__left {
+          display: flex;
+          gap: 1.25rem;
+
+          
+        }
+
+        &__right {
+          display: none;
+        }
+      }
+    }
+
+    &__container-carousel {
+      display: flex;
+      gap: 0.75rem;
+      @include hiddenScrollbar;
+    }
+
+    &__container-transactions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9375rem;
+
+
+    }
+  }
+}
+
+
+@include respond(md) {
+  .transactions {
+    &__nav {
+      padding: 1.875rem 0rem;
+      display: flex;
+      justify-content: end;
+
+      &__logo_area {
+        display: flex;
+        flex-direction: row;
+        gap: 0.625rem;
+        @include flex-center;
+
+        &__brand {
+          @include font-heading-2;
+          color: $blue-500;
+        }
+      }
+    }
+
+    &__main {
+      padding: 0rem 3.125rem;
+      gap: 1.25rem;
+
+      &__container-info {
+        &__container {
+          justify-content: space-between;
+          &__left {
+            width: 50%;
+          }
+
+          &__right {
+            display: flex;
+            justify-content: space-around;
+            gap: 0.9375rem;
+            width: 50%;
+
+            &__function {
+              @include flex-center;
+              flex-direction: column;
+              gap: 0.3125rem;
+
+              &__text {
+                @include font-body-3;
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+
+      &__container-carousel {
+        justify-content: center;
+      }
+
+      &__container-transactions {
+        padding: 0rem 4.375rem;
+      }
+
+      .transactions__main__button--hidden {
+        display: none;
+      }
+    }
+  }
+}
+
+@include respond(lg) {
+  .transactions {
+    &__nav {
+      padding: 1.875rem 6.25rem;
+      display: flex;
+      justify-content: end;
+
+      &__logo_area {
+        display: flex;
+        flex-direction: row;
+        gap: 0.625rem;
+
+      }
+    }
+
+    &__main {
+      padding: 0rem 10.625rem;
+
+      &__container-info {
+        &__container {
+          &__right {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}

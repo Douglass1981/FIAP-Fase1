@@ -1,0 +1,59 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.content {
+  width: 100dvw;
+  height: 100dvh;
+  box-sizing: border-box;
+  @include flex-end;
+
+  > main {
+    flex-grow: 1;
+  }
+  &__container {
+    padding: 1.875rem 3.125rem;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      @include font-heading-3;
+    }
+
+    &__material {
+      display: flex;
+      &__left {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        &__text {
+          @include font-heading-5;
+          padding: 0.625rem 0rem;
+        }
+      }
+
+      &__right {
+        @include flex-center;
+        width: 30%;
+      }
+    }
+  }
+
+  
+}
+
+@include respond(lg){
+.content {
+  &__nav {
+    padding: 1.875rem 10.625rem;
+  }
+
+  > main {
+    flex-grow: 1;
+  }
+  &__container {
+    padding: 1.875rem 10.625rem;
+  }
+
+  
+}
+}
