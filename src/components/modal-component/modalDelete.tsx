@@ -3,13 +3,7 @@
 import { Box, Button } from "@mui/material";
 import ModalButton from "../ModalButton";
 import { colors } from "@/app/mui.styles";
-
-type ModalDeleteProps = {
-  open: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  message?: string;
-};
+import type { ModalDeleteProps } from "./modal.types";
 
 export default function ModalDelete({
   open,

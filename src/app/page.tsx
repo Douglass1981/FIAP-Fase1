@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Box, Button, Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
-import MyButton from "@/components/Button";
+import Button from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { ROUTES } from "@/constants";
 import { colors } from "./mui.styles";
@@ -29,7 +29,7 @@ export default function Initial() {
         <h1 className={styles["content__nav__logo_area__brand"]}>
           Poup.ai
         </h1>
-        <Button sx={{ display: "none" }}>Login</Button>
+        <Button sx={{ display: "none" }} label="Login" />
       </>
     ) : (
       <Navbar />
@@ -76,7 +76,7 @@ export default function Initial() {
               Descubra soluções financeiras inovadoras e confiáveis para
               garantir um futuro próspero.
             </p>
-            <MyButton label="Acessar" href={ROUTES.LOGIN} fullWidth/>
+            <Button label="Acessar" href={ROUTES.LOGIN} fullWidth/>
 
           </Box>
         </main>

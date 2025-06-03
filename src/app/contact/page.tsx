@@ -2,7 +2,7 @@ import { Box, FormGroup, TextField } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Navbar from "@/components/Navbar";
-import MyButton from "@/components/Button";
+import Button from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { colors } from "../mui.styles";
 import styles from "./contact.styles.module.scss";
@@ -64,7 +64,7 @@ export default function Contact() {
                     fullWidth
                   />
 
-                  <MyButton label="Enviar" fullWidth />
+                  <Button label="Enviar" fullWidth />
                 </FormGroup>
               </Box>
             </Box>
