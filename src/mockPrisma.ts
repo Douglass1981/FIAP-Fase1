@@ -5,7 +5,7 @@ let mockUsuarios = [
 
        email: "teste@email.com",
         password: "$2b$12$74IWe1t8za.N352Mfv2Q..ZrL20muTQHKX/agQSiUw5pjYUgDDKIa", 
-        nome: "Joana Oliveira Silva",
+        nome: "Joana Silva",
         createdAt: new Date("2024-01-01T10:00:00Z"),
         updatedAt: new Date("2024-01-01T10:00:00Z"),
     },
