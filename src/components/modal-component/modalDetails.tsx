@@ -3,21 +3,7 @@
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { Box, Button, Typography } from "@mui/material";
 import { colors } from "../../app/mui.styles";
-
-type TransactionType = "income" | "expenses" | "transfer";
-
-interface ModalDetailsProps {
-  open: boolean;
-  onClose: () => void;
-  from: string;
-  to: string;
-  date: string;
-  amount: string;
-
-  category: string;
-  description: string;
-  type: TransactionType;
-}
+import type { ModalDetailsProps } from "./modal.types";
 
 export default function ModalDetails({
   open,

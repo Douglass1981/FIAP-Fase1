@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Box, Checkbox, Alert, FormControlLabel } from "@mui/material";
 
+
 import {
   TextField,
   InputAdornment,
@@ -12,8 +13,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
+
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import MyButton from "@/components/Button";
+import Button from "@/components/Button";
 import { ROUTES } from "@/constants";
 import { colors } from "../mui.styles";
 import styles from "./login.styles.module.scss";
@@ -221,12 +223,14 @@ export default function Login() {
                 </Alert>
               )}
 
+
               <MyButton
                 label="Entrar"
                 fullWidth
                 type="submit"
                 disabled={loading}
               />
+
 
               <Box
                 className={

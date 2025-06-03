@@ -13,7 +13,7 @@ import {
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ROUTES } from "@/constants";
-import MyButton from "@/components/Button";
+import Button from "@/components/Button";
 import styles from "./signup.styles.module.scss";
 
 export default function Cadastro() {
@@ -188,7 +188,7 @@ export default function Cadastro() {
                 </p>
               )}
 
-              <MyButton
+              <Button
                 label="Cadastrar"
                 onClick={handleCadastroUser}
                 href=""

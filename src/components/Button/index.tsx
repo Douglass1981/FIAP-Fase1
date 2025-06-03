@@ -1,6 +1,7 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import MuiButton from "@mui/material/Button";
 import { colors } from "@/app/mui.styles";
+import type { ButtonProps } from './button.types';
 
 interface MyButtonProps {
   label: string;
@@ -16,6 +17,7 @@ interface MyButtonProps {
 }
 
 const MyButton: React.FC<MyButtonProps> = ({
+
   label,
   onClick,
   href,
@@ -30,7 +32,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   const isLink = Boolean(href);
 
   return (
-    <Button
+    <MuiButton
       variant={variant}
       onClick={onClick}
       disabled={disabled}
@@ -51,8 +53,8 @@ const MyButton: React.FC<MyButtonProps> = ({
       }}
     >
       {label}
-    </Button>
+    </MuiButton>
   );
 };
 
-export default MyButton;
+export default Button;

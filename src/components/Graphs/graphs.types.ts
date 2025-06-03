@@ -8,7 +8,6 @@ type PieChartProps = {
         width: number;
         height: number;
     };
-    // className: ClassNames;
      className?: string;
 }
 

@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import {
   Box,
-  Button, // Mantenha este se você usa o Button do Material-UI em outro lugar no componente
+  Button, 
   FormControl,
   InputLabel,
   MenuItem,
@@ -19,45 +19,9 @@ import { useState, useEffect } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import mockPrisma from "@/mockPrisma";
 
-// Renomear o import do seu componente Button customizado para o nome que você usa no JSX
-import ModalButton from "@/components/Button"; // Corrigido de MyButton para ModalButton
-
-
-interface Banco {
-  id: number;
-  nome: string;
-}
-
-
-interface Categoria {
-  id: number;
-  nome: string;
-}
-
-// Interface para a transação que será adicionada e passada para o Card (consistente com Transaction interface em Transactions.tsx)
-interface TransactionDataForCard {
-    id: number;
-    category: string;
-    description: string;
-    date: string;
-    amount: number;
-    type: "income" | "expenses" | "transfer";
-    bankFrom?: string; // Nome do banco de origem
-    bankTo?: string;   // Nome do banco de destino
-    bank?: string;     // Nome do banco para receitas/despesas
-    bancoOrigemId?: number; // ID do banco de origem (importante para cálculos no pai)
-    bancoDestinoId?: number; // ID do banco de destino (importante para cálculos no pai)
-    bancoid?: number; // ID do banco para receitas/despesas (importante para cálculos no pai)
-}
-
-type TransactionType = "income" | "expenses" | "transfer";
-
-interface ModalTransactionProps {
-  type: TransactionType;
-  open: boolean;
-  onClose: () => void;
-  onAddTransaction: (transaction: TransactionDataForCard) => void;
-}
+import ModalButton from "@/components/Button"; 
+import { Banco, Categoria, ModalTransactionProps } from './modal.types';
+import type { TransactionDataForCard } from '../CardTransactions/cardTransactions.types';
 
 const labelMap = {
   income: "Nova Receita",
@@ -380,10 +344,9 @@ export default function ModalTransaction({
             </Box>
 
             <Box style={{ display: "flex", gap: 10 }}>
-              {/* PRIMEIRO BOTÃO: Cancelar */}
               <ModalButton
-                label="Não" // Este label faz sentido para "Cancelar"
-                onClick={onClose} // Fecha a modal
+                label="Não" 
+                onClick={onClose}
                 sx={{
                   backgroundColor: colors.red,
                   "&:hover": { backgroundColor: colors.lightRed },
@@ -392,13 +355,12 @@ export default function ModalTransaction({
                   fontSize: "16px",
                 }}
                 fullWidth
-                variant="contained" // Use 'text' ou 'outlined' para botões secundários se preferir
+                variant="contained" 
               />
 
-              {/* SEGUNDO BOTÃO: Adicionar/Confirmar */}
               <ModalButton
-                label="Adicionar" // Este label faz sentido com a função handleSubmit
-                onClick={handleSubmit} // Chama a função de submissão
+                label="Adicionar" 
+                onClick={handleSubmit}
                 sx={{
                   backgroundColor: colors.bluePrimary500,
                   "&:hover": { backgroundColor: colors.purple },

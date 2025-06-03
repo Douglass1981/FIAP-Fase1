@@ -1,12 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { colors } from "../../app/mui.styles";
-
-interface FilterButtonProps {
-  label: string;
-  selected?: boolean;
-  onClick?: () => void;
-}
+import type { FilterButtonProps } from "./filterButton.types";
 
 const FilterButton: React.FC<FilterButtonProps> = ({ label, selected, onClick }) => {
   return (

@@ -11,14 +11,14 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 
-import styles from "./cardTransactions.styles.module.scss";
-
 import ModalDetails from "../modal-component/modalDetails";
 import ModalEdit from "../modal-component/modalEdit";
 import ModalDelete from "../modal-component/modalDelete";
 import { colors } from "@/app/mui.styles";
+import type { TransactionCardProps, TransactionDataForCard, TransactionType } from "./cardTransactions.types";
 
-dayjs.extend(customParseFormat);
+import styles from "./cardTransactions.styles.module.scss";
+
 
 interface TransactionDataForCard {
   id: number;
@@ -53,6 +53,7 @@ interface TransactionCardProps {
   onDelete: (id: number) => void;
   onEdit: (updatedTransaction: TransactionDataForCard) => void;
 }
+
 
 const getIcon = (type: TransactionType) => {
   if (type === "income")
