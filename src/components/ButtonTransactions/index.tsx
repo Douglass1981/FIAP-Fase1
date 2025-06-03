@@ -2,14 +2,7 @@ import React from "react";
 import { Button } from "@mui/material";
 import { colors } from "../../app/mui.styles";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import styles from "./ButtonTransactions.module.scss";
-
-interface ButtonTransactionsProps {
-  onClick?: () => void;
-  label?: string;
-  icon?: React.ReactNode;
-  className?: string;
-}
+import type { ButtonTransactionsProps } from './buttonTransactions.types';
 
 const ButtonTransactions: React.FC<ButtonTransactionsProps> = ({
   onClick,
