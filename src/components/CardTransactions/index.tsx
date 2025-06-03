@@ -19,16 +19,54 @@ import type { TransactionCardProps, TransactionDataForCard, TransactionType } fr
 
 import styles from "./cardTransactions.styles.module.scss";
 
-dayjs.extend(customParseFormat);
+
+interface TransactionDataForCard {
+  id: number;
+  category: string;
+  description: string;
+  date: string;
+  amount: number;
+  type: "income" | "expenses" | "transfer";
+  bankFrom?: string;
+  bankTo?: string;
+  bank?: string;
+  bancoOrigemId?: number;
+  bancoDestinoId?: number;
+  bancoid?: number;
+}
+
+type TransactionType = "income" | "expenses" | "transfer";
+
+interface TransactionCardProps {
+  id: number;
+  category: string;
+  description: string;
+  date: string;
+  amount: number;
+  type: TransactionType;
+  bankFrom?: string;
+  bankTo?: string;
+  bank?: string;
+  bancoOrigemId?: number;
+  bancoDestinoId?: number;
+  bancoid?: number;
+  onDelete: (id: number) => void;
+  onEdit: (updatedTransaction: TransactionDataForCard) => void;
+}
+
 
 const getIcon = (type: TransactionType) => {
   if (type === "income")
-    return <ArrowUpwardIcon sx={{ fontSize: 20, color: colors.greenSuccess500 }} />;
+    return <ArrowUpwardIcon sx={{ fontSize: 20, color: colors.green }} />;
   if (type === "expenses")
-    return <ArrowDownwardIcon sx={{ fontSize: 20, color: colors.redError500 }} />;
+    return <ArrowDownwardIcon sx={{ fontSize: 20, color: colors.red }} />;
   if (type === "transfer")
-    return <SyncAltOutlinedIcon sx={{ fontSize: 20, color: colors.bluePrimary500 }} />;
-  return <SyncAltOutlinedIcon sx={{ fontSize: 20, color: colors.gray600 }} />;
+    return (
+      <SyncAltOutlinedIcon
+        sx={{ fontSize: 20, color: colors.bluePrimary500 }}
+      />
+    );
+  return <SyncAltOutlinedIcon sx={{ fontSize: 20, color: colors.gray800 }} />;
 };
 
 const formatCurrency = (value: number) => {
@@ -39,8 +77,8 @@ const formatCurrency = (value: number) => {
 };
 
 const getAmountColor = (type: TransactionType) => {
-  if (type === "income") return colors.greenSuccess500;
-  if (type === "expenses") return colors.redError500;
+  if (type === "income") return colors.green;
+  if (type === "expenses") return colors.red;
   return colors.bluePrimary500;
 };
 
@@ -85,7 +123,19 @@ export default function TransactionCard({
       bancoDestinoId: bancoDestinoId,
       bancoid: bancoid,
     };
-  }, [id, amount, date, description, category, bank, bankFrom, bankTo, bancoOrigemId, bancoDestinoId, bancoid]);
+  }, [
+    id,
+    amount,
+    date,
+    description,
+    category,
+    bank,
+    bankFrom,
+    bankTo,
+    bancoOrigemId,
+    bancoDestinoId,
+    bancoid,
+  ]);
 
   const handleEditSubmit = (updatedData: TransactionDataForCard) => {
     onEdit(updatedData);
@@ -99,9 +149,9 @@ export default function TransactionCard({
         sx={{
           borderLeft: `4px solid ${
             type === "income"
-              ? colors.greenSuccess500
+              ? colors.green
               : type === "expenses"
-              ? colors.redError500
+              ? colors.red
               : colors.bluePrimary500
           }`,
         }}
@@ -138,7 +188,6 @@ export default function TransactionCard({
         <Box className={styles["card__footer"]}>
           <Typography variant="caption" className={styles["card__type"]}>
             {getIcon(type)}{" "}
-            {/* <-- CORRIGIDO AQUI: Usando getIcon(type) no lugar de iconMap[type] */}
             {bank || (bankFrom && bankTo ? `${bankFrom} -> ${bankTo}` : "N/A")}
           </Typography>
         </Box>

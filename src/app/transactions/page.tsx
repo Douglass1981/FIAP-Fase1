@@ -1,8 +1,9 @@
+
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Avatar, Box } from "@mui/material"; // REMOVIDO Link do MUI, se ele estiver aqui, remova
-import Link from "next/link"; // ADICIONADO Link do Next.js
+import { Avatar, Box } from "@mui/material";
+import Link from "next/link";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
@@ -16,16 +17,11 @@ import ModalTransaction from "@/components/modal-component/modaltransaction";
 import mockPrisma from "@/mockPrisma";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { colors } from "../mui.styles"; // Caminho relativo para mui.styles.ts
+import { colors } from "../mui.styles";
 
-import styles from "./transactions.styles.module.scss"
+import styles from "./transactions.styles.module.scss";
 
-// ADICIONADO: Importação de ROUTES (você usa no Link)
 import { ROUTES } from "@/constants";
-
-// Se você tiver um componente Footer (pelo seu código anterior, parece que sim), importe-o:
-// import Footer from "@/components/Footer"; // Exemplo, ajuste o caminho se necessário
-
 
 dayjs.extend(customParseFormat);
 
@@ -34,7 +30,7 @@ interface Transaction {
     category: string;
     description: string;
     date: string;
-    amount: number; // Agora a prop 'amount' é um número
+    amount: number;
     type: "income" | "expenses" | "transfer";
     bankFrom?: string;
     bankTo?: string;
@@ -45,14 +41,13 @@ interface Transaction {
 }
 
 export default function Transactions() {
-    const router = useRouter();
+    const router = useRouter(); 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [modalType, setModalType] = useState<
         "income" | "expenses" | "transfer" | null
     >(null);
     const [selectedFilter, setSelectedFilter] = useState("Última semana");
 
-    // Você pode ter esta constante definida em outro lugar, ajuste se for o caso
     const MAIN_BANK_ID = 2; 
 
     const { totalIncome, totalExpenses } = useMemo(() => {
@@ -64,12 +59,8 @@ export default function Transactions() {
                 income += transaction.amount;
             } else if (transaction.type === "expenses") {
                 expenses += transaction.amount;
-            } else if (transaction.type === "transfer") {
-                // Em transferências, a lógica de soma depende se é saída ou entrada do banco principal
-                // Por simplicidade, vou manter a lógica que você já tinha para soma total
-                // Mas geralmente, transferências não somam como receita/despesa total, mas sim como movimento entre contas.
-                income += transaction.amount; 
             }
+            
         });
 
         return { totalIncome: income, totalExpenses: expenses };
@@ -82,10 +73,9 @@ export default function Transactions() {
         }).format(value);
     };
 
-    useEffect(() => {
-        const loadInitialTransactions = async () => {
+    const loadInitialTransactions = async () => {
+        try {
             const initialData = await mockPrisma.transacoes.findMany({});
-
             const adaptedData: Transaction[] = await Promise.all(
                 initialData.map(async (t: any) => {
                     let categoryName = "N/A";
@@ -105,61 +95,57 @@ export default function Transactions() {
                         categoryName = "Transferência";
                         bankFromName = t.bancoOrigemId
                             ? (
-                                await mockPrisma.banco.findUnique({
-                                    where: { id: t.bancoOrigemId },
-                                })
-                            )?.nome || "N/A"
+                                  await mockPrisma.banco.findUnique({
+                                      where: { id: t.bancoOrigemId },
+                                  })
+                              )?.nome || "N/A"
                             : "N/A";
                         bankToName = t.bancoDestinoId
                             ? (
-                                await mockPrisma.banco.findUnique({
-                                    where: { id: t.bancoDestinoId },
-                                })
-                            )?.nome || "N/A"
+                                  await mockPrisma.banco.findUnique({
+                                      where: { id: t.bancoDestinoId },
+                                  })
+                              )?.nome || "N/A"
                             : "N/A";
                         descriptionText = `De ${bankFromName} para ${bankToName}`;
                     } else {
                         categoryName = t.categoriaId
                             ? (
-                                await mockPrisma.categorias.findUnique({
-                                    where: { id: t.categoriaId },
-                                })
-                            )?.nome || "N/A"
+                                  await mockPrisma.categorias.findUnique({
+                                      where: { id: t.categoriaId },
+                                  })
+                              )?.nome || "N/A"
                             : "N/A";
                         bankName = t.bancoid
                             ? (
-                                await mockPrisma.banco.findUnique({
-                                    where: { id: t.bancoid },
-                                })
-                            )?.nome || "N/A"
+                                  await mockPrisma.banco.findUnique({
+                                      where: { id: t.bancoid },
+                                  })
+                              )?.nome || "N/A"
                             : "N/A";
                         descriptionText = `${bankName} - ${t.descricao || "Sem Descrição"}`;
                     }
 
-                    // --- NOVA LÓGICA ROBUSTA DE TRATAMENTO DA DATA ---
                     let formattedDate: string;
-                    if (t.data) { // Verifica se t.data existe (não é null/undefined)
-                        const parsedInitialDate = dayjs(t.data); // Tenta parsear a data do mockPrisma (pode ser string ou Date)
-                        if (parsedInitialDate.isValid()) { // Verifica se a data é válida após o parse
+                    if (t.data) {
+                        const parsedInitialDate = dayjs(t.data);
+                        if (parsedInitialDate.isValid()) {
                             formattedDate = parsedInitialDate.format("DD/MM/YYYY");
                         } else {
-                            // Se t.data existe mas é inválido (ex: "abc"), usa um fallback
                             console.warn(`[transactions/page.tsx] Data inválida encontrada para transação ${t.id}: ${t.data}`);
-                            formattedDate = dayjs().format("DD/MM/YYYY"); // Fallback: data atual
+                            formattedDate = dayjs().format("DD/MM/YYYY");
                         }
                     } else {
-                        // Se t.data for null ou undefined, usa um fallback
                         console.warn(`[transactions/page.tsx] Data ausente para transação ${t.id}.`);
-                        formattedDate = dayjs().format("DD/MM/YYYY"); // Fallback: data atual
+                        formattedDate = dayjs().format("DD/MM/YYYY");
                     }
-                    // --- FIM DA NOVA LÓGICA ---
 
                     return {
                         id: t.id,
                         category: categoryName,
                         description: descriptionText,
-                        date: formattedDate, // Use a data que foi validada e formatada
-                        amount: t.valor, // **VERIFIQUE SE t.valor é SEMPRE UM NÚMERO em seu mockPrisma/dados!**
+                        date: formattedDate,
+                        amount: t.valor,
                         type: transactionType,
                         bank: bankName,
                         bankFrom: bankFromName,
@@ -171,7 +157,12 @@ export default function Transactions() {
                 })
             );
             setTransactions(adaptedData);
-        };
+        } catch (error) {
+            console.error("Erro ao carregar transações iniciais:", error);
+        }
+    };
+
+    useEffect(() => {
         loadInitialTransactions();
     }, []);
 
@@ -182,20 +173,50 @@ export default function Transactions() {
         }
     };
 
-    const handleDelete = (idToDelete: number) => {
-        setTransactions(
-            transactions.filter((transaction) => transaction.id !== idToDelete)
-        );
-        console.log(`Transação com ID ${idToDelete} excluída`);
+    const handleDelete = async (idToDelete: number) => { 
+        console.log(`Tentando deletar transação com ID ${idToDelete}`);
+        const success = await mockPrisma.transacoes.delete({ where: { id: idToDelete } });
+        if (success) {
+            setTransactions(
+                transactions.filter((transaction) => transaction.id !== idToDelete)
+            );
+            console.log(`Transação com ID ${idToDelete} excluída com sucesso.`);
+            router.refresh(); 
+        } else {
+            console.warn(`Falha ao deletar transação com ID ${idToDelete}.`);
+        }
     };
 
-    const handleAddTransaction = (newTransaction: Transaction) => {
-        setTransactions((prevTransactions) => [
-            ...prevTransactions,
-            newTransaction,
-        ]);
-        setModalType(null);
+    const handleAddTransaction = async (newTransaction: Transaction) => { 
+        
+        await mockPrisma.transacoes.create(newTransaction); 
+
+      
+        await loadInitialTransactions();
+
+        setModalType(null); 
+        router.refresh(); 
     };
+
+    const handleUpdateTransaction = async (updatedTransaction: Transaction) => { 
+        console.log(`Tentando atualizar transação com ID ${updatedTransaction.id}`);
+        const result = await mockPrisma.transacoes.update({
+            where: { id: updatedTransaction.id },
+            data: updatedTransaction
+        });
+        if (result) {
+            setTransactions((prevTransactions) =>
+                prevTransactions.map((t) =>
+                    t.id === updatedTransaction.id ? updatedTransaction : t
+                )
+            );
+            console.log(`Transação com ID ${updatedTransaction.id} atualizada com sucesso.`);
+            router.refresh(); 
+        } else {
+            console.warn(`Falha ao atualizar transação com ID ${updatedTransaction.id}.`);
+        }
+    };
+
 
     const filters = [
         "Última semana",
@@ -204,31 +225,19 @@ export default function Transactions() {
         "Último ano",
     ];
 
-    // O iconMap original não usava cores, apenas retornava o ícone.
-    // O TransactionCard passa a cor diretamente para o ícone agora.
     const iconMapForMenu = {
         income: <ArrowUpwardIcon />,
         expenses: <ArrowDownwardIcon />,
         transfer: <SyncAltOutlinedIcon />,
     };
 
-    const handleUpdateTransaction = (updatedTransaction: Transaction) => {
-        setTransactions((prevTransactions) =>
-            prevTransactions.map((t) =>
-                t.id === updatedTransaction.id ? updatedTransaction : t
-            )
-        );
-    };
-
     return (
         <>
             <Box className={styles["transactions"]}>
                 <nav className={styles["transactions__nav"]}>
-                    {/* Usando Link do Next.js e aplicando styles diretamente ou via className */}
                     <Link
                         className={styles["transactions__nav__logo_area"]}
                         href={ROUTES.HOME}
-                        // Removido sx, pois Link do Next.js não tem diretamente. Se precisar de estilo, aplique via CSS Modules ou um wrapper MUI
                     >
                         <Image
                             src="/logo.png"
@@ -258,7 +267,7 @@ export default function Transactions() {
                                 }
                             >
                                 <option
-                                    value="/transactions" // Caminho correto para esta própria página
+                                    value="/transactions"
                                     className={
                                         styles[
                                             "transactions__main__container-info__navigation__select__options"
@@ -339,7 +348,7 @@ export default function Transactions() {
                                                     color: colors.gray800,
                                                 }}
                                             >
-                                                {iconMapForMenu[type]} {/* Usando o iconMap local */}
+                                                {iconMapForMenu[type]}
                                             </Avatar>
                                         </Box>
                                         <p
@@ -380,11 +389,10 @@ export default function Transactions() {
                                     id={transaction.id}
                                     category={transaction.category}
                                     description={transaction.description}
-                                    // A data já é formatada e validada aqui.
                                     date={transaction.date}
-                                    amount={transaction.amount} // Passando amount como number
+                                    amount={transaction.amount}
                                     onDelete={() => handleDelete(transaction.id)}
-                                    onEdit={handleUpdateTransaction} // Adicionado onEdit prop para o Card
+                                    onEdit={handleUpdateTransaction}
                                     type={transaction.type}
                                     bankFrom={transaction.bankFrom}
                                     bankTo={transaction.bankTo}
@@ -405,14 +413,13 @@ export default function Transactions() {
                     />
                 </main>
             </Box>
-            {/* Certifique-se de que o componente Footer está importado corretamente */}
-            {/* <Footer/> */}
+            
             {modalType && (
                 <ModalTransaction
                     type={modalType}
                     open={true}
                     onClose={() => setModalType(null)}
-                    onAddTransaction={handleAddTransaction}
+                    onAddTransaction={handleAddTransaction} l
                 />
             )}
         </>

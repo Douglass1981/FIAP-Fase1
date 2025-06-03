@@ -4,12 +4,11 @@ let mockUsuarios = [
   {
     id: 1,
     email: "teste@email.com",
-    password: "$2b$12$yk6nisSx67kudVciNF6GzOJ5eoixq7E.Rqo9sQnTO4BIhKN61Vg3u",
+    password: "$2b$12$74IWe1t8za.N352Mfv2Q..ZrL20muTQHKX/agQSiUw5pjYUgDDKIa",
     nome: "Usuário Mock",
     createdAt: new Date(),
     updatedAt: new Date(),
   },
-  // Adicione outros usuários mockados se precisar
 ];
 let nextUsuarioId =
   mockUsuarios.length > 0 ? Math.max(...mockUsuarios.map((u) => u.id)) + 1 : 1;
@@ -178,7 +177,7 @@ const mockPrisma = {
       }
       return result;
     },
-    // Adicione outros métodos mockados para Categorias
+
     findUnique: async ({ where }: { where: { id: number } }) => {
       return mockCategorias.find((c) => c.id === where.id) || null;
     },
