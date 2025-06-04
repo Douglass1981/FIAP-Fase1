@@ -58,12 +58,20 @@ npm start
 }
 ```
 
+### 5. Execute o json server
+```bash
+npm install -g json-server
+npm i json-server -D
+json-server --watch server.json --port 3001
+```
+
 <br>
 
-Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o app.
+Abra [http://localhost:3000](http://localhost:3001) com seu navegador para ver o mock com JSON Server.
 
 ## Estrutura do projeto
 <br />
 
-## 🎨 Estilização (CSS)
-Este projeto utiliza SCSS para estilização.
+## 🎨 Estilização e Lib de componentes
+Este projeto utiliza Material UI e SCSS para estilização.
