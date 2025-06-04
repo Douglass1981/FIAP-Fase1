@@ -1,0 +1,181 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+
+.login {
+  display: flex;
+  flex-direction: row;
+  max-width: 100dvw;
+  min-height: 100vh;
+
+  &__container {
+    width: 100%;
+    @include flex-end;
+    background-color: $blue-500;
+
+    &__logo_area {
+      @include flex-center;
+      flex-direction: column;
+
+      &__brand {
+        @include font-heading-2;
+        color: $white;
+      }
+    }
+
+    &__form-area {
+      display: flex;
+      flex-direction: column;
+
+      &__text {
+        padding: 1.25rem 1.875rem;
+
+        &__title,
+        &__subtitle {
+          color: $white;
+        }
+
+        &__title {
+          @include font-heading-4 ;
+        }
+
+        &__subtitle {
+          @include font-heading-5 ;
+        }
+      }
+
+      &__form {
+        background-color: $white;
+        width: 100%;
+        border-radius: 1rem 1rem 0rem 0rem;
+        display: flex;
+        flex-direction: column;
+        padding: 3.125rem 1.875rem;
+
+        &__checkbox {
+          display: flex;
+          align-items: center;
+
+          
+        }
+
+        &__button:hover {
+          background-color: $purple-700;
+        }
+
+        &__redirect {
+          text-align: center;
+
+          &__text {
+            @include font-body-3;
+
+            &__link {
+              @include font-body-3;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__container-side {
+    display: none;
+  }
+}
+
+@include respond(md) {
+  .login {
+    background-color: $blue-500;
+    @include flex-center;
+
+    &__container {
+      border-radius: 1rem;
+      background-color: $white;
+      width: 70%;
+      padding: 3.125rem;
+
+      &__logo_area {
+        flex-direction: row;
+        @include flex-center;
+        gap: 0.625rem;
+
+
+
+        &__brand {
+          color: $blue-500;
+        }
+      }
+
+      &__form-area {
+        &__text {
+
+          &__title,
+          &__subtitle {
+            color: $black;
+          }
+        }
+
+        &__form {
+          padding: 0 1.875rem;
+        }
+      }
+    }
+  }
+}
+
+@include respond(lg) {
+  .login {
+    background-color: $white;
+
+    &__container {
+      @include flex-center;
+      width: 50%;
+      gap: 1.25rem;
+      height: 100dvh;
+
+      &__form-area {
+        width: 60%;
+        gap: 1.25rem;
+
+        &__text {
+          padding: 0;
+        }
+
+        &__form {
+          padding: 0;
+        }
+      }
+    }
+
+    &__container-side {
+      background-color: $blue-500;
+      @include flex-center;
+      flex-direction: column;
+      width: 50%;
+      min-height: 100vh;
+      gap: 0.625rem;
+
+      &__image {
+        width: 50%;
+        height: 50%;
+      }
+
+      &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__title {
+          @include font-heading-3;
+          color: $white;
+        }
+
+        &__description {
+          color: $white;
+          width: 60%;
+          text-align: center
+        }
+      }
+    }
+  }
+}

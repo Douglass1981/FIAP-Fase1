@@ -1,0 +1,71 @@
+@mixin typography($font-size,
+    $font-weight: 400,
+    $line-height: 1.5,
+    $letter-spacing: 0) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}
+
+$bp-tablet: 768px;
+$bp-desktop: 1025px;
+
+$blue-primary-500: #002952;
+
+$gray-neutral-300: #e0e0e0;
+$gray-neutral-800: #424242;
+
+$green-normal: #164d00;
+$red-normal: #e20303;
+
+$white: #ffffff;
+$black: #000000;
+
+.income,
+.expenses {
+    background-color: $gray-neutral-300;
+    display: flex;
+    padding: 10px 8px;
+    border-radius: 8px;
+    max-width: 200px;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+    .text-area {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            @include typography(0.875rem, 400, 28px, 0%);
+        }
+
+        .amount {
+            @include typography(1.125rem, 600, 28px, 0%);
+        }
+    }
+
+    .icon-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        border-radius: 100%;
+        padding: 4px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.income {
+    .icon-area {
+        background-color: $green-normal;
+    }
+}
+
+.expenses {
+    .icon-area {
+        background-color: $red-normal;
+    }
+}

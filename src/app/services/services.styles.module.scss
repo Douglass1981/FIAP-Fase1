@@ -1,0 +1,163 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+
+.content {
+  background-color: $white;
+  max-width: 100dvw;
+  min-height: 100dvh;
+  box-sizing: border-box;
+
+  
+
+  &__container {
+    padding: 1.25rem 3.125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+
+    &__title {
+      @include font-heading-3;
+    }
+
+    &__top {
+      background-color: $blue-500;
+      padding: 1.875rem;
+      border-radius: 1rem;
+      display: flex;
+      width: 70%;
+      &__left {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        &__first {
+          &__title {
+            @include font-heading-4;
+            color: $white;
+          }
+          &__paragraph {
+            @include font-heading-5 ;
+            color: $white;
+          }
+        }
+        &__second {
+          padding: 0rem 0rem 0rem 6.25rem;
+          &__title {
+            @include font-heading-4;
+            color: $white;
+          }
+          &__paragraph {
+            @include font-heading-5 ;
+
+            color: $white;
+          }
+        }
+      }
+
+      &__right {
+        display: none;
+      }
+    }
+
+    &__bottom {
+      padding: 1.25rem;
+      @include flex-center;
+      width: 70%;
+
+      &__right {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        width: 80%;
+        &__first {
+          &__title {
+            @include font-heading-4;
+          }
+          &__paragraph {
+            @include font-heading-5;
+          }
+        }
+        &__second {
+          padding: 0rem 1.25rem;
+          &__title {
+            @include font-heading-4;
+          }
+          &__paragraph {
+            @include font-heading-5;
+          }
+        }
+        &__third {
+          padding: 0rem 2.5rem;
+          &__title {
+            @include font-heading-4;
+          }
+          &__paragraph {
+            @include font-heading-5;
+          }
+        }
+      }
+    }
+  }
+
+  
+}
+
+@include respond(lg) {
+  .content {
+    
+
+    &__container {
+      padding: 0rem 10.625rem;
+
+      &__title {
+        @include font-heading-1;
+      }
+
+      &__top {
+        &__left {
+            
+          &__first {
+            &__paragraph {
+              @include font-body-2;
+            }
+          }
+          &__second {
+            padding: 0rem 0rem 0rem 3.75rem;
+
+            &__paragraph {
+              @include font-body-2;
+            }
+          }
+        }
+        
+      }
+
+      &__bottom {
+        justify-content: center;
+
+        &__right {
+          justify-content: center;
+          width: auto;
+          &__first {
+            &__paragraph {
+              @include font-body-2
+            }
+          }
+          &__second {
+            &__paragraph {
+              @include font-body-2;
+            }
+          }
+          &__third {
+            &__paragraph {
+              @include font-body-2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
