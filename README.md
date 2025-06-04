@@ -30,7 +30,7 @@ npm -v
 
 ### 🛠️ 2. Clone o repositório
 ```bash
-git clone git@github.com:buttinimoraes/bm-uis-organizer.git
+git clone git@github.com:Douglass1981/FIAP-Fase1.git
 ```
 ```bash
 cd FIAP-Fase1
