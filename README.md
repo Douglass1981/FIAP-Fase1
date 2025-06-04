@@ -17,6 +17,9 @@ Para realizar login, coloque as seguintes credenciais:
 Email: teste@email.com
 Senha: senha123
 
+# Video no Youtube
+https://youtu.be/24n56_s61FM?si=-jCRfyQEHhdRKHtW&utm_source=ZTQxO 
+
 ## 🚀 Tecnologias Utilizadas
 <br />
 
@@ -30,7 +33,7 @@ npm -v
 
 ### 🛠️ 2. Clone o repositório
 ```bash
-git clone git@github.com:buttinimoraes/bm-uis-organizer.git
+git clone git@github.com:Douglass1981/FIAP-Fase1.git
 ```
 ```bash
 cd FIAP-Fase1
