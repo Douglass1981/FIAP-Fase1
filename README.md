@@ -67,8 +67,8 @@ json-server --watch server.json --port 3001
 
 <br>
 
-Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o app.
-Abra [http://localhost:3000](http://localhost:3001) com seu navegador para ver o mock com JSON Server.
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o app. <br />
+Abra [http://localhost:3001](http://localhost:3001) com seu navegador para ver o mock com JSON Server.
 
 ## Estrutura do projeto
 <br />
