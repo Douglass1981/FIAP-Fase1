@@ -2,8 +2,20 @@
 
 Este é um projeto [Next.js](https://nextjs.org) inicializado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-UI Design: [Figma](https://www.figma.com/design/lVpj5m1jJ532gIgRZkfVvd/SafeMoney-2.0?node-id=0-1&t=5BrJxdbhfrdaNJ5f-1)  <br/>
-Organização e planejamento: [Trello](https://trello.com/b/IjZv1dee/poupai)
+O projeto é uma aplicação de gestão financeira pessoal. <br />
+Nele é possível o usuário cadastrar, editar e excluir transações, receitas, depesas que teve. O principal objetivo é permitir que o usuário registre todas as suas movimentações financeiras mensais, dando uma visão clara e estruturada de seus gastos e ganhos. Assim, ele pode tomar decisões mais conscientes, identificar padrões de consumo e manter um controle mais eficiente do seu orçamento.
+
+![image](https://github.com/user-attachments/assets/b12cb7fd-4219-48ac-90b0-3aeb4c53ae95)
+
+![image](https://github.com/user-attachments/assets/07534b02-c03a-4d92-8406-f9c537b2b6da)
+
+UI Design: [Figma](https://www.figma.com/design/lVpj5m1jJ532gIgRZkfVvd/SafeMoney-2.0?node-id=0-1&t=5BrJxdbhfrdaNJ5f-1)
+
+## Login
+
+Para realizar login, coloque as seguintes credenciais:
+Email: teste@email.com
+Senha: senha123
 
 ## 🚀 Tecnologias Utilizadas
 <br />
@@ -46,24 +58,20 @@ npm start
 }
 ```
 
+### 5. Execute o json server
+```bash
+npm install -g json-server
+npm i json-server -D
+json-server --watch server.json --port 3001
+```
+
 <br>
 
-Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
-
-## 🧹 ESLint e Prettier
-<br />
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o app.
+Abra [http://localhost:3000](http://localhost:3001) com seu navegador para ver o mock com JSON Server.
 
 ## Estrutura do projeto
 <br />
 
-## 🎨 Estilização (CSS)
-Este projeto utiliza SCSS para estilização.
-
-## Saiba Mais
-
-Para saber mais sobre o Next.js, consulte os seguintes recursos:
-
-- [Documentação do Next.js](https://nextjs.org/docs) - saiba mais sobre os recursos e a API do Next.js.
-- [Aprenda o Next.js](https://nextjs.org/learn) - um tutorial interativo do Next.js.
-
-Você pode conferir [o repositório do Next.js no GitHub](https://github.com/vercel/next.js)
+## 🎨 Estilização e Lib de componentes
+Este projeto utiliza Material UI e SCSS para estilização.
