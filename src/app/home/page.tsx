@@ -325,7 +325,7 @@ export default function Home() {
                   <span className={styles["account-balance-text"]}>
                     {formatCurrency(totalIncome - totalExpenses)}
                   </span>
-                  <Button
+                  {/* <Button
                     sx={{
                       color: colors.white,
                       textTransform: "none",
@@ -336,7 +336,7 @@ export default function Home() {
                     }}
                   >
                     Adicionar conta <AddIcon />
-                  </Button>
+                  </Button> */}
                 </div>
                 <Link href={ROUTES.DEFAULT}>
                   <Icons.Logout />
