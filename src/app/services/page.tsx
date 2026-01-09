@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Box, Button, Link } from "@mui/material";
-import { Footer } from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { Footer } from "@/app/_components/Footer";
+import Navbar from "@/app/_components/Navbar";
 import styles from "./services.styles.module.scss";
 
 export default function Services() {

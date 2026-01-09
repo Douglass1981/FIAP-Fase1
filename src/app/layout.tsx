@@ -1,6 +1,6 @@
-import { Poppins, Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import "./globals.css";
-import '../styles/global.scss';
+import './_styles/global.scss';
 
 const poppins = Poppins({
   subsets: ['latin'],

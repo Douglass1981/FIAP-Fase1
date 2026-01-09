@@ -1,4 +1,4 @@
-import { ROUTES } from "@/constants";
+import { ROUTES } from "@/shared/constants";
 
 export class Users {
     static async getUsers() {

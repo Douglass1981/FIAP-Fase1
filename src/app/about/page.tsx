@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Box } from "@mui/material";
-import Navbar from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Navbar from "@/app/_components/Navbar";
+import { Footer } from "@/app/_components/Footer";
 import styles from "./sobre.styles.module.scss";
 
 export default async function Initial() {

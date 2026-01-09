@@ -9,11 +9,11 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import Image from "next/image";
 import { ChangeEvent, useState, useEffect, useMemo } from "react";
-import TransactionCard from "@/components/CardTransactions";
-import FilterButton from "@/components/FilterButton";
-import TransactionInfo from "@/components/TransactionInfo";
-import ButtonTransactions from "@/components/ButtonTransactions";
-import ModalTransaction from "@/components/modal-component/modaltransaction";
+import TransactionCard from "@/app/_components/CardTransactions";
+import FilterButton from "@/app/_components/FilterButton";
+import TransactionInfo from "@/app/_components/TransactionInfo";
+import ButtonTransactions from "@/app/_components/ButtonTransactions";
+import ModalTransaction from "@/app/_components/modal-component/modaltransaction";
 import mockPrisma from "@/mockPrisma";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -21,8 +21,8 @@ import { colors } from "../mui.styles";
 
 import styles from "./transactions.styles.module.scss";
 
-import { ROUTES } from "@/constants";
-import { Footer } from "@components/Footer";
+import { ROUTES } from "@/shared/constants";
+import { Footer } from "@/app/_components/Footer";
 
 dayjs.extend(customParseFormat);
 
