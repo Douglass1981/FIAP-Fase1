@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { colors } from "@/app/mui.styles";
 
-import mockPrisma from "@/mockPrisma";
+import mockPrisma from "@/infra/database/prisma/mock";
 
 import { SelectChangeEvent } from "@mui/material/Select";
 import type { Banco, Categoria, ModalEditProps } from "./modal.types";

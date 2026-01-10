@@ -16,7 +16,7 @@ import { Footer } from "@/app/_components/Footer";
 import { colors } from "@/app/mui.styles";
 import styles from "./home.styles.module.scss";
 import { ROUTES } from "@/shared/constants";
-import mockPrisma from "@/mockPrisma";
+import mockPrisma from "@/infra/database/prisma/mock";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useRouter } from "next/navigation";

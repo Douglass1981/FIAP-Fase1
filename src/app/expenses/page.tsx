@@ -11,7 +11,7 @@ import { Footer } from "@/app/_components/Footer";
 import { ROUTES } from "@/shared/constants";
 import styles from "./expenses.styles.module.scss";
 
-import mockPrisma from "@/mockPrisma";
+import mockPrisma from "@/infra/database/prisma/mock";
 import dayjs from "dayjs";
 
 export default function Expenses() {

@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import prisma from "@/app/lib/prisma"; 
+import prisma from "@/infra/database/prisma/mock"; 
 
 // 
 export async function GET(request: Request) {
@@ -31,23 +31,31 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const data = await request.json(); 
-        return NextResponse.json({ message: "ID e descrição são obrigatórios para o TipoTransacao." }, { status: 400 });
+
+
+    if (!data.id || !data.descricao) {
+        return NextResponse.json(
+            { message: "ID e descrição são obrigatórios para o TipoTransacao." }, 
+            { status: 400 }
+        );
     }
 
+
     const newTipoTransacao = await prisma.tipoTransacoes.create({
-      id: parseInt(data.id), 
-      descricao: data.descricao,
-      
+      data: {
+        id: parseInt(data.id), 
+        descricao: data.descricao,
+      }
     });
 
     return NextResponse.json(newTipoTransacao, { status: 201 });
   } catch (error: any) {
-    
-    if (error.message.includes("já existe")) { 
-        return NextResponse.json({ message: error.message }, { status: 409 }); 
+
+    if (error.code === 'P2002' || error.message.includes("já existe")) { 
+        return NextResponse.json({ message: "Este ID ou descrição já existe." }, { status: 409 }); 
     }
-    console.error("ERRO DETALHADO NA API DE TIPO_TRANSACOES (POST):", error.message);
-    console.error("STACK TRACE DA API DE TIPO_TRANSACOES (POST):", error.stack);
+
+    console.error("ERRO DETALHADO NA API (POST):", error.message);
     return NextResponse.json(
       { message: "Falha interna ao adicionar tipo de transação." },
       { status: 500 }

@@ -14,7 +14,7 @@ import FilterButton from "@/app/_components/FilterButton";
 import TransactionInfo from "@/app/_components/TransactionInfo";
 import ButtonTransactions from "@/app/_components/ButtonTransactions";
 import ModalTransaction from "@/app/_components/modal-component/modaltransaction";
-import mockPrisma from "@/mockPrisma";
+import mockPrisma from "@/infra/database/prisma/mock";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { colors } from "../mui.styles";
@@ -48,8 +48,6 @@ export default function Transactions() {
         "income" | "expenses" | "transfer" | null
     >(null);
     const [selectedFilter, setSelectedFilter] = useState("Última semana");
-
-    const MAIN_BANK_ID = 2; 
 
     const { totalIncome, totalExpenses } = useMemo(() => {
         let income = 0;

@@ -17,7 +17,7 @@ import {
 import { colors } from "@/app/mui.styles";
 import { useState, useEffect } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
-import mockPrisma from "@/mockPrisma";
+import mockPrisma from "@/infra/database/prisma/mock";
 
 import ModalButton from "@/app/_components/Button"; 
 import { Banco, Categoria, ModalTransactionProps } from './modal.types';
