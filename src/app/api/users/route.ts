@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/prisma";
+import prisma from "@/infra/database/prisma/mock";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 

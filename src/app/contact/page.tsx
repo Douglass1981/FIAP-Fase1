@@ -1,9 +1,9 @@
 import { Box, FormGroup, TextField } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import Navbar from "@/components/Navbar";
-import Button from "@/components/Button";
-import { Footer } from "@/components/Footer";
+import Navbar from "@/app/_components/Navbar";
+import Button from "@/app/_components/Button";
+import { Footer } from "@/app/_components/Footer";
 import { colors } from "../mui.styles";
 import styles from "./contact.styles.module.scss";
 

@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { ROUTES } from "@/constants";
-import Button from "@/components/Button";
+import { ROUTES } from "@/shared/constants";
+import Button from "@/app/_components/Button";
 import styles from "./signup.styles.module.scss";
 
 export default function Cadastro() {

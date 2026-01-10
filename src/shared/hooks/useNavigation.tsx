@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { ROUTES } from '@/constants';
+import { ROUTES } from '@/shared/constants';
 
 export const useNavigation = () => {
   const router = useRouter();

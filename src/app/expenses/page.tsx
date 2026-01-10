@@ -3,21 +3,15 @@
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Avatar, Box, Link } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
-import TransactionCard from "@/components/CardTransactions";
-import FilterButton from "@/components/FilterButton";
-import TransactionInfo from "@/components/TransactionInfo";
-import ButtonTransactions from "@/components/ButtonTransactions";
-import ModalTransaction from "@/components/modal-component/modaltransaction";
-import { Footer } from "@/components/Footer";
-import { ROUTES } from "@/constants";
-import { colors } from "../mui.styles";
+import { Box, Link } from "@mui/material";
+import TransactionCard from "@/app/_components/CardTransactions";
+import FilterButton from "@/app/_components/FilterButton";
+import TransactionInfo from "@/app/_components/TransactionInfo";
+import { Footer } from "@/app/_components/Footer";
+import { ROUTES } from "@/shared/constants";
 import styles from "./expenses.styles.module.scss";
 
-import mockPrisma from "@/mockPrisma";
+import mockPrisma from "@/infra/database/prisma/mock";
 import dayjs from "dayjs";
 
 export default function Expenses() {

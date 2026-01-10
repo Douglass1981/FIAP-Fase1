@@ -1,5 +1,5 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { BREAKPOINT } from '@/constants';
+import { BREAKPOINT } from '@/shared/constants';
 
 export function useResponsive() {
   const isXs = useMediaQuery(`(max-width:${BREAKPOINT.sm - 1}px)`);

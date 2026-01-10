@@ -13,8 +13,8 @@ import {
 } from "@mui/material";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import MyButton from "@/components/Button";
-import { ROUTES } from "@/constants";
+import MyButton from "@/app/_components/Button";
+import { ROUTES } from "@/shared/constants";
 import { colors } from "../mui.styles";
 import styles from "./login.styles.module.scss";
 

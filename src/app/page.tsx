@@ -3,12 +3,11 @@
 import Image from "next/image";
 import { Box, Link } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
-import Button from "@/components/Button";
-import { Footer } from "@/components/Footer";
-import { ROUTES } from "@/constants";
-import { colors } from "./mui.styles";
+import Button from "@/app/_components/Button";
+import { Footer } from "@/app/_components/Footer";
+import { ROUTES } from "@/shared/constants";
 import styles from "./initial.styles.module.scss";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/app/_components/Navbar";
 
 export default function Initial() {
   const isMobile = useMediaQuery("(max-width:767px)");
